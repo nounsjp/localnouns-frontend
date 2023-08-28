@@ -7,8 +7,6 @@ import Home2022 from "@/views/2022/Home.vue";
 import Videos from "@/views/2022/Videos.vue";
 import Nominations from "@/views/2022/Nominations.vue";
 import About from "@/views/About.vue";
-import Tokens from "@/views/Tokens.vue";
-import Vote from "@/views/Vote.vue";
 import Derivative from "@/views/Derivative.vue";
 import Shop from "@/views/Shop.vue";
 
@@ -26,20 +24,12 @@ const routeChildren: Array<RouteRecordRaw> = [
     component: About,
   },
   {
-    path: "nft",
-    component: Tokens,
-  },
-  {
     path: "videos",
     component: Videos,
   },
   {
     path: "nomi",
     component: Nominations,
-  },
-  {
-    path: "vote",
-    component: Vote,
   },
   {
     path: "derivative",
