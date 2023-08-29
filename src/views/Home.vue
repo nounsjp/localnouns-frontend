@@ -3,8 +3,7 @@
     <HomeJA v-if="lang === 'ja'" />
     <HomeEn v-else />
 
-    <div class="mx-auto max-w-lg p-2 text-left">
-    </div>
+    <div class="mx-auto max-w-lg p-2 text-left"></div>
   </div>
 </template>
 

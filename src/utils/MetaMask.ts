@@ -53,7 +53,7 @@ export const initializeEthereum = () => {
       () => {
         setEthereum();
       },
-      { once: true }
+      { once: true },
     );
     setTimeout(setEthereum, 30000); // 30 seconds in which nothing happens on android
   }
