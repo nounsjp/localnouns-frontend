@@ -2,12 +2,8 @@ import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import Layout from "@/components/Layout.vue";
 import NotFound from "@/components/NotFound.vue";
 
-import Home from "@/views/2022/Home2022Prized.vue";
-import Home2022 from "@/views/2022/Home.vue";
-import Videos from "@/views/2022/Videos.vue";
-import Nominations from "@/views/2022/Nominations.vue";
-import About from "@/views/About.vue";
-import Derivative from "@/views/Derivative.vue";
+import Home from "@/views/Home.vue";
+import ComingSoon from "@/views/ComingSoon.vue";
 import Shop from "@/views/Shop.vue";
 
 const routeChildren: Array<RouteRecordRaw> = [
@@ -16,24 +12,16 @@ const routeChildren: Array<RouteRecordRaw> = [
     component: Home,
   },
   {
-    path: "2022",
-    component: Home2022,
+    path: "mint",
+    component: ComingSoon,
   },
   {
-    path: "about",
-    component: About,
+    path: "sale",
+    component: ComingSoon,
   },
   {
-    path: "videos",
-    component: Videos,
-  },
-  {
-    path: "nomi",
-    component: Nominations,
-  },
-  {
-    path: "derivative",
-    component: Derivative,
+    path: "trade",
+    component: ComingSoon,
   },
   {
     path: "shop",
