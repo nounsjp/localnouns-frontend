@@ -9,6 +9,10 @@ const lang = {
     switch: "Switch",
     form: "Submission Form",
   },
+  mint: {
+    publicSale: "Now On Public Sale",
+    alSale: "Now On AL Sale",
+  },
   message: {
     description:
       "Nouns Art Festival (NounsFes)is an online art festival with a purpose to promote a peaceful and sustainable world,founded by members of NounsDAO.",

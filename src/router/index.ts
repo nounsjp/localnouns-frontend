@@ -3,6 +3,7 @@ import Layout from "@/components/Layout.vue";
 import NotFound from "@/components/NotFound.vue";
 
 import Home from "@/views/Home.vue";
+import Mint from "@/views/Mint.vue";
 import ComingSoon from "@/views/ComingSoon.vue";
 import Shop from "@/views/Shop.vue";
 
@@ -13,7 +14,7 @@ const routeChildren: Array<RouteRecordRaw> = [
   },
   {
     path: "mint",
-    component: ComingSoon,
+    component: Mint,
   },
   {
     path: "sale",
