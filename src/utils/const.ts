@@ -1,6 +1,6 @@
 import { ref, computed } from "vue";
 import { useStore } from "vuex";
-import { ethers, BigNumber } from "ethers";
+import { ethers } from "ethers";
 import { addresses } from "@/utils/addresses";
 import { svgImageFromSvgPart } from "@/models/point";
 
@@ -10,10 +10,10 @@ interface Token {
 }
 
 type Provider =
-  | ethers.providers.JsonRpcProvider
-  | ethers.providers.AlchemyProvider
-  | ethers.providers.InfuraProvider;
-type ProviderOrSigner = ethers.providers.Provider | ethers.Signer | undefined;
+  | ethers.JsonRpcProvider
+  | ethers.AlchemyProvider
+  | ethers.InfuraProvider;
+type ProviderOrSigner = ethers.Provider | ethers.Signer | undefined;
 
 export const getAddresses = (network: string, contentAddress: string) => {
   const EtherscanBase = (() => {
@@ -51,14 +51,14 @@ export const getProvider = (
   alchemyKey: string | undefined
 ) => {
   return network == "localhost"
-    ? new ethers.providers.JsonRpcProvider()
+    ? new ethers.JsonRpcProvider()
     : network == "mumbai"
-    ? new ethers.providers.JsonRpcProvider(
+    ? new ethers.JsonRpcProvider(
         "https://matic-mumbai.chainstacklabs.com"
       )
     : alchemyKey
-    ? new ethers.providers.AlchemyProvider(network, alchemyKey)
-    : new ethers.providers.InfuraProvider(network);
+    ? new ethers.AlchemyProvider(network, alchemyKey)
+    : new ethers.InfuraProvider(network);
 };
 
 const decodeTokenData = (tokenURI: string) => {
@@ -193,34 +193,34 @@ const getBalanceFromTokenContract = async (
   tokenContract: ethers.Contract,
   account: string
 ) => {
-  const [balance] = await tokenContract.functions.balanceOf(account);
+  const [balance] = await tokenContract.balanceOf(account);
   return balance;
 };
 const getMintPriceForFromTokenContract = async (
   tokenContract: ethers.Contract,
   account: string
 ) => {
-  const [value] = await tokenContract.functions.mintPriceFor(account);
+  const [value] = await tokenContract.mintPriceFor(account);
   return value;
 };
 const getTotalSupplyFromTokenContract = async (
   tokenContract: ethers.Contract
 ) => {
-  const [supply] = await tokenContract.functions.totalSupply();
+  const [supply] = await tokenContract.totalSupply();
   return supply.toNumber();
 };
 
 const getMintLimitFromTokenContract = async (
   tokenContract: ethers.Contract
 ) => {
-  const [limit] = await tokenContract.functions.mintLimit();
+  const [limit] = await tokenContract.mintLimit();
   return limit.toNumber();
 };
 const getDebugTokenURI = async (
   tokenContract: ethers.Contract,
   tokenId: number
 ) => {
-  const [tokenURI, gas] = await tokenContract.functions.debugTokenURI(tokenId);
+  const [tokenURI, gas] = await tokenContract.debugTokenURI(tokenId);
   return { tokenURI, gas: gas.toNumber() };
 };
 
@@ -244,7 +244,7 @@ export const useFetchTokens = (
 
     console.log("totalSupply/mintLimit", totalSupply.value, mintLimit.value);
     if (totalSupply.value < mintLimit.value) {
-      const [svgPart, tag, gas] = await svgHelper.functions.generateSVGPart(
+      const [svgPart, tag, gas] = await svgHelper.generateSVGPart(
         providerAddress,
         totalSupply.value
       );
@@ -282,13 +282,13 @@ export const useCheckTokenGate = (
 ) => {
   const totalBalance = ref<number>(0);
   const balanceOf = ref<number>(0);
-  const mintPrice = ref<BigNumber>(BigNumber.from(0));
+  const mintPrice = ref<bigint>(BigInt(0));
 
   const checkTokenGate = async (account: string) => {
     console.log("### calling totalBalanceOf");
     if (tokenGated) {
       const tokenGate = getTokenGate(tokenGateAddress, provider);
-      const [result] = await tokenGate.functions.balanceOf(account);
+      const [result] = await tokenGate.balanceOf(account);
       totalBalance.value = result.toNumber();
     }
     balanceOf.value = await getBalanceFromTokenContract(contractRO, account);
