@@ -48,14 +48,12 @@ export const getAddresses = (network: string, contentAddress: string) => {
 };
 export const getProvider = (
   network: string,
-  alchemyKey: string | undefined
+  alchemyKey: string | undefined,
 ) => {
   return network == "localhost"
     ? new ethers.JsonRpcProvider()
     : network == "mumbai"
-    ? new ethers.JsonRpcProvider(
-        "https://matic-mumbai.chainstacklabs.com"
-      )
+    ? new ethers.JsonRpcProvider("https://matic-mumbai.chainstacklabs.com")
     : alchemyKey
     ? new ethers.AlchemyProvider(network, alchemyKey)
     : new ethers.InfuraProvider(network);
@@ -104,7 +102,7 @@ export const getSvgHelper = (network: string, provider: ProviderOrSigner) => {
   const svgHelper = new ethers.Contract(
     svgHelperAddress,
     ISVGHelper.wabi.abi,
-    provider
+    provider,
   );
   return svgHelper;
 };
@@ -117,73 +115,73 @@ const getTokenGate = (address: string, provider: ProviderOrSigner) => {
 export const getAssetProvider = (
   assetProviderName: string,
   network: string,
-  provider: ProviderOrSigner
+  provider: ProviderOrSigner,
 ) => {
   const providerAddress = addresses[assetProviderName][network];
   const assetProvider = new ethers.Contract(
     providerAddress,
     IAssetProvider.wabi.abi,
-    provider
+    provider,
   );
   return assetProvider;
 };
 
 export const getTokenContract = (
   address: string,
-  provider: ProviderOrSigner
+  provider: ProviderOrSigner,
 ): ethers.Contract => {
   const tokenContract = new ethers.Contract(
     address,
     ProviderTokenEx.wabi.abi,
-    provider
+    provider,
   );
   return tokenContract;
 };
 
 export const getSVGTokenContract = (
   address: string,
-  provider: ProviderOrSigner
+  provider: ProviderOrSigner,
 ): ethers.Contract => {
   const tokenContract = new ethers.Contract(
     address,
     ProviderSVGTokenEx.wabi.abi,
-    provider
+    provider,
   );
   return tokenContract;
 };
 
 export const getMessageTokenContract = (
   address: string,
-  provider: ProviderOrSigner
+  provider: ProviderOrSigner,
 ): ethers.Contract => {
   const tokenContract = new ethers.Contract(
     address,
     ProviderMessageTokenEx.wabi.abi,
-    provider
+    provider,
   );
   return tokenContract;
 };
 
 export const getMessageProviderContract = (
   address: string,
-  provider: ProviderOrSigner
+  provider: ProviderOrSigner,
 ): ethers.Contract => {
   const tokenContract = new ethers.Contract(
     address,
     ProviderMessageProviderEx.wabi.abi,
-    provider
+    provider,
   );
   return tokenContract;
 };
 
 export const getMessageStoreContract = (
   address: string,
-  provider: ProviderOrSigner
+  provider: ProviderOrSigner,
 ): ethers.Contract => {
   const tokenContract = new ethers.Contract(
     address,
     ProviderMessageStoreEx.wabi.abi,
-    provider
+    provider,
   );
   return tokenContract;
 };
@@ -191,34 +189,34 @@ export const getMessageStoreContract = (
 // Token Contract functions
 const getBalanceFromTokenContract = async (
   tokenContract: ethers.Contract,
-  account: string
+  account: string,
 ) => {
   const [balance] = await tokenContract.balanceOf(account);
   return balance;
 };
 const getMintPriceForFromTokenContract = async (
   tokenContract: ethers.Contract,
-  account: string
+  account: string,
 ) => {
   const [value] = await tokenContract.mintPriceFor(account);
   return value;
 };
 const getTotalSupplyFromTokenContract = async (
-  tokenContract: ethers.Contract
+  tokenContract: ethers.Contract,
 ) => {
   const [supply] = await tokenContract.totalSupply();
   return supply.toNumber();
 };
 
 const getMintLimitFromTokenContract = async (
-  tokenContract: ethers.Contract
+  tokenContract: ethers.Contract,
 ) => {
   const [limit] = await tokenContract.mintLimit();
   return limit.toNumber();
 };
 const getDebugTokenURI = async (
   tokenContract: ethers.Contract,
-  tokenId: number
+  tokenId: number,
 ) => {
   const [tokenURI, gas] = await tokenContract.debugTokenURI(tokenId);
   return { tokenURI, gas: gas.toNumber() };
@@ -228,7 +226,7 @@ export const useFetchTokens = (
   network: string,
   assetProvider: string | undefined,
   provider: Provider,
-  contractRO: ethers.Contract
+  contractRO: ethers.Contract,
 ) => {
   const totalSupply = ref<number>(0);
   const mintLimit = ref<number>(0);
@@ -246,7 +244,7 @@ export const useFetchTokens = (
     if (totalSupply.value < mintLimit.value) {
       const [svgPart, tag, gas] = await svgHelper.generateSVGPart(
         providerAddress,
-        totalSupply.value
+        totalSupply.value,
       );
       nextImage.value = svgImageFromSvgPart(svgPart, tag, "");
     } else {
@@ -278,7 +276,7 @@ export const useCheckTokenGate = (
   tokenGateAddress: string,
   tokenGated: boolean,
   provider: Provider,
-  contractRO: ethers.Contract
+  contractRO: ethers.Contract,
 ) => {
   const totalBalance = ref<number>(0);
   const balanceOf = ref<number>(0);
@@ -294,7 +292,7 @@ export const useCheckTokenGate = (
     balanceOf.value = await getBalanceFromTokenContract(contractRO, account);
     mintPrice.value = await getMintPriceForFromTokenContract(
       contractRO,
-      account
+      account,
     );
   };
   return {
@@ -309,7 +307,7 @@ export const useCheckTokenGate = (
 export const _useNetworkContext = (
   chainId: string,
   tokenAddress: string,
-  func: (address: string, provider: ProviderOrSigner) => ethers.Contract
+  func: (address: string, provider: ProviderOrSigner) => ethers.Contract,
 ) => {
   const store = useStore();
 
@@ -330,28 +328,28 @@ export const _useNetworkContext = (
 
 export const useTokenNetworkContext = (
   chainId: string,
-  tokenAddress: string
+  tokenAddress: string,
 ) => {
   return _useNetworkContext(chainId, tokenAddress, getTokenContract);
 };
 
 export const useSVGTokenNetworkContext = (
   chainId: string,
-  tokenAddress: string
+  tokenAddress: string,
 ) => {
   return _useNetworkContext(chainId, tokenAddress, getSVGTokenContract);
 };
 
 export const useMessageTokenNetworkContext = (
   chainId: string,
-  tokenAddress: string
+  tokenAddress: string,
 ) => {
   return _useNetworkContext(chainId, tokenAddress, getMessageTokenContract);
 };
 
 export const useMessageStoreNetworkContext = (
   chainId: string,
-  tokenAddress: string
+  tokenAddress: string,
 ) => {
   return _useNetworkContext(chainId, tokenAddress, getMessageStoreContract);
 };
