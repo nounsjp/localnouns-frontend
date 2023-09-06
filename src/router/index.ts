@@ -6,6 +6,7 @@ import Home from "@/views/Home.vue";
 import Mint from "@/views/Mint.vue";
 import ComingSoon from "@/views/ComingSoon.vue";
 import Shop from "@/views/Shop.vue";
+import { addresses } from "@/utils/addresses";
 
 const routeChildren: Array<RouteRecordRaw> = [
   {
@@ -15,6 +16,13 @@ const routeChildren: Array<RouteRecordRaw> = [
   {
     path: "mint",
     component: Mint,
+    props: {
+      network: "mumbai",
+      tokenAddress: addresses.localNounsToken["mumbai"],
+      assetProvider: "localProvider",
+      // network: "localhost",
+      // tokenAddress: addresses.localNounsToken["localhost"],
+    },
   },
   {
     path: "sale",
