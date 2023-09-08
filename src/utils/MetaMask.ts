@@ -19,6 +19,16 @@ export const getAccount = async (): Promise<string | null> => {
   return accounts.length > 0 ? accounts[0] : null;
 };
 
+export const ChainIdMap: { [key: string]: string } = {
+  mainnet: "0x1",
+  rinkeby: "0x4",
+  goerli: "0x5",
+  polygon: "0x89",
+  mumbai: "0x13881", // 80001
+  localhost: "0x7a69", // not sure
+  // localhost: "0x539", // not sure
+};
+
 // https://github.com/NoahZinsmeister/web3-react/blob/main/packages/types/src/index.ts
 // per EIP-1193
 export interface ProviderConnectInfo {
@@ -53,7 +63,7 @@ export const initializeEthereum = () => {
       () => {
         setEthereum();
       },
-      { once: true }
+      { once: true },
     );
     setTimeout(setEthereum, 30000); // 30 seconds in which nothing happens on android
   }
@@ -101,5 +111,13 @@ export const switchNetwork = async (chainId: string) => {
     });
   } catch (e) {
     console.log(e);
+  }
+};
+
+export const displayAddress = (address: string) => {
+  if (address !== undefined) {
+    return address.substring(0, 6) + "..." + address.substring(38);
+  } else {
+    return "";
   }
 };

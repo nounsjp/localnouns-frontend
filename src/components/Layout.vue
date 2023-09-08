@@ -1,27 +1,23 @@
 <template>
   <div class="layout">
     <div id="nav">
+      <!--
       <img class="mb-4" src="@/assets/banner.jpeg" />
+      -->
       <router-link :to="localizedUrl('/')" class="font-londrina text-2xl"
         >Top</router-link
       >
       |
-      <router-link :to="localizedUrl('/nft')" class="font-londrina text-2xl"
-        >Token</router-link
+      <router-link :to="localizedUrl('/mint')" class="font-londrina text-2xl"
+        >Mint</router-link
       >
       |
-      <router-link :to="localizedUrl('/videos')" class="font-londrina text-2xl"
-        >Videos</router-link
+      <router-link :to="localizedUrl('/sale')" class="font-londrina text-2xl"
+        >P2PSale</router-link
       >
       |
-      <router-link :to="localizedUrl('/nomi')" class="font-londrina text-2xl"
-        >Nominations</router-link
-      >
-      |
-      <!-- router-link :to="localizedUrl('/vote')" class="text-2xl font-londrina">Vote</router-link> |  -->
-      <!-- router-link :to="localizedUrl('/nouns')" class="text-2xl font-londrina">Nouns</router-link> | -->
-      <router-link :to="localizedUrl('/about')" class="font-londrina text-2xl"
-        >About</router-link
+      <router-link :to="localizedUrl('/trade')" class="font-londrina text-2xl"
+        >P2PTrade</router-link
       >
       |
       <router-link :to="localizedUrl('/shop')" class="font-londrina text-2xl"
