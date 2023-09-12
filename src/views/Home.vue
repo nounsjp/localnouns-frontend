@@ -1,8 +1,8 @@
 <template>
   <div class="mx-auto max-w-lg p-2 text-left">
-    <HomeJA v-if="lang === 'ja'" />
-    <HomeEn v-else />
-
+    <p class="mb-2 font-londrina text-3xl">
+      {{ $t("commingSoon.commingSoon") }}
+    </p>
     <div class="mx-auto max-w-lg p-2 text-left"></div>
   </div>
 </template>
@@ -11,15 +11,9 @@
 import { defineComponent, computed } from "vue";
 import { useI18n } from "vue-i18n";
 
-import HomeJA from "@/views/HomeJA.vue";
-import HomeEn from "@/views/HomeEn.vue";
-
 export default defineComponent({
   name: "HomePage",
-  components: {
-    HomeJA,
-    HomeEn,
-  },
+  components: {},
   setup() {
     const i18n = useI18n();
 

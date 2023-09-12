@@ -4,25 +4,27 @@
       <!--
       <img class="mb-4" src="@/assets/banner.jpeg" />
       -->
-      <router-link :to="localizedUrl('/')" class="font-londrina text-2xl"
-        >Top</router-link
+      <router-link :to="localizedUrl('/')" class="font-londrina text-2xl">{{
+        $t("nav.top")
+      }}</router-link>
+      |
+      <router-link :to="localizedUrl('/mint')" class="font-londrina text-2xl">{{
+        $t("nav.mint")
+      }}</router-link>
+      |
+      <router-link :to="localizedUrl('/sale')" class="font-londrina text-2xl">{{
+        $t("nav.p2pSale")
+      }}</router-link>
+      |
+      <router-link
+        :to="localizedUrl('/trade')"
+        class="font-londrina text-2xl"
+        >{{ $t("nav.p2pTrade") }}</router-link
       >
       |
-      <router-link :to="localizedUrl('/mint')" class="font-londrina text-2xl"
-        >Mint</router-link
-      >
-      |
-      <router-link :to="localizedUrl('/sale')" class="font-londrina text-2xl"
-        >P2PSale</router-link
-      >
-      |
-      <router-link :to="localizedUrl('/trade')" class="font-londrina text-2xl"
-        >P2PTrade</router-link
-      >
-      |
-      <router-link :to="localizedUrl('/shop')" class="font-londrina text-2xl"
-        >Goods</router-link
-      >
+      <router-link :to="localizedUrl('/shop')" class="font-londrina text-2xl">{{
+        $t("nav.goods")
+      }}</router-link>
       <Languages class="mt-4" />
       <Connect />
     </div>

@@ -1,6 +1,13 @@
 import languages from "@/i18n/languages";
 
 const lang = {
+  nav: {
+    top: "トップ",
+    mint: "ミント",
+    p2pSale: "P2Pセール",
+    p2pTrade: "P2Pトレード",
+    goods: "グッズ",
+  },
   menu: {
     connect: "接続",
     connected: "サインイン",
@@ -12,6 +19,9 @@ const lang = {
   mint: {
     publicSale: "パブリックセール中",
     alSale: "ALセール中",
+  },
+  commingSoon: {
+    commingSoon: "近日公開",
   },
   message: {
     description:

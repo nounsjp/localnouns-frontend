@@ -1,6 +1,13 @@
 import languages from "@/i18n/languages";
 
 const lang = {
+  nav: {
+    top: "Top",
+    mint: "Mint",
+    p2pSale: "P2PSale",
+    p2pTrade: "P2PTrade",
+    goods: "Goods",
+  },
   menu: {
     connect: "Connect",
     connected: "Sign In",
@@ -12,6 +19,9 @@ const lang = {
   mint: {
     publicSale: "Now On Public Sale",
     alSale: "Now On AL Sale",
+  },
+  commingSoon: {
+    commingSoon: "Comming Soon",
   },
   message: {
     description:
