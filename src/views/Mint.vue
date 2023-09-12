@@ -25,6 +25,7 @@
 import { defineComponent, computed } from "vue";
 import { useI18n } from "vue-i18n";
 import { getProvider, getTokenContract, useFetchTokens } from "@/utils/const";
+import { ALCHEMY_API_KEY } from "@/config/project";
 
 export default defineComponent({
   props: {
@@ -62,8 +63,7 @@ export default defineComponent({
       return i18n.locale.value;
     });
 
-    const alchemyKey = process.env.VUE_APP_ALCHEMY_API_KEY;
-    const provider = getProvider(props.network, alchemyKey);
+    const provider = getProvider(props.network, ALCHEMY_API_KEY);
 
     // RO means read only.
     const contractRO = getTokenContract(props.tokenAddress, provider);
