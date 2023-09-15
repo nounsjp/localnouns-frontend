@@ -1,18 +1,44 @@
 <template>
   <div class="mx-auto max-w-lg p-2 text-left">
-    <p class="mb-2 font-londrina text-3xl">{{ $t("mint.publicSale") }}</p>
+    <p class="mb-2 font-londrina text-xl">{{ $t("mint.publicSale") }}</p>
     <div class="mb-8 space-y-2 font-pt-root font-medium"></div>
   </div>
 
   <div class="mx-auto max-w-lg p-2 text-left">
-    <p class="mb-2 font-londrina text-xl">
-      Next Token Id: {{ `${totalSupply}` }}
+    <Prefectures class="mt-4" />
+  </div>
+  <div class="mx-auto max-w-lg p-2 text-left">
+    <NumOfMint class="mt-4" />
+  </div>
+
+  <div class="mx-auto max-w-lg p-2 text-left">
+    <span class="ml-16 font-londrina font-yusei text-2xl">
+      {{ $t("mint.total") }}: {{ total }} ETH (+ gas fee)
+    </span>
+  </div>
+
+  <div class="mx-auto max-w-lg p-2 text-center">
+  <span class="ml-16 font-londrina font-yusei">
+    <span v-if="true">
+      <button
+        class="inline-block rounded bg-green-600 px-6 py-2.5 leading-tight text-white text-3xl shadow-md transition duration-150 ease-in-out hover:bg-green-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg"
+      >
+        {{ $t("mint.mint") }}
+      </button>
+    </span>
+    </span>
+    </div>
+
+  <div class="mb-8 space-y-2 font-pt-root font-medium"></div>
+  <hr />
+  <div class="mx-auto max-w-lg p-2 text-center">
+    <p class="mb-2 font-londrina text-3xl">
+      {{ `${totalSupply}` }} / {{ `${mintLimit}` }} minted
     </p>
-    <div class="mb-8 space-y-2 font-pt-root font-medium"></div>
   </div>
 
   <div v-if="tokens.length > 0" class="mt-4">
-    <p>Recently minted NFTs</p>
+    <p class="mb-2 font-londrina text-s">Recently minted LocalNouns</p>
     <span v-for="token in tokens" :key="token.tokenId">
       <a :href="`${OpenSeaPath}/${token.tokenId}`" target="_blank">
         <img :src="token.image" class="mr-1 mb-1 inline-block w-32" />
@@ -26,6 +52,8 @@ import { defineComponent, computed } from "vue";
 import { useI18n } from "vue-i18n";
 import { getProvider, getTokenContract, useFetchTokens } from "@/utils/const";
 import { ALCHEMY_API_KEY } from "@/config/project";
+import Prefectures from "@/components/Prefectures.vue";
+import NumOfMint from "@/components/NumOfMint.vue";
 
 export default defineComponent({
   props: {
@@ -56,6 +84,10 @@ export default defineComponent({
     // },
   },
   name: "Mint",
+  components: {
+    Prefectures,
+    NumOfMint,
+  },
   setup(props, context) {
     const i18n = useI18n();
 
@@ -91,10 +123,14 @@ export default defineComponent({
       );
     });
 
+    const total = 0.05;   // 仮
+
     return {
       lang,
       totalSupply,
+      mintLimit,
       tokens,
+      total,
     };
   },
 });

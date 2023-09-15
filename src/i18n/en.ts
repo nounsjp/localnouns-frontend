@@ -19,6 +19,14 @@ const lang = {
   mint: {
     publicSale: "Now On Public Sale",
     alSale: "Now On AL Sale",
+    total: "Total",
+    mint: "Mint",
+  },
+  prefectures: {
+    prefectures: "Prefecture",
+  },
+  numOfMint:{
+    numOfMint: "Quantity",
   },
   commingSoon: {
     commingSoon: "Comming Soon",

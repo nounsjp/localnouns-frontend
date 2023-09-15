@@ -19,6 +19,14 @@ const lang = {
   mint: {
     publicSale: "パブリックセール中",
     alSale: "ALセール中",
+    total: "合計",
+    mint: "ミント",
+  },
+  prefectures: {
+    prefectures: "都道府県",
+  },
+  numOfMint:{
+    numOfMint: "ミント数",
   },
   commingSoon: {
     commingSoon: "近日公開",
