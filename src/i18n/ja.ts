@@ -25,7 +25,7 @@ const lang = {
   prefectures: {
     prefectures: "都道府県",
   },
-  numOfMint:{
+  numOfMint: {
     numOfMint: "ミント数",
   },
   commingSoon: {

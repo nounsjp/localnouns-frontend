@@ -25,7 +25,7 @@ const lang = {
   prefectures: {
     prefectures: "Prefecture",
   },
-  numOfMint:{
+  numOfMint: {
     numOfMint: "Quantity",
   },
   commingSoon: {

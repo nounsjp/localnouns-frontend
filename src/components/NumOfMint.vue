@@ -1,18 +1,18 @@
 <template>
-    <span class="ml-16 font-londrina font-yusei text-xl">
-      {{ $t("numOfMint.numOfMint") }}:
+  <span class="ml-16 font-londrina font-yusei text-xl">
+    {{ $t("numOfMint.numOfMint") }}:
 
-      <select @change="updateValue">
-        <option
-          v-for="(option, index) in numOfMint"
-          :value="option"
-          :key="index"
-          :selected="option == selectedValue ? true : false"
-        >
-          {{ option }}
-        </option>
-      </select>
-    </span>
+    <select @change="updateValue">
+      <option
+        v-for="(option, index) in numOfMint"
+        :value="option"
+        :key="index"
+        :selected="option == selectedValue ? true : false"
+      >
+        {{ option }}
+      </option>
+    </select>
+  </span>
 </template>
 
 <script lang="ts">

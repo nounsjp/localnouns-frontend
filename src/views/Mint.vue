@@ -18,16 +18,16 @@
   </div>
 
   <div class="mx-auto max-w-lg p-2 text-center">
-  <span class="ml-16 font-londrina font-yusei">
-    <span v-if="true">
-      <button
-        class="inline-block rounded bg-green-600 px-6 py-2.5 leading-tight text-white text-3xl shadow-md transition duration-150 ease-in-out hover:bg-green-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg"
-      >
-        {{ $t("mint.mint") }}
-      </button>
+    <span class="ml-16 font-londrina font-yusei">
+      <span v-if="true">
+        <button
+          class="inline-block rounded bg-green-600 px-6 py-2.5 leading-tight text-white text-3xl shadow-md transition duration-150 ease-in-out hover:bg-green-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg"
+        >
+          {{ $t("mint.mint") }}
+        </button>
+      </span>
     </span>
-    </span>
-    </div>
+  </div>
 
   <div class="mb-8 space-y-2 font-pt-root font-medium"></div>
   <hr />
@@ -123,7 +123,7 @@ export default defineComponent({
       );
     });
 
-    const total = 0.05;   // 仮
+    const total = 0.05; // 仮
 
     return {
       lang,
