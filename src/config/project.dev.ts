@@ -9,4 +9,4 @@ export const firebaseConfig = {
   useEmulator: false,
 };
 
-export const ALCHEMY_API_KEY="dbzRVTQMqR16Zzo764gh-c7PxiJiaWoC";
+export const ALCHEMY_API_KEY = "dbzRVTQMqR16Zzo764gh-c7PxiJiaWoC";
