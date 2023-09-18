@@ -5,9 +5,9 @@
     <select @change="updateValue">
       <option
         v-for="(option, index) in prefecture"
-        :value="option"
+        :value="index"
         :key="index"
-        :selected="option == selectedValue ? true : false"
+        :selected="index == selectedValue ? true : false"
       >
         {{ option }}
       </option>
@@ -24,7 +24,7 @@ import { languages } from "@/i18n/index";
 import prefectures from "@/i18n/prefectures";
 
 export default defineComponent({
-  setup() {
+  setup(props, context) {
     // const route = useRoute();
     // const router = useRouter();
     const i18n = useI18n();
@@ -34,11 +34,16 @@ export default defineComponent({
     });
 
     // TODO langの変更に伴って都道府県の言語も変更する
-    const prefecture = prefectures[lang.value as keyof typeof prefectures];
-    const selectedValue = ref(prefecture[0]);
+    // const prefecture = prefectures[lang.value as keyof typeof prefectures];
+      const prefecture = computed(() => {
+      return prefectures[lang.value as keyof typeof prefectures];
+    });
 
-    const updateValue = (value: { target: HTMLSelectElement }) => {
-      console.log(value);
+    const selectedValue = ref(prefecture.value[0]);
+
+    const updateValue = (event: { target: HTMLSelectElement }) => {
+      context.emit("update:modelValue", event.target.value);
+      console.log(event.target.value);
     };
     return {
       languages,

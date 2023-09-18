@@ -23,7 +23,13 @@ import { defineComponent, ref } from "vue";
 import { languages } from "@/i18n/index";
 
 export default defineComponent({
-  setup() {
+  props: {
+    limit: {
+      type: Number,
+      required: true,
+    },
+  },
+  setup(props, context) {
     // const route = useRoute();
     // const router = useRouter();
     // const i18n = useI18n();
@@ -32,11 +38,18 @@ export default defineComponent({
     //   return i18n.locale.value;
     // });
 
-    const numOfMint = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; // 仮のミント数
-    const selectedValue = ref(numOfMint.length);
+    const numOfMint: number[] = [];
+    for (let i = 0; i < props.limit; i++) {
+      numOfMint[i] = i + 1;
+    }
 
-    const updateValue = (value: { target: HTMLSelectElement }) => {
-      console.log(value);
+    // const numOfMint = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; // 仮のミント数
+    const selectedValue = ref(props.limit);
+    context.emit("update:modelValue", props.limit);
+
+    const updateValue = (event: { target: HTMLSelectElement }) => {
+      context.emit("update:modelValue", parseInt(event.target.value));
+      console.log(event.target.value);
     };
     return {
       languages,

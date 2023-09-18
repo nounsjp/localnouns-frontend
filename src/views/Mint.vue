@@ -5,10 +5,10 @@
   </div>
 
   <div class="mx-auto max-w-lg p-2 text-left">
-    <Prefectures class="mt-4" />
+    <Prefectures class="mt-4" v-model="selectedPrefecture" />
   </div>
   <div class="mx-auto max-w-lg p-2 text-left">
-    <NumOfMint class="mt-4" />
+    <NumOfMint class="mt-4" limit="20" v-model="selectedNumOfMint" />
   </div>
 
   <div class="mx-auto max-w-lg p-2 text-left">
@@ -48,7 +48,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from "vue";
+import { defineComponent, computed, ref } from "vue";
 import { useI18n } from "vue-i18n";
 import { getProvider, getTokenContract, useFetchTokens } from "@/utils/const";
 import { ALCHEMY_API_KEY } from "@/config/project";
@@ -123,7 +123,19 @@ export default defineComponent({
       );
     });
 
-    const total = 0.05; // 仮
+    const selectedPrefecture = ref(0);
+
+    const selectedNumOfMint = ref(20);
+    const total = computed(() => {
+      console.log("selectedPrefecture:", selectedPrefecture.value);
+      console.log("selectedNumOfMint:", selectedNumOfMint.value);
+
+      if (selectedPrefecture.value == 0) {
+        return Number(selectedNumOfMint.value) * 0.01;
+      } else {
+        return Number(selectedNumOfMint.value) * 0.03;
+      }
+    });
 
     return {
       lang,
@@ -131,6 +143,8 @@ export default defineComponent({
       mintLimit,
       tokens,
       total,
+      selectedNumOfMint,
+      selectedPrefecture,
     };
   },
 });
