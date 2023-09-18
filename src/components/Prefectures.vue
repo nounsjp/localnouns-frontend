@@ -33,8 +33,7 @@ export default defineComponent({
       return i18n.locale.value;
     });
 
-    // TODO langの変更に伴って都道府県の言語も変更する
-    // const prefecture = prefectures[lang.value as keyof typeof prefectures];
+    // langの変更に伴って都道府県の言語も変更する
     const prefecture = computed(() => {
       return prefectures[lang.value as keyof typeof prefectures];
     });
