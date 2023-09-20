@@ -21,6 +21,7 @@ const lang = {
     alSale: "Now On AL Sale",
     total: "Total",
     mint: "Mint",
+    connectWallet: "Connect Wallet from above right button.",
   },
   prefectures: {
     prefectures: "Prefecture",

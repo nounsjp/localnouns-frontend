@@ -19,12 +19,23 @@
 
   <div class="mx-auto max-w-lg p-2 text-center">
     <span class="ml-16 font-londrina font-yusei">
-      <span v-if="true">
+      <span v-if="account">
         <button
+          @click="mint"
           class="inline-block rounded bg-green-600 px-6 py-2.5 leading-tight text-white text-3xl shadow-md transition duration-150 ease-in-out hover:bg-green-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg"
         >
           {{ $t("mint.mint") }}
         </button>
+        {{ account }}
+      </span>
+      <span v-else>
+        <button
+          class="inline-block rounded bg-gray-600 px-6 py-2.5 leading-tight text-white text-3xl shadow-md transition duration-150 ease-in-out hover:bg-gray-700 hover:shadow-lg focus:bg-gray-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-800 active:shadow-lg"
+          disabled
+        >
+          {{ $t("mint.connectWallet") }}
+        </button>
+        {{ account }}
       </span>
     </span>
   </div>
@@ -49,8 +60,15 @@
 
 <script lang="ts">
 import { defineComponent, computed, ref } from "vue";
+import { useStore } from "vuex";
 import { useI18n } from "vue-i18n";
-import { getProvider, getTokenContract, useFetchTokens } from "@/utils/const";
+import {
+  getProvider,
+  getTokenContract,
+  useFetchTokens,
+  getLocalNounsMinterContract,
+} from "@/utils/const";
+import { ChainIdMap } from "@/utils/MetaMask";
 import { ALCHEMY_API_KEY } from "@/config/project";
 import Prefectures from "@/components/Prefectures.vue";
 import NumOfMint from "@/components/NumOfMint.vue";
@@ -79,6 +97,10 @@ export default defineComponent({
     assetProvider: {
       type: String,
     },
+    minterAddress: {
+      type: String,
+      required: true,
+    },
     // limit: {
     //   type: Number,
     // },
@@ -89,8 +111,10 @@ export default defineComponent({
     NumOfMint,
   },
   setup(props, context) {
+    const store = useStore();
     const i18n = useI18n();
 
+    const isMinting = ref(false);
     const lang = computed(() => {
       return i18n.locale.value;
     });
@@ -124,18 +148,43 @@ export default defineComponent({
     });
 
     const selectedPrefecture = ref(0);
-
     const selectedNumOfMint = ref(20);
     const total = computed(() => {
-      console.log("selectedPrefecture:", selectedPrefecture.value);
-      console.log("selectedNumOfMint:", selectedNumOfMint.value);
-
       if (selectedPrefecture.value == 0) {
         return Number(selectedNumOfMint.value) * 0.01;
       } else {
         return Number(selectedNumOfMint.value) * 0.03;
       }
     });
+
+    const account = computed(() => store.state.account);
+
+    const mint = async () => {
+      const chainId = ChainIdMap[props.network];
+      const signer = await store.getters.getSigner(chainId);
+
+      const contract = getLocalNounsMinterContract(props.minterAddress, signer);
+
+      console.log("contract.runner", contract.runner);
+
+      console.log("contract:", contract);
+      console.log("*** minting", total.value);
+      isMinting.value = true;
+
+      try {
+        const txParams = { value: 0 };
+        // TODO LocalNounsMinter.solのmintSelectedPrefectureを複数個数のミント可能にする
+        const tx = await contract.mintSelectedPrefecture(selectedPrefecture.value, txParams);
+        const result = await tx.wait();
+        console.log("mint:tx");
+        console.log("mint:gasUsed", result.gasUsed.toNumber());
+
+        // await checkTokenGate(account.value);
+      } catch (e) {
+        console.error(e);
+      }
+      isMinting.value = false;
+    };
 
     return {
       lang,
@@ -145,6 +194,9 @@ export default defineComponent({
       total,
       selectedNumOfMint,
       selectedPrefecture,
+      isMinting,
+      account,
+      mint,
     };
   },
 });

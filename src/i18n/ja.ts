@@ -21,6 +21,7 @@ const lang = {
     alSale: "ALセール中",
     total: "合計",
     mint: "ミント",
+    connectWallet: "右上の「接続」ボタンからウォレット接続してください",
   },
   prefectures: {
     prefectures: "都道府県",
