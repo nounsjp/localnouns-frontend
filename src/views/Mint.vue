@@ -49,7 +49,7 @@
   </div>
 
   <div v-if="tokens.length > 0" class="mt-4">
-    <p class="mb-2 font-londrina text-s">Recently minted LocalNouns</p>
+    <p class="mb-2 font-londrina text-s">{{ $t("mint.recentlyMinted") }}</p>
     <span v-for="token in tokens" :key="token.tokenId">
       <a :href="`${OpenSeaPath}/${token.tokenId}`" target="_blank">
         <img :src="token.image" class="mr-1 mb-1 inline-block w-32" />
@@ -174,7 +174,10 @@ export default defineComponent({
       try {
         const txParams = { value: 0 };
         // TODO LocalNounsMinter.solのmintSelectedPrefectureを複数個数のミント可能にする
-        const tx = await contract.mintSelectedPrefecture(selectedPrefecture.value, txParams);
+        const tx = await contract.mintSelectedPrefecture(
+          selectedPrefecture.value,
+          txParams,
+        );
         const result = await tx.wait();
         console.log("mint:tx");
         console.log("mint:gasUsed", result.gasUsed.toNumber());
