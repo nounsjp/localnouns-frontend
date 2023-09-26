@@ -21,7 +21,6 @@ import { prefectureList } from "@/i18n/prefectures";
 
 export default defineComponent({
   setup(props, context) {
-
     const selectedValue = ref(prefectureList[0]);
 
     const updateValue = (event: { target: HTMLSelectElement }) => {

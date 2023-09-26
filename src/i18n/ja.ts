@@ -1,5 +1,5 @@
 import languages from "@/i18n/languages";
-import {prefecture_ja as prefecture} from "@/i18n/prefectures";
+import { prefecture_ja as prefecture } from "@/i18n/prefectures";
 
 const lang = {
   nav: {

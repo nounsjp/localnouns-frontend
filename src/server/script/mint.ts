@@ -22,17 +22,13 @@ tokenContract.on("Transfer", async (from, to, tokenId, event) => {
   try {
     console.log("mint", tokenId, to);
 
-    console.log(
-      "traits",
-      await providerContract.generateTraits(tokenId),
-    );
+    console.log("traits", await providerContract.generateTraits(tokenId));
 
     const [svgPart] = await providerContract.generateSVGPart(tokenId);
-    const svg = Buffer.from(svgPart, 'base64').toString('utf8');
+    const svg = Buffer.from(svgPart, "base64").toString("utf8");
 
     console.log("svg", svg.length);
     console.log("decodeData", svg);
-
   } catch (error) {
     console.error("Error:", error);
   }
