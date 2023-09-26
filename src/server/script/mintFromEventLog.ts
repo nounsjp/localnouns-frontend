@@ -4,8 +4,8 @@ import {
   getLocalNounsTokenContract,
   getLocalNounsProviderContract,
 } from "@/utils/const";
-import { addresses } from "../../utils/addresses";
-import { EventLog } from "ethers";
+import { addresses } from "@/utils/addresses";
+import { writeToken } from "@/firestore/token";
 
 const provider = getProvider(NETWORK, ALCHEMY_API_KEY);
 const tokenContract = getLocalNounsTokenContract(
@@ -19,18 +19,32 @@ const providerContract = getLocalNounsProviderContract(
 );
 
 const main = async () => {
+  // from address(0) への Transfer イベントをフィルタリング
   const filter = tokenContract.filters.Transfer(
     "0x0000000000000000000000000000000000000000",
     null,
     null,
-  ); // from address(0) への Transfer イベントをフィルタリング
+  );
   const events = await tokenContract.queryFilter(filter);
 
   for (let event of events) {
+    // EventLog 型の場合のみ実行
     if ("args" in event) {
-      // EventLog 型の場合のみ実行
-      const { from, to, tokenId } = event.args;
-      console.log(`To: ${to}, TokenID: ${tokenId}`);
+      // eventからto, tokenIdを取得
+      const { to, tokenId } = event.args;
+
+      // traits情報を取得
+      const jsonString = await providerContract.generateTraits(tokenId);
+      const traits = JSON.parse("[" + jsonString + "]");
+
+      // SVGイメージを取得(base64でエンコードされているのでデコードする)
+      const [svgPart] = await providerContract.generateSVGPart(tokenId);
+      const svg = Buffer.from(svgPart, "base64").toString("utf8");
+
+      // firestoreに書き込み
+      await writeToken(tokenId, to, traits, svg);
+
+      console.log(`Write finish, TokenID: ${tokenId}`);
     }
   }
 };
