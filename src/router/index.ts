@@ -4,6 +4,7 @@ import NotFound from "@/components/NotFound.vue";
 
 import Home from "@/views/Home.vue";
 import Mint from "@/views/Mint.vue";
+import P2PSale from "@/views/P2PSale.vue";
 import ComingSoon from "@/views/ComingSoon.vue";
 import Shop from "@/views/Shop.vue";
 import { addresses } from "@/utils/addresses";
@@ -21,13 +22,15 @@ const routeChildren: Array<RouteRecordRaw> = [
       tokenAddress: addresses.localNounsToken["mumbai"],
       assetProvider: "localProvider",
       minterAddress: addresses.localNounsMinter["mumbai"],
-      // network: "localhost",
-      // tokenAddress: addresses.localNounsToken["localhost"],
     },
   },
   {
     path: "sale",
-    component: ComingSoon,
+    component: P2PSale,
+    props: {
+      network: "mumbai",
+      tokenAddress: addresses.localNounsToken["mumbai"],
+    },
   },
   {
     path: "trade",

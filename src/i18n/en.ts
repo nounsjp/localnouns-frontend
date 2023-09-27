@@ -25,6 +25,10 @@ const lang = {
     connectWallet: "Connect Wallet from above right button.",
     recentlyMinted: "Recently minted LocalNouns.⌐◨-◨",
   },
+  p2pSale: {
+    description: "You can parchace Local Nouns here.",
+    purchace: "Buy",
+  },
   prefectures: {
     prefectures: "Prefecture",
   },

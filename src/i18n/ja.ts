@@ -25,6 +25,10 @@ const lang = {
     connectWallet: "右上の「接続」ボタンからウォレット接続してください",
     recentlyMinted: "産まれたてのLocalNounsたちです.⌐◨-◨",
   },
+  p2pSale: {
+    description: "ここではご当地Nounsを購入することができます",
+    purchace: "購入",
+  },
   prefectures: {
     prefectures: "都道府県",
   },
