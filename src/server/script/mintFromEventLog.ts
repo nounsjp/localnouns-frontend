@@ -5,7 +5,7 @@ import {
   getLocalNounsProviderContract,
 } from "@/utils/const";
 import { addresses } from "@/utils/addresses";
-import { writeToken } from "@/firestore/token";
+import { writeTokenDataToFirestore } from "@/firestore/token";
 
 const provider = getProvider(NETWORK, ALCHEMY_API_KEY);
 const tokenContract = getLocalNounsTokenContract(
@@ -45,7 +45,7 @@ const main = async () => {
         .replace(/ width="320" height="320"/, "");
 
       // firestoreに書き込み
-      await writeToken(tokenId, to, traits, svg);
+      await writeTokenDataToFirestore(tokenId, to, traits, svg);
 
       console.log(`Write finish, TokenID: ${tokenId}`);
     }

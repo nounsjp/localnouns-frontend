@@ -21,7 +21,7 @@ interface TOKEN {
   createdDate: admin.firestore.Timestamp;
 }
 
-export const writeToken = async (
+export const writeTokenDataToFirestore = async (
   tokenId: string,
   to: string,
   traits: any,
