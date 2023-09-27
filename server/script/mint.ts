@@ -1,11 +1,11 @@
-import { ALCHEMY_API_KEY, NETWORK } from "@/config/project";
+import { ALCHEMY_API_KEY, NETWORK } from "../../src/config/project";
 import {
   getProvider,
   getLocalNounsTokenContract,
   getLocalNounsProviderContract,
-} from "@/utils/const";
-import { addresses } from "../../utils/addresses";
-import { writeTokenDataToFirestore } from "@/firestore/token";
+} from "../../src/utils/const";
+import { addresses } from "../../src/utils/addresses";
+import { writeTokenDataToFirestore } from "../../src/firestore/token";
 
 const provider = getProvider(NETWORK, ALCHEMY_API_KEY);
 const tokenContract = getLocalNounsTokenContract(
