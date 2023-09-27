@@ -6,9 +6,16 @@
   <div
     class="grid w-screen grid-cols-2 place-content-center items-center gap-2 sm:grid-cols-5"
   >
-    <div v-for="token in tokens" :key="token.key" class="px-2 py-6 flex flex-col items-center justify-center">
+    <div
+      v-for="token in tokens"
+      :key="token.key"
+      class="px-2 py-6 flex flex-col items-center justify-center"
+    >
       <svg v-html="token.svg"></svg>
-    <p class="mb-2 font-londrina text-xl">#{{ token.tokenId}}, {{ token.prefecture}}, {{ token.head}}, {{ token.accessory}}</p>
+      <p class="mb-2 font-londrina text-xl">
+        #{{ token.tokenId }}, {{ token.prefecture }}, {{ token.head }},
+        {{ token.accessory }}
+      </p>
       <button
         @click="setSelected(token.id)"
         class="inline-block w-32 rounded bg-white px-6 py-2.5 leading-tight text-green-500 shadow-md hover:bg-green-100 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0"
