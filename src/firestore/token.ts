@@ -29,7 +29,7 @@ export const writeToken = async (
 ) => {
   // 他のドキュメントにも書くかもしれないのでトランザクションで格納しておく
   await admin.firestore().runTransaction(async (tr) => {
-    const path = `/${NETWORK}/${tokenAddress}/tokens/${tokenId}`;
+    const tokenDocumentPath = `/${NETWORK}/${tokenAddress}/tokens/${tokenId}`;
 
     const { prefecture, head, accessory } = convertTrais(traits);
 
@@ -43,7 +43,7 @@ export const writeToken = async (
       createdDate: admin.firestore.Timestamp.now(),
     };
 
-    await tr.set(firestore.doc(path), tokenInfo);
+    await tr.set(firestore.doc(tokenDocumentPath), tokenInfo);
   });
 
   return {
