@@ -44,7 +44,7 @@
   <hr />
   <div class="mx-auto max-w-lg p-2 text-center">
     <p class="mb-2 font-londrina text-3xl">
-      {{ `${totalSupply}` }} / {{ `${mintLimit}` }} minted
+      {{ `${totalSupply - 1}` }} / {{ `${mintLimit}` }} minted
     </p>
   </div>
 
