@@ -54,11 +54,11 @@ export default defineComponent({
       return i18n.locale.value;
     });
 
-    const path = `/${props.network}/${props.tokenAddress}/tokens/`;
+    const tokenCollectionPath = `/${props.network}/${props.tokenAddress}/tokens`;
 
     const getTokenList = async () => {
       try {
-        const results = await getDocs(collection(db, path));
+        const results = await getDocs(collection(db, tokenCollectionPath));
         const tokens = results.docs.map((doc) => {
           return doc.data();
         });
