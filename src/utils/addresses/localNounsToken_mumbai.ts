@@ -1,3 +1,3 @@
 export const addresses = {
-  localNounsToken: "0xDd9C78d6A32B1f660d51b2525b430AF371503EF6",
+  localNounsToken: "0x4d21F695453D2d206D72A08086f0440A97A82125",
 };

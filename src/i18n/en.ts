@@ -1,10 +1,11 @@
 import languages from "@/i18n/languages";
-import {prefecture_en as prefecture} from "@/i18n/prefectures";
+import { prefecture_en as prefecture } from "@/i18n/prefectures";
 
 const lang = {
   nav: {
     top: "Top",
     mint: "Mint",
+    list: "List",
     p2pSale: "P2PSale",
     p2pTrade: "P2PTrade",
     goods: "Goods",
@@ -24,6 +25,10 @@ const lang = {
     mint: "Mint",
     connectWallet: "Connect Wallet from above right button.",
     recentlyMinted: "Recently minted LocalNouns.⌐◨-◨",
+  },
+  list: {
+    description: "You can parchace Local Nouns here.",
+    purchace: "Buy",
   },
   prefectures: {
     prefectures: "Prefecture",

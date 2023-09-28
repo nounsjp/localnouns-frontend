@@ -1,10 +1,11 @@
 import languages from "@/i18n/languages";
-import {prefecture_ja as prefecture} from "@/i18n/prefectures";
+import { prefecture_ja as prefecture } from "@/i18n/prefectures";
 
 const lang = {
   nav: {
     top: "トップ",
     mint: "ミント",
+    list: "リスト",
     p2pSale: "P2Pセール",
     p2pTrade: "P2Pトレード",
     goods: "グッズ",
@@ -24,6 +25,10 @@ const lang = {
     mint: "ミント",
     connectWallet: "右上の「接続」ボタンからウォレット接続してください",
     recentlyMinted: "産まれたてのLocalNounsたちです.⌐◨-◨",
+  },
+  list: {
+    description: "ここではご当地Nounsを購入することができます",
+    purchace: "購入",
   },
   prefectures: {
     prefectures: "都道府県",
