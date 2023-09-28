@@ -2,17 +2,21 @@ import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import Layout from "@/components/Layout.vue";
 import NotFound from "@/components/NotFound.vue";
 
-import Home from "@/views/Home.vue";
+// import Home from "@/views/Home.vue";
 import Mint from "@/views/Mint.vue";
-import P2PSale from "@/views/P2PSale.vue";
-import ComingSoon from "@/views/ComingSoon.vue";
+import List from "@/views/List.vue";
+// import ComingSoon from "@/views/ComingSoon.vue";
 import Shop from "@/views/Shop.vue";
 import { addresses } from "@/utils/addresses";
 
 const routeChildren: Array<RouteRecordRaw> = [
   {
     path: "",
-    component: Home,
+    component: List,
+    props: {
+      network: "mumbai",
+      tokenAddress: addresses.localNounsToken["mumbai"],
+    },
   },
   {
     path: "mint",
@@ -25,16 +29,12 @@ const routeChildren: Array<RouteRecordRaw> = [
     },
   },
   {
-    path: "sale",
-    component: P2PSale,
+    path: "list",
+    component: List,
     props: {
       network: "mumbai",
       tokenAddress: addresses.localNounsToken["mumbai"],
     },
-  },
-  {
-    path: "trade",
-    component: ComingSoon,
   },
   {
     path: "shop",

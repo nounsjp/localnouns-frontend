@@ -5,6 +5,7 @@ const lang = {
   nav: {
     top: "トップ",
     mint: "ミント",
+    list: "リスト",
     p2pSale: "P2Pセール",
     p2pTrade: "P2Pトレード",
     goods: "グッズ",
@@ -25,7 +26,7 @@ const lang = {
     connectWallet: "右上の「接続」ボタンからウォレット接続してください",
     recentlyMinted: "産まれたてのLocalNounsたちです.⌐◨-◨",
   },
-  p2pSale: {
+  list: {
     description: "ここではご当地Nounsを購入することができます",
     purchace: "購入",
   },

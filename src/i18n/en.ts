@@ -5,6 +5,7 @@ const lang = {
   nav: {
     top: "Top",
     mint: "Mint",
+    list: "List",
     p2pSale: "P2PSale",
     p2pTrade: "P2PTrade",
     goods: "Goods",
@@ -25,7 +26,7 @@ const lang = {
     connectWallet: "Connect Wallet from above right button.",
     recentlyMinted: "Recently minted LocalNouns.⌐◨-◨",
   },
-  p2pSale: {
+  list: {
     description: "You can parchace Local Nouns here.",
     purchace: "Buy",
   },

@@ -1,6 +1,6 @@
 <template>
   <div class="mx-auto max-w-lg p-2 text-left">
-    <p class="mb-2 font-londrina text-xl">{{ $t("p2pSale.description") }}</p>
+    <p class="mb-2 font-londrina text-xl">{{ $t("list.description") }}</p>
   </div>
 
   <div
@@ -13,14 +13,14 @@
     >
       <svg v-html="token.svg"></svg>
       <p class="mb-2 font-londrina text-xl">
-        #{{ token.tokenId }}, {{ token.prefecture }}, {{ token.head }},
+        #{{ token.tokenId }}, {{ $t("prefecture." + token.prefecture.toLowerCase()) }}, {{ token.head }},
         {{ token.accessory }}
       </p>
       <button
         @click="setSelected(token.id)"
         class="inline-block w-32 rounded bg-white px-6 py-2.5 leading-tight text-green-500 shadow-md hover:bg-green-100 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0"
       >
-        {{ $t("p2pSale.purchace") }}
+        {{ $t("list.purchace") }}
       </button>
     </div>
   </div>
@@ -44,7 +44,7 @@ export default defineComponent({
       required: true,
     },
   },
-  name: "P2PSale",
+  name: "List",
   components: {},
   async setup(props) {
     // const store = useStore();
