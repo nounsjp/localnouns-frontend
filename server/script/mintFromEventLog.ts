@@ -27,7 +27,7 @@ const main = async () => {
   );
   const events = await tokenContract.queryFilter(filter);
 
-  for (let event of events) {
+  for (const event of events) {
     // EventLog 型の場合のみ実行
     if ("args" in event) {
       // eventからto, tokenIdを取得
