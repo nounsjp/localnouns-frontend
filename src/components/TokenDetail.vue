@@ -17,6 +17,7 @@
     <span v-else>
       {{ accessoryName }}
     </span>
+    <!-- TODO 説明の表示方法は後で見直す-->
     <span
       v-if="showComment"
       @click="showComment = !showComment"
