@@ -16,7 +16,7 @@
       |
       <router-link :to="localizedUrl('/shop')" class="font-londrina text-2xl">{{
         $t("nav.goods")
-      }}</router-link> 
+      }}</router-link>
       <Languages class="mt-4" />
       <Connect />
     </div>
