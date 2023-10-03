@@ -1,5 +1,9 @@
 import languages from "@/i18n/languages";
 import { prefecture_ja as prefecture } from "@/i18n/prefectures";
+import {
+  partsName_ja as partsName,
+  partsDescription_ja as partsDescription,
+} from "@/i18n/parts";
 
 const lang = {
   nav: {
@@ -29,6 +33,7 @@ const lang = {
   list: {
     description: "ここではご当地Nounsを購入することができます",
     purchace: "購入",
+    trade: "交換",
   },
   prefectures: {
     prefectures: "都道府県",
@@ -89,6 +94,8 @@ const lang = {
   },
   languages,
   prefecture,
+  partsName,
+  partsDescription,
 };
 
 export default lang;
