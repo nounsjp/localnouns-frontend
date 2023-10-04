@@ -20,11 +20,7 @@
     >
       <TokenDetail
         class="mt-4"
-        :tokenId="token.tokenId"
-        :prefecture="token.prefecture"
-        :headName="token.head"
-        :accessoryName="token.accessory"
-        :svgData="token.svg"
+        :token="token"
       />
       <div class="flex justify-center gap-2 w-full">
         <button
