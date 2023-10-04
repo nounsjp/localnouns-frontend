@@ -22,7 +22,9 @@
       v-if="showComment"
       @click="showComment = !showComment"
       class="absolute bg-white border p-3 -top-40 left-0 z-0"
-      >{{ $t("partsDescription.heads_" + token.prefecture + "_" + token.head) }}</span
+      >{{
+        $t("partsDescription.heads_" + token.prefecture + "_" + token.head)
+      }}</span
     >
   </p>
 </template>
@@ -35,8 +37,8 @@ export default defineComponent({
   props: {
     token: {
       type: Object as () => TOKEN,
-      required: true
-    }
+      required: true,
+    },
   },
   name: "TokenDetail",
   setup(props) {

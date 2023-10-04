@@ -1,4 +1,3 @@
-
 export const partsName_ja = {
   accessories_hokkaido_crab: "カニ",
   accessories_hokkaido_melon: "夕張メロン",
