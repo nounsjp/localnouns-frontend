@@ -1,18 +1,22 @@
 <template>
-  <span class="ml-16 font-londrina font-yusei text-xl">
-    {{ $t("prefectures.prefectures") }}:
+  <div
+    class="grid w-screen grid-cols-2 place-content-center items-center gap-2"
+  >
+    <span class="ml-16 font-londrina font-yusei text-xl no-wrap">
+      {{ $t("prefectures.prefectures") }}:
 
-    <select @change="updateValue">
-      <option
-        v-for="(option, index) in prefectureList"
-        :value="index"
-        :key="index"
-        :selected="index == selectedValue"
-      >
-        {{ $t("prefecture." + option) }}
-      </option>
-    </select>
-  </span>
+      <select @change="updateValue">
+        <option
+          v-for="(option, index) in prefectureList"
+          :value="index"
+          :key="index"
+          :selected="index == selectedValue"
+        >
+          {{ $t("prefecture." + option) }}
+        </option>
+      </select>
+    </span>
+  </div>
 </template>
 
 <script lang="ts">

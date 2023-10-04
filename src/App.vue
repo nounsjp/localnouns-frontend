@@ -53,4 +53,8 @@ a {
 select {
   @apply border-2 border-gray-400 rounded;
 }
+
+.no-wrap {
+  white-space: nowrap;
+}
 </style>

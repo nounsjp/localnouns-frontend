@@ -34,6 +34,9 @@ const lang = {
     description: "You can parchace Local Nouns here.",
     purchace: "Buy",
     trade: "Trade",
+    onTrade: "Trade",
+    onSale: "Sale",
+    manage: "Manage",
   },
   prefectures: {
     prefectures: "Prefecture",

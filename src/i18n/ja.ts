@@ -34,6 +34,9 @@ const lang = {
     description: "ここではご当地Nounsを購入することができます",
     purchace: "購入",
     trade: "交換",
+    onTrade: "交換可",
+    onSale: "販売中",
+    manage: "管理",
   },
   prefectures: {
     prefectures: "都道府県",
