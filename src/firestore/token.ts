@@ -41,7 +41,7 @@ export const writeTokenDataToFirestore = async (
       prefecture: prefecture,
       head: head,
       accessory: accessory,
-      holder: to,
+      holder: to.toLowerCase(), // firestoreでfilterするために小文字変換
       svg: svg,
       salePrice: 0,
       isOnTrade: false,

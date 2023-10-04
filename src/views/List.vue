@@ -4,7 +4,7 @@
   </div>
 
   <div
-    class="grid w-screen grid-cols-2 place-content-left items-left items-start gap-2 sm:grid-cols-5"
+    class="grid w-screen grid-cols-3 place-content-left items-left items-start gap-2 sm:grid-cols-5"
   >
     <span class="ml-16 font-londrina font-yusei text-xl no-wrap">
       <label>
@@ -25,6 +25,37 @@
           disabled
         >
           {{ $t("list.onTrade") }}
+        </button>
+      </label>
+    </span>
+    <span v-if="account" class="ml-16 font-londrina font-yusei text-xl no-wrap">
+      <label>
+        <input
+          type="checkbox"
+          v-model="filterOnManage"
+          @change="getTokenList"
+        />
+        <button
+          class="inline-block rounded bg-green-500 w-20 px-1 py-2.5 leading-tight text-white shadow-md transition duration-150 mx-2 my-2"
+          disabled
+        >
+          {{ $t("list.manage") }}
+        </button>
+      </label>
+    </span>
+    <span v-else class="ml-16 font-londrina font-yusei text-xl no-wrap">
+      <label>
+        <input
+          disabled
+          type="checkbox"
+          v-model="filterOnManage"
+          @change="getTokenList"
+        />
+        <button
+          class="inline-block rounded bg-gray-500 w-20 px-1 py-2.5 leading-tight text-white shadow-md transition duration-150 mx-2 my-2"
+          disabled
+        >
+          {{ $t("list.manage") }}
         </button>
       </label>
     </span>
@@ -130,6 +161,8 @@ export default defineComponent({
     const selectedPrefecture = ref(0);
     const filterOnSale = ref(false);
     const filterOnTrade = ref(false);
+    const filterOnManage = ref(false);
+
     const tokenCollectionPath = `/${props.network}/${props.tokenAddress}/tokens`;
     const tokens = ref<TOKEN[]>([]);
     const getTokenList = async () => {
@@ -143,13 +176,16 @@ export default defineComponent({
           where("prefecture", "==", prefectureList[selectedPrefecture.value]),
         );
       }
-      console.log("filterOnTrade.value", filterOnTrade.value);
-      console.log("filterOnSale.value", filterOnSale.value);
+      console.log("filterOnManage.value", filterOnManage.value);
+      console.log("account", account.value);
       if (filterOnSale.value) {
         tokenQuery = query(tokenQuery, where("salePrice", ">", 0));
       }
       if (filterOnTrade.value) {
         tokenQuery = query(tokenQuery, where("isOnTrade", "==", true));
+      }
+      if (filterOnManage.value && account) {
+        tokenQuery = query(tokenQuery, where("holder", "==", account.value));
       }
       try {
         const results = await getDocs(tokenQuery);
@@ -170,6 +206,7 @@ export default defineComponent({
       selectedPrefecture,
       filterOnSale,
       filterOnTrade,
+      filterOnManage,
       getTokenList,
     };
   },
