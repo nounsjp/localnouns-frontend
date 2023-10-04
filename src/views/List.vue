@@ -48,11 +48,12 @@
 import { defineComponent, computed, ref } from "vue";
 // import { useStore } from "vuex";
 import { useI18n } from "vue-i18n";
-import { getDocs, collection, query, where } from "firebase/firestore";
+import { getDocs, collection, query, where, Query } from "firebase/firestore";
 import { db } from "@/utils/firebase";
 import Prefectures from "@/components/Prefectures.vue";
-import TokenDetail from "@/components/TokenDetail";
+import TokenDetail from "@/components/TokenDetail.vue";
 import { prefectureList } from "@/i18n/prefectures";
+import { TOKEN } from "@/firestore/token";
 
 export default defineComponent({
   props: {
@@ -80,16 +81,18 @@ export default defineComponent({
 
     const selectedPrefecture = ref(0);
     const tokenCollectionPath = `/${props.network}/${props.tokenAddress}/tokens`;
-    const tokens = ref([]);
+    const tokens = ref<TOKEN[]>([]);
     const getTokenList = async () => {
-      let tokenQuery = collection(db, tokenCollectionPath);
+      let tokenQuery: Query<TOKEN> = collection(
+        db,
+        tokenCollectionPath,
+      ) as Query<TOKEN>;
       if (selectedPrefecture.value != 0) {
         tokenQuery = query(
           tokenQuery,
           where("prefecture", "==", prefectureList[selectedPrefecture.value]),
         );
       }
-
       try {
         const results = await getDocs(tokenQuery);
         tokens.value = results.docs.map((doc) => {

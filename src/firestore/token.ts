@@ -11,13 +11,16 @@ if (!admin.apps.length) {
 const firestore = admin.firestore();
 const tokenAddress = addresses.localNounsToken[NETWORK];
 
-interface TOKEN {
+export interface TOKEN {
   tokenId: string;
   prefecture: string;
   head: string;
   accessory: string;
   holder: string;
   svg: string;
+  salePrice: number;
+  isOnTrade: boolean;
+  tradeToPrefecture: number[];
   createdDate: admin.firestore.Timestamp;
 }
 
@@ -40,6 +43,9 @@ export const writeTokenDataToFirestore = async (
       accessory: accessory,
       holder: to,
       svg: svg,
+      salePrice: 0,
+      isOnTrade: false,
+      tradeToPrefecture: [],
       createdDate: admin.firestore.Timestamp.now(),
     };
 
