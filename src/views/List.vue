@@ -78,9 +78,15 @@
       </div>
 
       <TokenManagement
-        :isOpen="isModalOpen"
+        :isOpen="isManagementModalOpen"
         :token="selectedToken"
-        @close="isModalOpen = false"
+        @close="isManagementModalOpen = false"
+      />
+
+      <TokenSaleOrTrade
+        :isOpen="isSaleOrTradeModalOpen"
+        :token="selectedToken"
+        @close="isSaleOrTradeModalOpen = false"
       />
 
       <div class="flex justify-center gap-2 w-full">
@@ -121,7 +127,8 @@
       </p>
       <div v-if="token.holder.toLowerCase() == account">
         <button
-          class="inline-block rounded bg-green-500 w-20 px-1 py-2.5 leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-green-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg my-2"
+          class="inline-block rounded bg-green-500 w-20 px-1 py-2.5 leading-tight text-white shadow-md transition duration-150 my-2"
+          disabled
         >
           {{ $t("list.manage") }}
         </button>
@@ -139,6 +146,7 @@ import { db } from "@/utils/firebase";
 import Prefectures from "@/components/Prefectures.vue";
 import TokenDetail from "@/components/TokenDetail.vue";
 import TokenManagement from "@/components/TokenManagement.vue";
+import TokenSaleOrTrade from "@/components/TokenSaleOrTrade.vue";
 import { prefectureList } from "@/i18n/prefectures";
 import { TOKEN } from "@/firestore/token";
 
@@ -158,6 +166,7 @@ export default defineComponent({
     Prefectures,
     TokenDetail,
     TokenManagement,
+    TokenSaleOrTrade,
   },
   async setup(props) {
     const store = useStore();
@@ -173,7 +182,8 @@ export default defineComponent({
     const filterOnSale = ref(false);
     const filterOnTrade = ref(false);
     const filterOnManage = ref(false);
-    const isModalOpen = ref(false);
+    const isManagementModalOpen = ref(false);
+    const isSaleOrTradeModalOpen = ref(false);
 
     const tokenCollectionPath = `/${props.network}/${props.tokenAddress}/tokens`;
     const tokens = ref<TOKEN[]>([]);
@@ -212,9 +222,15 @@ export default defineComponent({
     getTokenList();
 
     const selectedToken = ref<TOKEN | null>(null);
+
+    // 保有していたら管理用モーダル、そうでない場合はP2P用
     const showTokenModal = (token: TOKEN) => {
       selectedToken.value = token;
-      isModalOpen.value = true;
+      if (token.holder == account.value.toLowerCase()) {
+        isManagementModalOpen.value = true;
+      } else {
+        isSaleOrTradeModalOpen.value = true;
+      }
     };
 
     return {
@@ -225,7 +241,8 @@ export default defineComponent({
       filterOnSale,
       filterOnTrade,
       filterOnManage,
-      isModalOpen,
+      isManagementModalOpen,
+      isSaleOrTradeModalOpen,
       getTokenList,
       showTokenModal,
       selectedToken,

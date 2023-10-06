@@ -8,7 +8,7 @@
     >
       <TokenDetail :token="token" size="L" />
       <button @click="closeModal">Close</button>
-      Management
+      SaleOrTrade
     </div>
   </div>
 </template>
