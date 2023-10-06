@@ -1,32 +1,37 @@
 <template>
-  <svg v-html="token.svg"></svg>
-  <p class="mb-2 font-londrina text-xl">
-    #{{ token.tokenId }}, {{ $t("prefecture." + token.prefecture) }},
+  <div class="flex justify-center items-center">
+    <svg v-html="token.svg" :class="'svg-size-' + size"></svg>
+  </div>
+  <div class="mb-2 font-londrina text-xl">
+    <div>#{{ token.tokenId }}, {{ $t("prefecture." + token.prefecture) }}</div>
 
-    <span @click="showComment = !showComment" class="relative z-10">
-      <span v-if="$t(i18nHead) != i18nHead">
-        {{ $t(i18nHead) }}
+    <div>
+      <span @click="showComment = !showComment" class="relative z-10">
+        <span v-if="$t(i18nHead) != i18nHead">
+          {{ $t(i18nHead) }}
+        </span>
+        <span v-else>
+          {{ token.head }}
+        </span> </span
+      >,
+      <span v-if="$t(i18nAccessory) != i18nAccessory">
+        {{ $t(i18nAccessory) }}
       </span>
       <span v-else>
-        {{ token.head }}
-      </span> </span
-    >,
-    <span v-if="$t(i18nAccessory) != i18nAccessory">
-      {{ $t(i18nAccessory) }}
-    </span>
-    <span v-else>
-      {{ token.accessory }}
-    </span>
-    <!-- TODO 説明の表示方法は後で見直す-->
-    <span
-      v-if="showComment"
-      @click="showComment = !showComment"
-      class="absolute bg-white border p-3 -top-40 left-0 z-0"
-      >{{
-        $t("partsDescription.heads_" + token.prefecture + "_" + token.head)
-      }}</span
-    >
-  </p>
+        {{ token.accessory }}
+      </span>
+      <!-- TODO 説明の表示方法は後で見直す-->
+      <span
+        v-if="showComment"
+        @click="showComment = !showComment"
+        class="absolute bg-white border p-3 -top-40 left-0 z-0"
+      >
+        {{
+          $t("partsDescription.heads_" + token.prefecture + "_" + token.head)
+        }}
+      </span>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -38,6 +43,10 @@ export default defineComponent({
     token: {
       type: Object as () => TOKEN,
       required: true,
+    },
+    size: {
+      type: String,
+      required: false,
     },
   },
   name: "TokenDetail",
@@ -69,5 +78,17 @@ export default defineComponent({
 <style scoped>
 p {
   position: relative;
+}
+.svg-size-L {
+  width: 400px;
+  height: 400px;
+}
+.svg-size-M {
+  width: 320px;
+  height: 320px;
+}
+.svg-size-w80 {
+  width: 80%;
+  height: auto;
 }
 </style>

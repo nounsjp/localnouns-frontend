@@ -4,9 +4,9 @@
   </div>
 
   <div
-    class="grid w-screen grid-cols-3 place-content-left items-left items-start gap-2 sm:grid-cols-5"
+    class="grid w-screen grid-cols-3 place-content-center items-center items-start gap-2 sm:grid-cols-5"
   >
-    <span class="ml-16 font-londrina font-yusei text-xl no-wrap">
+    <span class="ml-2 font-londrina font-yusei text-xl no-wrap">
       <label>
         <input type="checkbox" v-model="filterOnSale" @change="getTokenList" />
         <button
@@ -17,7 +17,7 @@
         </button>
       </label>
     </span>
-    <span class="ml-16 font-londrina font-yusei text-xl no-wrap">
+    <span class="ml-2 font-londrina font-yusei text-xl no-wrap">
       <label>
         <input type="checkbox" v-model="filterOnTrade" @change="getTokenList" />
         <button
@@ -28,7 +28,7 @@
         </button>
       </label>
     </span>
-    <span v-if="account" class="ml-16 font-londrina font-yusei text-xl no-wrap">
+    <span v-if="account" class="ml-2 font-londrina font-yusei text-xl no-wrap">
       <label>
         <input
           type="checkbox"
@@ -43,7 +43,7 @@
         </button>
       </label>
     </span>
-    <span v-else class="ml-16 font-londrina font-yusei text-xl no-wrap">
+    <span v-else class="ml-2 font-londrina font-yusei text-xl no-wrap">
       <label>
         <input
           disabled
@@ -73,7 +73,16 @@
       :key="token.key"
       class="px-2 py-6 flex flex-col items-center justify-center"
     >
-      <TokenDetail class="mt-4" :token="token" />
+      <div @click="showTokenModal(token)" class="items-center justify-center">
+        <TokenDetail class="mt-4" :token="token" size="w80" />
+      </div>
+
+      <TokenManagement
+        :isOpen="isModalOpen"
+        :token="selectedToken"
+        @close="isModalOpen = false"
+      />
+
       <div class="flex justify-center gap-2 w-full">
         <div>
           <button
@@ -129,6 +138,7 @@ import { getDocs, collection, query, where, Query } from "firebase/firestore";
 import { db } from "@/utils/firebase";
 import Prefectures from "@/components/Prefectures.vue";
 import TokenDetail from "@/components/TokenDetail.vue";
+import TokenManagement from "@/components/TokenManagement.vue";
 import { prefectureList } from "@/i18n/prefectures";
 import { TOKEN } from "@/firestore/token";
 
@@ -147,6 +157,7 @@ export default defineComponent({
   components: {
     Prefectures,
     TokenDetail,
+    TokenManagement,
   },
   async setup(props) {
     const store = useStore();
@@ -162,6 +173,7 @@ export default defineComponent({
     const filterOnSale = ref(false);
     const filterOnTrade = ref(false);
     const filterOnManage = ref(false);
+    const isModalOpen = ref(false);
 
     const tokenCollectionPath = `/${props.network}/${props.tokenAddress}/tokens`;
     const tokens = ref<TOKEN[]>([]);
@@ -199,6 +211,12 @@ export default defineComponent({
 
     getTokenList();
 
+    const selectedToken = ref<TOKEN | null>(null);
+    const showTokenModal = (token: TOKEN) => {
+      selectedToken.value = token;
+      isModalOpen.value = true;
+    };
+
     return {
       account,
       lang,
@@ -207,7 +225,10 @@ export default defineComponent({
       filterOnSale,
       filterOnTrade,
       filterOnManage,
+      isModalOpen,
       getTokenList,
+      showTokenModal,
+      selectedToken,
     };
   },
 });
