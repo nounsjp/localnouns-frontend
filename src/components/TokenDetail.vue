@@ -30,6 +30,43 @@
           $t("partsDescription.heads_" + token.prefecture + "_" + token.head)
         }}
       </span>
+
+      <div class="flex justify-center gap-2 w-full">
+        <div>
+          <button
+            v-if="token.salePrice > 0"
+            class="inline-block rounded bg-red-500 w-20 px-1 py-2.5 leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg"
+          >
+            {{ $t("list.onSale") }}
+          </button>
+          <button
+            v-else
+            class="inline-block rounded bg-gray-500 w-20 px-1 py-2.5 leading-tight text-white shadow-md transition duration-150 ease-in-out"
+            disabled
+          >
+            {{ $t("list.onSale") }}
+          </button>
+        </div>
+        <div>
+          <button
+            v-if="token.isOnTrade"
+            class="inline-block rounded bg-blue-500 w-20 px-1 py-2.5 leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg"
+          >
+            {{ $t("list.onTrade") }}
+          </button>
+          <button
+            v-else
+            class="inline-block rounded bg-gray-500 w-20 px-1 py-2.5 leading-tight text-white shadow-md transition duration-150 ease-in-out"
+            disabled
+          >
+            {{ $t("list.onTrade") }}
+          </button>
+        </div>
+      </div>
+
+      <p v-if="token.salePrice > 0" class="mb-2 font-londrina text-xl">
+        {{ token.salePrice }} ETH
+      </p>
     </div>
   </div>
 </template>
@@ -80,10 +117,6 @@ p {
   position: relative;
 }
 .svg-size-L {
-  width: 400px;
-  height: 400px;
-}
-.svg-size-M {
   width: 320px;
   height: 320px;
 }
