@@ -44,6 +44,22 @@ const lang = {
   numOfMint: {
     numOfMint: "ミント数",
   },
+  tokenManagement: {
+    sale: "販売設定",
+    saleDescription:
+      "P2Pセールの販売価格を設定してください。ロイヤリティ5%を含みます。",
+    setSalePrice: "0ETHより大きい価格をセットすると販売対象になります",
+    setPriceButton: "価格設定",
+    stopSaleButton: "販売停止",
+    trade: "トレード設定",
+    tradeDescription:
+      "トレード希望の都道府県を指定してください。その都道府県のご当地Nounを持っている人が、このご当地Nounを気に入ればトレード可能です。",
+    setTrade:
+      "トレード希望の都道府県を指定してください。交換リストに出す手数料は0.002ETH(ガス代含まず)です。",
+    setTradeButton: "トレードに出す",
+    stopTradeButton: "トレードから下げる",
+    close: "閉じる",
+  },
   commingSoon: {
     commingSoon: "近日公開",
   },

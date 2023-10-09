@@ -44,6 +44,22 @@ const lang = {
   numOfMint: {
     numOfMint: "Quantity",
   },
+  tokenManagement: {
+    sale: "Sales condition",
+    saleDescription:
+      "please set the P2P Sale price. the royalty 5% is included.",
+    setSalePrice: "Set a price greater than 0 ETH to be listed for sale",
+    setPriceButton: "Set Price",
+    stopSaleButton: "Stop Sale",
+    trade: "Trade condition",
+    tradeDescription:
+      "Select the prefecture trade for. If others who has the token of this prefecture like this token, this trade will be implemented",
+    setTrade:
+      "please set the prefectures trade for. the commission is 0.002ETH.(Gas cost is not included.)",
+    setTradeButton: "Offer for trade",
+    stopTradeButton: "Stop Trade",
+    close: "Close",
+  },
   commingSoon: {
     commingSoon: "Comming Soon",
   },
