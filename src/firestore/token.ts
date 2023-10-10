@@ -81,3 +81,31 @@ const convertTrais = (traits: any) => {
   }
   return { prefecture, head, accessory };
 };
+
+export const updatePriceOfTokenOnFirestore = async (
+  tokenId: string,
+  newSalePrice: number,
+) => {
+  // ドキュメントのパスを指定
+  const tokenDocumentPath = `/${NETWORK}/${tokenAddress}/tokens/${tokenId}`;
+
+  const tokenDoc = await firestore.doc(tokenDocumentPath).get();
+
+  // tokenId に関連するドキュメントが存在しない場合、エラーを返す
+  if (!tokenDoc.exists) {
+    return {
+      result: false,
+      message: `No token found with tokenId ${tokenId}`,
+    };
+  }
+
+  // firestore にドキュメントを更新
+  await tokenDoc.ref.update({
+    salePrice: newSalePrice,
+  });
+
+  return {
+    result: true,
+    message: `Updated salePrice of token with tokenId ${tokenId} to ${newSalePrice}`,
+  };
+};

@@ -5,7 +5,8 @@ import {
   getLocalNounsProviderContract,
 } from "../../src/utils/const";
 import { addresses } from "../../src/utils/addresses";
-import { writeTokenDataToFirestore } from "../../src/firestore/token";
+import { ethers }  from "ethers";
+import { writeTokenDataToFirestore, updatePriceOfTokenOnFirestore } from "../../src/firestore/token";
 
 const provider = getProvider(NETWORK, ALCHEMY_API_KEY);
 const tokenContract = getLocalNounsTokenContract(
@@ -36,6 +37,23 @@ tokenContract.on("Transfer", async (from, to, tokenId, event) => {
     await writeTokenDataToFirestore(tokenId, to, traits, svg);
 
     console.log(`Write finish, TokenID: ${tokenId}`);
+  } catch (error) {
+    console.error("Error:", error);
+  }
+});
+
+
+// SetPriceイベントの監視
+tokenContract.on("SetPrice", async (tokenId, price, event) => {
+  try {
+    const ethPrice = ethers.formatEther(price);
+    console.log("weiPrice",price);
+    console.log("ethPrice",ethPrice);
+    console.log("Number(ethPrice)",Number(ethPrice));
+    // firestoreに書き込み
+    await updatePriceOfTokenOnFirestore(tokenId, Number(ethPrice));
+
+    console.log(`SetPrice, TokenID: ${tokenId}/${ethPrice}`);
   } catch (error) {
     console.error("Error:", error);
   }

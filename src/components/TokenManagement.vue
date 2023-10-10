@@ -50,7 +50,7 @@
 
           <button
             v-if="token.salePrice > 0"
-            @click="stopSalePrice"
+            @click="removeSalePrice"
             class="mt-4 inline-block rounded bg-red-700 px-6 py-2.5 leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-red-900 hover:shadow-lg focus:bg-red-900 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-1000 active:shadow-lg"
           >
             {{ $t("tokenManagement.stopSaleButton") }}
@@ -171,25 +171,49 @@ export default {
         addresses["localNounsToken"][props.network],
         signer,
       );
-      
+
       try {
         const weiValue = ethers.parseEther(salePrice.value);
-        console.log("weiValue",weiValue);
+        console.log("weiValue", weiValue);
         const txParams = { value: 0 };
         const tx = await contract.setPriceOf(
           props.token.tokenId,
           weiValue,
-          txParams
+          txParams,
         );
         const result = await tx.wait();
-        console.log("mint:tx");
-        console.log("mint:gasUsed", result.gasUsed.toNumber());
+        console.log("mint:tx",result);
 
         // await checkTokenGate(account.value);
       } catch (e) {
         console.error(e);
       }
-      
+    };
+
+    const removeSalePrice = async () => {
+
+      const chainId = ChainIdMap[props.network];
+      const signer = await store.getters.getSigner(chainId);
+
+      const contract = getLocalNounsTokenContract(
+        addresses["localNounsToken"][props.network],
+        signer,
+      );
+
+      try {
+        const txParams = { value: 0 };
+        const tx = await contract.setPriceOf(
+          props.token.tokenId,
+          0,
+          txParams,
+        );
+        const result = await tx.wait();
+        console.log("mint:tx",result);
+
+        // await checkTokenGate(account.value);
+      } catch (e) {
+        console.error(e);
+      }
     };
 
     const closeModal = () => {
@@ -200,6 +224,7 @@ export default {
       closeModal,
       salePrice,
       setSalePrice,
+      removeSalePrice,
     };
   },
 };
