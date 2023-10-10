@@ -18,7 +18,7 @@ const providerContract = getLocalNounsProviderContract(
   provider,
 );
 
-// mintイベントの監視 TODO コントラクトにMint イベントを作る
+// Transferイベントの監視
 tokenContract.on("Transfer", async (from, to, tokenId, event) => {
   try {
     // traits情報を取得
