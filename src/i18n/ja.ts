@@ -60,6 +60,9 @@ const lang = {
     stopTradeButton: "トレードから下げる",
     close: "閉じる",
   },
+  validator: {
+    validNumber: "0より大きい数値を入力してください",
+  },
   commingSoon: {
     commingSoon: "近日公開",
   },

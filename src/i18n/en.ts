@@ -60,6 +60,9 @@ const lang = {
     stopTradeButton: "Stop Trade",
     close: "Close",
   },
+  validator: {
+    validNumber: "Enter a number greater than 0",
+  },
   commingSoon: {
     commingSoon: "Comming Soon",
   },

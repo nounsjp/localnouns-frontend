@@ -78,6 +78,7 @@
       </div>
 
       <TokenManagement
+        :network="network"
         :isOpen="isManagementModalOpen"
         :token="selectedToken"
         @close="isManagementModalOpen = false"

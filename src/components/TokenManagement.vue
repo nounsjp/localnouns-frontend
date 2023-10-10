@@ -115,9 +115,16 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, toRefs, computed } from "vue";
+import { useStore } from "vuex";
+import { useI18n } from "vue-i18n";
+import { ethers } from "ethers";
+import { getLocalNounsTokenContract } from "@/utils/const";
+import { ChainIdMap } from "@/utils/MetaMask";
 import TokenDetail from "./TokenDetail.vue";
 import PrefecturesCheckbox from "@/components/PrefecturesCheckbox.vue";
+import { isValidNumber } from "@/utils/validator";
+import { addresses } from "@/utils/addresses";
 // import { TOKEN } from "@/firestore/token";
 
 export default {
@@ -126,6 +133,10 @@ export default {
     PrefecturesCheckbox,
   },
   props: {
+    network: {
+      type: String,
+      required: true,
+    },
     isOpen: {
       type: Boolean,
       required: true,
@@ -136,16 +147,56 @@ export default {
     },
   },
   setup(props, context) {
+    const store = useStore();
+    const i18n = useI18n();
+
+    const account = computed(() => store.state.account);
+    const { token, network } = toRefs(props);
+    console.log("tokenManagement-network:", network.value);
+    console.log("tokenManagement-token:", token.value);
+
     const salePrice = ref(""); // 初期値として空文字を設定
-    const setSalePrice = () => {
-      console.log("セットされる価格:", salePrice.value);
-      // ここで価格をデータベースに保存するロジックを追加します。
+
+    const setSalePrice = async () => {
+      // 入力チェック
+      if (!isValidNumber(salePrice.value)) {
+        alert(i18n.t("validator.validNumber"));
+        return;
+      }
+
+      const chainId = ChainIdMap[props.network];
+      const signer = await store.getters.getSigner(chainId);
+
+      const contract = getLocalNounsTokenContract(
+        addresses["localNounsToken"][props.network],
+        signer,
+      );
+      
+      try {
+        const weiValue = ethers.parseEther(salePrice.value);
+        console.log("weiValue",weiValue);
+        const txParams = { value: 0 };
+        const tx = await contract.setPriceOf(
+          props.token.tokenId,
+          weiValue,
+          txParams
+        );
+        const result = await tx.wait();
+        console.log("mint:tx");
+        console.log("mint:gasUsed", result.gasUsed.toNumber());
+
+        // await checkTokenGate(account.value);
+      } catch (e) {
+        console.error(e);
+      }
+      
     };
 
     const closeModal = () => {
       context.emit("close");
     };
     return {
+      account,
       closeModal,
       salePrice,
       setSalePrice,
