@@ -29,40 +29,53 @@
         <label for="salePrice" class="mb-2 font-londrina text-l">
           {{ $t("tokenManagement.setSalePrice") }}
         </label>
+        <div v-if="!isSaleBusy">
+          <div class="flex items-center">
+            <input
+              id="salePrice"
+              v-model="salePrice"
+              type="text"
+              class="p-2 border-2 border-gray-400 rounded-md"
+            />
+            <span class="ml-2">ETH</span>
+          </div>
 
-        <div class="flex items-center">
-          <input
-            id="salePrice"
-            v-model="salePrice"
-            type="text"
-            class="p-2 border-2 border-gray-400 rounded-md"
+          <div class="flex justify-center gap-2 w-full">
+            <button
+              @click="setSalePrice"
+              class="mt-4 inline-block rounded bg-red-500 px-6 py-2.5 leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg"
+            >
+              {{ $t("tokenManagement.setPriceButton") }}
+            </button>
+
+            <button
+              v-if="token.salePrice > 0"
+              @click="removeSalePrice"
+              class="mt-4 inline-block rounded bg-red-700 px-6 py-2.5 leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-red-900 hover:shadow-lg focus:bg-red-900 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-1000 active:shadow-lg"
+            >
+              {{ $t("tokenManagement.stopSaleButton") }}
+            </button>
+            <button
+              v-else
+              class="mt-4 inline-block rounded bg-gray-500 px-6 py-2.5 leading-tight text-white shadow-md transition duration-150"
+              disabled
+            >
+              {{ $t("tokenManagement.stopSaleButton") }}
+            </button>
+          </div>
+        </div>
+        <button
+          type="button"
+          v-if="isSaleBusy"
+          class="inline-block rounded px-6 py-2.5 leading-tight text-gray-500 shadow-md"
+          disabled
+        >
+          <img
+            class="absolute h-3 w-8 animate-spin"
+            src="@/assets/red160px.png"
           />
-          <span class="ml-2">ETH</span>
-        </div>
-
-        <div class="flex justify-center gap-2 w-full">
-          <button
-            @click="setSalePrice"
-            class="mt-4 inline-block rounded bg-red-500 px-6 py-2.5 leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg"
-          >
-            {{ $t("tokenManagement.setPriceButton") }}
-          </button>
-
-          <button
-            v-if="token.salePrice > 0"
-            @click="removeSalePrice"
-            class="mt-4 inline-block rounded bg-red-700 px-6 py-2.5 leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-red-900 hover:shadow-lg focus:bg-red-900 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-1000 active:shadow-lg"
-          >
-            {{ $t("tokenManagement.stopSaleButton") }}
-          </button>
-          <button
-            v-else
-            class="mt-4 inline-block rounded bg-gray-500 px-6 py-2.5 leading-tight text-white shadow-md transition duration-150"
-            disabled
-          >
-            {{ $t("tokenManagement.stopSaleButton") }}
-          </button>
-        </div>
+          <span class="ml-10">{{ $t("message.processing") }}</span>
+        </button>
       </div>
 
       <hr class="border-t border-gray-600 my-4 w-full" />
@@ -156,6 +169,7 @@ export default {
     console.log("tokenManagement-token:", token.value);
 
     const salePrice = ref(""); // 初期値として空文字を設定
+    const isSaleBusy = ref(false);
 
     const setSalePrice = async () => {
       // 入力チェック
@@ -172,6 +186,8 @@ export default {
         signer,
       );
 
+      isSaleBusy.value = true;
+      console.log("isSaleBusy", isSaleBusy.value);
       try {
         const weiValue = ethers.parseEther(salePrice.value);
         console.log("weiValue", weiValue);
@@ -182,16 +198,16 @@ export default {
           txParams,
         );
         const result = await tx.wait();
-        console.log("mint:tx",result);
+        console.log("mint:tx", result);
 
         // await checkTokenGate(account.value);
       } catch (e) {
+        isSaleBusy.value = false;
         console.error(e);
       }
     };
 
     const removeSalePrice = async () => {
-
       const chainId = ChainIdMap[props.network];
       const signer = await store.getters.getSigner(chainId);
 
@@ -200,23 +216,22 @@ export default {
         signer,
       );
 
+      isSaleBusy.value = true;
       try {
         const txParams = { value: 0 };
-        const tx = await contract.setPriceOf(
-          props.token.tokenId,
-          0,
-          txParams,
-        );
+        const tx = await contract.setPriceOf(props.token.tokenId, 0, txParams);
         const result = await tx.wait();
-        console.log("mint:tx",result);
+        console.log("mint:tx", result);
 
         // await checkTokenGate(account.value);
       } catch (e) {
+        isSaleBusy.value = false;
         console.error(e);
       }
     };
 
     const closeModal = () => {
+      isSaleBusy.value = false;
       context.emit("close");
     };
     return {
@@ -225,6 +240,7 @@ export default {
       salePrice,
       setSalePrice,
       removeSalePrice,
+      isSaleBusy,
     };
   },
 };
