@@ -81,13 +81,13 @@
         :network="network"
         :isOpen="isManagementModalOpen"
         :token="selectedToken"
-        @close="isManagementModalOpen = false"
+        @close="closeTokenModal"
       />
 
       <TokenSaleOrTrade
         :isOpen="isSaleOrTradeModalOpen"
         :token="selectedToken"
-        @close="isSaleOrTradeModalOpen = false"
+        @close="closeTokenModal"
       />
       <div v-if="token.holder.toLowerCase() == account">
         <button
@@ -197,6 +197,15 @@ export default defineComponent({
       }
     };
 
+    const closeTokenModal = (reload: boolean) => {
+      isManagementModalOpen.value = false;
+      isSaleOrTradeModalOpen.value = false;
+      console.log("closeTokenModal-reload", reload);
+      if (reload) {
+        getTokenList();
+      }
+    };
+
     return {
       account,
       lang,
@@ -209,6 +218,7 @@ export default defineComponent({
       isSaleOrTradeModalOpen,
       getTokenList,
       showTokenModal,
+      closeTokenModal,
       selectedToken,
     };
   },

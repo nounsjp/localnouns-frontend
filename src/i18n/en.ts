@@ -59,6 +59,8 @@ const lang = {
     setTradeButton: "Offer for trade",
     stopTradeButton: "Stop Trade",
     close: "Close",
+    finishSetSalePrice: "Finished setting sale price!",
+    finishRemoveSalePrice: "removed setting sale price!",
   },
   validator: {
     validNumber: "Enter a number greater than 0",

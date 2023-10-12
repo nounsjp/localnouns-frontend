@@ -6,9 +6,9 @@
     <div
       class="relative p-6 bg-white w-3/4 h-4/5 overflow-y-auto flex flex-col justify-between items-center"
     >
-      <span class="absolute top-4 right-4 cursor-pointer" @click="closeModal">
+      <span class="absolute top-4 right-4 cursor-pointer">
         <button
-          @click="closeModal"
+          @click="closeModal(false)"
           class="mt-4 inline-block rounded bg-green-500 px-6 py-2.5 leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-green-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg"
         >
           {{ $t("tokenManagement.close") }}
@@ -118,7 +118,7 @@
 
       <hr class="border-t border-gray-600 my-4 w-full" />
       <button
-        @click="closeModal"
+        @click="closeModal(false)"
         class="mt-4 inline-block rounded bg-green-500 px-6 py-2.5 leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-green-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg"
       >
         {{ $t("tokenManagement.close") }}
@@ -198,9 +198,10 @@ export default {
           txParams,
         );
         const result = await tx.wait();
-        console.log("mint:tx", result);
-
-        // await checkTokenGate(account.value);
+        console.log("setSalePrice:tx", result);
+        isSaleBusy.value = false;
+        alert(i18n.t("tokenManagement.finishSetSalePrice"));
+        closeModal(true);
       } catch (e) {
         isSaleBusy.value = false;
         console.error(e);
@@ -221,19 +222,22 @@ export default {
         const txParams = { value: 0 };
         const tx = await contract.setPriceOf(props.token.tokenId, 0, txParams);
         const result = await tx.wait();
-        console.log("mint:tx", result);
-
-        // await checkTokenGate(account.value);
+        console.log("removeSalePrice:tx", result);
+        isSaleBusy.value = false;
+        alert(i18n.t("tokenManagement.finishRemoveSalePrice"));
+        closeModal(true);
       } catch (e) {
         isSaleBusy.value = false;
         console.error(e);
       }
     };
 
-    const closeModal = () => {
+    const closeModal = (reload) => {
+      console.log("closeModal-reload", reload);
       isSaleBusy.value = false;
-      context.emit("close");
+      context.emit("close", reload);
     };
+
     return {
       account,
       closeModal,

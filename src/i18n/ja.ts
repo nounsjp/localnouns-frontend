@@ -59,6 +59,8 @@ const lang = {
     setTradeButton: "トレードに出す",
     stopTradeButton: "トレードから下げる",
     close: "閉じる",
+    finishSetSalePrice: "販売価格設定が完了しました!",
+    finishRemoveSalePrice: "販売設定を取り消しました!",
   },
   validator: {
     validNumber: "0より大きい数値を入力してください",
