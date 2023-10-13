@@ -232,10 +232,7 @@ export default {
       }
     };
 
-    // const selectedPrefectures = ref(token.value.tradeToPrefecture);
-
     const selectedPrefectures = computed(() => token.value?.tradeToPrefecture);
-    // const selectedPrefectures = ref([0]);
     const setTrade = () => {
       console.log("selectedPrefectures", selectedPrefectures.value);
     };

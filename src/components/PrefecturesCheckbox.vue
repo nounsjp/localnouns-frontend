@@ -61,11 +61,13 @@ export default defineComponent({
 
     const updateValues = () => {
       // 指定しない(0)が選ばれた場合は他をクリア
-      if(selectedValues.value[selectedValues.value.length-1]==0){
+      if (selectedValues.value[selectedValues.value.length - 1] == 0) {
         selectedValues.value = [0];
-      }else{
-      // 指定しない(0)以外が選ばらた場合は0を削除
-        selectedValues.value = selectedValues.value .filter(item => item !== 0);
+      } else {
+        // 指定しない(0)以外が選ばらた場合は0を削除
+        selectedValues.value = selectedValues.value.filter(
+          (item) => item !== 0,
+        );
       }
       console.log(selectedValues.value);
       context.emit("update:modelValue", selectedValues.value);
