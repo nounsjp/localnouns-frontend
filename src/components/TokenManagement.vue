@@ -232,6 +232,14 @@ export default {
       }
     };
 
+    // const selectedPrefectures = ref(token.value.tradeToPrefecture);
+
+    const selectedPrefectures = computed(() => token.value?.tradeToPrefecture);
+    // const selectedPrefectures = ref([0]);
+    const setTrade = () => {
+      console.log("selectedPrefectures", selectedPrefectures.value);
+    };
+
     const closeModal = (reload) => {
       console.log("closeModal-reload", reload);
       isSaleBusy.value = false;
@@ -244,6 +252,8 @@ export default {
       salePrice,
       setSalePrice,
       removeSalePrice,
+      setTrade,
+      selectedPrefectures,
       isSaleBusy,
     };
   },

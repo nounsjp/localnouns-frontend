@@ -45,7 +45,7 @@ export const writeTokenDataToFirestore = async (
       svg: svg,
       salePrice: 0,
       isOnTrade: false,
-      tradeToPrefecture: [],
+      tradeToPrefecture: [0], // firestore上は '0':指定しないをセット
       createdDate: admin.firestore.Timestamp.now(),
     };
 

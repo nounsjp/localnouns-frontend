@@ -6,10 +6,10 @@
       </span> -->
       <div>
         <!-- NotSpecified を1行目に表示 -->
-        <div class="flex items-center mb-2">
+        <div class="flex items-center mb-4">
           <input
             type="checkbox"
-            value="NotSpecified"
+            value="0"
             v-model="selectedValues"
             @change="updateValues"
           />
@@ -39,16 +39,36 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref, watch } from "vue";
 import { prefectureList } from "@/i18n/prefectures";
 
 export default defineComponent({
+  props: {
+    modelValue: {
+      type: Array,
+      required: true,
+    },
+  },
   setup(props, context) {
-    const selectedValues = ref<number[]>([]);
+    const selectedValues = ref<number[]>(props.modelValue);
+
+    watch(
+      () => props.modelValue,
+      (newVal) => {
+        selectedValues.value = newVal;
+      },
+    );
 
     const updateValues = () => {
-      context.emit("update:modelValue", selectedValues.value);
+      // 指定しない(0)が選ばれた場合は他をクリア
+      if(selectedValues.value[selectedValues.value.length-1]==0){
+        selectedValues.value = [0];
+      }else{
+      // 指定しない(0)以外が選ばらた場合は0を削除
+        selectedValues.value = selectedValues.value .filter(item => item !== 0);
+      }
       console.log(selectedValues.value);
+      context.emit("update:modelValue", selectedValues.value);
     };
     return {
       selectedValues,
