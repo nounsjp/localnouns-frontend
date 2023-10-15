@@ -44,13 +44,17 @@ import { prefectureList } from "@/i18n/prefectures";
 
 export default defineComponent({
   props: {
+    initialPrefectures: {
+      type: Array,
+      required: true,
+    },
     modelValue: {
       type: Array,
       required: true,
     },
   },
   setup(props, context) {
-    const selectedValues = ref<number[]>(props.modelValue);
+    const selectedValues = ref<number[]>(props.initialPrefectures);
 
     watch(
       () => props.modelValue,
@@ -70,7 +74,8 @@ export default defineComponent({
         );
       }
       console.log(selectedValues.value);
-      context.emit("update:modelValue", selectedValues.value);
+      // context.emit("update:modelValue", selectedValues.value);
+      context.emit('updateValues', selectedValues.value);
     };
     return {
       selectedValues,

@@ -61,6 +61,10 @@ const lang = {
     close: "Close",
     finishSetSalePrice: "Finished setting sale price!",
     finishRemoveSalePrice: "removed setting sale price!",
+    validSelectPrefectures:
+      "select `not specified` or at least one prefectureat least one prefecture",
+      finishSetTrade: "Finished setting trade condition!",
+      finishStopTrade: "Finished removing trade condition!",
   },
   validator: {
     validNumber: "Enter a number greater than 0",

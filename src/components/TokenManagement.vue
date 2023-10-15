@@ -88,32 +88,47 @@
       </p>
       <div>
         <div class="flex justify-center w-full mt-4">
-          <PrefecturesCheckbox v-model="selectedPrefectures" />
+          <PrefecturesCheckbox :initialPrefectures="initialPrefectures" @updateValues="handleUpdatePrefectures" />
         </div>
 
-        <div class="flex justify-center gap-2 w-full">
-          <button
-            @click="setTrade"
-            class="mt-4 inline-block rounded bg-blue-500 px-6 py-2.5 leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg"
-          >
-            {{ $t("tokenManagement.setTradeButton") }}
-          </button>
+        <div v-if="!isTradeBusy">
+          <div class="flex justify-center gap-2 w-full">
+            <button
+              @click="setTrade"
+              class="mt-4 inline-block rounded bg-blue-500 px-6 py-2.5 leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg"
+            >
+              {{ $t("tokenManagement.setTradeButton") }}
+            </button>
 
-          <button
-            v-if="token.isOnTrade"
-            @click="stopTrade"
-            class="mt-4 inline-block rounded bg-blue-700 px-6 py-2.5 leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-blue-900 hover:shadow-lg focus:bg-blue-900 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-1000 active:shadow-lg"
-          >
-            {{ $t("tokenManagement.stopTradeButton") }}
-          </button>
-          <button
-            v-else
-            class="mt-4 inline-block rounded bg-gray-500 px-6 py-2.5 leading-tight text-white shadow-md transition duration-150"
-            disabled
-          >
-            {{ $t("tokenManagement.stopTradeButton") }}
-          </button>
+            <button
+              v-if="token.isOnTrade"
+              @click="stopTrade"
+              class="mt-4 inline-block rounded bg-blue-700 px-6 py-2.5 leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-blue-900 hover:shadow-lg focus:bg-blue-900 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-1000 active:shadow-lg"
+            >
+              {{ $t("tokenManagement.stopTradeButton") }}
+            </button>
+            <button
+              v-else
+              class="mt-4 inline-block rounded bg-gray-500 px-6 py-2.5 leading-tight text-white shadow-md transition duration-150"
+              disabled
+            >
+              {{ $t("tokenManagement.stopTradeButton") }}
+            </button>
+          </div>
         </div>
+
+        <button
+          type="button"
+          v-if="isTradeBusy"
+          class="inline-block rounded px-6 py-2.5 leading-tight text-gray-500 shadow-md"
+          disabled
+        >
+          <img
+            class="absolute h-3 w-8 animate-spin"
+            src="@/assets/red160px.png"
+          />
+          <span class="ml-10">{{ $t("message.processing") }}</span>
+        </button>
       </div>
 
       <hr class="border-t border-gray-600 my-4 w-full" />
@@ -170,6 +185,7 @@ export default {
 
     const salePrice = ref(""); // 初期値として空文字を設定
     const isSaleBusy = ref(false);
+    const isTradeBusy = ref(false);
 
     const setSalePrice = async () => {
       // 入力チェック
@@ -232,9 +248,82 @@ export default {
       }
     };
 
-    const selectedPrefectures = computed(() => token.value?.tradeToPrefecture);
-    const setTrade = () => {
-      console.log("selectedPrefectures", selectedPrefectures.value);
+    const initialPrefectures = computed(() => token.value?.tradeToPrefecture);
+    let selectedPrefectures =[];
+
+    const setTrade = async () => {
+      console.log("setTrade:selectedPrefectures", selectedPrefectures);
+      // 入力チェック
+      if (selectedPrefectures.length == 0) {
+        alert(i18n.t("tokenManagement.validSelectPrefectures"));
+        return;
+      }
+
+      const chainId = ChainIdMap[props.network];
+      const signer = await store.getters.getSigner(chainId);
+
+      const contract = getLocalNounsTokenContract(
+        addresses["localNounsToken"][props.network],
+        signer,
+      );
+
+      // 指定しない(0)は削除
+      selectedPrefectures = selectedPrefectures.filter((item) => item !== 0);
+
+      isTradeBusy.value = true;
+      console.log("selectedPrefectures", selectedPrefectures);
+      try {
+        const weiValue = ethers.parseEther("0.002");
+        console.log("weiValue", weiValue);
+        // const txParams = { value: weiValue };
+        const txParams = { value: 0 };
+        const tx = await contract.putTradeLocalNoun(
+          props.token.tokenId,
+          selectedPrefectures,
+          txParams,
+        );
+        const result = await tx.wait();
+        console.log("putTradeLocalNoun:tx", result);
+        isTradeBusy.value = false;
+        alert(i18n.t("tokenManagement.finishSetTrade"));
+        closeModal(true);
+      } catch (e) {
+        isTradeBusy.value = false;
+        console.error(e);
+      }
+    };
+
+    const stopTrade = async () => {
+
+      const chainId = ChainIdMap[props.network];
+      const signer = await store.getters.getSigner(chainId);
+
+      const contract = getLocalNounsTokenContract(
+        addresses["localNounsToken"][props.network],
+        signer,
+      );
+
+      isTradeBusy.value = true;
+      try {
+        const txParams = { value: 0 };
+        const tx = await contract.cancelTradeLocalNoun(
+          props.token.tokenId,
+          txParams,
+        );
+        const result = await tx.wait();
+        console.log("cancelTradeLocalNoun:tx", result);
+        isTradeBusy.value = false;
+        alert(i18n.t("tokenManagement.finishStopTrade"));
+        closeModal(true);
+      } catch (e) {
+        isTradeBusy.value = false;
+        console.error(e);
+      }
+    };
+
+    const handleUpdatePrefectures = (prefectures) => {
+      console.log("handleUpdatePrefectures", prefectures);
+      selectedPrefectures = prefectures;
     };
 
     const closeModal = (reload) => {
@@ -250,8 +339,12 @@ export default {
       setSalePrice,
       removeSalePrice,
       setTrade,
+      stopTrade,
+      initialPrefectures,
       selectedPrefectures,
+      handleUpdatePrefectures,
       isSaleBusy,
+      isTradeBusy,
     };
   },
 };

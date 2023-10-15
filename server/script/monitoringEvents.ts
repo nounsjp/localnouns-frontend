@@ -6,7 +6,7 @@ import {
 } from "../../src/utils/const";
 import { addresses } from "../../src/utils/addresses";
 import { ethers }  from "ethers";
-import { writeTokenDataToFirestore, updatePriceOfTokenOnFirestore } from "../../src/firestore/token";
+import { writeTokenDataToFirestore, updatePriceOfTokenOnFirestore, updateTradeOfTokenOnFirestore } from "../../src/firestore/token";
 
 const provider = getProvider(NETWORK, ALCHEMY_API_KEY);
 const tokenContract = getLocalNounsTokenContract(
@@ -54,6 +54,31 @@ tokenContract.on("SetPrice", async (tokenId, price, event) => {
     await updatePriceOfTokenOnFirestore(tokenId, Number(ethPrice));
 
     console.log(`SetPrice, TokenID: ${tokenId}/${ethPrice}`);
+  } catch (error) {
+    console.error("Error:", error);
+  }
+});
+
+// PutTradePrefectureイベントの監視
+tokenContract.on("PutTradePrefecture", async (tokenId, prefectures, event) => {
+  try {
+    console.log("prefectures",prefectures);
+    // firestoreに書き込み
+    await updateTradeOfTokenOnFirestore(tokenId, true, prefectures);
+
+    console.log(`PutTradePrefecture, TokenID: ${tokenId}/${prefectures}`);
+  } catch (error) {
+    console.error("Error:", error);
+  }
+});
+
+// PutTradePrefectureイベントの監視
+tokenContract.on("CancelTradePrefecture", async (tokenId, event) => {
+  try {
+    // firestoreに書き込み
+    await updateTradeOfTokenOnFirestore(tokenId, false, []);
+
+    console.log(`CancelTradePrefecture, TokenID: ${tokenId}`);
   } catch (error) {
     console.error("Error:", error);
   }

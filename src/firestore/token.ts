@@ -109,3 +109,34 @@ export const updatePriceOfTokenOnFirestore = async (
     message: `Updated salePrice of token with tokenId ${tokenId} to ${newSalePrice}`,
   };
 };
+
+
+export const updateTradeOfTokenOnFirestore = async (
+  tokenId: string,
+  isOnTrade: boolean,
+  tradeToPrefecture: number[]
+) => {
+  // ドキュメントのパスを指定
+  const tokenDocumentPath = `/${NETWORK}/${tokenAddress}/tokens/${tokenId}`;
+
+  const tokenDoc = await firestore.doc(tokenDocumentPath).get();
+
+  // tokenId に関連するドキュメントが存在しない場合、エラーを返す
+  if (!tokenDoc.exists) {
+    return {
+      result: false,
+      message: `No token found with tokenId ${tokenId}`,
+    };
+  }
+
+  // firestore にドキュメントを更新
+  await tokenDoc.ref.update({
+    isOnTrade: isOnTrade,
+    tradeToPrefecture: tradeToPrefecture
+  });
+
+  return {
+    result: true,
+    message: `Updated salePrice of token with tokenId ${tokenId} isOnTrade:${isOnTrade}`,
+  };
+};
