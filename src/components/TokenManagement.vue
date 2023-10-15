@@ -88,7 +88,10 @@
       </p>
       <div>
         <div class="flex justify-center w-full mt-4">
-          <PrefecturesCheckbox :initialPrefectures="initialPrefectures" @updateValues="handleUpdatePrefectures" />
+          <PrefecturesCheckbox
+            :initialPrefectures="initialPrefectures"
+            @updateValues="handleUpdatePrefectures"
+          />
         </div>
 
         <div v-if="!isTradeBusy">
@@ -194,14 +197,7 @@ export default {
         return;
       }
 
-      const chainId = ChainIdMap[props.network];
-      const signer = await store.getters.getSigner(chainId);
-
-      const contract = getLocalNounsTokenContract(
-        addresses["localNounsToken"][props.network],
-        signer,
-      );
-
+      const contract = await getContract(props.network);
       isSaleBusy.value = true;
       console.log("isSaleBusy", isSaleBusy.value);
       try {
@@ -225,14 +221,7 @@ export default {
     };
 
     const removeSalePrice = async () => {
-      const chainId = ChainIdMap[props.network];
-      const signer = await store.getters.getSigner(chainId);
-
-      const contract = getLocalNounsTokenContract(
-        addresses["localNounsToken"][props.network],
-        signer,
-      );
-
+      const contract = await getContract(props.network);
       isSaleBusy.value = true;
       try {
         const txParams = { value: 0 };
@@ -249,7 +238,7 @@ export default {
     };
 
     const initialPrefectures = computed(() => token.value?.tradeToPrefecture);
-    let selectedPrefectures =[];
+    let selectedPrefectures = [];
 
     const setTrade = async () => {
       console.log("setTrade:selectedPrefectures", selectedPrefectures);
@@ -259,13 +248,7 @@ export default {
         return;
       }
 
-      const chainId = ChainIdMap[props.network];
-      const signer = await store.getters.getSigner(chainId);
-
-      const contract = getLocalNounsTokenContract(
-        addresses["localNounsToken"][props.network],
-        signer,
-      );
+      const contract = await getContract(props.network);
 
       // 指定しない(0)は削除
       selectedPrefectures = selectedPrefectures.filter((item) => item !== 0);
@@ -294,14 +277,7 @@ export default {
     };
 
     const stopTrade = async () => {
-
-      const chainId = ChainIdMap[props.network];
-      const signer = await store.getters.getSigner(chainId);
-
-      const contract = getLocalNounsTokenContract(
-        addresses["localNounsToken"][props.network],
-        signer,
-      );
+      const contract = await getContract(props.network);
 
       isTradeBusy.value = true;
       try {
@@ -330,6 +306,17 @@ export default {
       console.log("closeModal-reload", reload);
       isSaleBusy.value = false;
       context.emit("close", reload);
+    };
+
+    const getContract = async (network) => {
+      const chainId = ChainIdMap[network];
+      const signer = await store.getters.getSigner(chainId);
+
+      return getLocalNounsTokenContract(
+        addresses["localNounsToken"][network],
+        signer,
+      );
+
     };
 
     return {
