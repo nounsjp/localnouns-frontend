@@ -75,7 +75,7 @@ export default defineComponent({
       }
       console.log(selectedValues.value);
       // context.emit("update:modelValue", selectedValues.value);
-      context.emit('updateValues', selectedValues.value);
+      context.emit("updateValues", selectedValues.value);
     };
     return {
       selectedValues,

@@ -63,8 +63,8 @@ const lang = {
     finishRemoveSalePrice: "販売設定を取り消しました!",
     validSelectPrefectures:
       "「指定しない」またはいずれかの都道府県を選択してください",
-      finishSetTrade: "トレード設定が完了しました!",
-      finishStopTrade: "トレード設定を取り消しました!",
+    finishSetTrade: "トレード設定が完了しました!",
+    finishStopTrade: "トレード設定を取り消しました!",
   },
   validator: {
     validNumber: "0より大きい数値を入力してください",
