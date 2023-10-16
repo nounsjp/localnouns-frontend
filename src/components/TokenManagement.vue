@@ -29,6 +29,11 @@
         <label for="salePrice" class="mb-2 font-londrina text-l">
           {{ $t("tokenManagement.setSalePrice") }}
         </label>
+        <InformationDialog
+          :isOpen="displayInformationDialog"
+          :message="informationMessage"
+          @close="closeModal(true)"
+        />
         <div v-if="!isSaleBusy">
           <div class="flex items-center">
             <input
@@ -154,6 +159,7 @@ import { getLocalNounsTokenContract } from "@/utils/const";
 import { ChainIdMap } from "@/utils/MetaMask";
 import TokenDetail from "./TokenDetail.vue";
 import PrefecturesCheckbox from "@/components/PrefecturesCheckbox.vue";
+import InformationDialog from "@/components/InformationDialog.vue";
 import { isValidNumber } from "@/utils/validator";
 import { addresses } from "@/utils/addresses";
 // import { TOKEN } from "@/firestore/token";
@@ -162,6 +168,7 @@ export default {
   components: {
     TokenDetail,
     PrefecturesCheckbox,
+    InformationDialog,
   },
   props: {
     network: {
@@ -189,6 +196,8 @@ export default {
     const salePrice = ref(""); // 初期値として空文字を設定
     const isSaleBusy = ref(false);
     const isTradeBusy = ref(false);
+    const displayInformationDialog = ref(false);
+    const informationMessage = ref("");
 
     const setSalePrice = async () => {
       // 入力チェック
@@ -212,8 +221,8 @@ export default {
         const result = await tx.wait();
         console.log("setSalePrice:tx", result);
         isSaleBusy.value = false;
-        alert(i18n.t("tokenManagement.finishSetSalePrice"));
-        closeModal(true);
+        informationMessage.value = i18n.t("tokenManagement.finishSetSalePrice");
+        displayInformationDialog.value = true;
       } catch (e) {
         isSaleBusy.value = false;
         console.error(e);
@@ -229,8 +238,10 @@ export default {
         const result = await tx.wait();
         console.log("removeSalePrice:tx", result);
         isSaleBusy.value = false;
-        alert(i18n.t("tokenManagement.finishRemoveSalePrice"));
-        closeModal(true);
+        informationMessage.value = i18n.t(
+          "tokenManagement.finishRemoveSalePrice",
+        );
+        displayInformationDialog.value = true;
       } catch (e) {
         isSaleBusy.value = false;
         console.error(e);
@@ -268,8 +279,8 @@ export default {
         const result = await tx.wait();
         console.log("putTradeLocalNoun:tx", result);
         isTradeBusy.value = false;
-        alert(i18n.t("tokenManagement.finishSetTrade"));
-        closeModal(true);
+        informationMessage.value = i18n.t("tokenManagement.finishSetTrade");
+        displayInformationDialog.value = true;
       } catch (e) {
         isTradeBusy.value = false;
         console.error(e);
@@ -289,8 +300,8 @@ export default {
         const result = await tx.wait();
         console.log("cancelTradeLocalNoun:tx", result);
         isTradeBusy.value = false;
-        alert(i18n.t("tokenManagement.finishStopTrade"));
-        closeModal(true);
+        informationMessage.value = i18n.t("tokenManagement.finishStopTrade");
+        displayInformationDialog.value = true;
       } catch (e) {
         isTradeBusy.value = false;
         console.error(e);
@@ -305,6 +316,8 @@ export default {
     const closeModal = (reload) => {
       console.log("closeModal-reload", reload);
       isSaleBusy.value = false;
+      isTradeBusy.value = false;
+      displayInformationDialog.value = false;
       context.emit("close", reload);
     };
 
@@ -316,7 +329,6 @@ export default {
         addresses["localNounsToken"][network],
         signer,
       );
-
     };
 
     return {
@@ -332,6 +344,8 @@ export default {
       handleUpdatePrefectures,
       isSaleBusy,
       isTradeBusy,
+      displayInformationDialog,
+      informationMessage,
     };
   },
 };
