@@ -45,11 +45,11 @@ import { prefectureList } from "@/i18n/prefectures";
 export default defineComponent({
   props: {
     initialPrefectures: {
-      type: Array,
+      type: Array as () => number[],
       required: true,
     },
     modelValue: {
-      type: Array,
+      type: Array as () => number[],
       required: true,
     },
   },
@@ -58,7 +58,7 @@ export default defineComponent({
 
     watch(
       () => props.modelValue,
-      (newVal) => {
+      (newVal: number[]) => {
         selectedValues.value = newVal;
       },
     );
