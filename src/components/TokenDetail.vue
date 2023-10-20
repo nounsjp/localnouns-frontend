@@ -35,7 +35,7 @@
         <div>
           <button
             v-if="token.salePrice > 0"
-          class="inline-block rounded bg-red-500 w-20 px-1 py-2.5 leading-tight text-white shadow-md transition duration-150 mx-2 my-2"
+            class="inline-block rounded bg-red-500 w-20 px-1 py-2.5 leading-tight text-white shadow-md transition duration-150 mx-2 my-2"
             disabled
           >
             {{ $t("list.onSale") }}
@@ -51,7 +51,7 @@
         <div>
           <button
             v-if="token.isOnTrade"
-          class="inline-block rounded bg-blue-500 w-20 px-1 py-2.5 leading-tight text-white shadow-md transition duration-150 mx-2 my-2"
+            class="inline-block rounded bg-blue-500 w-20 px-1 py-2.5 leading-tight text-white shadow-md transition duration-150 mx-2 my-2"
             disabled
           >
             {{ $t("list.onTrade") }}

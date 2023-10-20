@@ -34,8 +34,8 @@ const lang = {
     description: "You can parchace Local Nouns here.",
     purchace: "Buy",
     trade: "Trade",
-    onTrade: "Trade",
-    onSale: "Sale",
+    onTrade: "onTrade",
+    onSale: "onSale",
     manage: "Manage",
   },
   prefectures: {
@@ -52,8 +52,7 @@ const lang = {
     setPriceButton: "Set Price",
     stopSaleButton: "Stop Sale",
     trade: "Trade condition",
-    tradeDescription:
-      "Select the prefecture trade for. If others who has the token of this prefecture like this token, this trade will be implemented",
+    tradeDescription: "Select the prefecture trade for.",
     setTrade:
       "please set the prefectures trade for. the commission is 0.002ETH.(Gas cost is not included.)",
     setTradeButton: "Offer for trade",
@@ -65,6 +64,17 @@ const lang = {
       "select `not specified` or at least one prefectureat least one prefecture",
     finishSetTrade: "Finished setting trade condition!",
     finishStopTrade: "Finished removing trade condition!",
+  },
+  TokenSaleOrTrade: {
+    sale: "Sale",
+    saleDescription:
+      "Only Nouns for which the owner has set a selling price can be purchased.",
+    buy: "Buy",
+    trade: "Trade",
+    tradeDescription:
+      "Exchanges for Nouns owned by you. If a prefecture is specified, only Nouns of that prefecture can be exchanged.",
+    tradeForPrefecture: "trade for",
+    tradeForNoun: "trade noun",
   },
   validator: {
     validNumber: "Enter a number greater than 0",

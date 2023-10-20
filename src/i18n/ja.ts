@@ -52,8 +52,7 @@ const lang = {
     setPriceButton: "価格設定",
     stopSaleButton: "販売停止",
     trade: "トレード設定",
-    tradeDescription:
-      "トレード希望の都道府県を指定してください。その都道府県のご当地Nounを持っている人が、このご当地Nounを気に入ればトレード可能です。",
+    tradeDescription: "トレード希望の都道府県を指定してください。",
     setTrade:
       "トレード希望の都道府県を指定してください。交換リストに出す手数料は0.002ETH(ガス代含まず)です。",
     setTradeButton: "トレードに出す",
@@ -65,6 +64,16 @@ const lang = {
       "「指定しない」またはいずれかの都道府県を選択してください",
     finishSetTrade: "トレード設定が完了しました!",
     finishStopTrade: "トレード設定を取り消しました!",
+  },
+  TokenSaleOrTrade: {
+    sale: "販売",
+    saleDescription: "所有者が販売価格を設定したNounのみ購入可能です。",
+    buy: "購入",
+    trade: "交換",
+    tradeDescription:
+      "あなたの所有するNounと交換します。都道府県が指定されている場合はその都道府県のNounのみ交換可能です。",
+    tradeForPrefecture: "交換希望",
+    tradeForNoun: "交換するNoun",
   },
   validator: {
     validNumber: "0より大きい数値を入力してください",
