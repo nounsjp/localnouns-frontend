@@ -85,6 +85,7 @@
       />
 
       <TokenSaleOrTrade
+        :network="network"
         :isOpen="isSaleOrTradeModalOpen"
         :token="selectedToken"
         :myTokens="myTokens"

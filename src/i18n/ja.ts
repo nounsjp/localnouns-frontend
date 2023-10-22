@@ -74,6 +74,7 @@ const lang = {
       "あなたの所有するNounと交換します。都道府県が指定されている場合はその都道府県のNounのみ交換可能です。",
     tradeForPrefecture: "交換希望",
     tradeForNoun: "交換するNoun",
+    finishBuyNoun:"Nounの購入に成功しました!",
   },
   validator: {
     validNumber: "0より大きい数値を入力してください",

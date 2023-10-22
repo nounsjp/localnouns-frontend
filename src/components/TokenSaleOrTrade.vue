@@ -136,6 +136,7 @@
 import { ref, computed } from "vue";
 import { useStore } from "vuex";
 import { useI18n } from "vue-i18n";
+import { ethers } from "ethers";
 import { getLocalNounsTokenContract } from "@/utils/const";
 import { ChainIdMap } from "@/utils/MetaMask";
 import TokenDetail from "./TokenDetail.vue";
@@ -183,17 +184,18 @@ export default {
     const displayInformationDialog = ref(false);
     const informationMessage = ref("");
 
-    const removeSalePrice = async () => {
+    const buyNoun = async () => {
       const contract = await getContract(props.network);
       isSaleBusy.value = true;
       try {
-        const txParams = { value: 0 };
-        const tx = await contract.setPriceOf(props.token.tokenId, 0, txParams);
+        const weiValue = ethers.parseEther(props.token.salePrice.toString());
+        const txParams = { value: weiValue };
+        const tx = await contract.purchase(props.token.tokenId, account.value, "0x0000000000000000000000000000000000000000", txParams);
         const result = await tx.wait();
         console.log("removeSalePrice:tx", result);
         isSaleBusy.value = false;
         informationMessage.value = i18n.t(
-          "tokenManagement.finishRemoveSalePrice",
+          "TokenSaleOrTrade.finishBuyNoun",
         );
         displayInformationDialog.value = true;
       } catch (e) {
@@ -236,7 +238,6 @@ export default {
       account,
       closeModal,
       salePrice,
-      removeSalePrice,
       tradeForPrefectures,
       selectedMyTokenId,
       handleUpdateMyTokens,
@@ -244,6 +245,7 @@ export default {
       isTradeBusy,
       displayInformationDialog,
       informationMessage,
+      buyNoun,
     };
   },
 };
