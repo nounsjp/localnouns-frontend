@@ -72,7 +72,7 @@ tokenContract.on("PutTradePrefecture", async (tokenId, prefectures, event) => {
   }
 });
 
-// PutTradePrefectureイベントの監視
+// CancelTradePrefectureイベントの監視
 tokenContract.on("CancelTradePrefecture", async (tokenId, event) => {
   try {
     // firestoreに書き込み
