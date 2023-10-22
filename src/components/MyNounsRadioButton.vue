@@ -21,8 +21,10 @@
           <span>, {{ $t("prefecture." + option.prefecture) }}</span>
         </div>
         <div v-else class="flex items-center">
-          <span style="color: grey;"> #{{ option.tokenId }}</span>
-          <span style="color: grey;">, {{ $t("prefecture." + option.prefecture) }}</span>
+          <span style="color: grey"> #{{ option.tokenId }}</span>
+          <span style="color: grey"
+            >, {{ $t("prefecture." + option.prefecture) }}</span
+          >
         </div>
       </label>
     </div>
@@ -46,11 +48,15 @@ export default defineComponent({
   },
   setup(props, context) {
     const selectedValue = ref("");
-
-    console.log("tradeForPrefectures",props.tradeForPrefectures);
-      props.myTokens.forEach(token => {
+    if (props.tradeForPrefectures[0] == "NotSpecified") {
+      props.myTokens.forEach((token) => {
+        token.canTrade = true;
+      });
+    } else {
+      props.myTokens.forEach((token) => {
         token.canTrade = props.tradeForPrefectures.includes(token.prefecture);
       });
+    }
 
     const updateValue = (event: Event, option: any) => {
       if ((event.target as HTMLInputElement).checked) {
