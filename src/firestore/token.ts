@@ -22,6 +22,7 @@ export interface TOKEN {
   isOnTrade: boolean;
   tradeToPrefecture: number[];
   createdDate: admin.firestore.Timestamp;
+  canTrade?: boolean; // firestoreでなく画面で使用
 }
 
 export const writeTokenDataToFirestore = async (

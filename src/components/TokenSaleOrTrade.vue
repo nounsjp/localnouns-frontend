@@ -86,6 +86,8 @@
             </div>
           </div>
         </div>
+        <MyNounsRadioButton :myTokens="myTokens" :tradeForPrefectures="tradeForPrefectures"
+            @updateValues="handleUpdateMyTokens" />
 
         <div v-if="!isTradeBusy">
           <div class="flex justify-center gap-2 w-full">
@@ -131,22 +133,22 @@
 </template>
 
 <script>
-import { ref, toRefs, computed } from "vue";
+import { ref, computed } from "vue";
 import { useStore } from "vuex";
 import { useI18n } from "vue-i18n";
-import { ethers } from "ethers";
 import { getLocalNounsTokenContract } from "@/utils/const";
 import { ChainIdMap } from "@/utils/MetaMask";
 import TokenDetail from "./TokenDetail.vue";
 import InformationDialog from "@/components/InformationDialog.vue";
+import MyNounsRadioButton from "@/components/MyNounsRadioButton.vue";
 import { prefectureList } from "@/i18n/prefectures";
 import { addresses } from "@/utils/addresses";
 // import { TOKEN } from "@/firestore/token";
-
 export default {
   components: {
     TokenDetail,
     InformationDialog,
+    MyNounsRadioButton,
   },
   props: {
     network: {
@@ -161,15 +163,19 @@ export default {
       type: Object,
       required: true,
     },
+    myTokens: {
+      type: Array,
+      required: true,
+    },
   },
   setup(props, context) {
     const store = useStore();
     const i18n = useI18n();
 
     const account = computed(() => store.state.account);
-    const { token, network } = toRefs(props);
-    console.log("tokenManagement-network:", network.value);
-    console.log("tokenManagement-token:", token.value);
+    // const { token, network } = toRefs(props);
+    console.log("myTokens:", props.myTokens);
+    console.log("Token:", props.Token);
 
     const salePrice = ref(""); // 初期値として空文字を設定
     const isSaleBusy = ref(false);
@@ -198,71 +204,14 @@ export default {
 
     // 都道府県リストの要素番号からキーに変換
     const tradeForPrefectures = computed(() => {
-      const tradeToPrefecture = token.value?.tradeToPrefecture || [];
+      const tradeToPrefecture = props.token?.tradeToPrefecture || [];
       return tradeToPrefecture.map((index) => prefectureList[index]);
     });
-    let selectedPrefectures = [];
+    let selectedMyTokenId;
 
-    const setTrade = async () => {
-      console.log("setTrade:selectedPrefectures", selectedPrefectures);
-      // 入力チェック
-      if (selectedPrefectures.length == 0) {
-        alert(i18n.t("tokenManagement.validSelectPrefectures"));
-        return;
-      }
-
-      const contract = await getContract(props.network);
-
-      // 指定しない(0)は削除
-      selectedPrefectures = selectedPrefectures.filter((item) => item !== 0);
-
-      isTradeBusy.value = true;
-      console.log("selectedPrefectures", selectedPrefectures);
-      try {
-        const weiValue = ethers.parseEther("0.002");
-        console.log("weiValue", weiValue);
-        // const txParams = { value: weiValue };
-        const txParams = { value: 0 };
-        const tx = await contract.putTradeLocalNoun(
-          props.token.tokenId,
-          selectedPrefectures,
-          txParams,
-        );
-        const result = await tx.wait();
-        console.log("putTradeLocalNoun:tx", result);
-        isTradeBusy.value = false;
-        informationMessage.value = i18n.t("tokenManagement.finishSetTrade");
-        displayInformationDialog.value = true;
-      } catch (e) {
-        isTradeBusy.value = false;
-        console.error(e);
-      }
-    };
-
-    const stopTrade = async () => {
-      const contract = await getContract(props.network);
-
-      isTradeBusy.value = true;
-      try {
-        const txParams = { value: 0 };
-        const tx = await contract.cancelTradeLocalNoun(
-          props.token.tokenId,
-          txParams,
-        );
-        const result = await tx.wait();
-        console.log("cancelTradeLocalNoun:tx", result);
-        isTradeBusy.value = false;
-        informationMessage.value = i18n.t("tokenManagement.finishStopTrade");
-        displayInformationDialog.value = true;
-      } catch (e) {
-        isTradeBusy.value = false;
-        console.error(e);
-      }
-    };
-
-    const handleUpdatePrefectures = (prefectures) => {
-      console.log("handleUpdatePrefectures", prefectures);
-      selectedPrefectures = prefectures;
+    const handleUpdateMyTokens = (tokenId) => {
+      selectedMyTokenId = tokenId;
+      console.log("handleUpdateMyTokens", selectedMyTokenId);
     };
 
     const closeModal = (reload) => {
@@ -288,11 +237,9 @@ export default {
       closeModal,
       salePrice,
       removeSalePrice,
-      setTrade,
-      stopTrade,
       tradeForPrefectures,
-      selectedPrefectures,
-      handleUpdatePrefectures,
+      selectedMyTokenId,
+      handleUpdateMyTokens,
       isSaleBusy,
       isTradeBusy,
       displayInformationDialog,

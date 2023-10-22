@@ -87,6 +87,7 @@
       <TokenSaleOrTrade
         :isOpen="isSaleOrTradeModalOpen"
         :token="selectedToken"
+        :myTokens="myTokens"
         @close="closeTokenModal"
       />
       <div v-if="token.holder.toLowerCase() == account">
@@ -140,7 +141,33 @@ export default defineComponent({
       return i18n.locale.value;
     });
 
-    const account = computed(() => store.state.account);
+    const myTokens = ref<TOKEN[]>([]);
+    const getMyTokenList = async (account: string) => {
+      let tokenQuery: Query<TOKEN> = collection(
+        db,
+        tokenCollectionPath,
+      ) as Query<TOKEN>;
+      if (account) {
+        tokenQuery = query(tokenQuery, where("holder", "==", account));
+        try {
+          const results = await getDocs(tokenQuery);
+          myTokens.value = results.docs.map((doc) => {
+            return doc.data();
+          });
+        } catch (e) {
+          console.error("getTokenList", e);
+        }
+      }
+    };
+
+    let beforeAccount = "";
+    const account = computed(() => {
+      if (beforeAccount != store.state.account && store.state.account) {
+        getMyTokenList(store.state.account);
+        beforeAccount = store.state.account;
+      }
+      return store.state.account;
+    });
 
     const selectedPrefecture = ref(0);
     const filterOnSale = ref(false);
@@ -182,9 +209,7 @@ export default defineComponent({
         console.error("getTokenList", e);
       }
     };
-
     getTokenList();
-
     const selectedToken = ref<TOKEN | null>(null);
 
     // 保有していたら管理用モーダル、そうでない場合はP2P用
@@ -210,6 +235,7 @@ export default defineComponent({
       account,
       lang,
       tokens,
+      myTokens,
       selectedPrefecture,
       filterOnSale,
       filterOnTrade,
