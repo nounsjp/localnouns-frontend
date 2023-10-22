@@ -6,10 +6,10 @@
       class="flex items-center mb-2"
     >
       <input
+        name="selectMyToken"
         type="radio"
         :value="option"
         :id="`option-${index}`"
-        :checked="option === selectedValue"
         @change="updateValue($event, option.tokenId)"
         class="mr-2"
         :disabled="!option.canTrade"
@@ -61,7 +61,6 @@ export default defineComponent({
     const updateValue = (event: Event, option: any) => {
       if ((event.target as HTMLInputElement).checked) {
         selectedValue.value = option;
-        console.log("selectedValue", selectedValue.value);
         context.emit("updateValues", selectedValue.value);
       }
     };
