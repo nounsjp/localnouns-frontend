@@ -75,7 +75,9 @@ const lang = {
       "Exchanges for Nouns owned by you. If a prefecture is specified, only Nouns of that prefecture can be exchanged.",
     tradeForPrefecture: "trade for",
     tradeForNoun: "trade noun",
-    finishBuyNoun:"Successfully purchased Noun!",
+    finishBuyNoun: "Successfully purchased Noun!",
+    selectNounForTrade: "Select a noun for trade",
+    finishTradeNoun:"Successfully traded Noun!",
   },
   validator: {
     validNumber: "Enter a number greater than 0",

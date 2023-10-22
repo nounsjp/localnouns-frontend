@@ -86,8 +86,11 @@
             </div>
           </div>
         </div>
-        <MyNounsRadioButton :myTokens="myTokens" :tradeForPrefectures="tradeForPrefectures"
-            @updateValues="handleUpdateMyTokens" />
+        <MyNounsRadioButton
+          :myTokens="myTokens"
+          :tradeForPrefectures="tradeForPrefectures"
+          @updateValues="handleUpdateMyTokens"
+        />
 
         <div v-if="!isTradeBusy">
           <div class="flex justify-center gap-2 w-full">
@@ -190,13 +193,43 @@ export default {
       try {
         const weiValue = ethers.parseEther(props.token.salePrice.toString());
         const txParams = { value: weiValue };
-        const tx = await contract.purchase(props.token.tokenId, account.value, "0x0000000000000000000000000000000000000000", txParams);
+        const tx = await contract.purchase(
+          props.token.tokenId,
+          account.value,
+          "0x0000000000000000000000000000000000000000",
+          txParams,
+        );
         const result = await tx.wait();
         console.log("removeSalePrice:tx", result);
         isSaleBusy.value = false;
-        informationMessage.value = i18n.t(
-          "TokenSaleOrTrade.finishBuyNoun",
+        informationMessage.value = i18n.t("TokenSaleOrTrade.finishBuyNoun");
+        displayInformationDialog.value = true;
+      } catch (e) {
+        isSaleBusy.value = false;
+        console.error(e);
+      }
+    };
+
+    const tradeNoun = async () => {
+      console.log("tradeNoun-selectedMyTokenId", selectedMyTokenId);
+      if (selectedMyTokenId == -1) {
+        alert(i18n.t("TokenSaleOrTrade.selectNounForTrade"));
+        return;
+      }
+
+      const contract = await getContract(props.network);
+      isSaleBusy.value = true;
+      try {
+        const txParams = { value: 0 };
+        const tx = await contract.executeTradeLocalNoun(
+          selectedMyTokenId,
+          props.token.tokenId,
+          txParams,
         );
+        const result = await tx.wait();
+        console.log("executeTradeLocalNoun:tx", result);
+        isSaleBusy.value = false;
+        informationMessage.value = i18n.t("TokenSaleOrTrade.finishTradeNoun");
         displayInformationDialog.value = true;
       } catch (e) {
         isSaleBusy.value = false;
@@ -209,7 +242,7 @@ export default {
       const tradeToPrefecture = props.token?.tradeToPrefecture || [];
       return tradeToPrefecture.map((index) => prefectureList[index]);
     });
-    let selectedMyTokenId;
+    let selectedMyTokenId=-1;
 
     const handleUpdateMyTokens = (tokenId) => {
       selectedMyTokenId = tokenId;
@@ -246,6 +279,7 @@ export default {
       displayInformationDialog,
       informationMessage,
       buyNoun,
+      tradeNoun,
     };
   },
 };
