@@ -42,7 +42,7 @@
           </button>
           <button
             v-else
-            class="inline-block rounded bg-gray-500 px-1 py-2.5 leading-tight text-white shadow-md transition duration-150 ease-in-out"
+            class="inline-block rounded bg-gray-500 w-20 px-1 py-2.5 leading-tight text-white shadow-md transition duration-150 mx-2 my-2"
             disabled
           >
             {{ $t("list.onSale") }}
@@ -58,7 +58,7 @@
           </button>
           <button
             v-else
-            class="inline-block rounded bg-gray-500 px-1 py-2.5 leading-tight text-white shadow-md transition duration-150 ease-in-out"
+            class="inline-block rounded bg-gray-500 w-20 px-1 py-2.5 leading-tight text-white shadow-md transition duration-150 mx-2 my-2"
             disabled
           >
             {{ $t("list.onTrade") }}
