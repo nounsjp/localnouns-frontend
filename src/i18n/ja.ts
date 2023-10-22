@@ -36,7 +36,7 @@ const lang = {
     trade: "交換",
     onTrade: "交換可",
     onSale: "販売中",
-    manage: "管理",
+    manage: "所有",
   },
   prefectures: {
     prefectures: "都道府県",

@@ -36,7 +36,7 @@ const lang = {
     trade: "Trade",
     onTrade: "onTrade",
     onSale: "onSale",
-    manage: "Manage",
+    manage: "Owner",
   },
   prefectures: {
     prefectures: "Prefecture",
