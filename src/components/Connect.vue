@@ -30,7 +30,7 @@
             disabled
           >
             <!-- {{ $t("menu.connected") }} -->
-            {{ account.substring(0,6) }}...
+            {{ account.substring(0, 6) }}...
           </button>
         </span>
         <span v-else>

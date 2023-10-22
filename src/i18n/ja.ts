@@ -76,7 +76,7 @@ const lang = {
     tradeForNoun: "交換するNoun",
     finishBuyNoun: "Nounの購入に成功しました!",
     selectNounForTrade: "交換するNounを選んでください",
-    finishTradeNoun:"Nounの交換に成功しました!",
+    finishTradeNoun: "Nounの交換に成功しました!",
   },
   validator: {
     validNumber: "0より大きい数値を入力してください",

@@ -242,7 +242,7 @@ export default {
       const tradeToPrefecture = props.token?.tradeToPrefecture || [];
       return tradeToPrefecture.map((index) => prefectureList[index]);
     });
-    let selectedMyTokenId=-1;
+    let selectedMyTokenId = -1;
 
     const handleUpdateMyTokens = (tokenId) => {
       selectedMyTokenId = tokenId;

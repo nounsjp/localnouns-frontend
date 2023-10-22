@@ -77,7 +77,7 @@ const lang = {
     tradeForNoun: "trade noun",
     finishBuyNoun: "Successfully purchased Noun!",
     selectNounForTrade: "Select a noun for trade",
-    finishTradeNoun:"Successfully traded Noun!",
+    finishTradeNoun: "Successfully traded Noun!",
   },
   validator: {
     validNumber: "Enter a number greater than 0",
