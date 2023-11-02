@@ -58,9 +58,9 @@ export default defineComponent({
       });
     }
 
-    const updateValue = (event: Event, option: any) => {
-      if ((event.target as HTMLInputElement).checked) {
-        selectedValue.value = option;
+    const updateValue = (element: HTMLInputElement, tokenId: string) => {
+      if (element.target.checked) {
+        selectedValue.value = tokenId;
         context.emit("updateValues", selectedValue.value);
       }
     };
