@@ -1,4 +1,4 @@
-export function isValidNumber(inputValue: any) {
+export function isValidNumber(inputValue: string) {
   // 正規表現で数値のみかをチェック
   const isPureNumber = /^[+]?\d+(\.\d+)?$/.test(inputValue);
   if (!isPureNumber) {
