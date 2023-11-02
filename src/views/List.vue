@@ -8,7 +8,11 @@
   >
     <span class="ml-2 font-londrina font-yusei text-xl no-wrap">
       <label>
-        <input type="checkbox" v-model="filterOnSale" @change="getTokenList" />
+        <input
+          type="checkbox"
+          v-model="filterOnSale"
+          @change="filterTokenByCriteria"
+        />
         <button
           class="inline-block rounded bg-red-500 w-20 px-1 py-2.5 leading-tight text-white shadow-md transition duration-150 mx-2 my-2"
           disabled
@@ -19,7 +23,11 @@
     </span>
     <span class="ml-2 font-londrina font-yusei text-xl no-wrap">
       <label>
-        <input type="checkbox" v-model="filterOnTrade" @change="getTokenList" />
+        <input
+          type="checkbox"
+          v-model="filterOnTrade"
+          @change="filterTokenByCriteria"
+        />
         <button
           class="inline-block rounded bg-blue-500 w-20 px-1 py-2.5 leading-tight text-white shadow-md transition duration-150 mx-2 my-2"
           disabled
@@ -33,7 +41,7 @@
         <input
           type="checkbox"
           v-model="filterOnManage"
-          @change="getTokenList"
+          @change="filterTokenByCriteria"
         />
         <button
           class="inline-block rounded bg-green-500 w-20 px-1 py-2.5 leading-tight text-white shadow-md transition duration-150 mx-2 my-2"
@@ -49,7 +57,7 @@
           disabled
           type="checkbox"
           v-model="filterOnManage"
-          @change="getTokenList"
+          @change="filterTokenByCriteria"
         />
         <button
           class="inline-block rounded bg-gray-500 w-20 px-1 py-2.5 leading-tight text-white shadow-md transition duration-150 mx-2 my-2"
@@ -62,14 +70,14 @@
     <Prefectures
       class="mt-4"
       v-model="selectedPrefecture"
-      @change="getTokenList"
+      @change="filterTokenByCriteria"
     />
   </div>
   <div
     class="grid w-screen grid-cols-2 place-content-center items-center gap-2 sm:grid-cols-5"
   >
     <div
-      v-for="token in tokens"
+      v-for="token in tokensForDisplay"
       :key="token.key"
       class="px-2 py-6 flex flex-col items-center justify-center"
     >
@@ -179,38 +187,50 @@ export default defineComponent({
 
     const tokenCollectionPath = `/${props.network}/${props.tokenAddress}/tokens`;
     const tokens = ref<TOKEN[]>([]);
+    const tokensForDisplay = ref<TOKEN[]>([]);
     const getTokenList = async () => {
-      let tokenQuery: Query<TOKEN> = collection(
+      const tokenQuery: Query<TOKEN> = collection(
         db,
         tokenCollectionPath,
       ) as Query<TOKEN>;
-      if (selectedPrefecture.value != 0) {
-        tokenQuery = query(
-          tokenQuery,
-          where("prefecture", "==", prefectureList[selectedPrefecture.value]),
-        );
-      }
-      console.log("filterOnManage.value", filterOnManage.value);
-      console.log("account", account.value);
-      if (filterOnSale.value) {
-        tokenQuery = query(tokenQuery, where("salePrice", ">", 0));
-      }
-      if (filterOnTrade.value) {
-        tokenQuery = query(tokenQuery, where("isOnTrade", "==", true));
-      }
-      if (filterOnManage.value && account) {
-        tokenQuery = query(tokenQuery, where("holder", "==", account.value));
-      }
+
       try {
         const results = await getDocs(tokenQuery);
         tokens.value = results.docs.map((doc) => {
           return doc.data();
         });
+        filterTokenByCriteria();
       } catch (e) {
         console.error("getTokenList", e);
       }
     };
     getTokenList();
+
+    const filterTokenByCriteria = () => {
+      tokensForDisplay.value = tokens.value;
+      if (selectedPrefecture.value != 0) {
+        tokensForDisplay.value = tokensForDisplay.value.filter(
+          (token: TOKEN) =>
+            token.prefecture == prefectureList[selectedPrefecture.value],
+        );
+      }
+      if (filterOnSale.value) {
+        tokensForDisplay.value = tokensForDisplay.value.filter(
+          (token: TOKEN) => token.salePrice > 0,
+        );
+      }
+      if (filterOnTrade.value) {
+        tokensForDisplay.value = tokensForDisplay.value.filter(
+          (token: TOKEN) => token.isOnTrade == true,
+        );
+      }
+      if (filterOnManage.value && account) {
+        tokensForDisplay.value = tokensForDisplay.value.filter(
+          (token: TOKEN) => token.holder == account.value,
+        );
+      }
+    };
+
     const selectedToken = ref<TOKEN | null>(null);
 
     // 保有していたら管理用モーダル、そうでない場合はP2P用
@@ -235,12 +255,13 @@ export default defineComponent({
     return {
       account,
       lang,
-      tokens,
+      tokensForDisplay,
       myTokens,
       selectedPrefecture,
       filterOnSale,
       filterOnTrade,
       filterOnManage,
+      filterTokenByCriteria,
       isManagementModalOpen,
       isSaleOrTradeModalOpen,
       getTokenList,
