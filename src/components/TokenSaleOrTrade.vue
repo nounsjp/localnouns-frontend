@@ -49,9 +49,10 @@
             </button>
           </div>
         </div>
+        <!-- isSaleBusy -->
         <button
           type="button"
-          v-if="isSaleBusy"
+          v-else
           class="inline-block rounded px-8 py-4 leading-tight text-gray-500 shadow-md"
           disabled
         >
@@ -110,9 +111,10 @@
             </button>
           </div>
         </div>
+        <!-- end of isTradeBusy -->
         <button
           type="button"
-          v-if="isTradeBusy"
+          v-else
           class="inline-block rounded px-8 py-4 leading-tight text-gray-500 shadow-md"
           disabled
         >
