@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="isOpen"
-    class="fixed inset-0 z-50 overflow-y bg-smoke-dark flex justify-center items-center"
+    class="fixed inset-0 z-50 overflow-y bg-gray-500 bg-opacity-75 flex justify-center items-center"
   >
     <div
       class="relative p-6 bg-white w-3/4 h-4/5 overflow-y-auto flex flex-col justify-between items-center"
@@ -284,9 +284,3 @@ export default {
   },
 };
 </script>
-
-<style>
-.bg-smoke-dark {
-  background-color: rgba(0, 0, 0, 0.85);
-}
-</style>
