@@ -6,7 +6,7 @@
   <div
     class="grid w-full grid-cols-3 place-content-center items-center items-start gap-2 sm:grid-cols-4"
   >
-    <span class="ml-2 font-londrina font-yusei text-xl no-wrap">
+    <span class="ml-2 font-londrina font-yusei text-xl">
       <label>
         <input
           type="checkbox"
@@ -21,7 +21,7 @@
         </button>
       </label>
     </span>
-    <span class="ml-2 font-londrina font-yusei text-xl no-wrap">
+    <span class="ml-2 font-londrina font-yusei text-xl">
       <label>
         <input
           type="checkbox"
@@ -36,7 +36,7 @@
         </button>
       </label>
     </span>
-    <span v-if="account" class="ml-2 font-londrina font-yusei text-xl no-wrap">
+    <span v-if="account" class="ml-2 font-londrina font-yusei text-xl">
       <label>
         <input
           type="checkbox"
@@ -51,7 +51,7 @@
         </button>
       </label>
     </span>
-    <span v-else class="ml-2 font-londrina font-yusei text-xl no-wrap">
+    <span v-else class="ml-2 font-londrina font-yusei text-xl">
       <label>
         <input
           disabled
@@ -106,14 +106,17 @@
         :myTokens="myTokens"
         @close="closeTokenModal"
       />
-      <div v-if="token.holder.toLowerCase() == account">
+      <span
+        v-if="token.holder.toLowerCase() == account"
+        class="ml-2 font-londrina font-yusei text-xl"
+      >
         <button
           class="inline-block rounded bg-green-500 w-20 px-1 py-2.5 leading-tight text-white shadow-md transition duration-150 my-2"
           disabled
         >
           {{ $t("list.manage") }}
         </button>
-      </div>
+      </span>
     </div>
   </div>
 </template>
@@ -188,7 +191,7 @@ export default defineComponent({
     });
 
     const selectedPrefecture = ref(0);
-    const selectedSortOrder = ref('newer');
+    const selectedSortOrder = ref("newer");
     const filterOnSale = ref(false);
     const filterOnTrade = ref(false);
     const filterOnManage = ref(false);
@@ -240,17 +243,21 @@ export default defineComponent({
         );
       }
 
-      switch(selectedSortOrder.value){
-        case 'newer':
-          tokensForDisplay.value.sort((a, b) => Number(b.tokenId) - Number(a.tokenId));
+      switch (selectedSortOrder.value) {
+        case "newer":
+          tokensForDisplay.value.sort(
+            (a, b) => Number(b.tokenId) - Number(a.tokenId),
+          );
           break;
-        case 'older':
-          tokensForDisplay.value.sort((a, b) => Number(a.tokenId) - Number(b.tokenId));
+        case "older":
+          tokensForDisplay.value.sort(
+            (a, b) => Number(a.tokenId) - Number(b.tokenId),
+          );
           break;
-        case 'lower':
+        case "lower":
           tokensForDisplay.value.sort((a, b) => a.salePrice - b.salePrice);
           break;
-        case 'higher':
+        case "higher":
           tokensForDisplay.value.sort((a, b) => b.salePrice - a.salePrice);
           break;
       }
