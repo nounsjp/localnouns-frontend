@@ -130,7 +130,7 @@ export const updateTradeOfTokenOnFirestore = async (
   }
 
   // 都道府県指定がない場合は [0] (指定しない)をセット
-  let updatedTradeToPrefecture = [...tradeToPrefecture]; // 新しい配列を作成
+  const updatedTradeToPrefecture = [...tradeToPrefecture]; // 新しい配列を作成
   if (updatedTradeToPrefecture.length == 0) {
     updatedTradeToPrefecture.push(0); // 新しい配列に変更を加える
   }
