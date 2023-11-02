@@ -31,7 +31,9 @@
         }}
       </span>
 
-      <div class="flex justify-center gap-2 w-full font-londrina font-yusei text-xl">
+      <div
+        class="flex justify-center gap-2 w-full font-londrina font-yusei text-xl"
+      >
         <div>
           <button
             v-if="token.salePrice > 0"
