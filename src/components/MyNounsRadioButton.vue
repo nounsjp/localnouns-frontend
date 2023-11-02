@@ -32,7 +32,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref, PropType } from "vue";
 import { TOKEN } from "@/firestore/token";
 
 export default defineComponent({
@@ -59,7 +59,7 @@ export default defineComponent({
     }
 
     const updateValue = (element: HTMLInputElement, tokenId: string) => {
-      if (element.target.checked) {
+      if (element.checked) {
         selectedValue.value = tokenId;
         context.emit("updateValues", selectedValue.value);
       }
