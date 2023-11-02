@@ -1,9 +1,6 @@
 <template>
   <div class="flex flex-col items-start w-full">
     <div>
-      <!-- <span class="font-londrina font-yusei text-xl no-wrap mb-4">
-        {{ $t("prefectures.prefectures") }}:
-      </span> -->
       <div>
         <!-- NotSpecified を1行目に表示 -->
         <div class="flex items-center mb-4">
