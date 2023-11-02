@@ -144,7 +144,7 @@ import { useI18n } from "vue-i18n";
 import { ethers } from "ethers";
 import { getLocalNounsTokenContract } from "@/utils/const";
 import { ChainIdMap } from "@/utils/MetaMask";
-import TokenDetail from "./TokenDetail.vue";
+import TokenDetail from "@/components/TokenDetail.vue";
 import InformationDialog from "@/components/InformationDialog.vue";
 import MyNounsRadioButton from "@/components/MyNounsRadioButton.vue";
 import { prefectureList } from "@/i18n/prefectures";
