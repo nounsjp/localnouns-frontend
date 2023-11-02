@@ -1,6 +1,6 @@
 <template>
   <div class="grid w-auto grid-cols-1 place-content-center items-center gap-2">
-    <span class="font-londrina font-yusei text-xl no-wrap">
+    <span class="font-londrina font-yusei text-xl whitespace-nowrap">
       {{ $t("listSortOrder.sortOrder") }}:
       <select @change="updateValue">
         <option
