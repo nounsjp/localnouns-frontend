@@ -156,7 +156,7 @@ export default defineComponent({
             return doc.data();
           });
         } catch (e) {
-          console.error("getTokenList", e);
+          console.error("getMyTokenList", e);
         }
       }
     };
