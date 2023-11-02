@@ -42,11 +42,11 @@ import { prefectureList } from "@/i18n/prefectures";
 export default defineComponent({
   props: {
     initialPrefectures: {
-      type: Array as () => number[],
+      type: Array as PropType<number[]>,
       required: true,
     },
     modelValue: {
-      type: Array as () => number[],
+      type: Array as PropType<number[]>,
       required: true,
     },
   },

@@ -38,7 +38,7 @@ import { TOKEN } from "@/firestore/token";
 export default defineComponent({
   props: {
     myTokens: {
-      type: Array as () => Array<TOKEN>,
+      type: Array as PropType<TOKEN[]>,
       required: true,
     },
     tradeForPrefectures: {
