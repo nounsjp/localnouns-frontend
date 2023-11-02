@@ -189,7 +189,6 @@ export default {
     const store = useStore();
     const i18n = useI18n();
 
-    const account = computed(() => store.state.account);
     const { token, network } = toRefs(props);
     console.log("tokenManagement-network:", network.value);
     console.log("tokenManagement-token:", token.value);
@@ -251,7 +250,6 @@ export default {
     let selectedPrefectures = [];
 
     const setTrade = async () => {
-      console.log("setTrade:selectedPrefectures", selectedPrefectures);
       // 入力チェック
       if (selectedPrefectures.length == 0) {
         alert(i18n.t("tokenManagement.validSelectPrefectures"));
@@ -264,7 +262,6 @@ export default {
       selectedPrefectures = selectedPrefectures.filter((item) => item !== 0);
 
       isTradeBusy.value = true;
-      console.log("selectedPrefectures", selectedPrefectures);
       try {
         const weiValue = ethers.parseEther("0.002");
         console.log("weiValue", weiValue);
@@ -331,7 +328,6 @@ export default {
     };
 
     return {
-      account,
       closeModal,
       salePrice,
       setSalePrice,
@@ -339,7 +335,6 @@ export default {
       setTrade,
       stopTrade,
       initialPrefectures,
-      selectedPrefectures,
       handleUpdatePrefectures,
       isSaleBusy,
       isTradeBusy,

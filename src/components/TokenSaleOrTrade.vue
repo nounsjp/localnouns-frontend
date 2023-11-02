@@ -213,7 +213,6 @@ export default {
     };
 
     const tradeNoun = async () => {
-      console.log("tradeNoun-selectedMyTokenId", selectedMyTokenId);
       if (selectedMyTokenId == -1) {
         alert(i18n.t("TokenSaleOrTrade.selectNounForTrade"));
         return;
@@ -228,8 +227,7 @@ export default {
           props.token.tokenId,
           txParams,
         );
-        const result = await tx.wait();
-        console.log("executeTradeLocalNoun:tx", result);
+        await tx.wait();
         isSaleBusy.value = false;
         informationMessage.value = "TokenSaleOrTrade.finishTradeNoun";
         displayInformationDialog.value = true;
@@ -248,11 +246,9 @@ export default {
 
     const handleUpdateMyTokens = (tokenId) => {
       selectedMyTokenId = tokenId;
-      console.log("handleUpdateMyTokens", selectedMyTokenId);
     };
 
     const closeModal = (reload) => {
-      console.log("closeModal-reload", reload);
       isSaleBusy.value = false;
       isTradeBusy.value = false;
       displayInformationDialog.value = false;
@@ -274,7 +270,6 @@ export default {
       closeModal,
       salePrice,
       tradeForPrefectures,
-      selectedMyTokenId,
       handleUpdateMyTokens,
       isSaleBusy,
       isTradeBusy,
