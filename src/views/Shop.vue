@@ -45,9 +45,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style>
-/* .logo {
-  height: 150px;
-} */
-</style>
