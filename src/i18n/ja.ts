@@ -41,6 +41,13 @@ const lang = {
   prefectures: {
     prefectures: "都道府県",
   },
+  listSortOrder: {
+    sortOrder: "ソート順",
+    lower: "価格が低い順",
+    higher: "価格が高い順",
+    older: "古い順",
+    newer: "新しい順",
+  },
   numOfMint: {
     numOfMint: "ミント数",
   },

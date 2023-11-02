@@ -4,7 +4,7 @@
   </div>
 
   <div
-    class="grid w-screen grid-cols-3 place-content-center items-center items-start gap-2 sm:grid-cols-5"
+    class="grid w-full grid-cols-3 place-content-center items-center items-start gap-2 sm:grid-cols-4"
   >
     <span class="ml-2 font-londrina font-yusei text-xl no-wrap">
       <label>
@@ -67,11 +67,18 @@
         </button>
       </label>
     </span>
-    <Prefectures
-      class="mt-4"
-      v-model="selectedPrefecture"
-      @change="filterTokenByCriteria"
-    />
+    <div>
+      <Prefectures
+        class="mx-2 my-1"
+        v-model="selectedPrefecture"
+        @change="filterTokenByCriteria"
+      />
+      <ListSortOrder
+        class="mx-2 my-1"
+        v-model="selectedSortOrder"
+        @change="filterTokenByCriteria"
+      />
+    </div>
   </div>
   <div
     class="grid w-screen grid-cols-2 place-content-center items-center gap-2 sm:grid-cols-5"
@@ -118,6 +125,7 @@ import { useI18n } from "vue-i18n";
 import { getDocs, collection, query, where, Query } from "firebase/firestore";
 import { db } from "@/utils/firebase";
 import Prefectures from "@/components/Prefectures.vue";
+import ListSortOrder from "@/components/ListSortOrder.vue";
 import TokenDetail from "@/components/TokenDetail.vue";
 import TokenManagement from "@/components/TokenManagement.vue";
 import TokenSaleOrTrade from "@/components/TokenSaleOrTrade.vue";
@@ -138,6 +146,7 @@ export default defineComponent({
   name: "List",
   components: {
     Prefectures,
+    ListSortOrder,
     TokenDetail,
     TokenManagement,
     TokenSaleOrTrade,
@@ -179,6 +188,7 @@ export default defineComponent({
     });
 
     const selectedPrefecture = ref(0);
+    const selectedSortOrder = ref('newer');
     const filterOnSale = ref(false);
     const filterOnTrade = ref(false);
     const filterOnManage = ref(false);
@@ -229,6 +239,21 @@ export default defineComponent({
           (token: TOKEN) => token.holder == account.value,
         );
       }
+
+      switch(selectedSortOrder.value){
+        case 'newer':
+          tokensForDisplay.value.sort((a, b) => Number(b.tokenId) - Number(a.tokenId));
+          break;
+        case 'older':
+          tokensForDisplay.value.sort((a, b) => Number(a.tokenId) - Number(b.tokenId));
+          break;
+        case 'lower':
+          tokensForDisplay.value.sort((a, b) => a.salePrice - b.salePrice);
+          break;
+        case 'higher':
+          tokensForDisplay.value.sort((a, b) => b.salePrice - a.salePrice);
+          break;
+      }
     };
 
     const selectedToken = ref<TOKEN | null>(null);
@@ -258,6 +283,7 @@ export default defineComponent({
       tokensForDisplay,
       myTokens,
       selectedPrefecture,
+      selectedSortOrder,
       filterOnSale,
       filterOnTrade,
       filterOnManage,

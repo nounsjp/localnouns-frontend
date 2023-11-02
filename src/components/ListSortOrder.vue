@@ -3,16 +3,15 @@
     class="grid w-auto grid-cols-1 place-content-center items-center gap-2"
   >
     <span class="font-londrina font-yusei text-xl no-wrap">
-      {{ $t("prefectures.prefectures") }}:
-
+      {{ $t("listSortOrder.sortOrder") }}:
       <select @change="updateValue">
         <option
-          v-for="(option, index) in prefectureList"
-          :value="index"
+          v-for="(option, index) in sortOrder"
+          :value="option"
           :key="index"
           :selected="index == selectedValue"
         >
-          {{ $t("prefecture." + option) }}
+          {{ $t("listSortOrder." + option) }}
         </option>
       </select>
     </span>
@@ -21,11 +20,17 @@
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
-import { prefectureList } from "@/i18n/prefectures";
 
 export default defineComponent({
   setup(props, context) {
-    const selectedValue = ref(prefectureList[0]);
+    const sortOrder = [
+      // "sortOrder",
+      "newer",
+      "older",
+      "lower",
+      "higher",
+    ];
+    const selectedValue = ref(sortOrder[0]);
 
     const updateValue = (event: { target: HTMLSelectElement }) => {
       context.emit("update:modelValue", event.target.value);
@@ -33,7 +38,7 @@ export default defineComponent({
     };
     return {
       selectedValue,
-      prefectureList,
+      sortOrder,
       updateValue,
     };
   },

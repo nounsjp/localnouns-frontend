@@ -41,6 +41,13 @@ const lang = {
   prefectures: {
     prefectures: "Prefecture",
   },
+  listSortOrder: {
+    sortOrder: "Sort order",
+    lower: "Price lower",
+    higher: "Price higher",
+    older: "Older",
+    newer: "Newer",
+  },
   numOfMint: {
     numOfMint: "Quantity",
   },
