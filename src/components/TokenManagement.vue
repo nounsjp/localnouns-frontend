@@ -222,7 +222,7 @@ export default {
         const result = await tx.wait();
         console.log("setSalePrice:tx", result);
         isSaleBusy.value = false;
-        informationMessage.value = i18n.t("tokenManagement.finishSetSalePrice");
+        informationMessage.value = "tokenManagement.finishSetSalePrice";
         displayInformationDialog.value = true;
       } catch (e) {
         isSaleBusy.value = false;
@@ -239,9 +239,7 @@ export default {
         const result = await tx.wait();
         console.log("removeSalePrice:tx", result);
         isSaleBusy.value = false;
-        informationMessage.value = i18n.t(
-          "tokenManagement.finishRemoveSalePrice",
-        );
+        informationMessage.value = "tokenManagement.finishRemoveSalePrice";
         displayInformationDialog.value = true;
       } catch (e) {
         isSaleBusy.value = false;
@@ -280,7 +278,7 @@ export default {
         const result = await tx.wait();
         console.log("putTradeLocalNoun:tx", result);
         isTradeBusy.value = false;
-        informationMessage.value = i18n.t("tokenManagement.finishSetTrade");
+        informationMessage.value = "tokenManagement.finishSetTrade";
         displayInformationDialog.value = true;
       } catch (e) {
         isTradeBusy.value = false;
@@ -301,7 +299,7 @@ export default {
         const result = await tx.wait();
         console.log("cancelTradeLocalNoun:tx", result);
         isTradeBusy.value = false;
-        informationMessage.value = i18n.t("tokenManagement.finishStopTrade");
+        informationMessage.value = "tokenManagement.finishStopTrade";
         displayInformationDialog.value = true;
       } catch (e) {
         isTradeBusy.value = false;

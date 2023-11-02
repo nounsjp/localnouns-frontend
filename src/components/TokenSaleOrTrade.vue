@@ -204,7 +204,7 @@ export default {
         const result = await tx.wait();
         console.log("removeSalePrice:tx", result);
         isSaleBusy.value = false;
-        informationMessage.value = i18n.t("TokenSaleOrTrade.finishBuyNoun");
+        informationMessage.value = "TokenSaleOrTrade.finishBuyNoun";
         displayInformationDialog.value = true;
       } catch (e) {
         isSaleBusy.value = false;
@@ -231,7 +231,7 @@ export default {
         const result = await tx.wait();
         console.log("executeTradeLocalNoun:tx", result);
         isSaleBusy.value = false;
-        informationMessage.value = i18n.t("TokenSaleOrTrade.finishTradeNoun");
+        informationMessage.value = "TokenSaleOrTrade.finishTradeNoun";
         displayInformationDialog.value = true;
       } catch (e) {
         isSaleBusy.value = false;

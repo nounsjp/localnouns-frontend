@@ -7,7 +7,7 @@
       class="relative p-6 bg-white w-3/4 flex flex-col items-center justify-center"
     >
       <p class="mb-2 font-londrina text-2xl">
-        {{ message }}
+        {{ $t(message) }}
       </p>
       <span class="absolute top-4 right-4 cursor-pointer">
         <button
