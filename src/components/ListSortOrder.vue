@@ -32,7 +32,6 @@ export default defineComponent({
 
     const updateValue = (event: { target: HTMLSelectElement }) => {
       context.emit("update:modelValue", event.target.value);
-      console.log(event.target.value);
     };
     return {
       selectedValue,
