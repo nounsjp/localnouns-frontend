@@ -1,9 +1,5 @@
 import languages from "@/i18n/languages";
 import { prefecture_en as prefecture } from "@/i18n/prefectures";
-import {
-  partsName_en as partsName,
-  partsDescription_en as partsDescription,
-} from "@/i18n/parts";
 
 const lang = {
   nav: {
@@ -146,8 +142,6 @@ const lang = {
     "404: This is not the person, place, or thing you're looking for...",
   languages,
   prefecture,
-  partsName,
-  partsDescription,
 };
 
 export default lang;

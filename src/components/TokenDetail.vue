@@ -7,20 +7,10 @@
 
     <div>
       <span @click="showComment = !showComment" class="relative z-10">
-        <span v-if="$t(i18nHead) != i18nHead">
-          {{ $t(i18nHead) }}
-        </span>
-        <span v-else>
-          {{ token.head }}
-        </span> </span
-      >,
-      <span v-if="$t(i18nAccessory) != i18nAccessory">
-        {{ $t(i18nAccessory) }}
-      </span>
-      <span v-else>
+        {{ token.head }},
         {{ token.accessory }}
       </span>
-      <!-- TODO 説明の表示方法は後で見直す-->
+      <!-- TODO 説明の表示方法は後で見直す, パーツ名もfirestoreから取得に変更する-->
       <span
         v-if="showComment"
         @click="showComment = !showComment"
@@ -103,9 +93,6 @@ export default defineComponent({
       props.token.prefecture.toLowerCase() +
       "_" +
       props.token.accessory;
-
-    console.log("head:", i18nHead);
-    console.log("accessory:", i18nAccessory);
     return {
       showComment,
       i18nHead,
