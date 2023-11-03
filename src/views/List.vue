@@ -70,8 +70,10 @@
     <div>
       <Prefectures
         class="mx-2 my-1"
+        :notIncludeNotSpecified="true"
+        :initialPrefecture="initialPrefecture"
         v-model="selectedPrefecture"
-        @change="filterTokenByCriteria"
+        @change="getTokenList"
       />
       <ListSortOrder
         class="mx-2 my-1"
@@ -92,20 +94,6 @@
         <TokenDetail class="mt-4" :token="token" size="w80" />
       </div>
 
-      <TokenManagement
-        :network="network"
-        :isOpen="isManagementModalOpen"
-        :token="selectedToken"
-        @close="closeTokenModal"
-      />
-
-      <TokenSaleOrTrade
-        :network="network"
-        :isOpen="isSaleOrTradeModalOpen"
-        :token="selectedToken"
-        :myTokens="myTokens"
-        @close="closeTokenModal"
-      />
       <span
         v-if="token.holder.toLowerCase() == account"
         class="ml-2 font-londrina font-yusei text-xl"
@@ -118,6 +106,23 @@
         </button>
       </span>
     </div>
+
+    <TokenManagement
+      v-if="selectedToken"
+      :network="network"
+      :isOpen="isManagementModalOpen"
+      :token="selectedToken"
+      @close="closeTokenModal"
+    />
+
+    <TokenSaleOrTrade
+      v-if="selectedToken"
+      :network="network"
+      :isOpen="isSaleOrTradeModalOpen"
+      :token="selectedToken"
+      :myTokens="myTokens"
+      @close="closeTokenModal"
+    />
   </div>
 </template>
 
@@ -190,7 +195,9 @@ export default defineComponent({
       return store.state.account;
     });
 
-    const selectedPrefecture = ref(0);
+    // 表示する都道府県をランダムに設定
+    const initialPrefecture = new Date().getSeconds() % 47;
+    const selectedPrefecture = ref(initialPrefecture + 1);
     const selectedSortOrder = ref("newer");
     const filterOnSale = ref(false);
     const filterOnTrade = ref(false);
@@ -202,11 +209,16 @@ export default defineComponent({
     const tokens = ref<TOKEN[]>([]);
     const tokensForDisplay = ref<TOKEN[]>([]);
     const getTokenList = async () => {
-      const tokenQuery: Query<TOKEN> = collection(
+      let tokenQuery: Query<TOKEN> = collection(
         db,
         tokenCollectionPath,
       ) as Query<TOKEN>;
-
+      if (selectedPrefecture.value != 0) {
+        tokenQuery = query(
+          tokenQuery,
+          where("prefecture", "==", prefectureList[selectedPrefecture.value]),
+        );
+      }
       try {
         const results = await getDocs(tokenQuery);
         tokens.value = results.docs.map((doc) => {
@@ -221,12 +233,6 @@ export default defineComponent({
 
     const filterTokenByCriteria = () => {
       tokensForDisplay.value = tokens.value;
-      if (selectedPrefecture.value != 0) {
-        tokensForDisplay.value = tokensForDisplay.value.filter(
-          (token: TOKEN) =>
-            token.prefecture == prefectureList[selectedPrefecture.value],
-        );
-      }
       if (filterOnSale.value) {
         tokensForDisplay.value = tokensForDisplay.value.filter(
           (token: TOKEN) => token.salePrice > 0,
@@ -290,6 +296,7 @@ export default defineComponent({
       tokensForDisplay,
       myTokens,
       selectedPrefecture,
+      initialPrefecture,
       selectedSortOrder,
       filterOnSale,
       filterOnTrade,
