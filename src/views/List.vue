@@ -91,7 +91,7 @@
       class="px-2 py-6 flex flex-col items-center justify-center"
     >
       <div @click="showTokenModal(token)" class="items-center justify-center">
-        <TokenDetail class="mt-4" :token="token" size="w80" />
+        <TokenDetail :token="token" size="w80" />
       </div>
 
       <span
