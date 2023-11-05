@@ -2,6 +2,7 @@ import * as admin from "firebase-admin";
 import { NETWORK } from "@/config/project";
 import { addresses } from "@/utils/addresses";
 import { SERVICE_ACCOUNT_KEY_PATH } from "@/config/project";
+import { TOKEN } from "@/firestore/const";
 
 if (!admin.apps.length) {
   admin.initializeApp({
@@ -10,20 +11,6 @@ if (!admin.apps.length) {
 }
 const firestore = admin.firestore();
 const tokenAddress = addresses.localNounsToken[NETWORK];
-
-export interface TOKEN {
-  tokenId: string;
-  prefecture: string;
-  head: string;
-  accessory: string;
-  holder: string;
-  svg: string;
-  salePrice: number;
-  isOnTrade: boolean;
-  tradeToPrefecture: number[];
-  createdDate: admin.firestore.Timestamp;
-  canTrade?: boolean; // firestoreでなく画面で使用
-}
 
 export const writeTokenDataToFirestore = async (
   tokenId: string,
@@ -47,7 +34,7 @@ export const writeTokenDataToFirestore = async (
       salePrice: 0,
       isOnTrade: false,
       tradeToPrefecture: [0], // firestore上は '0':指定しないをセット
-      createdDate: admin.firestore.Timestamp.now(),
+      createdDate: new Date(),
     };
 
     await tr.set(firestore.doc(tokenDocumentPath), tokenInfo);
