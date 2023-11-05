@@ -138,7 +138,7 @@ import TokenDetail from "@/components/TokenDetail.vue";
 import TokenManagement from "@/components/TokenManagement.vue";
 import TokenSaleOrTrade from "@/components/TokenSaleOrTrade.vue";
 import { prefectureList } from "@/i18n/prefectures";
-import { TOKEN } from "@/firestore/token";
+import { TOKEN } from "@/firestore/const";
 
 export default defineComponent({
   props: {

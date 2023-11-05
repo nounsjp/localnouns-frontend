@@ -5,7 +5,7 @@ import {
   getLocalNounsProviderContract,
 } from "../../src/utils/const";
 import { addresses } from "../../src/utils/addresses";
-import { writeTokenDataToFirestore } from "../../src/firestore/token";
+import { writeTokenDataToFirestore } from "./token";
 
 const provider = getProvider(NETWORK, ALCHEMY_API_KEY);
 const tokenContract = getLocalNounsTokenContract(

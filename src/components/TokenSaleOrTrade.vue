@@ -149,7 +149,7 @@ import InformationDialog from "@/components/InformationDialog.vue";
 import MyNounsRadioButton from "@/components/MyNounsRadioButton.vue";
 import { prefectureList } from "@/i18n/prefectures";
 import { addresses } from "@/utils/addresses";
-// import { TOKEN } from "@/firestore/token";
+
 export default {
   components: {
     TokenDetail,

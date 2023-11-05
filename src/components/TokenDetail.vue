@@ -66,7 +66,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
-import { TOKEN } from "@/firestore/token";
+import { TOKEN } from "@/firestore/const";
 
 export default defineComponent({
   props: {

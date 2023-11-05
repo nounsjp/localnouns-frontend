@@ -163,7 +163,6 @@ import PrefecturesCheckbox from "@/components/PrefecturesCheckbox.vue";
 import InformationDialog from "@/components/InformationDialog.vue";
 import { isValidNumber } from "@/utils/validator";
 import { addresses } from "@/utils/addresses";
-// import { TOKEN } from "@/firestore/token";
 
 export default {
   components: {

@@ -33,7 +33,7 @@
 
 <script lang="ts">
 import { defineComponent, ref, PropType } from "vue";
-import { TOKEN } from "@/firestore/token";
+import { TOKEN } from "@/firestore/const";
 
 export default defineComponent({
   props: {
