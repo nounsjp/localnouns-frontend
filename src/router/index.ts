@@ -7,6 +7,7 @@ import Mint from "@/views/Mint.vue";
 import List from "@/views/List.vue";
 // import ComingSoon from "@/views/ComingSoon.vue";
 import Shop from "@/views/Shop.vue";
+import About from "@/views/About.vue";
 import { addresses } from "@/utils/addresses";
 
 const routeChildren: Array<RouteRecordRaw> = [
@@ -39,6 +40,10 @@ const routeChildren: Array<RouteRecordRaw> = [
   {
     path: "shop",
     component: Shop,
+  },
+  {
+    path: "about",
+    component: About,
   },
 ];
 

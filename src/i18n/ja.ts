@@ -9,6 +9,7 @@ const lang = {
     p2pSale: "P2Pセール",
     p2pTrade: "P2Pトレード",
     goods: "グッズ",
+    about: "紹介",
   },
   menu: {
     connect: "接続",
