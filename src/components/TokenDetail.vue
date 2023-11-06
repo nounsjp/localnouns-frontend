@@ -11,13 +11,13 @@
       <div class="mb-2 font-londrina font-yusei text-2xl relative z-10">
         {{ token.head }}
       </div>
-      <div class="mb-2 font-londrina font-yusei relative z-10">
+      <div class="mb-2 font-londrina font-yusei relative z-10 text-left">
         {{ token.headDescription }}
       </div>
       <div class="mb-2 font-londrina font-yusei text-2xl relative z-10">
         {{ token.accessory }}
       </div>
-      <div class="mb-2 font-londrina font-yusei relative z-10">
+      <div class="mb-2 font-londrina font-yusei relative z-10 text-left">
         {{ token.accessoryDescription }}
       </div>
     </div>
@@ -31,10 +31,10 @@
     <div class="mb-2 font-londrina font-yusei text-xl">
       #{{ token.tokenId }}, {{ $t("prefecture." + token.prefecture) }}
     </div>
-    <div class="mb-2 font-londrina font-yusei text-l relative z-10">
+    <div class="mb-2 font-londrina font-yusei">
       {{ token.head }}
     </div>
-    <div class="mb-2 font-londrina font-yusei text-l relative z-10">
+    <div class="mb-2 font-londrina font-yusei">
       {{ token.accessory }}
     </div>
   </div>
