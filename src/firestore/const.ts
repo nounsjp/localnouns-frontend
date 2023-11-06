@@ -11,3 +11,12 @@ export interface TOKEN {
   createdDate: Date;
   canTrade?: boolean; // firestoreでなく画面で使用
 }
+export interface PARTS {
+  type: string;
+  prefecture: string;
+  key: string;
+  language: string;
+  name: string;
+  description: string;
+  createdDate?: Date;
+}
