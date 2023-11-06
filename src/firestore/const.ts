@@ -18,5 +18,6 @@ export interface PARTS {
   language: string;
   name: string;
   description: string;
+  author?: string;
   createdDate?: Date;
 }
