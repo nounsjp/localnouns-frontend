@@ -262,13 +262,12 @@ export default {
 
       isTradeBusy.value = true;
       try {
-        const weiValue = ethers.parseEther("0.002");
-        console.log("weiValue", weiValue);
-        // const txParams = { value: weiValue };
+        const zeroAddress = "0x" + "0".repeat(40);
         const txParams = { value: 0 };
         const tx = await contract.putTradeLocalNoun(
           props.token.tokenId,
           selectedPrefectures,
+          zeroAddress,
           txParams,
         );
         const result = await tx.wait();
