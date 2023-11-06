@@ -102,6 +102,7 @@ export const updateTradeOfTokenOnFirestore = async (
   tokenId: string,
   isOnTrade: boolean,
   tradeToPrefecture: number[],
+  tradeAddress: string|null,
 ) => {
   // ドキュメントのパスを指定
   const tokenDocumentPath = `/${NETWORK}/${tokenAddress}/tokens/${tokenId}`;
@@ -126,6 +127,7 @@ export const updateTradeOfTokenOnFirestore = async (
   await tokenDoc.ref.update({
     isOnTrade: isOnTrade,
     tradeToPrefecture: updatedTradeToPrefecture,
+    tradeAddress: tradeAddress,
   });
 
   return {

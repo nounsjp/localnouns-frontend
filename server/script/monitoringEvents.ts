@@ -60,11 +60,11 @@ tokenContract.on("SetPrice", async (tokenId, price, event) => {
 });
 
 // PutTradePrefectureイベントの監視
-tokenContract.on("PutTradePrefecture", async (tokenId, prefectures, event) => {
+tokenContract.on("PutTradePrefecture", async (tokenId, prefectures, tradeAddress, event) => {
   try {
     console.log("prefectures",prefectures);
     // firestoreに書き込み
-    await updateTradeOfTokenOnFirestore(tokenId, true, prefectures);
+    await updateTradeOfTokenOnFirestore(tokenId, true, prefectures, tradeAddress);
 
     console.log(`PutTradePrefecture, TokenID: ${tokenId}/${prefectures}`);
   } catch (error) {
@@ -76,7 +76,7 @@ tokenContract.on("PutTradePrefecture", async (tokenId, prefectures, event) => {
 tokenContract.on("CancelTradePrefecture", async (tokenId, event) => {
   try {
     // firestoreに書き込み
-    await updateTradeOfTokenOnFirestore(tokenId, false, []);
+    await updateTradeOfTokenOnFirestore(tokenId, false, [], null);
 
     console.log(`CancelTradePrefecture, TokenID: ${tokenId}`);
   } catch (error) {
