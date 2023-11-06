@@ -246,7 +246,7 @@ export default {
     };
 
     const initialPrefectures = computed(() => token.value?.tradeToPrefecture);
-    let selectedPrefectures = [];
+    let selectedPrefectures = [initialPrefectures.value];
 
     const setTrade = async () => {
       // 入力チェック
