@@ -267,7 +267,7 @@ export default {
         const tx = await contract.putTradeLocalNoun(
           props.token.tokenId,
           selectedPrefectures,
-          zeroAddress,
+          zeroAddress,  // ここに交換先アドレスを指定することができるが今は使用しない
           txParams,
         );
         const result = await tx.wait();
