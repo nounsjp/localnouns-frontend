@@ -5,19 +5,19 @@
       <div>
         <svg v-html="token.svg" style="width: 320px; height: 320px"></svg>
       </div>
-      <div class="mb-2 font-londrina text-3xl">
+      <div class="mb-2  font-yusei text-3xl">
         #{{ token.tokenId }}, {{ $t("prefecture." + token.prefecture) }}
       </div>
-      <div class="mb-2 font-londrina text-2xl relative z-10">
+      <div class="mb-2 font-londrina font-yusei text-2xl relative z-10">
         {{ token.head }}
       </div>
-      <div class="mb-2 font-londrina relative z-10">
+      <div class="mb-2 font-londrina font-yusei relative z-10">
         {{ token.headDescription }}
       </div>
-      <div class="mb-2 font-londrina text-2xl relative z-10">
+      <div class="mb-2 font-londrina font-yusei text-2xl relative z-10">
         {{ token.accessory }}
       </div>
-      <div class="mb-2 font-londrina relative z-10">
+      <div class="mb-2 font-londrina font-yusei relative z-10">
         {{ token.accessoryDescription }}
       </div>
     </div>
@@ -28,13 +28,13 @@
       <svg v-html="token.svg" style="width: 80%; height: auto"></svg>
     </div>
 
-    <div class="mb-2 font-londrina text-xl">
+    <div class="mb-2 font-londrina font-yusei text-xl">
       #{{ token.tokenId }}, {{ $t("prefecture." + token.prefecture) }}
     </div>
-    <div class="mb-2 font-londrina text-l relative z-10">
+    <div class="mb-2 font-londrina font-yusei text-l relative z-10">
       {{ token.head }}
     </div>
-    <div class="mb-2 font-londrina text-l relative z-10">
+    <div class="mb-2 font-londrina font-yusei text-l relative z-10">
       {{ token.accessory }}
     </div>
   </div>
@@ -77,7 +77,7 @@
         </button>
       </div>
     </div>
-    <p v-if="token.salePrice > 0" class="mb-2 font-londrina text-xl">
+    <p v-if="token.salePrice > 0" class="mb-2 font-londrina font-yusei text-xl">
       {{ token.salePrice }} ETH
     </p>
   </div>

@@ -1,6 +1,6 @@
 <template>
   <div class="mx-auto max-w-lg p-2 text-left">
-    <p class="mb-2 font-londrina text-xl">{{ $t("list.description") }}</p>
+    <p class="mb-2 font-londrina font-yusei text-xl">{{ $t("list.description") }}</p>
   </div>
 
   <div

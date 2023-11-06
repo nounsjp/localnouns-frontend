@@ -18,15 +18,15 @@
       <TokenDetail :token="token" size="L" />
       <hr class="border-t border-gray-600 my-4 w-full" />
 
-      <p class="mb-2 font-londrina text-3xl">
+      <p class="mb-2 font-londrina font-yusei text-3xl">
         {{ $t("tokenManagement.sale") }}
       </p>
-      <p class="mb-2 font-londrina text-l">
+      <p class="mb-2 font-londrina font-yusei text-l">
         {{ $t("tokenManagement.saleDescription") }}
       </p>
 
       <div class="mt-4 flex flex-col items-center">
-        <label for="salePrice" class="mb-2 font-londrina text-l">
+        <label for="salePrice" class="mb-2 font-londrina font-yusei text-l">
           {{ $t("tokenManagement.setSalePrice") }}
         </label>
         <InformationDialog
@@ -86,10 +86,10 @@
 
       <hr class="border-t border-gray-600 my-4 w-full" />
 
-      <p class="mb-2 font-londrina text-3xl">
+      <p class="mb-2  font-yusei text-3xl">
         {{ $t("tokenManagement.trade") }}
       </p>
-      <p class="mb-2 font-londrina text-l">
+      <p class="mb-2 font-londrina font-yusei text-l">
         {{ $t("tokenManagement.tradeDescription") }}
       </p>
       <div>

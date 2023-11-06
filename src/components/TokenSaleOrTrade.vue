@@ -18,10 +18,10 @@
       <TokenDetail :token="token" size="L" />
       <hr class="border-t border-gray-600 my-4 w-full" />
 
-      <p class="mb-2 font-londrina text-3xl">
+      <p class="mb-2 font-londrina font-yusei text-3xl">
         {{ $t("TokenSaleOrTrade.sale") }}
       </p>
-      <p class="mb-2 font-londrina text-l">
+      <p class="mb-2 font-londrina font-yusei text-l">
         {{ $t("TokenSaleOrTrade.saleDescription") }}
       </p>
 
@@ -36,13 +36,13 @@
             <button
               v-if="token.salePrice > 0 && account"
               @click="buyNoun"
-              class="mt-4 inline-block rounded bg-red-500 px-8 py-4 font-londrina text-3xl leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg"
+              class="mt-4 inline-block rounded bg-red-500 px-8 py-4 font-londrina font-yusei text-3xl leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg"
             >
               {{ $t("TokenSaleOrTrade.buy") }}
             </button>
             <button
               v-else
-              class="mt-4 inline-block rounded bg-gray-500 px-8 py-4 font-londrina text-3xl leading-tight text-white shadow-md transition duration-150"
+              class="mt-4 inline-block rounded bg-gray-500 px-8 py-4 font-londrina font-yusei text-3xl leading-tight text-white shadow-md transition duration-150"
               disabled
             >
               {{ $t("TokenSaleOrTrade.buy") }}
@@ -66,10 +66,10 @@
 
       <hr class="border-t border-gray-600 my-4 w-full" />
 
-      <p class="mb-2 font-londrina text-3xl">
+      <p class="mb-2 font-londrina font-yusei text-3xl">
         {{ $t("TokenSaleOrTrade.trade") }}
       </p>
-      <p class="mb-2 font-londrina text-l">
+      <p class="mb-2 font-londrina font-yusei text-l">
         {{ $t("TokenSaleOrTrade.tradeDescription") }}
       </p>
       <div>
@@ -81,7 +81,7 @@
               :key="index"
               class="flex items-center mr-4 mb-2"
             >
-              <label class="ml-2 font-londrina text-l">{{
+              <label class="ml-2 font-londrina font-yusei text-l">{{
                 $t("prefecture." + option)
               }}</label>
             </div>
@@ -99,13 +99,13 @@
             <button
               v-if="token.isOnTrade && account"
               @click="tradeNoun"
-              class="mt-4 inline-block rounded bg-blue-500 px-8 py-4 font-londrina text-3xl leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-red-blue hover:shadow-lg focus:bg-red-blue focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-blue active:shadow-lg"
+              class="mt-4 inline-block rounded bg-blue-500 px-8 py-4 font-londrina font-yusei text-3xl leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-red-blue hover:shadow-lg focus:bg-red-blue focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-blue active:shadow-lg"
             >
               {{ $t("TokenSaleOrTrade.trade") }}
             </button>
             <button
               v-else
-              class="mt-4 inline-block rounded bg-gray-500 px-8 py-4 font-londrina text-3xl leading-tight text-white shadow-md transition duration-150"
+              class="mt-4 inline-block rounded bg-gray-500 px-8 py-4 font-londrina font-yusei text-3xl leading-tight text-white shadow-md transition duration-150"
               disabled
             >
               {{ $t("TokenSaleOrTrade.trade") }}

@@ -6,15 +6,15 @@
         $t("nav.top")
       }}</router-link>
       | -->
-      <router-link :to="localizedUrl('/list')" class="font-londrina text-2xl">{{
+      <router-link :to="localizedUrl('/list')" class="font-londrina font-yusei text-2xl">{{
         $t("nav.list")
       }}</router-link>
       |
-      <router-link :to="localizedUrl('/mint')" class="font-londrina text-2xl">{{
+      <router-link :to="localizedUrl('/mint')" class="font-londrina font-yusei text-2xl">{{
         $t("nav.mint")
       }}</router-link>
       |
-      <router-link :to="localizedUrl('/about')" class="font-londrina text-2xl">{{
+      <router-link :to="localizedUrl('/about')" class="font-londrina font-yusei text-2xl">{{
         $t("nav.about")
       }}</router-link>
       <Languages class="mt-4" />
