@@ -127,7 +127,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, ref,watch } from "vue";
+import { defineComponent, computed, ref, watch } from "vue";
 import { useStore } from "vuex";
 import { useI18n } from "vue-i18n";
 import {
@@ -297,6 +297,7 @@ export default defineComponent({
         const accessorySnap = await getDoc(accessoryRef);
         if (accessorySnap.exists()) {
           token.accessory = accessorySnap.data().name;
+          token.accessoryDescription = accessorySnap.data().description;
         }
 
         const headRef = doc(
@@ -307,6 +308,7 @@ export default defineComponent({
         const headSnap = await getDoc(headRef);
         if (headSnap.exists()) {
           token.head = headSnap.data().name;
+          token.headDescription = headSnap.data().description;
         }
       }
     };
