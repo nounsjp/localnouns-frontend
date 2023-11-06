@@ -1,6 +1,7 @@
 <template>
   <div class="flex justify-center items-center">
-    <svg v-html="token.svg" :class="'svg-size-' + size"></svg>
+    <svg v-if="size=='L'" v-html="token.svg" style="width: 320px; height: 320px;"></svg>
+    <svg v-if="size=='S'" v-html="token.svg" style="width: 80%; height: auto;"></svg>
   </div>
   <div class="mb-2 font-londrina text-xl">
     <div>#{{ token.tokenId }}, {{ $t("prefecture." + token.prefecture) }}</div>
@@ -101,17 +102,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style scoped>
-p {
-  position: relative;
-}
-.svg-size-L {
-  width: 320px;
-  height: 320px;
-}
-.svg-size-w80 {
-  width: 80%;
-  height: auto;
-}
-</style>
