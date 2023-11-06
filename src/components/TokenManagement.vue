@@ -18,15 +18,15 @@
       <TokenDetail :token="token" size="L" />
       <hr class="border-t border-gray-600 my-4 w-full" />
 
-      <p class="mb-2 font-londrina text-3xl">
+      <p class="mb-2 font-londrina font-yusei text-3xl">
         {{ $t("tokenManagement.sale") }}
       </p>
-      <p class="mb-2 font-londrina text-l">
+      <p class="mb-2 font-londrina font-yusei text-l">
         {{ $t("tokenManagement.saleDescription") }}
       </p>
 
       <div class="mt-4 flex flex-col items-center">
-        <label for="salePrice" class="mb-2 font-londrina text-l">
+        <label for="salePrice" class="mb-2 font-londrina font-yusei text-l">
           {{ $t("tokenManagement.setSalePrice") }}
         </label>
         <InformationDialog
@@ -86,10 +86,10 @@
 
       <hr class="border-t border-gray-600 my-4 w-full" />
 
-      <p class="mb-2 font-londrina text-3xl">
+      <p class="mb-2 font-yusei text-3xl">
         {{ $t("tokenManagement.trade") }}
       </p>
-      <p class="mb-2 font-londrina text-l">
+      <p class="mb-2 font-londrina font-yusei text-l">
         {{ $t("tokenManagement.tradeDescription") }}
       </p>
       <div>
@@ -163,7 +163,6 @@ import PrefecturesCheckbox from "@/components/PrefecturesCheckbox.vue";
 import InformationDialog from "@/components/InformationDialog.vue";
 import { isValidNumber } from "@/utils/validator";
 import { addresses } from "@/utils/addresses";
-// import { TOKEN } from "@/firestore/token";
 
 export default {
   components: {
@@ -247,7 +246,7 @@ export default {
     };
 
     const initialPrefectures = computed(() => token.value?.tradeToPrefecture);
-    let selectedPrefectures = [];
+    let selectedPrefectures = [initialPrefectures.value];
 
     const setTrade = async () => {
       // 入力チェック
@@ -257,19 +256,17 @@ export default {
       }
 
       const contract = await getContract(props.network);
-
       // 指定しない(0)は削除
-      selectedPrefectures = selectedPrefectures.filter((item) => item !== 0);
+      selectedPrefectures = selectedPrefectures.filter((item) => item != 0);
 
       isTradeBusy.value = true;
       try {
-        const weiValue = ethers.parseEther("0.002");
-        console.log("weiValue", weiValue);
-        // const txParams = { value: weiValue };
+        const zeroAddress = "0x" + "0".repeat(40);
         const txParams = { value: 0 };
         const tx = await contract.putTradeLocalNoun(
           props.token.tokenId,
           selectedPrefectures,
+          zeroAddress, // ここに交換先アドレスを指定することができるが今は使用しない
           txParams,
         );
         const result = await tx.wait();

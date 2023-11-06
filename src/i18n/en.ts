@@ -9,6 +9,7 @@ const lang = {
     p2pSale: "P2PSale",
     p2pTrade: "P2PTrade",
     goods: "Goods",
+    about: "About",
   },
   menu: {
     connect: "Connect",

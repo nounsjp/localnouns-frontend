@@ -1,6 +1,8 @@
 <template>
   <div class="mx-auto max-w-lg p-2 text-left">
-    <p class="mb-2 font-londrina text-xl">{{ $t("list.description") }}</p>
+    <p class="mb-2 font-londrina font-yusei text-xl">
+      {{ $t("list.description") }}
+    </p>
   </div>
 
   <div
@@ -91,7 +93,7 @@
       class="px-2 py-6 flex flex-col items-center justify-center"
     >
       <div @click="showTokenModal(token)" class="items-center justify-center">
-        <TokenDetail :token="token" size="w80" />
+        <TokenDetail :token="token" size="S" />
       </div>
 
       <span
@@ -127,10 +129,18 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, ref } from "vue";
+import { defineComponent, computed, ref, watch } from "vue";
 import { useStore } from "vuex";
 import { useI18n } from "vue-i18n";
-import { getDocs, collection, query, where, Query } from "firebase/firestore";
+import {
+  getDocs,
+  collection,
+  query,
+  where,
+  Query,
+  getDoc,
+  doc,
+} from "firebase/firestore";
 import { db } from "@/utils/firebase";
 import Prefectures from "@/components/Prefectures.vue";
 import ListSortOrder from "@/components/ListSortOrder.vue";
@@ -138,7 +148,7 @@ import TokenDetail from "@/components/TokenDetail.vue";
 import TokenManagement from "@/components/TokenManagement.vue";
 import TokenSaleOrTrade from "@/components/TokenSaleOrTrade.vue";
 import { prefectureList } from "@/i18n/prefectures";
-import { TOKEN } from "@/firestore/token";
+import { TOKEN } from "@/firestore/const";
 
 export default defineComponent({
   props: {
@@ -167,11 +177,17 @@ export default defineComponent({
       return i18n.locale.value;
     });
 
+    // langが変更されたらgetTokenListを実行するウォッチャー
+    watch(lang, async (newLang, oldLang) => {
+      if (newLang !== oldLang) {
+        getTokenList();
+      }
+    });
     const myTokens = ref<TOKEN[]>([]);
     const getMyTokenList = async (account: string) => {
       let tokenQuery: Query<TOKEN> = collection(
         db,
-        tokenCollectionPath,
+        tokenCollectionPath + "/tokens",
       ) as Query<TOKEN>;
       if (account) {
         tokenQuery = query(tokenQuery, where("holder", "==", account));
@@ -205,13 +221,13 @@ export default defineComponent({
     const isManagementModalOpen = ref(false);
     const isSaleOrTradeModalOpen = ref(false);
 
-    const tokenCollectionPath = `/${props.network}/${props.tokenAddress}/tokens`;
+    const tokenCollectionPath = `/${props.network}/${props.tokenAddress}`;
     const tokens = ref<TOKEN[]>([]);
     const tokensForDisplay = ref<TOKEN[]>([]);
     const getTokenList = async () => {
       let tokenQuery: Query<TOKEN> = collection(
         db,
-        tokenCollectionPath,
+        tokenCollectionPath + "/tokens",
       ) as Query<TOKEN>;
       if (selectedPrefecture.value != 0) {
         tokenQuery = query(
@@ -225,6 +241,7 @@ export default defineComponent({
           return doc.data();
         });
         filterTokenByCriteria();
+        getPartsName(tokens.value);
       } catch (e) {
         console.error("getTokenList", e);
       }
@@ -266,6 +283,35 @@ export default defineComponent({
         case "higher":
           tokensForDisplay.value.sort((a, b) => b.salePrice - a.salePrice);
           break;
+      }
+    };
+
+    const getPartsName = async (tokens: TOKEN[]) => {
+      // パーツ名を取得
+      for (const token of tokens) {
+        const accessoryRef = doc(
+          db,
+          tokenCollectionPath + "/parts",
+          `Accessories-${token.prefecture.toLowerCase()}-${token.accessory}-${
+            lang.value
+          }`,
+        );
+        const accessorySnap = await getDoc(accessoryRef);
+        if (accessorySnap.exists()) {
+          token.accessory = accessorySnap.data().name;
+          token.accessoryDescription = accessorySnap.data().description;
+        }
+
+        const headRef = doc(
+          db,
+          tokenCollectionPath + "/parts",
+          `Heads-${token.prefecture.toLowerCase()}-${token.head}-${lang.value}`,
+        );
+        const headSnap = await getDoc(headRef);
+        if (headSnap.exists()) {
+          token.head = headSnap.data().name;
+          token.headDescription = headSnap.data().description;
+        }
       }
     };
 
