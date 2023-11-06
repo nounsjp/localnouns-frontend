@@ -1,0 +1,268 @@
+<template>
+  <div class="mx-auto max-w-lg p-2 text-left">
+    <p class="mb-2 font-londrina font-yusei text-xl">
+      {{ $t("owner.description") }}
+    </p>
+  </div>
+
+  <div
+    class="grid w-full grid-cols-3 place-content-center items-center items-start gap-2 sm:grid-cols-4"
+  >
+    <span class="ml-2 font-londrina font-yusei text-xl">
+      <label>
+        <input
+          type="checkbox"
+          v-model="filterOnSale"
+          @change="filterTokenByCriteria"
+        />
+        <button
+          class="inline-block rounded bg-red-500 w-20 px-1 py-2.5 leading-tight text-white shadow-md transition duration-150 mx-2 my-2"
+          disabled
+        >
+          {{ $t("list.onSale") }}
+        </button>
+      </label>
+    </span>
+    <span class="ml-2 font-londrina font-yusei text-xl">
+      <label>
+        <input
+          type="checkbox"
+          v-model="filterOnTrade"
+          @change="filterTokenByCriteria"
+        />
+        <button
+          class="inline-block rounded bg-blue-500 w-20 px-1 py-2.5 leading-tight text-white shadow-md transition duration-150 mx-2 my-2"
+          disabled
+        >
+          {{ $t("list.onTrade") }}
+        </button>
+      </label>
+    </span>
+    <div>
+      <ListSortOrder
+        class="mx-2 my-1"
+        v-model="selectedSortOrder"
+        @change="filterTokenByCriteria"
+      />
+    </div>
+  </div>
+  <div
+    class="grid w-screen grid-cols-2 place-content-center items-center gap-2 sm:grid-cols-5"
+  >
+    <div
+      v-for="token in tokensForDisplay"
+      :key="token.key"
+      class="px-2 py-6 flex flex-col items-center justify-center"
+    >
+      <div @click="showTokenModal(token)" class="items-center justify-center">
+        <TokenDetail :token="token" size="S" />
+      </div>
+    </div>
+
+    <TokenManagement
+      v-if="selectedToken"
+      :network="network"
+      :isOpen="isManagementModalOpen"
+      :token="selectedToken"
+      @close="closeTokenModal"
+    />
+  </div>
+</template>
+
+<script lang="ts">
+import { defineComponent, computed, ref, watch } from "vue";
+import { useStore } from "vuex";
+import { useI18n } from "vue-i18n";
+import {
+  getDocs,
+  collection,
+  query,
+  where,
+  Query,
+  getDoc,
+  doc,
+} from "firebase/firestore";
+import { db } from "@/utils/firebase";
+import ListSortOrder from "@/components/ListSortOrder.vue";
+import TokenDetail from "@/components/TokenDetail.vue";
+import TokenManagement from "@/components/TokenManagement.vue";
+import { TOKEN } from "@/firestore/const";
+
+export default defineComponent({
+  props: {
+    network: {
+      type: String,
+      required: true,
+    },
+    tokenAddress: {
+      type: String,
+      required: true,
+    },
+  },
+  name: "Owner",
+  components: {
+    ListSortOrder,
+    TokenDetail,
+    TokenManagement,
+  },
+  async setup(props) {
+    const store = useStore();
+    const i18n = useI18n();
+
+    const lang = computed(() => {
+      return i18n.locale.value;
+    });
+
+    // langが変更されたらgetTokenListを実行するウォッチャー
+    watch(lang, async (newLang, oldLang) => {
+      if (newLang !== oldLang) {
+        getTokenList();
+      }
+    });
+
+    const account = computed(() => {
+      return store.state.account;
+    });
+
+    // accountが変更されたらgetTokenListを実行するウォッチャー
+    watch(account, async (newAccount, oldAccount) => {
+      if (newAccount !== oldAccount) {
+        getTokenList();
+      }
+    });
+
+    // 表示する都道府県をランダムに設定
+    const selectedSortOrder = ref("newer");
+    const filterOnSale = ref(false);
+    const filterOnTrade = ref(false);
+    const filterOnManage = ref(false);
+    const isManagementModalOpen = ref(false);
+
+    const tokenCollectionPath = `/${props.network}/${props.tokenAddress}`;
+    const tokens = ref<TOKEN[]>([]);
+    const tokensForDisplay = ref<TOKEN[]>([]);
+    const getTokenList = async () => {
+      let tokenQuery: Query<TOKEN> = collection(
+        db,
+        tokenCollectionPath + "/tokens",
+      ) as Query<TOKEN>;
+
+      tokenQuery = query(
+        tokenQuery,
+        where("holder", "==", String(account.value).toLowerCase()),
+      );
+
+      try {
+        const results = await getDocs(tokenQuery);
+        tokens.value = results.docs.map((doc) => {
+          return doc.data();
+        });
+        filterTokenByCriteria();
+        getPartsName(tokens.value);
+      } catch (e) {
+        console.error("getTokenList", e);
+      }
+    };
+    getTokenList();
+
+    const filterTokenByCriteria = () => {
+      tokensForDisplay.value = tokens.value;
+      if (filterOnSale.value) {
+        tokensForDisplay.value = tokensForDisplay.value.filter(
+          (token: TOKEN) => token.salePrice > 0,
+        );
+      }
+      if (filterOnTrade.value) {
+        tokensForDisplay.value = tokensForDisplay.value.filter(
+          (token: TOKEN) => token.isOnTrade == true,
+        );
+      }
+      if (filterOnManage.value && account) {
+        tokensForDisplay.value = tokensForDisplay.value.filter(
+          (token: TOKEN) => token.holder == account.value,
+        );
+      }
+
+      switch (selectedSortOrder.value) {
+        case "newer":
+          tokensForDisplay.value.sort(
+            (a, b) => Number(b.tokenId) - Number(a.tokenId),
+          );
+          break;
+        case "older":
+          tokensForDisplay.value.sort(
+            (a, b) => Number(a.tokenId) - Number(b.tokenId),
+          );
+          break;
+        case "lower":
+          tokensForDisplay.value.sort((a, b) => a.salePrice - b.salePrice);
+          break;
+        case "higher":
+          tokensForDisplay.value.sort((a, b) => b.salePrice - a.salePrice);
+          break;
+      }
+    };
+
+    const getPartsName = async (tokens: TOKEN[]) => {
+      // パーツ名を取得
+      for (const token of tokens) {
+        const accessoryRef = doc(
+          db,
+          tokenCollectionPath + "/parts",
+          `Accessories-${token.prefecture.toLowerCase()}-${token.accessory}-${
+            lang.value
+          }`,
+        );
+        const accessorySnap = await getDoc(accessoryRef);
+        if (accessorySnap.exists()) {
+          token.accessory = accessorySnap.data().name;
+          token.accessoryDescription = accessorySnap.data().description;
+        }
+
+        const headRef = doc(
+          db,
+          tokenCollectionPath + "/parts",
+          `Heads-${token.prefecture.toLowerCase()}-${token.head}-${lang.value}`,
+        );
+        const headSnap = await getDoc(headRef);
+        if (headSnap.exists()) {
+          token.head = headSnap.data().name;
+          token.headDescription = headSnap.data().description;
+        }
+      }
+    };
+
+    const selectedToken = ref<TOKEN | null>(null);
+
+    // 保有していたら管理用モーダル、そうでない場合はP2P用
+    const showTokenModal = (token: TOKEN) => {
+      selectedToken.value = token;
+      isManagementModalOpen.value = true;
+    };
+
+    const closeTokenModal = (reload: boolean) => {
+      isManagementModalOpen.value = false;
+      console.log("closeTokenModal-reload", reload);
+      if (reload) {
+        getTokenList();
+      }
+    };
+
+    return {
+      account,
+      lang,
+      tokensForDisplay,
+      selectedSortOrder,
+      filterOnSale,
+      filterOnTrade,
+      filterOnManage,
+      filterTokenByCriteria,
+      isManagementModalOpen,
+      getTokenList,
+      showTokenModal,
+      closeTokenModal,
+      selectedToken,
+    };
+  },
+});
+</script>

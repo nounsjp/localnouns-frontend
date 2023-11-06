@@ -5,6 +5,7 @@ import NotFound from "@/components/NotFound.vue";
 // import Home from "@/views/Home.vue";
 import Mint from "@/views/Mint.vue";
 import List from "@/views/List.vue";
+import Owner from "@/views/Owner.vue";
 // import ComingSoon from "@/views/ComingSoon.vue";
 import Shop from "@/views/Shop.vue";
 import About from "@/views/About.vue";
@@ -32,6 +33,14 @@ const routeChildren: Array<RouteRecordRaw> = [
   {
     path: "list",
     component: List,
+    props: {
+      network: "mumbai",
+      tokenAddress: addresses.localNounsToken["mumbai"],
+    },
+  },
+  {
+    path: "owner",
+    component: Owner,
     props: {
       network: "mumbai",
       tokenAddress: addresses.localNounsToken["mumbai"],
