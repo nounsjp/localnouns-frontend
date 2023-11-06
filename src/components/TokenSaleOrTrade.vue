@@ -88,6 +88,7 @@
           </div>
         </div>
         <MyNounsRadioButton
+          v-if="token.isOnTrade && account"
           :myTokens="myTokens"
           :tradeForPrefectures="tradeForPrefectures"
           @updateValues="handleUpdateMyTokens"
