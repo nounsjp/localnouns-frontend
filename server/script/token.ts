@@ -13,29 +13,11 @@ const firestore = admin.firestore();
 const tokenAddress = addresses.localNounsToken[NETWORK];
 
 export const writeTokenDataToFirestore = async (
-  tokenId: string,
-  to: string,
-  traits: any,
-  svg: string,
+  tokenInfo:TOKEN
 ) => {
   // 他のドキュメントにも書くかもしれないのでトランザクションで格納しておく
   await admin.firestore().runTransaction(async (tr) => {
-    const tokenDocumentPath = `/${NETWORK}/${tokenAddress}/tokens/${tokenId}`;
-
-    const { prefecture, head, accessory } = convertTrais(traits);
-
-    const tokenInfo: TOKEN = {
-      tokenId: tokenId,
-      prefecture: prefecture,
-      head: head,
-      accessory: accessory,
-      holder: to.toLowerCase(), // firestoreでfilterするために小文字変換
-      svg: svg,
-      salePrice: 0,
-      isOnTrade: false,
-      tradeToPrefecture: [0], // firestore上は '0':指定しないをセット
-      createdDate: new Date(),
-    };
+    const tokenDocumentPath = `/${NETWORK}/${tokenAddress}/tokens/${tokenInfo.tokenId}`;
 
     await tr.set(firestore.doc(tokenDocumentPath), tokenInfo);
   });
@@ -45,29 +27,35 @@ export const writeTokenDataToFirestore = async (
   };
 };
 
-/**
- * Opensea用に生成したTraits情報からPrefecture,head,accessoryを取得
- * @param traits 例： {"trait_type": "prefecture" , "value":"Hokkaido"},{"trait_type": "head" , "value":"goryokaku"},{"trait_type": "accessory" , "value":"melon"}
- * @returns prefecture:string, head:string, accessory:string
- */
-const convertTrais = (traits: any) => {
-  let prefecture = "";
-  let head = "";
-  let accessory = "";
-  for (let trait of traits) {
-    switch (trait.trait_type) {
-      case "prefecture":
-        prefecture = trait.value;
-        break;
-      case "head":
-        head = trait.value;
-        break;
-      case "accessory":
-        accessory = trait.value;
-        break;
-    }
+export const updateOwnerOfTokenToFirestore = async (
+  tokenId: string,
+  to: string,
+) => {
+  // ドキュメントのパスを指定
+  const tokenDocumentPath = `/${NETWORK}/${tokenAddress}/tokens/${tokenId}`;
+
+  const tokenDoc = await firestore.doc(tokenDocumentPath).get();
+
+  // tokenId に関連するドキュメントが存在しない場合、エラーを返す
+  if (!tokenDoc.exists) {
+    return {
+      result: false,
+      message: `No token found with tokenId ${tokenId}`,
+    };
   }
-  return { prefecture, head, accessory };
+
+  // firestore にドキュメントを更新
+  await tokenDoc.ref.update({
+    holder: to,
+    salePrice: 0,
+    isOnTrade: false,
+    tradeToPrefecture: [0], // firestore上は '0':指定しないをセット
+  });
+
+  return {
+    result: true,
+    message: `Updated owner of token with tokenId ${tokenId} to ${to}`,
+  };
 };
 
 export const updatePriceOfTokenOnFirestore = async (

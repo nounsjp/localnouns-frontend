@@ -5,8 +5,8 @@ import {
   getLocalNounsProviderContract,
 } from "../../src/utils/const";
 import { addresses } from "../../src/utils/addresses";
-import { ethers }  from "ethers";
-import { writeTokenDataToFirestore, updatePriceOfTokenOnFirestore, updateTradeOfTokenOnFirestore } from "./token";
+import { ethers } from "ethers";
+import { updateOwnerOfTokenToFirestore, updatePriceOfTokenOnFirestore, updateTradeOfTokenOnFirestore } from "./token";
 
 const provider = getProvider(NETWORK, ALCHEMY_API_KEY);
 const tokenContract = getLocalNounsTokenContract(
@@ -34,22 +34,18 @@ tokenContract.on("Transfer", async (from, to, tokenId, event) => {
       .replace(/ width="320" height="320"/, "");
 
     // firestoreに書き込み
-    await writeTokenDataToFirestore(tokenId, to, traits, svg);
+    await updateOwnerOfTokenToFirestore(tokenId, to);
 
-    console.log(`Write finish, TokenID: ${tokenId}`);
+    console.log(`Transfer, TokenID: ${tokenId}/${to}`);
   } catch (error) {
     console.error("Error:", error);
   }
 });
 
-
 // SetPriceイベントの監視
 tokenContract.on("SetPrice", async (tokenId, price, event) => {
   try {
     const ethPrice = ethers.formatEther(price);
-    console.log("weiPrice",price);
-    console.log("ethPrice",ethPrice);
-    console.log("Number(ethPrice)",Number(ethPrice));
     // firestoreに書き込み
     await updatePriceOfTokenOnFirestore(tokenId, Number(ethPrice));
 
@@ -62,7 +58,7 @@ tokenContract.on("SetPrice", async (tokenId, price, event) => {
 // PutTradePrefectureイベントの監視
 tokenContract.on("PutTradePrefecture", async (tokenId, prefectures, tradeAddress, event) => {
   try {
-    console.log("prefectures",prefectures);
+    console.log("prefectures", prefectures);
     // firestoreに書き込み
     await updateTradeOfTokenOnFirestore(tokenId, true, prefectures, tradeAddress);
 
