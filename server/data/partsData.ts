@@ -1,3 +1,8 @@
+/**
+ * google spreadsheet からコピー
+ * https://docs.google.com/spreadsheets/d/1kJFPOuPFT9frwc0D0a0GteeI1YOpjkz3BM6kxskSK_k/edit#gid=588448728
+ * M列、N列をテキストエディタに貼り付け後、"(ダブルコーテーション)を削除して貼り付けする
+ */
 export const partsData = [
     { type: `Accessories`, prefecture: `Hokkaido`, key: `hokkaido-crab`, language: `ja`, name: `カニ`, description: `魚介類の宝庫・北海道ではさまざまな種類のカニが水揚げされます。北海道のカニは種類も豊富で、獲れる時期や旬、味わいもさまざまです。` },
     {
