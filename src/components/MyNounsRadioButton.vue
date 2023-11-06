@@ -3,7 +3,7 @@
     <div
       v-for="(option, index) in myTokens"
       :key="index"
-      class="flex items-center mb-2"
+      class="flex items-center my-1"
     >
       <input
         name="selectMyToken"
@@ -14,9 +14,9 @@
         class="mr-2"
         :disabled="!option.canTrade"
       />
-      <label :for="`option-${index}`" class="flex items-center space-x-2">
-        <svg v-html="option.svg" :class="'svg-size-XS'"></svg>
-        <div v-if="option.canTrade" class="flex items-center">
+      <label :for="`option-${index}`" class="flex items-center">
+        <svg v-html="option.svg" style="width: 40px; height: 40px;" class="mx-1"></svg>
+        <div v-if="option.canTrade" class="items-center">
           <span> #{{ option.tokenId }}</span>
           <span>, {{ $t("prefecture." + option.prefecture) }}</span>
         </div>
@@ -71,27 +71,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style scoped>
-p {
-  position: relative;
-}
-.svg-size-XS {
-  width: 40px;
-  height: 40px;
-}
-.flex {
-  display: flex;
-}
-
-.items-center {
-  align-items: center;
-}
-.space-x-2 {
-  gap: 0.5rem;
-}
-
-.mb-2 {
-  margin-bottom: 0.5rem;
-}
-</style>
