@@ -1,11 +1,11 @@
 import { ethers } from "ethers";
-import { ALCHEMY_API_KEY, NETWORK } from "../../src/config/project";
+import { ALCHEMY_API_KEY, NETWORK } from "@/config/project";
 import {
   getProvider,
   getLocalNounsTokenContract,
   getLocalNounsProviderContract,
-} from "../../src/utils/const";
-import { addresses } from "../../src/utils/addresses";
+} from "@/utils/const";
+import { addresses } from "@/utils/addresses";
 import { writeTokenDataToFirestore } from "./token";
 import { TOKEN } from "@/firestore/const";
 
@@ -34,6 +34,10 @@ const main = async () => {
     if ("args" in event) {
       // eventからto, tokenIdを取得
       const { to, tokenId } = event.args;
+
+      // if(tokenId <= 1019){
+      //   continue;
+      // }
 
       // traits情報を取得
       const jsonString = await providerContract.generateTraits(tokenId);
