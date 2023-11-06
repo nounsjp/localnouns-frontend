@@ -256,9 +256,8 @@ export default {
       }
 
       const contract = await getContract(props.network);
-
       // 指定しない(0)は削除
-      selectedPrefectures = selectedPrefectures.filter((item) => item !== 0);
+      selectedPrefectures = selectedPrefectures.filter((item) => item != 0);
 
       isTradeBusy.value = true;
       try {
