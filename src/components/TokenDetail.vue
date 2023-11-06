@@ -5,7 +5,7 @@
       <div>
         <svg v-html="token.svg" style="width: 320px; height: 320px"></svg>
       </div>
-      <div class="mb-2  font-yusei text-3xl">
+      <div class="mb-2 font-yusei text-3xl">
         #{{ token.tokenId }}, {{ $t("prefecture." + token.prefecture) }}
       </div>
       <div class="mb-2 font-londrina font-yusei text-2xl relative z-10">

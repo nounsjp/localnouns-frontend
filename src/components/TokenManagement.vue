@@ -86,7 +86,7 @@
 
       <hr class="border-t border-gray-600 my-4 w-full" />
 
-      <p class="mb-2  font-yusei text-3xl">
+      <p class="mb-2 font-yusei text-3xl">
         {{ $t("tokenManagement.trade") }}
       </p>
       <p class="mb-2 font-londrina font-yusei text-l">
@@ -266,7 +266,7 @@ export default {
         const tx = await contract.putTradeLocalNoun(
           props.token.tokenId,
           selectedPrefectures,
-          zeroAddress,  // ここに交換先アドレスを指定することができるが今は使用しない
+          zeroAddress, // ここに交換先アドレスを指定することができるが今は使用しない
           txParams,
         );
         const result = await tx.wait();

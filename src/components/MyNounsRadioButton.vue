@@ -15,7 +15,11 @@
         :disabled="!option.canTrade"
       />
       <label :for="`option-${index}`" class="flex items-center">
-        <svg v-html="option.svg" style="width: 40px; height: 40px;" class="mx-1"></svg>
+        <svg
+          v-html="option.svg"
+          style="width: 40px; height: 40px"
+          class="mx-1"
+        ></svg>
         <div v-if="option.canTrade" class="items-center">
           <span> #{{ option.tokenId }}</span>
           <span>, {{ $t("prefecture." + option.prefecture) }}</span>

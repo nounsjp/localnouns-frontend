@@ -5,7 +5,9 @@
       <div class="mb-8 space-y-2 font-pt-root font-medium">
         <p>
           Official goods are available
-          <a href="https://suzuri.jp/nounsfes" class="font-londrina font-yusei underline"
+          <a
+            href="https://suzuri.jp/nounsfes"
+            class="font-londrina font-yusei underline"
             >here</a
           >.
         </p>
