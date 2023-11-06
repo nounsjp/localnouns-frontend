@@ -10,6 +10,8 @@ export interface TOKEN {
   tradeToPrefecture: number[];
   createdDate: Date;
   canTrade?: boolean; // firestoreでなく画面で使用
+  headDescription?: string;
+  accessoryDescription?: string;
 }
 export interface PARTS {
   type: string;
