@@ -6,6 +6,7 @@ const lang = {
     top: "トップ",
     mint: "ミント",
     list: "リスト",
+    owner: "オーナー",
     p2pSale: "P2Pセール",
     p2pTrade: "P2Pトレード",
     goods: "グッズ",
@@ -34,6 +35,9 @@ const lang = {
     onTrade: "交換可",
     onSale: "販売中",
     manage: "所有",
+  },
+  owner: {
+    description: "あなたの所有するご当地Nounsです",
   },
   prefectures: {
     prefectures: "都道府県",

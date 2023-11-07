@@ -7,15 +7,21 @@
       }}</router-link>
       | -->
       <router-link
+        :to="localizedUrl('/mint')"
+        class="font-londrina font-yusei text-2xl"
+        >{{ $t("nav.mint") }}</router-link
+      >
+      |
+      <router-link
         :to="localizedUrl('/list')"
         class="font-londrina font-yusei text-2xl"
         >{{ $t("nav.list") }}</router-link
       >
       |
       <router-link
-        :to="localizedUrl('/mint')"
+        :to="localizedUrl('/owner')"
         class="font-londrina font-yusei text-2xl"
-        >{{ $t("nav.mint") }}</router-link
+        >{{ $t("nav.owner") }}</router-link
       >
       |
       <router-link

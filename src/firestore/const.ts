@@ -1,6 +1,7 @@
 export interface TOKEN {
   tokenId: string;
   prefecture: string;
+  prefectureId: number;
   head: string;
   accessory: string;
   holder: string;

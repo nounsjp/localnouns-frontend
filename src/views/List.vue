@@ -132,15 +132,7 @@
 import { defineComponent, computed, ref, watch } from "vue";
 import { useStore } from "vuex";
 import { useI18n } from "vue-i18n";
-import {
-  getDocs,
-  collection,
-  query,
-  where,
-  Query,
-  getDoc,
-  doc,
-} from "firebase/firestore";
+import { getDocs, collection, query, where, Query } from "firebase/firestore";
 import { db } from "@/utils/firebase";
 import Prefectures from "@/components/Prefectures.vue";
 import ListSortOrder from "@/components/ListSortOrder.vue";
@@ -149,6 +141,8 @@ import TokenManagement from "@/components/TokenManagement.vue";
 import TokenSaleOrTrade from "@/components/TokenSaleOrTrade.vue";
 import { prefectureList } from "@/i18n/prefectures";
 import { TOKEN } from "@/firestore/const";
+import { getPartsNameAndDescription } from "@/utils/partsDataUtil";
+import { getTokenListForTest } from "@/utils/testData";
 
 export default defineComponent({
   props: {
@@ -159,6 +153,10 @@ export default defineComponent({
     tokenAddress: {
       type: String,
       required: true,
+    },
+    test: {
+      type: Boolean,
+      required: false,
     },
   },
   name: "List",
@@ -185,20 +183,25 @@ export default defineComponent({
     });
     const myTokens = ref<TOKEN[]>([]);
     const getMyTokenList = async (account: string) => {
-      let tokenQuery: Query<TOKEN> = collection(
-        db,
-        tokenCollectionPath + "/tokens",
-      ) as Query<TOKEN>;
-      if (account) {
-        tokenQuery = query(tokenQuery, where("holder", "==", account));
-        try {
-          const results = await getDocs(tokenQuery);
-          myTokens.value = results.docs.map((doc) => {
-            return doc.data();
-          });
-        } catch (e) {
-          console.error("getMyTokenList", e);
+      if (!props.test) {
+        let tokenQuery: Query<TOKEN> = collection(
+          db,
+          tokenCollectionPath + "/tokens",
+        ) as Query<TOKEN>;
+        if (account) {
+          tokenQuery = query(tokenQuery, where("holder", "==", account));
+          try {
+            const results = await getDocs(tokenQuery);
+            myTokens.value = results.docs.map((doc) => {
+              return doc.data();
+            });
+          } catch (e) {
+            console.error("getMyTokenList", e);
+          }
         }
+      } else {
+        // for test
+        tokens.value = getTokenListForTest();
       }
     };
 
@@ -221,32 +224,30 @@ export default defineComponent({
     const isManagementModalOpen = ref(false);
     const isSaleOrTradeModalOpen = ref(false);
 
-    const tokenCollectionPath = `/${props.network}/${props.tokenAddress}`;
-    const tokens = ref<TOKEN[]>([]);
-    const tokensForDisplay = ref<TOKEN[]>([]);
-    const getTokenList = async () => {
-      let tokenQuery: Query<TOKEN> = collection(
-        db,
-        tokenCollectionPath + "/tokens",
-      ) as Query<TOKEN>;
-      if (selectedPrefecture.value != 0) {
-        tokenQuery = query(
-          tokenQuery,
-          where("prefecture", "==", prefectureList[selectedPrefecture.value]),
+    const getPartsName = async (tokens: TOKEN[]) => {
+      // パーツ名を取得
+      for (const token of tokens) {
+        const accessoryName = getPartsNameAndDescription(
+          "Accessories",
+          `${token.prefecture.toLowerCase()}-${token.accessory.toLowerCase()}`,
+          lang.value,
         );
-      }
-      try {
-        const results = await getDocs(tokenQuery);
-        tokens.value = results.docs.map((doc) => {
-          return doc.data();
-        });
-        filterTokenByCriteria();
-        getPartsName(tokens.value);
-      } catch (e) {
-        console.error("getTokenList", e);
+        if (accessoryName) {
+          token.accessory = accessoryName.name;
+          token.accessoryDescription = accessoryName.description;
+        }
+
+        const headName = getPartsNameAndDescription(
+          "Heads",
+          `${token.prefecture.toLowerCase()}-${token.head.toLowerCase()}`,
+          lang.value,
+        );
+        if (headName) {
+          token.head = headName.name;
+          token.headDescription = headName.description;
+        }
       }
     };
-    getTokenList();
 
     const filterTokenByCriteria = () => {
       tokensForDisplay.value = tokens.value;
@@ -286,34 +287,37 @@ export default defineComponent({
       }
     };
 
-    const getPartsName = async (tokens: TOKEN[]) => {
-      // パーツ名を取得
-      for (const token of tokens) {
-        const accessoryRef = doc(
+    const tokenCollectionPath = `/${props.network}/${props.tokenAddress}`;
+    const tokens = ref<TOKEN[]>([]);
+    const tokensForDisplay = ref<TOKEN[]>([]);
+    const getTokenList = async () => {
+      if (!props.test) {
+        let tokenQuery: Query<TOKEN> = collection(
           db,
-          tokenCollectionPath + "/parts",
-          `Accessories-${token.prefecture.toLowerCase()}-${token.accessory}-${
-            lang.value
-          }`,
-        );
-        const accessorySnap = await getDoc(accessoryRef);
-        if (accessorySnap.exists()) {
-          token.accessory = accessorySnap.data().name;
-          token.accessoryDescription = accessorySnap.data().description;
+          tokenCollectionPath + "/tokens",
+        ) as Query<TOKEN>;
+        if (selectedPrefecture.value != 0) {
+          tokenQuery = query(
+            tokenQuery,
+            where("prefecture", "==", prefectureList[selectedPrefecture.value]),
+          );
         }
-
-        const headRef = doc(
-          db,
-          tokenCollectionPath + "/parts",
-          `Heads-${token.prefecture.toLowerCase()}-${token.head}-${lang.value}`,
-        );
-        const headSnap = await getDoc(headRef);
-        if (headSnap.exists()) {
-          token.head = headSnap.data().name;
-          token.headDescription = headSnap.data().description;
+        try {
+          const results = await getDocs(tokenQuery);
+          tokens.value = results.docs.map((doc) => {
+            return doc.data();
+          });
+        } catch (e) {
+          console.error("getTokenList", e);
         }
+      } else {
+        // for test
+        tokens.value = getTokenListForTest();
       }
+      filterTokenByCriteria();
+      getPartsName(tokens.value);
     };
+    getTokenList();
 
     const selectedToken = ref<TOKEN | null>(null);
 

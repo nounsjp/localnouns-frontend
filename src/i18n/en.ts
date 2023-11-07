@@ -6,6 +6,7 @@ const lang = {
     top: "Top",
     mint: "Mint",
     list: "List",
+    owner: "Owner",
     p2pSale: "P2PSale",
     p2pTrade: "P2PTrade",
     goods: "Goods",
@@ -34,6 +35,9 @@ const lang = {
     onTrade: "onTrade",
     onSale: "onSale",
     manage: "Owner",
+  },
+  owner: {
+    description: "These are your local Nouns that you own.",
   },
   prefectures: {
     prefectures: "Prefecture",
