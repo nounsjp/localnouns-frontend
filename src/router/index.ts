@@ -11,7 +11,7 @@ import Shop from "@/views/Shop.vue";
 import About from "@/views/About.vue";
 import { addresses } from "@/utils/addresses";
 
-const network = 'mumbai';
+const network = "mumbai";
 const routeChildren: Array<RouteRecordRaw> = [
   {
     path: "",
@@ -37,6 +37,7 @@ const routeChildren: Array<RouteRecordRaw> = [
     props: {
       network: network,
       tokenAddress: addresses.localNounsToken[network],
+      test: true,
     },
   },
   {

@@ -17,7 +17,7 @@ export const getTokenListForTest = () => {
   const tokenInfo2: TOKEN = {
     tokenId: "1",
     prefecture: "Akita",
-    prefectureId: 3,
+    prefectureId: 5,
     head: "Namahage",
     accessory: "Fireworks",
     holder: "0x52A76a606AC925f7113B4CC8605Fe6bCad431EbB".toLowerCase(), // firestoreでfilterするために小文字変換
@@ -31,7 +31,7 @@ export const getTokenListForTest = () => {
   const tokenInfo3: TOKEN = {
     tokenId: "2",
     prefecture: "Akita",
-    prefectureId: 3,
+    prefectureId: 5,
     head: "Namahage",
     accessory: "Fireworks",
     holder: "0x52A76a606AC925f7113B4CC8605Fe6bCad431EbB".toLowerCase(), // firestoreでfilterするために小文字変換
