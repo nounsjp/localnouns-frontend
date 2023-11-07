@@ -41,19 +41,12 @@
 import { defineComponent, computed, ref, watch } from "vue";
 import { useStore } from "vuex";
 import { useI18n } from "vue-i18n";
-import {
-  getDocs,
-  collection,
-  query,
-  where,
-  Query,
-  getDoc,
-  doc,
-} from "firebase/firestore";
+import { getDocs, collection, query, where, Query } from "firebase/firestore";
 import { db } from "@/utils/firebase";
 import TokenDetail from "@/components/TokenDetail.vue";
 import TokenManagement from "@/components/TokenManagement.vue";
 import { TOKEN } from "@/firestore/const";
+import { getPartsNameAndDescription } from "@/utils/partsDataUtil";
 
 export default defineComponent({
   props: {
@@ -100,6 +93,31 @@ export default defineComponent({
     const isManagementModalOpen = ref(false);
     const test = true;
 
+    const getPartsName = async (tokens: TOKEN[]) => {
+      // パーツ名を取得
+      for (const token of tokens) {
+        const accessoryName = getPartsNameAndDescription(
+          "Accessories",
+          `${token.prefecture.toLowerCase()}-${token.accessory.toLowerCase()}`,
+          lang.value,
+        );
+        if (accessoryName) {
+          token.accessory = accessoryName.name;
+          token.accessoryDescription = accessoryName.description;
+        }
+
+        const headName = getPartsNameAndDescription(
+          "Heads",
+          `${token.prefecture.toLowerCase()}-${token.head.toLowerCase()}`,
+          lang.value,
+        );
+        if (headName) {
+          token.head = headName.name;
+          token.headDescription = headName.description;
+        }
+      }
+    };
+
     const tokenCollectionPath = `/${props.network}/${props.tokenAddress}`;
     const tokens = ref<TOKEN[]>([]);
     const getTokenList = async () => {
@@ -119,11 +137,11 @@ export default defineComponent({
           tokens.value = results.docs.map((doc) => {
             return doc.data();
           });
-          getPartsName(tokens.value);
         } else {
           // for test
           tokens.value = getTestData();
         }
+        getPartsName(tokens.value);
       } catch (e) {
         console.error("getTokenList", e);
       }
@@ -143,39 +161,8 @@ export default defineComponent({
         acc[key].push(token);
         return acc;
       }, {}); // 初期値は空のオブジェクト
-
-      console.log("groupedByPrefecture", groups);
       return groups;
     });
-
-    const getPartsName = async (tokens: TOKEN[]) => {
-      // パーツ名を取得
-      for (const token of tokens) {
-        const accessoryRef = doc(
-          db,
-          tokenCollectionPath + "/parts",
-          `Accessories-${token.prefecture.toLowerCase()}-${token.accessory}-${
-            lang.value
-          }`,
-        );
-        const accessorySnap = await getDoc(accessoryRef);
-        if (accessorySnap.exists()) {
-          token.accessory = accessorySnap.data().name;
-          token.accessoryDescription = accessorySnap.data().description;
-        }
-
-        const headRef = doc(
-          db,
-          tokenCollectionPath + "/parts",
-          `Heads-${token.prefecture.toLowerCase()}-${token.head}-${lang.value}`,
-        );
-        const headSnap = await getDoc(headRef);
-        if (headSnap.exists()) {
-          token.head = headSnap.data().name;
-          token.headDescription = headSnap.data().description;
-        }
-      }
-    };
 
     const selectedToken = ref<TOKEN | null>(null);
 
@@ -212,7 +199,7 @@ const getTestData = () => {
     prefecture: "Hokkaido",
     prefectureId: 1,
     head: "Goryokaku",
-    accessory: "Meron",
+    accessory: "Melon",
     holder: "0x52A76a606AC925f7113B4CC8605Fe6bCad431EbB".toLowerCase(), // firestoreでfilterするために小文字変換
     svg: '<svg viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges"><rect width="100%" height="100%" fill="#d5d7e1" /><rect width="140" height="10" x="90" y="210" fill="#d26451" /><rect width="140" height="10" x="90" y="220" fill="#d26451" /><rect width="140" height="10" x="90" y="230" fill="#d26451" /><rect width="140" height="10" x="90" y="240" fill="#d26451" /><rect width="20" height="10" x="90" y="250" fill="#d26451" /><rect width="110" height="10" x="120" y="250" fill="#d26451" /><rect width="20" height="10" x="90" y="260" fill="#d26451" /><rect width="110" height="10" x="120" y="260" fill="#d26451" /><rect width="20" height="10" x="90" y="270" fill="#d26451" /><rect width="110" height="10" x="120" y="270" fill="#d26451" /><rect width="20" height="10" x="90" y="280" fill="#d26451" /><rect width="110" height="10" x="120" y="280" fill="#d26451" /><rect width="20" height="10" x="90" y="290" fill="#d26451" /><rect width="110" height="10" x="120" y="290" fill="#d26451" /><rect width="20" height="10" x="90" y="300" fill="#d26451" /><rect width="110" height="10" x="120" y="300" fill="#d26451" /><rect width="20" height="10" x="90" y="310" fill="#d26451" /><rect width="110" height="10" x="120" y="310" fill="#d26451" /><rect width="10" height="10" x="140" y="240" fill="#f78a18" /><rect width="10" height="10" x="180" y="240" fill="#f78a18" /><rect width="10" height="10" x="140" y="250" fill="#c4da53" /><rect width="30" height="10" x="150" y="250" fill="#f78a18" /><rect width="10" height="10" x="180" y="250" fill="#c4da53" /><rect width="30" height="10" x="150" y="260" fill="#c4da53" /><rect width="20" height="10" x="150" y="20" fill="#00499c" /><rect width="40" height="10" x="140" y="30" fill="#00499c" /><rect width="20" height="10" x="130" y="40" fill="#00499c" /><rect width="10" height="10" x="150" y="40" fill="#8dd122" /><rect width="10" height="10" x="160" y="40" fill="#018146" /><rect width="20" height="10" x="170" y="40" fill="#00499c" /><rect width="20" height="10" x="120" y="50" fill="#00499c" /><rect width="10" height="10" x="140" y="50" fill="#8dd122" /><rect width="10" height="10" x="150" y="50" fill="#018146" /><rect width="10" height="10" x="160" y="50" fill="#8dd122" /><rect width="10" height="10" x="170" y="50" fill="#018146" /><rect width="20" height="10" x="180" y="50" fill="#00499c" /><rect width="30" height="10" x="110" y="60" fill="#00499c" /><rect width="10" height="10" x="140" y="60" fill="#018146" /><rect width="20" height="10" x="150" y="60" fill="#8dd122" /><rect width="10" height="10" x="170" y="60" fill="#018146" /><rect width="20" height="10" x="180" y="60" fill="#00499c" /><rect width="10" height="10" x="200" y="60" fill="#f9f4e6" /><rect width="30" height="10" x="90" y="70" fill="#00499c" /><rect width="20" height="10" x="120" y="70" fill="#8dd122" /><rect width="10" height="10" x="140" y="70" fill="#018146" /><rect width="30" height="10" x="150" y="70" fill="#8dd122" /><rect width="10" height="10" x="180" y="70" fill="#018146" /><rect width="10" height="10" x="190" y="70" fill="#f9f4e6" /><rect width="30" height="10" x="200" y="70" fill="#00499c" /><rect width="30" height="10" x="70" y="80" fill="#00499c" /><rect width="10" height="10" x="100" y="80" fill="#8dd122" /><rect width="10" height="10" x="110" y="80" fill="#00499c" /><rect width="10" height="10" x="120" y="80" fill="#8dd122" /><rect width="20" height="10" x="130" y="80" fill="#018146" /><rect width="30" height="10" x="150" y="80" fill="#8dd122" /><rect width="10" height="10" x="180" y="80" fill="#f9f4e6" /><rect width="20" height="10" x="190" y="80" fill="#018146" /><rect width="40" height="10" x="210" y="80" fill="#00499c" /><rect width="30" height="10" x="50" y="90" fill="#00499c" /><rect width="10" height="10" x="80" y="90" fill="#8dd122" /><rect width="20" height="10" x="90" y="90" fill="#018146" /><rect width="10" height="10" x="110" y="90" fill="#8dd122" /><rect width="10" height="10" x="120" y="90" fill="#018146" /><rect width="40" height="10" x="130" y="90" fill="#8dd122" /><rect width="10" height="10" x="170" y="90" fill="#f9f4e6" /><rect width="30" height="10" x="180" y="90" fill="#8dd122" /><rect width="20" height="10" x="210" y="90" fill="#018146" /><rect width="40" height="10" x="230" y="90" fill="#00499c" /><rect width="20" height="10" x="50" y="100" fill="#00499c" /><rect width="10" height="10" x="70" y="100" fill="#8dd122" /><rect width="10" height="10" x="80" y="100" fill="#018146" /><rect width="20" height="10" x="90" y="100" fill="#8dd122" /><rect width="10" height="10" x="110" y="100" fill="#018146" /><rect width="10" height="10" x="120" y="100" fill="#8dd122" /><rect width="10" height="10" x="130" y="100" fill="#1e3445" /><rect width="20" height="10" x="140" y="100" fill="#8dd122" /><rect width="10" height="10" x="160" y="100" fill="#f9f4e6" /><rect width="60" height="10" x="170" y="100" fill="#8dd122" /><rect width="20" height="10" x="230" y="100" fill="#018146" /><rect width="20" height="10" x="250" y="100" fill="#00499c" /><rect width="20" height="10" x="60" y="110" fill="#00499c" /><rect width="10" height="10" x="80" y="110" fill="#8dd122" /><rect width="10" height="10" x="90" y="110" fill="#018146" /><rect width="20" height="10" x="100" y="110" fill="#8dd122" /><rect width="10" height="10" x="120" y="110" fill="#1e3445" /><rect width="20" height="10" x="130" y="110" fill="#8dd122" /><rect width="10" height="10" x="150" y="110" fill="#f9f4e6" /><rect width="70" height="10" x="160" y="110" fill="#8dd122" /><rect width="10" height="10" x="230" y="110" fill="#018146" /><rect width="20" height="10" x="240" y="110" fill="#00499c" /><rect width="20" height="10" x="70" y="120" fill="#00499c" /><rect width="10" height="10" x="90" y="120" fill="#8dd122" /><rect width="10" height="10" x="100" y="120" fill="#018146" /><rect width="20" height="10" x="110" y="120" fill="#8dd122" /><rect width="20" height="10" x="130" y="120" fill="#f9f4e6" /><rect width="20" height="10" x="150" y="120" fill="#1e3445" /><rect width="40" height="10" x="170" y="120" fill="#8dd122" /><rect width="20" height="10" x="210" y="120" fill="#018146" /><rect width="10" height="10" x="230" y="120" fill="#8dd122" /><rect width="20" height="10" x="240" y="120" fill="#00499c" /><rect width="10" height="10" x="70" y="130" fill="#f9f4e6" /><rect width="10" height="10" x="80" y="130" fill="#00499c" /><rect width="20" height="10" x="90" y="130" fill="#8dd122" /><rect width="10" height="10" x="110" y="130" fill="#018146" /><rect width="30" height="10" x="120" y="130" fill="#8dd122" /><rect width="20" height="10" x="150" y="130" fill="#1e3445" /><rect width="30" height="10" x="170" y="130" fill="#8dd122" /><rect width="10" height="10" x="200" y="130" fill="#018146" /><rect width="20" height="10" x="210" y="130" fill="#8dd122" /><rect width="20" height="10" x="230" y="130" fill="#00499c" /><rect width="10" height="10" x="60" y="140" fill="#00499c" /><rect width="20" height="10" x="70" y="140" fill="#f9f4e6" /><rect width="10" height="10" x="90" y="140" fill="#00499c" /><rect width="10" height="10" x="100" y="140" fill="#f9f4e6" /><rect width="10" height="10" x="110" y="140" fill="#018146" /><rect width="80" height="10" x="120" y="140" fill="#8dd122" /><rect width="10" height="10" x="200" y="140" fill="#018146" /><rect width="10" height="10" x="210" y="140" fill="#8dd122" /><rect width="20" height="10" x="220" y="140" fill="#00499c" /><rect width="10" height="10" x="50" y="150" fill="#00499c" /><rect width="10" height="10" x="60" y="150" fill="#018146" /><rect width="10" height="10" x="70" y="150" fill="#8dd122" /><rect width="20" height="10" x="80" y="150" fill="#f9f4e6" /><rect width="10" height="10" x="100" y="150" fill="#8dd122" /><rect width="10" height="10" x="110" y="150" fill="#018146" /><rect width="70" height="10" x="120" y="150" fill="#8dd122" /><rect width="10" height="10" x="190" y="150" fill="#018146" /><rect width="10" height="10" x="200" y="150" fill="#8dd122" /><rect width="20" height="10" x="210" y="150" fill="#00499c" /><rect width="10" height="10" x="40" y="160" fill="#00499c" /><rect width="10" height="10" x="50" y="160" fill="#8dd122" /><rect width="10" height="10" x="60" y="160" fill="#018146" /><rect width="10" height="10" x="70" y="160" fill="#8dd122" /><rect width="10" height="10" x="80" y="160" fill="#f9f4e6" /><rect width="20" height="10" x="90" y="160" fill="#00499c" /><rect width="10" height="10" x="110" y="160" fill="#8dd122" /><rect width="10" height="10" x="120" y="160" fill="#018146" /><rect width="60" height="10" x="130" y="160" fill="#8dd122" /><rect width="10" height="10" x="190" y="160" fill="#018146" /><rect width="10" height="10" x="200" y="160" fill="#8dd122" /><rect width="20" height="10" x="210" y="160" fill="#00499c" /><rect width="20" height="10" x="50" y="170" fill="#00499c" /><rect width="10" height="10" x="70" y="170" fill="#8dd122" /><rect width="20" height="10" x="80" y="170" fill="#00499c" /><rect width="10" height="10" x="100" y="170" fill="#8dd122" /><rect width="10" height="10" x="110" y="170" fill="#018146" /><rect width="20" height="10" x="120" y="170" fill="#8dd122" /><rect width="40" height="10" x="140" y="170" fill="#018146" /><rect width="20" height="10" x="180" y="170" fill="#8dd122" /><rect width="10" height="10" x="200" y="170" fill="#018146" /><rect width="10" height="10" x="210" y="170" fill="#8dd122" /><rect width="10" height="10" x="220" y="170" fill="#00499c" /><rect width="30" height="10" x="70" y="180" fill="#00499c" /><rect width="10" height="10" x="100" y="180" fill="#8dd122" /><rect width="10" height="10" x="110" y="180" fill="#018146" /><rect width="10" height="10" x="120" y="180" fill="#8dd122" /><rect width="10" height="10" x="130" y="180" fill="#018146" /><rect width="40" height="10" x="140" y="180" fill="#8dd122" /><rect width="10" height="10" x="180" y="180" fill="#018146" /><rect width="10" height="10" x="190" y="180" fill="#8dd122" /><rect width="10" height="10" x="200" y="180" fill="#018146" /><rect width="10" height="10" x="210" y="180" fill="#8dd122" /><rect width="20" height="10" x="220" y="180" fill="#00499c" /><rect width="20" height="10" x="80" y="190" fill="#00499c" /><rect width="10" height="10" x="100" y="190" fill="#8dd122" /><rect width="20" height="10" x="110" y="190" fill="#018146" /><rect width="10" height="10" x="130" y="190" fill="#8dd122" /><rect width="40" height="10" x="140" y="190" fill="#00499c" /><rect width="10" height="10" x="180" y="190" fill="#8dd122" /><rect width="20" height="10" x="190" y="190" fill="#018146" /><rect width="10" height="10" x="210" y="190" fill="#8dd122" /><rect width="20" height="10" x="220" y="190" fill="#00499c" /><rect width="20" height="10" x="80" y="200" fill="#00499c" /><rect width="10" height="10" x="100" y="200" fill="#018146" /><rect width="20" height="10" x="110" y="200" fill="#8dd122" /><rect width="60" height="10" x="130" y="200" fill="#00499c" /><rect width="20" height="10" x="190" y="200" fill="#8dd122" /><rect width="10" height="10" x="210" y="200" fill="#018146" /><rect width="20" height="10" x="220" y="200" fill="#00499c" /><rect width="50" height="10" x="90" y="210" fill="#00499c" /><rect width="50" height="10" x="180" y="210" fill="#00499c" /><rect width="30" height="10" x="90" y="220" fill="#00499c" /><rect width="30" height="10" x="200" y="220" fill="#00499c" /><rect width="60" height="10" x="100" y="110" fill="#000000" /><rect width="60" height="10" x="170" y="110" fill="#000000" /><rect width="10" height="10" x="100" y="120" fill="#000000" /><rect width="20" height="10" x="110" y="120" fill="#ffffff" /><rect width="30" height="10" x="130" y="120" fill="#000000" /><rect width="10" height="10" x="170" y="120" fill="#000000" /><rect width="20" height="10" x="180" y="120" fill="#ffffff" /><rect width="30" height="10" x="200" y="120" fill="#000000" /><rect width="40" height="10" x="70" y="130" fill="#000000" /><rect width="20" height="10" x="110" y="130" fill="#ffffff" /><rect width="50" height="10" x="130" y="130" fill="#000000" /><rect width="20" height="10" x="180" y="130" fill="#ffffff" /><rect width="30" height="10" x="200" y="130" fill="#000000" /><rect width="10" height="10" x="70" y="140" fill="#000000" /><rect width="10" height="10" x="100" y="140" fill="#000000" /><rect width="20" height="10" x="110" y="140" fill="#ffffff" /><rect width="30" height="10" x="130" y="140" fill="#000000" /><rect width="10" height="10" x="170" y="140" fill="#000000" /><rect width="20" height="10" x="180" y="140" fill="#ffffff" /><rect width="30" height="10" x="200" y="140" fill="#000000" /><rect width="10" height="10" x="70" y="150" fill="#000000" /><rect width="10" height="10" x="100" y="150" fill="#000000" /><rect width="20" height="10" x="110" y="150" fill="#ffffff" /><rect width="30" height="10" x="130" y="150" fill="#000000" /><rect width="10" height="10" x="170" y="150" fill="#000000" /><rect width="20" height="10" x="180" y="150" fill="#ffffff" /><rect width="30" height="10" x="200" y="150" fill="#000000" /><rect width="60" height="10" x="100" y="160" fill="#000000" /><rect width="60" height="10" x="170" y="160" fill="#000000" /></svg>',
     salePrice: 0,
