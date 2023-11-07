@@ -44,6 +44,7 @@ const routeChildren: Array<RouteRecordRaw> = [
     props: {
       network: "mumbai",
       tokenAddress: addresses.localNounsToken["mumbai"],
+      test: true,
     },
   },
   {
