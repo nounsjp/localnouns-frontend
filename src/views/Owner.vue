@@ -5,17 +5,17 @@
     </p>
   </div>
 
-    <div
-      v-for="tokenGroup in groupedByPrefecture"
-      :key="tokenGroup.key"
-      class="px-2 py-1 flex flex-col items-left justify-center"
-    >
-      <p class="mb-2 font-londrina font-yusei text-3xl text-left">
-        {{ $t('prefecture.' + tokenGroup[0].prefecture) }}
-      </p>
   <div
-    class="grid w-screen grid-cols-2 place-content-center items-center gap-2 sm:grid-cols-5"
+    v-for="tokenGroup in groupedByPrefecture"
+    :key="tokenGroup.key"
+    class="px-2 py-1 flex flex-col items-left justify-center"
   >
+    <p class="mb-2 font-londrina font-yusei text-3xl text-left">
+      {{ $t("prefecture." + tokenGroup[0].prefecture) }}
+    </p>
+    <div
+      class="grid w-screen grid-cols-2 place-content-center items-center gap-2 sm:grid-cols-5"
+    >
       <div
         v-for="token in tokenGroup"
         :key="token.key"
