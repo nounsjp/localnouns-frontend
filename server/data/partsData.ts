@@ -7,21 +7,15 @@ export const partsData = [
     { type: `Accessories`, prefecture: `Hokkaido`, key: `hokkaido-crab`, language: `ja`, name: `カニ`, description: `魚介類の宝庫・北海道ではさまざまな種類のカニが水揚げされます。北海道のカニは種類も豊富で、獲れる時期や旬、味わいもさまざまです。`, author: 'eiba' }, { type: `Accessories`, prefecture: `Hokkaido`, key: `hokkaido-crab`, language: `en`, name: `crab`, description: `Hokkaido, a treasure trove of seafood, lands a wide variety of crabs. There are a wide variety of crabs in Hokkaido, with different times of year, seasons, and flavors when they are caught.`, author: 'eiba' },
     {
         type: `Accessories`, prefecture: `Hokkaido`, key: `hokkaido-melon`, language: `ja`, name: `メロン`, description: `メロンは、キュウリやスイカの仲間でウリ科。
-
 「果物の王様」と呼ばれていて、贈答品によく利用されています。
-
  
 北アフリカ原産で、紀元前2000年頃に栽培が始まりました。
-
 日本には、明治時代にヨーロッパから伝わり、その後、温室による栽培が開始されています。`, author: 'sugishige'
     }, {
         type: `Accessories`, prefecture: `Hokkaido`, key: `hokkaido-melon`, language: `en`, name: `melon`, description: `The melon is a member of the cucumber and watermelon family.
-
 Known as the 'king of fruits,' they are often used as gifts.
-
  
 Native to North Africa, its cultivation began around 2000 BC.
-
 It was introduced to Japan from Europe during the Meiji period (1868-1912), and cultivation in greenhouses began later.`, author: 'sugishige'
     },
     { type: `Accessories`, prefecture: `Hokkaido`, key: `hokkaido-sheep`, language: `ja`, name: `羊`, description: `ヒツジは、ウシ科ヤギ亜科の鯨偶蹄目である。角を持ち、主に羊毛のために家畜化されている。`, author: 'hamachan' }, { type: `Accessories`, prefecture: `Hokkaido`, key: `hokkaido-sheep`, language: `en`, name: `Sheep`, description: `Sheep are a cetacean even-toed ungulates in the subfamily Cetacea of the bovine goat family. They have horns and are domesticated primarily for their wool.`, author: 'hamachan' },
@@ -47,7 +41,6 @@ The egg-shaped confection is made by wrapping yellowish red bean paste in thin s
     { type: `Accessories`, prefecture: `Miyagi`, key: `miyagi-zunda`, language: `ja`, name: `ずんだ餅`, description: `ずんだ餅は、すりつぶした枝豆を餡に用いる餅菓子で、宮城県を中心にした地域の郷土菓子。`, author: 'hamachan' }, { type: `Accessories`, prefecture: `Miyagi`, key: `miyagi-zunda`, language: `en`, name: `Zunda mochi`, description: `Zunda Mochi is a local sweet mainly in Miyagi Prefecture, using mashed edamame (soybeans) as the filling.`, author: 'hamachan' },
     { type: `Accessories`, prefecture: `Akita`, key: `akita-fireworks`, language: `ja`, name: `花火`, description: `秋田では年に一度、全国の花火師（はなびし）たちが一同に介し、その腕を競い合います。爆発物を使って空中で美しい花や色彩を咲かせるための娯楽や祝祭の一環として使用される、花や光のディスプレイです。花火は通常、特別なイベントや祝祭、お祭り、祝日などで打ち上げられ、観客に楽しみや感動を提供します。花火は多彩な形状や色彩を持ち、美しい芸術的な演出が可能です。また、安全に扱うことが重要であり、専門家によって操作されることが一般的です。`, author: '' }, {
         type: `Accessories`, prefecture: `Akita`, key: `akita-fireworks`, language: `en`, name: `firework`, description: `Once a year in Akita, fireworks masters (hanabishi) from all over Japan come together to compete in a display of their skills. They are floral and light displays used as part of entertainment and festivities that use explosives to create beautiful flowers and colors in the air. Fireworks are usually launched during special events, festivals, festivals, and holidays to provide fun and excitement to spectators. Fireworks come in a wide variety of shapes and colors and can create beautiful artistic effects. They are also important to handle safely and are typically operated by professionals.
-
 Translated with www.DeepL.com/Translator (free version)`, author: ''
     },
     { type: `Accessories`, prefecture: `Akita`, key: `akita-hatahata`, language: `ja`, name: `ハタハタ`, description: `秋田のハタハタは、日本の秋田県で特に有名な魚の一種です。ハタハタはサケ科に属し、日本海に生息しています。秋田県では、ハタハタは冬季に特に豊富に獲れることで知られており、冬の味覚として親しまれています。`, author: '' }, { type: `Accessories`, prefecture: `Akita`, key: `akita-hatahata`, language: `en`, name: `Sailfin sandfish`, description: `The 'Hatahata' in Akita, Japan, is a particularly famous type of fish. Hatahata belongs to the salmon family and inhabits the Sea of Japan. In Akita Prefecture, Hatahata is known for being especially abundant during the winter season and is cherished as a winter delicacy.`, author: '' },
@@ -56,16 +49,12 @@ Translated with www.DeepL.com/Translator (free version)`, author: ''
     { type: `Accessories`, prefecture: `Yamagata`, key: `yamagata-lafrance`, language: `ja`, name: `やまがたの女王「ラ・フランス」`, description: `山形県は、西洋なしの生産量が全国1位で全国の生産量の6割以上を占めています（令和2年）。特に、西洋なしの品種「ラ・フランス」は緻密な果肉、果汁の多さ、特有の芳香、そしておいしさから「果物の女王」と称されています。`, author: '' }, { type: `Accessories`, prefecture: `Yamagata`, key: `yamagata-lafrance`, language: `en`, name: `La France, Queen of Yamagata`, description: `Yamagata Prefecture is the largest producer of pear in Japan, accounting for more than 60% of the nation's pear production (as of 2020). In particular, the 'La France' variety of pear is known as the 'Queen of Fruits' for its dense pulp, high juice content, distinctive aroma, and delicious taste.`, author: '' },
     {
         type: `Accessories`, prefecture: `Yamagata`, key: `yamagata-shogi`, language: `ja`, name: `将棋`, description: `日本一の将棋のまち、山形県の天童市 (てんどう)。
-
 市内にはいたるところに将棋のオブジェが設置され、駅前の大通りや電柱には詰め将棋が描かれています。
-
 将棋駒の産地でもあり、なんと日本で作られる将棋駒の約9割が天童市で生産されているんです。
 その歴史は江戸時代後期にまで遡ります。`, author: ''
     }, {
         type: `Accessories`, prefecture: `Yamagata`, key: `yamagata-shogi`, language: `en`, name: `Japanese chess`, description: `Tendo City in Yamagata Prefecture is Japan's number one chess town.
-
 Shogi objects are set up everywhere in the city, and Tendo's main street in front of the station and telephone poles are painted with the game.
-
 Tendo is also a production center of Shogi pieces, with approximately 90% of all Shogi pieces made in Japan being produced in Tendo.
 Its history dates back to the late Edo period.`, author: ''
     },
@@ -222,42 +211,30 @@ Chicken wings are deep-fried, coated with sauce, and sprinkled with salt, pepper
     },
     {
         type: `Accessories`, prefecture: `Mie`, key: `mie-iseebi`, language: `ja`, name: `伊勢海老`, description: `四季を越え、4年の時を経て、一皿の極上へ'
-
 伊勢海老は、海の時間旅行者とも言える存在。4年の歳月をかけて、海底の隠れ家でじっくりとその風格を磨き上げます。夜行性のこのエビは、日本近海の大型エビの王者として、そのプリップリの食感と深い甘みで君臨しています。
-
 名前の由来は、伊勢からの海の贈り物として、古都・京都に届けられた歴史が背景に。そして、その成長の旅路は、アミノ酸を豊富に蓄え、食べる者を魅了する甘さを生み出します。
-
 旬は秋から冬。しかし、真の美味しさを守るため、産卵期には三重県をはじめとした一部の産地では禁漁となります。特に三重県の志摩市浜島は、伊勢海老の故郷として名高い。
-
 そして、その調理法は、一皿のアート。刺身でのピュアな甘み、姿焼きの力強さ、蒸し伊勢海老の繊細さ、そして味噌汁の深み。伊勢海老は、四季を越え、四年の時を経て、我々の前に極上の一皿として姿を現します。`, author: '@zuka20210101'
     }, {
         type: `Accessories`, prefecture: `Mie`, key: `mie-iseebi`, language: `en`, name: `Japanese spiny lobster`, description: `Beyond the four seasons, through four years of time, to a plate of excellence.'
-
 The Ise shrimp is like a time traveler of the sea. Over the course of 4 years, it meticulously refines its grandeur in its hidden abode at the seabed. This nocturnal king of the large shrimps in the Japanese coastal waters reigns supreme with its succulent texture and profound sweetness.
-
 Its name originates from its history as a marine gift from Ise, delivered to the ancient capital, Kyoto. And its growth journey accumulates a wealth of amino acids, captivating those who taste its enchanting sweetness.
-
 Its prime season is from autumn to winter. However, to preserve its true delicacy, fishing is prohibited during the spawning season in certain regions, including Mie Prefecture. Notably, Shima City in Mie Prefecture is renowned as the homeland of the Ise shrimp.
-
 And its culinary methods are an art in every dish. The pure sweetness in sashimi, the robustness in grilled form, the delicacy of steamed Ise shrimp, and the depth in miso soup. The Ise shrimp appears before us as a plate of excellence, transcending the four seasons and maturing through four years of time.`, author: '@zuka20210101'
     },
     { type: `Accessories`, prefecture: `Mie`, key: `mie-mochi`, language: `ja`, name: `餅`, description: `三重の旅路、餅の風味！' 伊勢神宮への古道を歩むと、時を超えた餅の物語が始まります。三重の土地は、餅米を育むのにぴったり。だからこそ、伊勢から桑名の「餅街道」には、旅人の胃袋と心をつかむ餅屋が立ち並ぶ。そして、その星の中でも輝くのが「赤福」。古びた建物の中で、五十鈴川の清流を模した伝統の赤福餅を守り続けています。名前の「赤福」は「赤心慶福」から。心を込めた餅づくりの情熱が、今も変わらず続いているのです。参宮客の増加や地域の祭りの需要、そして三重の恵まれた自然環境が、この餅文化の発展を後押し。一口食べれば、三重の餅の深い歴史と情熱を感じられること間違いなし！`, author: '@zuka20210101' }, { type: `Accessories`, prefecture: `Mie`, key: `mie-mochi`, language: `en`, name: `Rice cake`, description: `Journey through Mie, Savor the Mochi!' As you tread the ancient paths to Ise Shrine, a timeless tale of mochi unfolds. Mie's land is perfect for nurturing mochi rice, which is why the 'Mochi Highway' from Ise to Kuwana is lined with mochi shops that capture the hearts and appetites of travelers. Mochi has deeply rooted itself in Mie's culture, serving both as a companion for travelers and an offering to the gods. Among these shining stars is 'Akafuku.' Nestled in an old-fashioned building, it continues to cherish its traditional mochi, symbolizing the clear streams of the Isuzu River. The name 'Akafuku' originates from 'Akashin Keifuku,' representing heartfelt joy. The passion for mochi-making remains unchanged to this day. The influx of shrine visitors, local festival demands, and Mie's blessed natural environment have all propelled this mochi culture forward. With just one bite, you're sure to feel the deep history and passion of Mie's mochi!`, author: '@zuka20210101' },
     {
         type: `Accessories`, prefecture: `Shiga`, key: `shiga-funazushi`, language: `ja`, name: `鮒ずし`, description: `琵琶湖のメロディ、鮒寿しのハーモニー！'
-
 滋賀県の誇り、鮒寿しは、琵琶湖のニゴロブナと乳酸菌発酵の絶妙なコラボレーション。塩でキュッと締めた魚と炊きたてのご飯が、自然のリズムで発酵して、伝統的な「本漬け」や香りを優しくした「甘露漬け」へと変身。このデリシャスなビートを味わうなら、3〜5ミリのスライスで、さらに吟醸酒とのデュエットがおすすめ。タイから中国までの歴史的背景を持ち、平安時代からのロングヒット。その秘密は、琵琶湖の恵まれた環境と、特別な日のハレの食文化。鮒寿し、それは滋賀の心、そして日本の伝統のシンフォニー。`, author: '@zuka20210101'
     }, {
         type: `Accessories`, prefecture: `Shiga`, key: `shiga-funazushi`, language: `en`, name: `Crucian Carp Sushi`, description: `The Melody of Lake Biwa, the Harmony of Funazushi!'
-
 Pride of Shiga Prefecture, Funazushi is a sublime collaboration between Lake Biwa's Nigorobuna fish and lactic acid fermentation. Fish seasoned with salt and freshly cooked rice naturally ferment, transforming into the traditional 'Hondzuke' or the gentler-scented 'Kanrodzuke'. To savor this delicious beat, it's recommended to slice it 3-5mm thick and pair it with a duet of Ginjo sake. With historical roots stretching from Thailand to China and a long-standing hit since the Heian period, its secret lies in the blessed environment of Lake Biwa and the festive food culture of special days. Funazushi is the heart of Shiga and the symphony of Japanese tradition.`, author: '@zuka20210101'
     },
     {
         type: `Accessories`, prefecture: `Shiga`, key: `shiga-hieizan`, language: `ja`, name: `比叡山`, description: `不滅の法灯、比叡山の永遠の炎。'
-
 比叡山延暦寺は、京都と滋賀の境界に聳える自然に恵まれた聖地で、標高848メートルからの絶景が広がります。この山は、天台宗の総本山として、最澄によって開かれた「一乗止観院」を起源とし、多くの僧侶たちの修行の場として知られています。しかし、1571年の織田信長の焼き討ちから、再建を遂げるまでの歴史も持つこの寺は、祇園祭とも深い結びつきがあります。そして、その中心には、1200年もの間、消えることのない「不滅の法灯」が静かに灯り続けています。この寺は、その深い歴史と文化、そして自然の美しさを併せ持つ、日本の宝とも言える場所です。`, author: '@zuka20210101'
     }, {
         type: `Accessories`, prefecture: `Shiga`, key: `shiga-hieizan`, language: `en`, name: `Mount Hiei`, description: `The Eternal Flame of Hieizan, the Undying Light of the Dharma.'
-
 Hieizan Enryaku-ji Temple stands as a blessed sanctuary on the border of Kyoto and Shiga, offering breathtaking views from its altitude of 848 meters. Recognized as the head temple of the Tendai sect, it traces its origins to the 'Ichijo Shikan-in' founded by Saicho. Throughout its history, the temple has seen many transformations, from being razed by Oda Nobunaga in 1571 to its subsequent reconstruction. Intricately tied to the Gion Festival, at the heart of this temple burns the 'Undying Light of the Dharma,' a flame that has never been extinguished for 1,200 years. This temple embodies a harmonious blend of profound history, culture, and natural beauty, making it a true treasure of Japan.`, author: '@zuka20210101'
     },
     {
@@ -269,183 +246,122 @@ Kyoto's summer is, quite literally, 'hot'! Especially when the Gozan Okuribi, or
     },
     {
         type: `Accessories`, prefecture: `Kyoto`, key: `kyoto-yatsuhashi`, language: `ja`, name: `八ツ橋`, description: `伝説のバンドは解散しない。八つ橋、永遠のヒット！
-
 🍪 基本情報: 八つ橋って、実は米粉と砂糖とニッキのロックバンド！焼いても良し、生で食べても良し。形？あの有名な琴をイメージしてるんだって。
-
 🎸 新しいバージョンも: 1960年代からは、生バージョンがデビュー。最近のトレンドは、健康オタク向けの無添加や、カラフルでキュートな形のバージョン。まるで、新しいアルバムをリリースするロックバンドみたい！
-
 🎤 歴史のミステリー: 八つ橋の起源、実は謎多きストーリー。箏曲のスーパースター、八橋検校が関係してるってウワサも。でも、ブレイクしたのは、大正天皇の即位の際。あの時、みんなが京都駅でお土産として買ってたんだって。
-
 🍵 風味の宝庫: 八つ橋の味、まるでジャンルを超えるミュージシャンのよう。ニッキの香り、黒ゴマ、抹茶、苺… そして、新しい風味もどんどんデビュー中！`, author: '@zuka20210101'
     }, {
         type: `Accessories`, prefecture: `Kyoto`, key: `kyoto-yatsuhashi`, language: `en`, name: `Baked Yatsuhashi`, description: `Legendary bands never break up. Yatsuhashi, an eternal hit!
-
 🍪 Basic Info: Yatsuhashi is like a rock band made of rice flour, sugar, and cinnamon! Great when baked, and also raw. The shape? It's inspired by that famous koto instrument.
-
 🎸 New Versions: Since the 1960s, the raw version made its debut. The recent trend? Health-freak-friendly additive-free versions and colorful, cute shapes. Just like a rock band releasing a new album!
-
 🎤 Historical Mystery: The origins of Yatsuhashi are shrouded in mystery. There's a rumor that the superstar of koto music, Yatsuhashi Kengyo, is involved. But its big break? During the enthronement of Emperor Taisho. Back then, everyone was buying it as a souvenir at Kyoto Station.
-
 🍵 Flavor Treasure Trove: The taste of Yatsuhashi is like a musician transcending genres. The aroma of cinnamon, black sesame, matcha, strawberries... And new flavors are constantly making their debut!
-
-
-
-
 `, author: '@zuka20210101'
     },
     {
         type: `Accessories`, prefecture: `Osaka`, key: `osaka-cheesecake`, language: `ja`, name: `チーズケーキ`, description: `大阪の味、忘れられない！おじさんの焼印、ふわとろチーズケーキ、一度でファン確定！
-
 あんた、大阪来たらおじさんの焼印がある焼きたてチーズケーキ、絶対食べんとあかんで！めっちゃふわふわしてて、口の中でとろけるねん。一度食べたら、もう忘れられへん味やで。大阪に来たら、これは外せへん美味しさやから、ぜひ行ってみてな！`, author: '@zuka20210101'
     }, {
         type: `Accessories`, prefecture: `Osaka`, key: `osaka-cheesecake`, language: `en`, name: `cheesecake`, description: `Osaka's unforgettable flavor! With the old man's signature stamp, this fluffy, melt-in-your-mouth cheesecake will make you a fan from the first bite!'
-
 Hey, if you come to Osaka, you absolutely gotta try that cheesecake with the old man's branding on it! It's super fluffy and just melts in your mouth. Once you taste it, you'll never forget that flavor. Seriously, if you're in Osaka, you can't miss out on this deliciousness. You gotta give it a shot!`, author: '@zuka20210101'
     },
     {
         type: `Accessories`, prefecture: `Osaka`, key: `osaka-jinbezame`, language: `ja`, name: `ジンベイザメ`, description: `大阪のおばちゃんとジンベイザメ、意外な共通点発見！
-
 あんた、ジンベイザメって知ってる？大阪の海遊館に来たら、絶対に会わんと損やで！あのおっきな体して、実はめっちゃドジっとるんやで。水槽の中でゆっくりと泳いでるけど、時々自分の大きさを忘れて壁にぶつかったり、他の魚とぶつかることもあるねん。まるで大阪のおばちゃんが浴衣着て夏祭りで踊ってるとき、人とぶつかるみたいや（笑）。でも、海遊館のジンベイザメは特別やで。あの巨大な「太平洋」ゾーンで、他のたくさんの魚たちと一緒に泳いでる姿は、まるで自然の中の王者みたい。しかも、海遊館では、ジンベイザメのエサやりのデモンストレーションも見れることがあるねん。ほんま、そのドジっとる姿と、海遊館ならではの特別な展示がめっちゃ愛おしいんや。一度は見とかんと！大笑いすること間違いなしやで！`, author: '@zuka20210101'
     }, {
         type: `Accessories`, prefecture: `Osaka`, key: `osaka-jinbezame`, language: `en`, name: `whale shark`, description: `Osaka's aunties and the whale shark: an unexpected similarity discovered!
-
 You know about the whale shark? If you come to the Osaka Aquarium (Kaiyukan), you absolutely can't miss seeing it! Despite its massive size, it's surprisingly clumsy. It swims slowly in the tank, but sometimes it seems to forget its size and bumps into the walls or other fish. It's kinda like when an Osaka lady in a yukata dances at a summer festival and bumps into people, you know? (haha). But the whale shark at Kaiyukan is special. In that huge 'Pacific Ocean' zone, watching it swim with so many other fish, it's like seeing the king of nature. Plus, at Kaiyukan, you sometimes get to see feeding demonstrations for the whale shark. Seriously, its endearing clumsiness combined with the unique displays of Kaiyukan is just so lovable. You have to see it at least once! You're sure to have a good laugh!`, author: '@zuka20210101'
     },
     {
         type: `Accessories`, prefecture: `Osaka`, key: `osaka-owarai`, language: `ja`, name: `大阪のお笑い`, description: `ボケて、ツッコんで、大阪スタイルで笑おう！
-
 あんた、大阪のお笑いって知ってる？こっちのお笑いは、日本全国でもめっちゃ特別やで！まず、ボケとツッコミのやり取りが基本やねん。一人が変なこと言ったり、変なことしたりするのが「ボケ」で、それに対して「何言ってんねん！」とか「アホか！」と突っ込むのが「ツッコミ」や。このリズム感が大阪お笑いの魅力やねん。
-
 それに、大阪のお笑い芸人は、日常の出来事や人々の様子を観察して、それを面白おかしくネタにするのが得意やで。ストリートライブや寄席での実践を積んで、独自のスタイルを築いていくんや。
-
 ほんで、大阪のお笑いは、親しみやすさや地元愛が強いのも特徴やねん。観客との距離が近く、一緒に笑い合う感じが心地いいんや。
-
 大阪に来たら、ぜひ生のお笑いを体験してみてな！めっちゃ楽しいで！`, author: '@zuka20210101'
     }, {
         type: `Accessories`, prefecture: `Osaka`, key: `osaka-owarai`, language: `en`, name: `Osaka comedy`, description: `Throw a joke, make a retort, and laugh in Osaka style!
-
 Hey, ya ever heard of Osaka-style comedy? Our brand of humor here is somethin' special, even for all of Japan! First off, we got this thing where one person plays the fool, that's the 'boke', and the other calls 'em out on it, that's the 'tsukkomi'. It's this back-and-forth that's the real charm of Osaka comedy.
-
 And, our comedians here? They're real good at takin' everyday stuff, things they see people do, and turnin' it into a laugh. They hone their craft on the streets and in traditional comedy theaters, developin' their own unique style.
-
 Plus, there's this warmth and deep love for our hometown that shines through in Osaka comedy. There's a closeness with the audience, like we're all laughin' together.
-
 If ya ever find yourself in Osaka, you gotta experience this live comedy for yourself! It's a blast, I promise ya!`, author: '@zuka20210101'
     },
     {
         type: `Accessories`, prefecture: `Hyogo`, key: `hyogo-akashiyaki`, language: `ja`, name: `明石焼き`, description: `これがもう、兵庫県の誇りやけんね！たこ焼きと似とるけど、明石焼きは小麦粉と卵の割合が多くて、めっちゃふわふわやで。それに、じん粉（浮き粉）を混ぜることで、とろ～りとした食感が出るんや。これをだし汁につけて食べるんやけど、そのだし汁は、かつおや昆布の出汁に、醤油や砂糖で味付けしてるねん。
-
 明石焼きの発祥は、明石市の漁港やで。明石は、明石ダコが有名で、そのダコを使ったたこ焼きが考案されたんや。その後、小麦粉と卵を増やして、今のふわふわの明石焼きが誕生したんやけん。
-
 兵庫には、明石焼きの名店がいっぱいあるで。兵庫に来たら、この明石焼きを食べずして帰るなんて、もったいないで！`, author: '@zuka20210101'
     }, {
         type: `Accessories`, prefecture: `Hyogo`, key: `hyogo-akashiyaki`, language: `en`, name: `Akashiyaki`, description: `Man, this right here is the pride of Hyogo, ya know? It might look a bit like takoyaki, but this Akashi-yaki's got more flour and eggs, making it super fluffy. And by mixin' in some 'jinko' (a type of starch), it gets this gooey texture. You dip it in dashi broth to eat, and that broth? It's seasoned with stuff like bonito and kelp, soy sauce, and sugar.
-
 The birthplace of Akashi-yaki? That'd be the fishing port in Akashi city. Akashi's famous for its octopus, and that's what inspired the original takoyaki. Then they added more flour and eggs, and voilà! The fluffy Akashi-yaki we know today was born.
-
 There's a ton of great Akashi-yaki places in Hyogo. If you come to Hyogo and don't try it, you're missin' out big time!`, author: '@zuka20210101'
     },
     {
         type: `Accessories`, prefecture: `Hyogo`, key: `hyogo-jst-meridian`, language: `ja`, name: `明石の標準子午線`, description: `これがもう、日本の時計のハートビートやで！東経135度のライン上にあるんやけど、要するに、日本中の時計がこのラインを見て「今、何時や？」って確認してるみたいなもんや。
-
 明石市には、このすごいラインを示す「明石市時の碑公園」があるんや。行くと、まるでタイムトラベラーになった気分！ラインをまたぐと、時間を操る気分になれるかも（笑）。
-
 そして、明石市科学館には、日本最古の天文時計「明石の時計台」があるで。これがまた、時の魔法使いみたいに、ずっと正確に時間を刻んでるんや。まるで、時間の守護神が住んでるかのよう！
-
 だから、明石に来たら、この時の魔法の場所をぜひ体験してみてな！`, author: '@zuka20210101'
     }, {
         type: `Accessories`, prefecture: `Hyogo`, key: `hyogo-jst-meridian`, language: `en`, name: `Akashi Standard Meridian`, description: `This right here is like the heartbeat of Japan's clocks! It's on the line of 135 degrees east longitude, and basically, it feels like all the clocks in Japan are checking this line, asking, 'What time is it now?'
-
 In Akashi City, there's this park called 'Akashi City Time Monument Park' that marks this incredible line. When you visit, you'll feel like a time traveler! Crossing that line might just give you the sensation of controlling time itself (haha).
-
 And at the Akashi City Science Museum, there's Japan's oldest astronomical clock, the 'Akashi Clock Tower.' This thing, it ticks away time with the precision of a time wizard. It's as if the guardian deity of time resides there!
-
 So, if you ever come to Akashi, you've gotta experience this magical spot of time!`, author: '@zuka20210101'
     },
     {
         type: `Accessories`, prefecture: `Hyogo`, key: `hyogo-tower-museum`, language: `ja`, name: `神戸ポートタワー`, description: `神戸市にそびえ立つ、ちょっと太鼓を伸ばしすぎたような形のタワーやで！1963年11月20日に完成して、神戸港の近くで「こっち見て～！」とアピールしてるんや。
-
 このタワー、世界初のパイプ構造を持ってるんやけど、見た目はまるで和楽器の鼓をロングバージョンにしたみたい。そして、その美しい姿から「鉄塔の美女」とも呼ばれてるんやで。モデルさんもびっくりやろ？
-
 神戸のランドマークとして、多くの人々に愛されてるんやけど、ちょっと今、2021年9月27日から美容整形（耐震化などの補強工事）のためお休み中。でも、2024年春には、もっとキレイになって帰ってくる予定やで！`, author: '@zuka20210101'
     }, {
         type: `Accessories`, prefecture: `Hyogo`, key: `hyogo-tower-museum`, language: `en`, name: `Kobe Port Tower`, description: `There's this tower in Kobe that kinda looks like someone stretched out a traditional Japanese drum a bit too much! Completed on November 20, 1963, it stands near Kobe Port, shouting, 'Look over here!' to everyone passing by.
-
 This tower, right? It's got the world's first pipe structure, but its appearance? It's like someone took a traditional Japanese drum and made a long version of it. And thanks to its stunning looks, it's even been dubbed the 'Beauty of Steel Towers.' Even supermodels would be jealous, don't you think?
-
 While it's a beloved landmark of Kobe, it's currently taking a little beauty break since September 27, 2021, for some cosmetic surgery (you know, seismic retrofitting and reinforcement). But come Spring 2024, it's planning to return, looking even more fabulous!`, author: '@zuka20210101'
     },
     { type: `Accessories`, prefecture: `Nara`, key: `nara-kakinohasushi`, language: `ja`, name: `柿の葉寿司`, description: `柿の葉寿司、これが奈良のごちそうやねん！サバと酢飯、柿の葉でくるんであるんやけど、どこから来たのかはちょっと謎やわ。昔の夏祭りや、戦の時の食べ物としても使われてたってんな。あの鮮やかな柿の葉、防腐効果もあって、サバのうまさが引き立つんや。五條や吉野では、夏祭りや大事な日には外せんねん。食べ方は、冷えすぎたらレンジであっためて、冬は焼いてもええねん。今でも奈良のおみやげとしてめっちゃ人気！奈良に来たら、この伝統のうまさ、味わわんともったいないで！`, author: '@zuka20210101' }, { type: `Accessories`, prefecture: `Nara`, key: `nara-kakinohasushi`, language: `en`, name: `Persimmon Leaf Sushi`, description: `Persimmon leaf sushi, that's Nara's special treat, ya know! It's mackerel and vinegared rice wrapped in persimmon leaves, but its origins are a bit of a mystery. Some say it was a dish for summer festivals back in the day, or even a meal during wartime. Those vibrant persimmon leaves, with their preservative qualities, really highlight the mackerel's flavor. In places like Gojo and Yoshino, it's a must-have for summer festivals and special occasions. If it's too cold, just warm it up in the microwave, and in winter, grilling it is also a good choice. It's still super popular as a souvenir from Nara! If you come to Nara and don't taste this traditional delight, you're missing out big time!`, author: '@zuka20210101' },
     { type: `Accessories`, prefecture: `Nara`, key: `nara-narazuke`, language: `ja`, name: `奈良漬`, description: `奈良漬け、これが奈良の伝統的な味の秘密やで！酒粕に複数回漬けることで、美しい「べっこう色」に変わるんや。主に白うりやきゅうり、生姜、なすなどを使うけど、製造業者によっては、たくさんの野菜や果物が使われることもあるんやで。奈良時代からの歴史があって、甘さや塩気、独特の風味が楽しめるんや。ちなみに、3.5％以上のアルコール分も含んでるから、ちょっと大人の味やね。奈良に来たら、この伝統の味をぜひ体験してみてな！`, author: '@zuka20210101' }, { type: `Accessories`, prefecture: `Nara`, key: `nara-narazuke`, language: `en`, name: `Narazuke`, description: `Nara-zuke, that's the secret flavor of Nara for ya! By pickling in sake lees multiple times, it transforms into a beautiful 'tortoiseshell color'. While it mainly uses ingredients like shiro-uri (white gourd), cucumber, ginger, and eggplant, depending on the producer, a variety of vegetables and fruits might be used. With a history dating back to the Nara period, you can enjoy its unique sweetness, saltiness, and distinct flavor. By the way, it contains over 3.5% alcohol, giving it a bit of an adult kick. If you're in Nara, you've gotta try this traditional taste!`, author: '@zuka20210101' },
     {
         type: `Accessories`, prefecture: `Wakayama`, key: `wakayama-meharizushi`, language: `ja`, name: `めはり寿司`, description: `和歌山の「めはりずし」、その名前だけで目を張るほど驚き！なぜって？
-
 和歌山の南部、漁業や林業が盛んな地域で生まれたこのお弁当は、忙しい合間にサッと食べられる便利さから人気を集めたんだって。でも、その名前の由来は謎に包まれている。一説には「目を張るほど美味しいから」、また別の説では「おにぎりを目張りするように包むから」と言われてるよ。どっちが正解かは、食べてからのお楽しみ！
-
 高菜を使ったこのおにぎり、昔は麦をたっぷり入れて握っていた時代も。でも、今は小さくて食べやすいサイズが主流。具材も多種多様で、時代とともに進化してるんだって。
-
 和歌山の伝統を感じながら、目を張るほど驚く美味しさを味わってみて！'`, author: '@zuka20210101'
     }, {
         type: `Accessories`, prefecture: `Wakayama`, key: `wakayama-meharizushi`, language: `en`, name: `Mehari Zushi`, description: `Wakayama's 'Meharizushi', just hearing the name makes you widen your eyes in surprise! Why, you ask?
-
 Originating from the southern part of Wakayama, where fishing and forestry thrived, this quick snack gained popularity as a go-to bite during busy work breaks. But the origin of its name remains a mystery. Some say it's because it's 'so delicious you'll open your eyes wide', while others believe it's because the rice is 'wrapped up tightly like an eye'. The real answer? Well, that's a delightful mystery to ponder as you eat!
-
 This rice ball, made with pickled mustard greens, used to be packed with lots of barley back in the day. But now, it's evolved into a smaller, more bite-sized treat. The fillings have diversified over time, showcasing its evolution through the ages.
-
 Experience Wakayama's tradition while savoring a taste that'll surely make your eyes pop!`, author: '@zuka20210101'
     },
     {
         type: `Accessories`, prefecture: `Wakayama`, key: `wakayama-mikan-kaki`, language: `ja`, name: `みかん、柿`, description: `和歌山の果物たち、笑顔の収穫タイム！
-
 みかん、江戸時代からのベテラン！傾斜地での特訓を受け、糖度アップ！その結果、皇室までファンになっちゃうほどの逸品に。和歌山のみかん、甘さの裏には長い歴史が隠れてるんだよ！
-
 柿、和歌山のスーパースター！日本一の生産量を誇るけど、実は多才。たねなし、紀の川、富有…と、名前だけでドラマが始まりそう！特に「あんぽ柿」、和菓子のような味わいで、柿の中のアイドルみたい！
-
 和歌山、果物の宝庫！いちごや桃、梅も大活躍。観光農園で、果物狩りの冒険も待ってるよ！和歌山の果物たち、甘さと笑顔でお待ちしてます！'`, author: '@zuka20210101'
     }, {
         type: `Accessories`, prefecture: `Wakayama`, key: `wakayama-mikan-kaki`, language: `en`, name: `Wakayama mandarin oranges
-
 Wakayama persimmon`, description: `Wakayama's Fruits: Harvest Time with a Smile!
-
 Mikan (Japanese tangerines), the veterans since the Edo period! Trained on sloping terrains, they've leveled up their sweetness! As a result, they've charmed even the Imperial family. Behind Wakayama's mikan sweetness lies a long history!
-
 Persimmons, Wakayama's superstars! Boasting the highest production in Japan, they're quite versatile. Seedless, Kino-kawa, Fuyu... just naming them feels like the start of a drama! Especially the 'Anpo Persimmon', with its traditional Japanese sweet flavor, it's like the idol of the persimmon world!
-
 Wakayama, a treasure trove of fruits! Strawberries, peaches, and plums also shine brightly. Adventure awaits at the tourist farms with fruit-picking experiences! Wakayama's fruits are eagerly waiting with sweetness and smiles!`, author: '@zuka20210101'
     },
     {
         type: `Accessories`, prefecture: `Wakayama`, key: `wakayama-nankoume`, language: `ja`, name: `南高梅`, description: `和歌山の南高梅、大きさと歴史で圧倒！でも、その名前の由来、知ってる？
-
 和歌山県みなべ町、ここから始まった南高梅の伝説。果実は、まるでジムに通ってるかのように大きく、平均22g～35g！緑から鮮やかな紅色への変身は、まるでファッションショーのモデルのよう。
-
 「高田梅」から「南高梅」への名前の変遷は、まるでアイドルの改名みたい。小山貞一さんがスターを育て上げ、昭和25年の「梅のアカデミー賞」で優秀賞を獲得！
-
 和歌山は、梅の生産で日本一。6割の梅が和歌山ブランド！南高梅は、その中でもトップアイドル。でも、彼女の主な仕事は、梅干しや梅酒のモデルさん。`, author: '@zuka20210101'
     }, {
         type: `Accessories`, prefecture: `Wakayama`, key: `wakayama-nankoume`, language: `en`, name: `Wakayama ume`, description: `Wakayama's Nanko Ume: Impressive in size and history! But do you know the origin of its name?
-
 From Minabe town in Wakayama, the legend of Nanko Ume began. Its fruit is so large, as if it's been hitting the gym, averaging between 22g to 35g! Its transformation from green to a vibrant red is just like a model on a fashion runway.
-
 The transition from the name 'Takada Ume' to 'Nanko Ume' feels like a pop idol's name change. Mr. Seiichi Koyama nurtured this star, and in 1950 (Showa 25), it won the 'Ume Academy Award'!
-
 Wakayama is number one in Japan for plum production. 60% of the plums are Wakayama's brand! Among them, Nanko Ume is the top idol. However, her main gig? Being the model for pickled plums and plum wine.`, author: '@zuka20210101'
     },
     {
         type: `Accessories`, prefecture: `Okayama`, key: `oakayama-mamakari`, language: `ja`, name: `ままかり`, description: `隣のご飯も借りたくなる、岡山の美味、ままかり！
-
 岡山の誇り、ままかりは、実は「サッパ」という名のニシン科の魚。その名前の由来は、隣の家からご飯を借りたくなるほどの美味しさから。岡山の家庭料理として定番の「ままかり寿司」は、郷土料理百選にも選ばれるほどの逸品。また、酢で柔らかくした「ままかり酢漬」は、ご飯のお供に最適。小さなままかりは、家庭でのアレンジも豊富。唐揚げや塩焼きとしても楽しめます。この岡山の宝石を、さまざまな方法で味わってみてはいかがでしょうか。`, author: '@zuka20210101'
     }, {
         type: `Accessories`, prefecture: `Okayama`, key: `oakayama-mamakari`, language: `en`, name: `Japanese Scaled Sardine`, description: `Can't Resist Borrowing a Bite, Okayama's Delight: Mamakari!'
-
 Mamakari, the pride of Okayama, is actually a fish named 'Sappa' from the herring family. Its unique name, 'Mamakari,' originates from its irresistible taste, suggesting it's so delicious you'd want to borrow rice from your neighbor just to pair with it. The classic 'Mamakari Sushi' is a cherished dish in Okayama, even earning a spot in the esteemed 'Top 100 Local Dishes.' Additionally, the 'Mamakari Vinegar Pickle' is perfect as a side dish for rice. Being a small fish, Mamakari offers a plethora of home-cooking possibilities, from deep-frying to grilling. Why not dive into the diverse flavors of this Okayama gem?`, author: '@zuka20210101'
     },
     {
         type: `Accessories`, prefecture: `Okayama`, key: `okauama-muscat`, language: `ja`, name: `マスカット`, description: `岡山の太陽を閉じ込めた、マスカットの贅沢'
-
 岡山、日本の「果物王国」。ここでは、130年以上の歴史を持つマスカット・オブ・アレキサンドリアをはじめ、ニューピオーネのワインレッドの美しさ、シャインマスカットの皮ごとの食感、オーロラブラックの甘さ、そして冬の紫苑の色鮮やかさといった多彩なブドウが栽培されています。岡山の北部の気候は、昼夜の寒暖差が大きく、ブドウの甘さや色づきを引き出します。これらのブドウは、岡山県の推奨品種として、その品質と多様性で知られています。岡山のブドウは、太陽の恵みを受けて、一粒一粒が贅沢な味わいを持っています。`, author: '@zuka20210101'
     }, {
         type: `Accessories`, prefecture: `Okayama`, key: `okauama-muscat`, language: `en`, name: `Muscat`, description: `Capturing the Sun of Okayama, the Luxury of Muscat'
-
 Okayama, the 'Fruit Kingdom' of Japan. Here, a diverse range of grapes are cultivated, from the Muscat of Alexandria with its history spanning over 130 years, to the wine-red beauty of New Pione, the eat-whole allure of Shine Muscat, the sweetness of Aurora Black, and the vibrant hue of winter's Shien. The climate in the northern part of Okayama, with its significant temperature difference between day and night, enhances the sweetness and coloration of the grapes. These grapes are recognized as recommended varieties of Okayama Prefecture, known for their quality and diversity. Each grape from Okayama, blessed by the sun, offers a luxurious taste in every bite.`, author: '@zuka20210101'
     },
     { type: `Accessories`, prefecture: `Okayama`, key: `okayama-denim-jacket01`, language: `ja`, name: `デニムジャケット`, description: `①世界的な評価と綿花の栽培の歴史: 岡山デニムは日本のジーニストだけでなく、世界からも注目を集めています。特に児島地区は、綿花の栽培が盛んであり、これが繊維産業の発展の基盤となっています。`, author: '@zuka20210101' }, { type: `Accessories`, prefecture: `Okayama`, key: `okayama-denim-jacket01`, language: `en`, name: `denim jacket`, description: `①Global Recognition and History of Cotton Cultivation: Okayama denim is not only popular among Japanese jeans enthusiasts but also garners attention from around the world. Particularly, the Kojima district in Okayama is known for its thriving cotton cultivation, which has laid the foundation for the development of the textile industry.`, author: '@zuka20210101' },
@@ -453,20 +369,16 @@ Okayama, the 'Fruit Kingdom' of Japan. Here, a diverse range of grapes are culti
     { type: `Accessories`, prefecture: `Okayama`, key: `okayama-denim-jacket03`, language: `ja`, name: `デニムジャケット`, description: `③シャトル織機と技術の革新: セルヴィッチデニムはシャトル織機でしか織れない特別なデニムで、存在感や雰囲気に圧倒的な違いがあります。岡山デニムは伝統的な製法を守りつつ、新しい技術やアイディアを取り入れています。`, author: '@zuka20210101' }, { type: `Accessories`, prefecture: `Okayama`, key: `okayama-denim-jacket03`, language: `en`, name: `denim jacket`, description: `③Shuttle Looms and Technological Innovation: Selvedge denim, which can only be woven on shuttle looms, has a distinct presence and ambiance. Okayama denim respects traditional methods while actively incorporating new techniques and ideas.`, author: '@zuka20210101' },
     {
         type: `Accessories`, prefecture: `Okayama`, key: `okayama-kibidango`, language: `ja`, name: `きびだんご`, description: `「桃太郎も驚き、鬼も笑顔。きびだんごの力」
-
 岡山の宝、きびだんご。古くからの「黍団子」の伝統を受け継ぎながら、「吉備団子」として岡山市の吉備津神社で新たな命を吹き込まれました。この和菓子は、糯米粉、上白糖、水飴を主成分とし、糯黍粉の風味が特徴。湯炊きの技法で半透明の美しい団子に仕上げられます。岡山の和菓子職人・武田半蔵の手によって、現代のきびだんごが誕生しました。そして、桃太郎の伝説と結びつけることで、岡山の代表的な土産として名を馳せるように。このきびだんごは、その歴史と伝統、そして岡山の心を持ち、日本中、そして世界中の人々に愛され続けています。`, author: '@zuka20210101'
     }, {
         type: `Accessories`, prefecture: `Okayama`, key: `okayama-kibidango`, language: `en`, name: `Kibidango`, description: `Momotaro's Surprise, Even the Oni Smiles: The Power of Kibi Dango'
-
 The treasure of Okayama, Kibi Dango. Inheriting the tradition of the ancient 'Kibi Dango,' it was reborn in Okayama City's Kibitsu Shrine as the 'Kibi Dango.' This confectionery is characterized by its main ingredients: glutinous rice flour, refined sugar, and syrup, with the unique flavor of millet flour. Through a boiling technique, it's transformed into a beautifully translucent dumpling. Thanks to the craftsmanship of Okayama's confectioner, Takeda Hanzo, the modern Kibi Dango was born. By associating it with the legend of Momotaro, it has become a renowned souvenir of Okayama. This Kibi Dango, with its history, tradition, and the spirit of Okayama, continues to be loved by people all over Japan and the world.`, author: '@zuka20210101'
     },
     {
         type: `Accessories`, prefecture: `Okayama`, key: `okayama-momotaro`, language: `ja`, name: `桃太郎`, description: `古代の伝説、今も生きる桃の勇者'
-
 桃太郎、日本の語り継がれる英雄。桃から誕生し、仲間たちと共に鬼を退治するこの物語は、岡山の吉備地方に実際に存在したとされる伝承と深く結びついています。吉備の古代神話と桃太郎のエピソードは驚くほど一致し、岡山駅前の桃太郎像はその繋がりを物語っています。しかし、桃太郎の伝説は日本全国に広がり、各地で異なるバージョンが語られてきました。古代の他国の物語との共通点も指摘され、桃太郎は国際的な英雄とも言えるでしょう。岡山と桃太郎の繋がりは、キビ団子や桃の特産品とも深く関係しており、古代の歴史と物語が融合した岡山の桃太郎は、今も私たちの心に生き続けています。`, author: '@zuka20210101'
     }, {
         type: `Accessories`, prefecture: `Okayama`, key: `okayama-momotaro`, language: `en`, name: `Momotaro`, description: `Legends of Old, the Ever-Living Peach Hero'
-
 Momotaro, a hero deeply rooted in Japanese folklore, emerges from a peach to vanquish demons with the help of his companions. This tale is intricately tied to the ancient traditions of the Okayama region, specifically the Kibi area, believed to have been the actual setting for the legend. The ancient myths of Kibi remarkably align with Momotaro's adventures, and the statue of Momotaro in front of Okayama Station stands as a testament to this connection. Yet, the legend of Momotaro resonates throughout Japan, with variations of the story told in different regions. Parallels have been drawn between Momotaro's tale and ancient stories from other countries, positioning him as an international hero. The bond between Okayama and Momotaro is further strengthened by the region's famed kibi dango and its iconic peaches. Merging ancient history with folklore, Okayama's Momotaro continues to captivate our hearts today.`, author: '@zuka20210101'
     },
     { type: `Accessories`, prefecture: `Okayama`, key: `okayama-peach02`, language: `ja`, name: `白桃`, description: `瀬戸内の温暖な気候に恵まれて収穫される岡山の白桃は、甘みたっぷりでなめらかな味、気品ある香り、上品な姿が特徴で、全国にその名を馳せています。`, author: 'hamachan' }, { type: `Accessories`, prefecture: `Okayama`, key: `okayama-peach02`, language: `en`, name: `white peach`, description: `Okayama's white peaches, harvested in the mild climate of the Seto Inland Sea, are famous throughout Japan for their sweet, smooth taste, noble aroma, and elegant appearance.`, author: 'hamachan' },
@@ -493,13 +405,11 @@ It is one of the three most famous bridges in Japan and one of the three most un
     },
     { type: `Accessories`, prefecture: `Yamaguchi`, key: `yamaguchi-motonosumiinari`, language: `ja`, name: `元乃隅稲成神社`, description: `元乃隅稲成神社は、山口県長門市油谷津黄にある神社。`, author: 'hamachan' }, {
         type: `Accessories`, prefecture: `Yamaguchi`, key: `yamaguchi-motonosumiinari`, language: `en`, name: `Motonosumi Inari Shrine
-
 `, description: `Motonosumi Inari Shrine is located in Aburayatsukou, Nagato City, Yamaguchi Prefecture.`, author: 'hamachan'
     },
     { type: `Accessories`, prefecture: `Yamaguchi`, key: `yamaguchi-white -snake`, language: `ja`, name: `岩国の白蛇`, description: `岩国のシロヘビは、山口県岩国市に生息する白蛇である。この白蛇は遺伝によって白化が子孫の代にも受け継がれている。日本国指定の天然記念物。`, author: 'hamachan' }, { type: `Accessories`, prefecture: `Yamaguchi`, key: `yamaguchi-white -snake`, language: `en`, name: `Iwakuni's White Snake`, description: `The Iwakuni's White Snake is a white snake that lives in Iwakuni City, Yamaguchi Prefecture. This white snake's whitening is passed on to offspring generations through heredity. It is a natural monument designated by the Japanese government.`, author: 'hamachan' },
     { type: `Accessories`, prefecture: `Yamaguchi`, key: `yamaguhchi-tsunoshima-big-bridge`, language: `ja`, name: `角島大橋`, description: `角島大橋は、山口県下関市豊北町神田と同市豊北町角島間の海士ヶ瀬戸に架かる橋。全長1780メートル。`, author: 'hamachan' }, {
         type: `Accessories`, prefecture: `Yamaguchi`, key: `yamaguhchi-tsunoshima-big-bridge`, language: `en`, name: `Tsunoshima Ohashi Bridge
-
 `, description: `The Kakunoshima Bridge spans the Amaigaseido (Amaigaseido) between Kanda and Kakunoshima in Toyokita-cho, Shimonoseki City, Yamaguchi Prefecture. It is 1,780 meters long.`, author: 'hamachan'
     },
     { type: `Accessories`, prefecture: `Tokushima`, key: `tokushima-awaodori`, language: `ja`, name: `阿波踊り`, description: `阿波国（現・徳島県）を発祥とする盆踊り。高知のよさこい祭りと愛媛の新居浜太鼓祭りと並ぶ四国三大祭りであり、日本三大盆踊りの一つとしても知られる。`, author: 'hamachan' }, { type: `Accessories`, prefecture: `Tokushima`, key: `tokushima-awaodori`, language: `en`, name: `Awa dance`, description: `A Bon dance that originated in Awa Province (now Tokushima Prefecture). It is one of the three major festivals in Shikoku, along with the Yosakoi Festival in Kochi and the Niihama Taiko Festival in Ehime, and is also known as one of the three major Bon dances in Japan.`, author: 'hamachan' },
@@ -720,31 +630,23 @@ The white tiger by the white variant is real as the White Tiger.`, author: 'hama
     },
     { type: `Heads`, prefecture: `Chiba`, key: `chiba-loquat`, language: `ja`, name: `びわ`, description: `最適な環境を提供しています。この特別な組み合わせが、千葉県を日本のびわの楽園に変えています。千葉県のびわは、その糖度の高さと芳醇な風味で知られ、口にするとまるで自然の甘さが溢れ出るかのようです。その魅力は、一度味わったら忘れられないほどです。`, author: '' }, {
         type: `Heads`, prefecture: `Chiba`, key: `chiba-loquat`, language: `en`, name: `Loquat`, description: `The reason loquats shine in Chiba Prefecture seems as if nature itself has bestowed its blessings upon this land. Thanks to its warm climate and fertile soil, Chiba Prefecture provides an ideal environment for cultivating loquats. This unique combination has transformed Chiba Prefecture into Japan's loquat paradise.
-
 Loquats from Chiba Prefecture are renowned for their high sugar content and rich flavor, almost as if they overflow with the natural sweetness of the land. Their allure is unforgettable once tasted.
-
 Furthermore, Chiba Prefecture's loquats are widely cherished in local cuisine and sweets, enriching the region's culinary culture. These fruits are a source of pride for Chiba Prefecture, cultivated with passion, and enjoyed to the fullest. Chiba Prefecture's loquats are a place where nature and human passion intersect, and their deliciousness fills the heart.`, author: ''
     },
     {
         type: `Heads`, prefecture: `Chiba`, key: `chiba-nanohana`, language: `ja`, name: `菜の花`, description: `千葉県で菜の花が有名な理由は、美しい黄色の花畑が特徴的で、春の風物詩として多くの人々に愛されているからです。春になると、千葉県の大地は広大な菜の花畑で覆われ、その景色は壮観です。これらの花畑は観光スポットとして人気があり、多くの観光客や地元の人々が訪れ、美しい風景を楽しんでいます。
-
 また、菜の花は料理にも広く使用され、千葉県の郷土料理や地元のグルメには欠かせない食材として重要な役割を果たしています。その美味しさと多様性も、菜の花が有名な理由です。
-
 千葉県の菜の花は、美しさと実用性を兼ね備え、地域の自然と文化を象徴する存在として、多くの人々に愛されています。`, author: ''
     }, {
         type: `Heads`, prefecture: `Chiba`, key: `chiba-nanohana`, language: `en`, name: `rapeseed blossoms`, description: `The reason why rapeseed blossoms are famous in Chiba Prefecture is as if the magic of spring has been bestowed upon this region with its distinctive fields of beautiful yellow flowers. As spring arrives, the Chiba Prefecture landscape transforms into vast expanses of rapeseed blossoms, creating a spectacular sight that captures the hearts of many. These fields have become popular tourist attractions, drawing both visitors and locals to revel in the breathtaking scenery.
-
 Moreover, rapeseed blossoms are not just visually stunning; they also play a significant role in local cuisine. They are an essential ingredient in Chiba Prefecture's regional dishes and culinary delights. Their deliciousness and versatility contribute to why rapeseed blossoms are renowned.
-
 Chiba Prefecture's rapeseed blossoms are a symbol of both natural beauty and practicality, deeply rooted in the region's culture and cherished by many with passion.`, author: ''
     },
     {
         type: `Heads`, prefecture: `Chiba`, key: `chiba-soysauce`, language: `ja`, name: `ソイソース`, description: `千葉県でソイソースが有名な理由は、まさにここがソイソースの魔法の故郷と言えるからです。千葉県は大豆生産の豊かな土地で、その大豆を使って高品質なソイソースが生み出されています。地元の農家たちは、自慢の大豆を使ってソイソースを仕込み、それが地元の誇りとなっています。
-
 さらに、千葉県は首都圏に近く、ソイソースの供給がスムーズです。これが、多くのレストランや家庭で千葉県産のソイソースが愛用されている理由の一つです。千葉県のソイソースはまさに情熱の結晶であり、その美味しさは一度試す価値があります。ここはソイソース愛好家の聖地と言っても過言ではありません！`, author: ''
     }, {
         type: `Heads`, prefecture: `Chiba`, key: `chiba-soysauce`, language: `en`, name: `soy sauce`, description: `The reason why soy sauce is famous in Chiba Prefecture is akin to calling this place the magical homeland of soy sauce. Chiba Prefecture boasts abundant soybean cultivation, and these locally grown soybeans are used to create high-quality soy sauce. Local farmers take great pride in using their homegrown soybeans to craft this exquisite condiment.
-
 Furthermore, Chiba Prefecture's proximity to the Tokyo metropolitan area ensures convenient distribution, making it a preferred choice for countless restaurants and households. That's why Chiba Prefecture is renowned as the birthplace of soy sauce, and its locally-produced soy sauce enjoys widespread popularity. It's not an exaggeration to call this place a sanctuary for soy sauce enthusiasts!`, author: ''
     },
     { type: `Heads`, prefecture: `Chiba`, key: `head-12-chiba`, language: `ja`, name: `千葉`, description: `千葉（Chiba）は、日本の首都圏に位置する県です。成田国際空港があり、国際的なアクセスが良い地域として知られています。また、東京ディズニーリゾートといった観光名所もあり、国内外から多くの観光客が訪れます。工業地域も発展し、国際的な貿易に貢献しています。千葉県は国際的なつながりが強い地域の一つです。`, author: '' }, { type: `Heads`, prefecture: `Chiba`, key: `head-12-chiba`, language: `en`, name: `Chiba`, description: `Chiba is a prefecture located in the Greater Tokyo Area of Japan. It is known for its accessibility with Narita International Airport serving as a major international gateway. Additionally, it boasts popular tourist destinations such as Tokyo Disney Resort, attracting visitors from both within Japan and around the world. The region has also seen industrial growth, contributing to international trade. Chiba Prefecture is recognized for its strong international connections.`, author: '' },
@@ -840,11 +742,9 @@ Kanazawa foil is produced by craftsmen who use gold alloys as small as a 10-yen 
     },
     {
         type: `Heads`, prefecture: `Fukui`, key: `fukui-dinosaur`, language: `ja`, name: `恐竜`, description: `**「福井の地で息づく、恐竜の伝説」**
-
 福井県、日本の恐竜の宝庫。ここは「恐竜王国」として名高く、日本最大の恐竜の秘密が眠る場所。驚くべきことに、日本で発見された恐竜化石の約8割がこの福井の地から出土しています。勝山市の地下深くから、恐竜の歴史が次々と明らかになり、その名も「フクイ」。そして、世界三大恐竜博物館の一つ、福井県立恐竜博物館では、恐竜たちがかつてこの地で生きていた様子を目の当たりにできる。さらに、恐竜ホテルでの夢のような滞在、恐竜グッズでのお土産の楽しみ、そして恐竜のオブジェでの写真撮影。福井は、恐竜の魅力を満喫できる場所として、多くの人々を魅了しています。`, author: '@zuka20210101'
     }, {
         type: `Heads`, prefecture: `Fukui`, key: `fukui-dinosaur`, language: `en`, name: `Fukui dinosaurs`, description: `**'Breathing the Legend of Dinosaurs in Fukui'**
-
 Fukui Prefecture, the treasure trove of dinosaurs in Japan. Renowned as the 'Kingdom of Dinosaurs,' it's the place where Japan's largest dinosaur secrets lie hidden. Astonishingly, about 80% of the dinosaur fossils discovered in Japan have been unearthed from this very land of Fukui. Deep beneath Katsuyama City, the history of dinosaurs continues to be revealed, bearing the name 'Fukui.' Moreover, at one of the world's top three dinosaur museums, the Fukui Prefectural Dinosaur Museum, visitors can witness firsthand the life of dinosaurs that once roamed this region. Additionally, dreamy stays at the Dinosaur Hotel, delightful dinosaur-themed souvenirs, and photo opportunities with dinosaur sculptures await. Fukui captivates many with its immersive dinosaur experiences.`, author: '@zuka20210101'
     },
     {
@@ -903,20 +803,16 @@ The castle tower is designated as a National Treasure as it is one of the only e
     { type: `Heads`, prefecture: `Nagano`, key: `nagano-wasabi`, language: `ja`, name: `安曇野わさび`, description: `北アルプスの山々に囲まれた長野県安曇野市。名水として知られる雪どけ水が育む特産品が「わさび」です。安曇野で一日に湧き出る水の量は７０万トン。その豊富な湧き水が、野生のわさびにもともとある「成長を妨げる成分」を洗い流し、大きく風味豊かなわさびが育ちます。`, author: 'hamachan' }, { type: `Heads`, prefecture: `Nagano`, key: `nagano-wasabi`, language: `en`, name: `Azumino wasabi`, description: `Azumino City in Nagano Prefecture is surrounded by the mountains of the Northern Alps. Wasabi (Japanese horseradish) is a specialty product nurtured by snow melt water known as 'famous water. Azumino produces 700,000 tons of spring water per day. This abundant spring water washes away the 'growth-inhibiting elements' that are inherent in wild wasabi, resulting in the growth of large, flavorful wasabi.`, author: 'hamachan' },
     {
         type: `Heads`, prefecture: `Gifu`, key: `gifu-gassho-summer`, language: `ja`, name: `合掌造り`, description: `雪国の知恵、合掌造り: 白川の伝統とブルーノ・タウトの再発見'
-
 合掌造りは、手の平を合わせたような山形の茅葺き屋根が特徴の住居で、特に白川の「切妻合掌造り」は積雪に適応した独特の形状を持ちます。南北に面して建てられるこの家は、風の抵抗を減らし、季節に応じて適切な温度を保つ設計となっています。また、屋根裏は養蚕の場として利用され、その形態は蚕の飼育に最適な環境を提供します。この美しい建築は、ドイツの建築家ブルーノ・タウトによって世界に紹介され、彼はその合理性と論理性を絶賛しました。`, author: '@zuka20210101'
     }, {
         type: `Heads`, prefecture: `Gifu`, key: `gifu-gassho-summer`, language: `en`, name: `Gassho-style`, description: `Wisdom of the Snow Country: Gassho-style Architecture - Shirakawa's Tradition and Bruno Taut's Rediscovery'
-
 Gassho-style architecture is characterized by its thatched roofs resembling hands joined in prayer. Particularly in Shirakawa, the 'Kirizuma Gassho-style' is uniquely shaped to adapt to heavy snowfall. These houses, oriented north-south, are designed to minimize wind resistance and maintain an appropriate temperature throughout the seasons. Moreover, the attic space is utilized for silkworm cultivation, with its structure providing an optimal environment for the task. This beautiful architecture was introduced to the world by the German architect Bruno Taut, who praised its rationality and logic.`, author: '@zuka20210101'
     },
     {
         type: `Heads`, prefecture: `Gifu`, key: `gifu-gassho-winter`, language: `ja`, name: `合掌造り`, description: `白川郷の合掌造り: 四季の美と「結」の心'
-
 白川郷の合掌造りは、村人同士の協力による茅葺き屋根の吹き替えを通じて「結（ゆい）」の精神を受け継ぐ日本の伝統的な建築様式です。春の桜、夏の新緑、秋の紅葉と、冬は特に魅力的。積雪により合掌造りが真っ白に覆われ、その美しさは圧巻。夜にはライトアップされた合掌造りが幻想的な雰囲気を放ち、訪れる者たちを魅了します。四季折々の白川郷の美しさを際立たせています。`, author: '@zuka20210101'
     }, {
         type: `Heads`, prefecture: `Gifu`, key: `gifu-gassho-winter`, language: `en`, name: `Gassho-style`, description: `Shirakawa-go's Gassho-style Architecture: Beauty of the Four Seasons and the Spirit of 'Yui''
-
 Shirakawa-go's Gassho-style architecture perpetuates the spirit of 'Yui', a tradition of mutual assistance, through the communal re-thatching of their steep straw roofs. With cherry blossoms in spring, verdant greenery in summer, vibrant autumn leaves, and winter being especially enchanting. The Gassho-style houses are blanketed in pristine white snow, presenting a breathtaking sight. At night, these snow-covered houses are illuminated, casting a magical ambiance that captivates all who visit. The beauty of Shirakawa-go shines through in every season.`, author: '@zuka20210101'
     },
     {
@@ -928,11 +824,9 @@ Chicken chan is defined as 'a chicken dish cut into bite-sized pieces and season
     },
     {
         type: `Heads`, prefecture: `Gifu`, key: `gifu-ukai`, language: `ja`, name: `鵜飼`, description: `「長良川の清流と共に、1300年の伝統を継ぐ」
-
 岐阜の鵜飼いは、時代を超えて長良川の清流とともに息づいています。古墳時代からのこの技、鵜を使ってアユを捕る様は、702年の古文書にもその名が刻まれ、1300年の歴史を誇ります。織田信長や徳川家康もその魅力に引き込まれ、明治天皇やチャップリンまで、多くの著名人がその舞台となった岐阜を訪れました。今も10万人を超える観光客がその伝統を目の当たりにし、岐阜の鵜飼いはユネスコ無形文化遺産への登録を目指して、新たな歴史を刻んでいます。`, author: '@zuka20210101'
     }, {
         type: `Heads`, prefecture: `Gifu`, key: `gifu-ukai`, language: `en`, name: `cormorant fishing`, description: `Along with the clear streams of the Nagara River, inheriting 1300 years of tradition.'
-
 The cormorant fishing of Gifu has thrived alongside the pristine waters of the Nagara River through the ages. Originating from the Kofun period, this technique of using cormorants to catch ayu fish is proudly documented in ancient records from 702 AD, boasting a history of 1300 years. Historical figures like Oda Nobunaga and Tokugawa Ieyasu were captivated by its charm, and even the likes of Emperor Meiji and Charlie Chaplin visited Gifu to witness it. Today, over 100,000 tourists come to experience this tradition firsthand, as Gifu's cormorant fishing aims for UNESCO Intangible Cultural Heritage registration, continuing to carve out a new chapter in its history.`, author: '@zuka20210101'
     },
     {
@@ -970,246 +864,161 @@ It is also an industrial prefecture that makes up the Chukyo Industrial Zone, ce
     },
     {
         type: `Heads`, prefecture: `Mie`, key: `head-24-mie`, language: `ja`, name: `三重県`, description: `三重の魅力、一重には収まらない！'
-
 三重県、日本の中心に位置し、東西の交差点としての役割を果たしてきました。伊勢神宮や熊野古道伊勢路といった観光名所、伊勢海老や松坂牛、伊勢うどん、赤福といった絶品グルメ、そして3万年の歴史を持つ遺跡や伊勢、伊賀、志摩の3国の歴史。また、コシヒカリの生産で西日本一を誇り、漁業や工業も盛ん。松尾芭蕉の故郷としての俳句の文化や、真珠の養殖で知られるミキモト真珠島、そして伝統的な祭りや行事が織りなす文化の宝庫。三重県は、その多様な魅力で訪れる者を魅了しています。`, author: '@zuka20210101'
     }, {
         type: `Heads`, prefecture: `Mie`, key: `head-24-mie`, language: `en`, name: `Mie Prefecture`, description: `Triple the Charm, Impossible to Contain in a Single Layer!'
-
 Mie Prefecture, located at the heart of Japan, has historically served as the crossroads between eastern and western Japan. With renowned tourist spots like the Ise Grand Shrine and the Kumano Kodo Iseji route, delectable delicacies such as Ise lobster, Matsusaka beef, Ise udon, and Akafuku mochi, and a history that spans back 30,000 years with sites from the Old Stone Age and the histories of Ise, Iga, and Shima regions. Moreover, it boasts being the top producer of Koshihikari rice in western Japan, and thrives in fisheries and industries. As the birthplace of Matsuo Basho, it has deep ties to haiku poetry, and Mikimoto Pearl Island is renowned for its pearl cultivation and research. With its myriad of traditional festivals and events, Mie Prefecture captivates all who visit with its diverse allure.`, author: '@zuka20210101'
     },
     {
         type: `Heads`, prefecture: `Mie`, key: `mie-jingu`, language: `ja`, name: `伊勢神宮`, description: `1500の祭り、一つの信仰'
-
 伊勢神宮、通称「お伊勢さん」は、三重県伊勢市の「美うまし国」に鎮座し、太陽神である天照大御神を祀る内宮と、食事を司る豊受の大御神を祀る外宮の二つの主要な宮殿から成り立っています。古代の「唯一神明造」の建築様式を持ち、神聖な「神宮の森」に囲まれています。年間約1500回の祭りが行われ、20年ごとの「式年遷宮」は特に注目される伝統的な儀式です。参拝は外宮から内宮へと進み、その周辺には歴史的な町並みや観光スポットが広がっています。伊勢神宮は、その深い歴史と自然の美しさで、多くの人々に愛されています。`, author: '@zuka20210101'
     }, {
         type: `Heads`, prefecture: `Mie`, key: `mie-jingu`, language: `en`, name: `Ise Jingu`, description: `1500 Festivals, One Faith'
-
 Ise Grand Shrine, commonly known as 'O-Ise-san,' is located in the 'Miumashi Kuni' of Ise City, Mie Prefecture. It comprises two main sanctuaries: the Inner Shrine, which enshrines the Sun Goddess, Amaterasu Omikami, and the Outer Shrine, dedicated to Toyouke Omikami, the deity of food and harvest. Built in the ancient 'Shinmei-zukuri' architectural style, it's surrounded by the sacred 'Jingu Forest.' Throughout the year, about 1500 festivals are celebrated, with the 'Shikinen Sengu' ceremony, held every 20 years, being particularly significant. Pilgrims traditionally start their visit at the Outer Shrine, moving to the Inner Shrine, with historic townscapes and tourist spots spread around the area. The Ise Grand Shrine, with its profound history and natural beauty, is cherished by many.`, author: '@zuka20210101'
     },
     {
         type: `Heads`, prefecture: `Mie`, key: `mie-ninja`, language: `ja`, name: `忍者`, description: `不可能を可能に。忍者、日本のオリジナルアクションヒーロー！'
-
 日本の歴史の中で、影の中で活躍した特別な存在、それが忍者です。彼らは、敵の情報を収集し、夜陰に紛れて行動することから「忍び」と呼ばれ、その技術と知識は日本独特のものとして発展しました。特に戦国時代には、彼らの情報収集能力は戦国大名にとって欠かせないものとなりました。
-
 忍者の起源は古く、聖徳太子の時代までさかのぼると言われています。そして、伊賀や甲賀といった地域は、忍者の名で知られるようになりました。彼らは火術や呪術、毒薬を駆使して、その任務を遂行しました。
-
 現代では、実際の戦闘任務を持つ忍者は存在しないものの、その伝統や文化は多くの人々によって受け継がれています。彼らは、日本のオリジナルアクションヒーローとして、不可能を可能にする技術と知識を持っていたのです。`, author: '@zuka20210101'
     }, {
         type: `Heads`, prefecture: `Mie`, key: `mie-ninja`, language: `en`, name: `ninja`, description: `Turning the impossible into possible. Ninja, Japan's original action hero!'
-
 Throughout Japanese history, there existed a special group that thrived in the shadows: the ninjas. Known as 'Shinobi' because of their ability to move stealthily under the cover of night, their unique skills and knowledge evolved distinctly within Japan. Especially during the Warring States period, their intelligence-gathering capabilities became indispensable to the feudal lords.
-
 The origins of the ninja are said to trace back to the era of Prince Shotoku. Regions like Iga and Koga became synonymous with these shadow warriors. They employed techniques involving pyrotechnics, mystic arts, and poisons to accomplish their missions.
-
 While there are no ninjas with actual combat missions in modern times, their traditions and culture are still passed down by many. They were Japan's original action heroes, possessing the skills and knowledge to turn the impossible into possible.`, author: '@zuka20210101'
     },
     {
         type: `Heads`, prefecture: `Shiga`, key: `head-25-shiga`, language: `ja`, name: `滋賀県`, description: `滋賀県、一番の王国！👑
-
  1. 経済界のスーパースター！
 - 滋賀県、工業のヒーロー！全国で第2次産業がキラリと輝くNo.1スポット。
 - 製造業のアイドルとして、その実績はチャート上位常連！
-
  2. 出荷のキング！
 - 繊維、化学、プラスチック…滋賀県、出荷のトップアーティスト！売上チャートはもちろんNo.1！
-
  3. 暮らしの天国！
 - 人々の笑顔が増える滋賀！男性寿命は日本一、女性も負けずの2位！
 - そして、図書館愛が止まらない！読書率もトップクラス！
-
  4. 琵琶湖、湖界のロックスター！
 - 日本一のビッグレイク、琵琶湖！古くも美しい、そしてみんなの水のヒーロー。
 - ラムサールのVIPエリアにも名を連ねる、湖界のセレブ！
-
  5. 歴史のハリウッド！
 - 京都・奈良の隣人として、歴史のレッドカーペットを歩む滋賀県！
 - 重要文化財や名勝の数で、歴史界のアカデミー賞も狙えるか!?
-
 滋賀県、各分野で「一番」を誇る、まさに日本のスーパースター県！🌟`, author: '@zuka20210101'
     }, {
         type: `Heads`, prefecture: `Shiga`, key: `head-25-shiga`, language: `en`, name: `Shiga Prefecture`, description: `Shiga Prefecture, the Kingdom of No.1s! 👑
-
 1. Economic Superstar!
 - Shiga, the hero of the industrial world! The nation's shining No.1 spot for secondary industries.
 - As a manufacturing idol, its achievements are always topping the charts!
-
  2. King of Shipments!
 - Textiles, chemicals, plastics... Shiga, the top artist of shipments! Sales charts? Of course, No.1!
-
  3. Living Paradise!
 - Where smiles increase in Shiga! Men's lifespan ranks first in Japan, and women are a close second!
 - Plus, an unstoppable love for libraries! Reading rates are top-notch!
-
  4. Lake Biwa, the Rockstar of Lakes!
 - Japan's biggest lake, Lake Biwa! Ancient and beautiful, and everyone's water hero.
 - Also listed in the VIP area of the Ramsar Convention, the lake's very own celeb!
-
  5. Hollywood of History!
 - As a neighbor to Kyoto & Nara, Shiga walks the red carpet of history!
 - With its number of important cultural properties and scenic spots, could it aim for the historical Academy Awards!?
-
 Shiga Prefecture, boasting 'No.1' in various fields, is truly Japan's superstar prefecture! 🌟`, author: '@zuka20210101'
     },
     {
         type: `Heads`, prefecture: `Shiga`, key: `shiga-blackbass`, language: `ja`, name: `ブラックバス`, description: `滋賀県の琵琶湖、ブラックバスの楽園？でも、ちょっと待って！
-
 🐟 **オオクチバス**：北米出身の大物セレブ！名前の通り、口がデカい。1974年に彦根市でデビューして、あっという間に琵琶湖全域で大ブレイク！
 食事の好み？肉食系で、甲殻類や魚類をガツガツ食べる！
-
 🐟 **コクチバス**：オオクチバスの親戚だけど、ちょっと控えめな性格。口は小さめで、ちょっと冷えた場所でも大丈夫！1995年にマキノ町でデビュー。琵琶湖での大ブレイクはまだこれから？
-
 でも、この2匹、琵琶湖の生態系にちょっと問題を起こしてるみたい。滋賀県は「ブラックバス駆除プロジェクト」を進行中！ブラックバスたち、次のステージはどこ？`, author: '@zuka20210101'
     }, {
         type: `Heads`, prefecture: `Shiga`, key: `shiga-blackbass`, language: `en`, name: `black bass`, description: `Biwa Lake in Shiga: A paradise for black bass? But wait a sec!
-
 🐟 Largemouth Bass: A big-shot celeb from North America! True to its name, it's got a BIG mouth. Made its debut in Hikone City in 1974 and quickly became a sensation throughout Lake Biwa!
 Dietary preference? Carnivorous, gobbling up crustaceans and fish!
-
 🐟 Smallmouth Bass: Related to the Largemouth but a bit more reserved. Smaller mouth and cool with chillier spots! Debuted in Makino Town in 1995. Big break in Lake Biwa still on the horizon?
-
 However, these two are causing a bit of a ruckus in Lake Biwa's ecosystem. Shiga Prefecture is on a 'Black Bass Eviction Mission'! So, black bass, where's your next stage?`, author: '@zuka20210101'
     },
     {
         type: `Heads`, prefecture: `Shiga`, key: `shiga-hikonecastle`, language: `ja`, name: `彦根城`, description: `彦根城、日本の古城界のスーパースター！でも、その裏話、知ってる？
-
 🏯 国宝ステータス：彦根城は、姫路、松本、犬山、松江と並ぶエリート5城の一つ！
-
 🎖 文化的な宝物：彦根城、ただの城じゃない！歴史的な建物がたくさん。特に彦根城太鼓門や天秤櫓は見逃せない！
-
 🔔 豪華な鐘：大量の小判を使って作られた時報鐘。まさに、お金が音になったらこんな音！
-
 🙏 観音さまの特技：目のトラブルには彦根寺の観音さまにお任せ！
-
 ⏳ 築城の歴史：彦根城、20年の歳月をかけての大作。そして、大津城や長浜城からの移築パーツを使用！
-
 😱 解体の危機：明治時代、彦根城は解体のピンチ！でも、明治天皇の「STOP！」の一言で救われた。
-
 🌟 彦根城の今：12の近世城の中で、彦根城は国宝のステータスを誇る！`, author: '@zuka20210101'
     }, {
         type: `Heads`, prefecture: `Shiga`, key: `shiga-hikonecastle`, language: `en`, name: `Hikone Castle`, description: `Hikone Castle, the superstar of Japan's ancient castles! But, do you know the behind-the-scenes stories?
-
 🏯 **National Treasure Status**: Hikone Castle stands among the elite five, alongside Himeji, Matsumoto, Inuyama, and Matsue Castles!
-
 🎖 **Cultural Treasures**: Hikone Castle isn't just any castle! It's home to numerous historical structures. Especially, the Hikone Castle Drum Gate and Balance Turret are must-sees!
-
 🔔 **Luxurious Bell**: A timekeeping bell made using a vast amount of koban coins. If money had a sound, this would be it!
-
 🙏 **Specialty of Kannon**: Got eye troubles? Entrust them to the Kannon deity of Hikone Temple!
-
 ⏳ **Castle Construction History**: Hikone Castle, a grand project spanning 20 years. And it even incorporates relocated parts from Otsu and Nagahama Castles!
-
 😱 **Demolition Crisis**: During the Meiji era, Hikone Castle faced the threat of demolition! But, a single 'STOP!' from Emperor Meiji saved the day.
-
 🌟 **Hikone Castle Today**: Among the 12 castles from the early modern period, Hikone Castle boasts its status as a National Treasure!`, author: '@zuka20210101'
     },
     {
         type: `Heads`, prefecture: `Kyoto`, key: `head-26-kyoto`, language: `ja`, name: `京都府`, description: `京都、日本の文化のハブで、でもちょっとユニークな都市！その理由、知りたい？
-
 🏯 **寺社仏閣の宝庫**：金閣寺、銀閣寺、清水寺...名前だけでピンとくるでしょ？
-
 🌳 **自然溢れる都会**：都会だけど、四方を山に囲まれてて、川も流れてる。都会のオアシスって感じ！
-
 🌸 **四季折々の楽しみ**：桜や紅葉のスポットで、季節ごとのお祭りも盛大に！
-
 🍜 **学生の楽園**：学園都市だから、安くて美味しい飲食店がたくさん！
-
 ☕ **落ち着く喫茶店**：伝統的なお茶の文化が根付いてるから、リラックスできる喫茶店が満載！
-
 📚 **個性的な本屋**：普通の本屋じゃ物足りない？京都の本屋はちょっと変わってるよ！
-
 🚶 **ちょうどいい人の多さ**：人口密度が低いから、のんびりとした雰囲気が最高！
-
 🎨 **文化の宝庫**：和食、日本庭園、生け花、茶道...文化的には超リッチ！
-
 🔄 **新旧ミックス**：伝統を大切にしながら、新しいものも取り入れる柔軟さ！
-
 🌟 **伝統と誇り**：京都人は伝統を大事にして、その誇りを胸に生きてる！
-
 総合的に見て、京都は観光地としても、住む場所としても、まさに日本のジュエルボックス！'`, author: '@zuka20210101'
     }, {
         type: `Heads`, prefecture: `Kyoto`, key: `head-26-kyoto`, language: `en`, name: `Kyoto prefecture`, description: `Kyoto, the hub of Japanese culture, but with its own unique twist! Want to know why?
-
 🏯 **Temple & Shrine Galore**: Kinkakuji, Ginkakuji, Kiyomizudera... just the names ring a bell, right?
-
 🌳 **Urban Oasis**: It's a city, but surrounded by mountains on all sides and crisscrossed by rivers. A true urban retreat!
-
 🌸 **Seasonal Spectacles**: With spots for cherry blossoms and autumn leaves, and grand festivals for every season!
-
 🍜 **Student's Paradise**: Being an academic city, there's a plethora of affordable and delicious eateries!
-
 ☕ **Relaxing Cafés**: With a deep-rooted traditional tea culture, there's no shortage of calming cafes!
-
 📚 **Unique Bookstores**: Want something more than just a regular bookstore? Kyoto's got some quirky ones!
-
 🚶 **Just the Right Amount of People**: Low population density means a laid-back vibe all around!
-
 🎨 **Cultural Treasure Trove**: From Japanese cuisine, gardens, Ikebana, to tea ceremonies... it's culturally rich!
-
 🔄 **Blend of Old and New**: While cherishing traditions, there's a flexibility to embrace the new!
-
 🌟 **Tradition and Pride**: People in Kyoto live with a deep respect for tradition and wear their pride on their sleeves!
-
 All in all, whether as a tourist spot or a place to live, Kyoto is truly Japan's jewel box!'`, author: '@zuka20210101'
     },
     {
         type: `Heads`, prefecture: `Kyoto`, key: `kyoto-kinkaku`, language: `ja`, name: `金閣寺`, description: `金閣寺、日本のゴールドスタンダード！でも、その秘密、知ってる？
-
 🏯 **3層のサプライズ**: 
    - 1階は平安時代の「寝殿造り」、まるで王族の寝室！
    - 2階は武士の「武家造り」、ちょっとカッコイイ感じ。
    - 3階は禅宗スタイル、そして頂上にはファッションリーダーの鳳凰が！
-
 ✨ **ゴールドメンバーシップ**: 2階と3階は、まるでVIPメンバーシップのように金箔でピカピカ！日光バスでの旅行がまるでゴールドトリップ！
-
 🌊 **鏡のような池**: 鏡湖池、金閣寺のセルフィースポット！四季折々の風景とともに、インスタ映え確実！
-
 🌍 **世界のVIPリスト**: 1994年にユネスコの世界遺産に！金閣寺、世界的にも有名人！
-
 📸 **観光のホットスポット**: 京都のスーパースターとして、観光客のハートをゲット！
-
 これ、金閣寺の裏メニューだよ！'`, author: '@zuka20210101'
     }, {
         type: `Heads`, prefecture: `Kyoto`, key: `kyoto-kinkaku`, language: `en`, name: `The Temple of the Golden Pavilion`, description: `Kinkaku-ji, Japan's Gold Standard! But do you know its secrets?
-
 🏯 **Triple-Layer Surprise**:
    - 1st floor with Heian-era 'Shinden-zukuri', like a royal bedroom!
    - 2nd floor rocks the samurai 'Buke-zukuri', oozing cool vibes.
    - 3rd floor in Zen style, and atop, the phoenix, the ultimate fashion icon!
-
 ✨ **Gold Membership**: 2nd and 3rd floors shimmering in gold leaf, like they've got VIP status! A trip in sunlight feels like a golden journey!
-
 🌊 **Mirror-like Pond**: Kyōko-chi, Kinkaku-ji's selfie spot! Perfect for Insta-worthy shots with seasonal sceneries!
-
 🌍 **World's VIP List**: Made it to UNESCO's World Heritage in 1994! Kinkaku-ji, globally renowned!
-
 📸 **Tourist Hotspot**: As Kyoto's superstar, it's stealing tourists' hearts!
-
 This is the behind-the-scenes scoop on Kinkaku-ji!`, author: '@zuka20210101'
     },
     {
         type: `Heads`, prefecture: `Kyoto`, key: `kyoto-kiyomizu`, language: `ja`, name: `清水寺`, description: `清水寺って、もしもタイムマシンがあったら、最初に行きたい場所の一つだよね？
-
 🧘‍♂️ **起源の伝説**：夢の中でのお告げって、今の時代にはアプリの通知みたいなもの？僧侶の延鎮上人がそんな夢の通知を受け取り、清水寺の地を発見！そして、坂上田村麻呂とのコラボで、清水寺がスタート！
-
 🎭 **清水の舞台**：釘を使わないで建てられた舞台、それってDIYの究極形？四階建てのビルの高さで、190平方メートルの面積。ここでの舞台落ち、もしもYouTubeがあったら、トレンド入り確定！
-
 🌸 **桜のシーズン**：清水寺の桜、それはまるで自然のインスタ映えスポット！ソメイヨシノと山桜が1500本、ピンクのフィルター全開で春を彩る！
-
 清水寺、もしもタイムマシンがあれば、過去の人々と一緒に桜の下でピクニックしたい場所だよね！'`, author: '@zuka20210101'
     }, {
         type: `Heads`, prefecture: `Kyoto`, key: `kyoto-kiyomizu`, language: `en`, name: `Kiyomizu Temple`, description: `Kiyomizu Temple: If there were a time machine, wouldn't it be one of the first places you'd want to visit?
-
 🧘‍♂️ **Origin Legend**: Receiving a divine message in a dream... isn't that like getting a notification from an app nowadays? The monk Enchin got such a 'dream notification' and discovered the land of Kiyomizu Temple! And with a collab with Sakano'ue no Tamuramaro, Kiyomizu Temple was launched!
-
 🎭 **Kiyomizu Stage**: A stage built without using a single nail – is that the ultimate form of DIY? It's as tall as a four-story building and spans 190 square meters. A fall from this stage, if YouTube existed back then, would've definitely trended!
-
 🌸 **Cherry Blossom Season**: The cherry blossoms at Kiyomizu Temple are like nature's Instagrammable spot! With 1500 Somei Yoshino and mountain cherry trees, they paint the spring in full pink bloom!
-
 Kiyomizu Temple, if there were a time machine, wouldn't it be the place you'd want to picnic under the cherry blossoms with people from the past?`, author: '@zuka20210101'
     },
     {
         type: `Heads`, prefecture: `Osaka`, key: `head-27-osaka`, language: `ja`, name: `大阪府`, description: `海の王国から天下の台所まで、大阪の冒険が待ってる！
-
 🌆 大阪、都会のジャングルと歴史の宝庫!
 ビルの森: 800万人以上が住むこの都市は、高層ビルが空を切り裂くスカイラインを持つ超モダン都市。
 歴史のタイムカプセル: 古墳や寺社仏閣が点在し、古代からの歴史が息づいています。
@@ -1221,7 +1030,6 @@ Kiyomizu Temple, if there were a time machine, wouldn't it be the place you'd wa
 笑いの都、大阪。上方落語や漫才で、笑顔が絶えない街！`, author: '@zuka20210101'
     }, {
         type: `Heads`, prefecture: `Osaka`, key: `head-27-osaka`, language: `en`, name: `Osaka prefecture`, description: `From the maritime kingdom to the nation's kitchen, Osaka's adventure awaits!
-
 🌆 **Osaka, an Urban Jungle and a Treasure Trove of History!**
 - **Forest of Buildings**: This city, home to over 8 million people, boasts a super-modern skyline with towering skyscrapers piercing the sky.
 - **Time Capsule of History**: Dotted with ancient burial mounds and temples, the city breathes history from ancient times.
@@ -1234,37 +1042,27 @@ Kiyomizu Temple, if there were a time machine, wouldn't it be the place you'd wa
     },
     {
         type: `Heads`, prefecture: `Osaka`, key: `osaka-osakacastle`, language: `ja`, name: `大阪城`, description: `天守閣からの眺め、大阪の全てが手の中に！
-
 あんた、大阪城って知ってる？大阪のど真ん中にどーんと構えてる、めっちゃ立派なお城やで！昔の戦国武将、豊臣秀吉が「俺の城は日本一や！」って気合い入れて建てたんや。でもね、実は何回も壊れて、再建されてるんやで。まるで大阪のおばちゃんが「このヘアスタイル気に入らん！」って何回も美容院行くみたいやな（笑）。
-
 城の中には博物館もあって、昔の歴史や秀吉のエピソードが学べるで。そして、天守閣からの眺めは最高や！大阪の街が一望できるねん。
-
 大阪に来たら、この大阪城は外せへんで！でも、階段多いから、運動靴持ってきてな！`, author: '@zuka20210101'
     }, {
         type: `Heads`, prefecture: `Osaka`, key: `osaka-osakacastle`, language: `en`, name: `Osaka Castle`, description: `From the castle tower, all of Osaka is in your grasp!
-
 Hey, ya ever heard of Osaka Castle? Right smack in the middle of Osaka, there's this grand ol' castle, ya know! Back in the day, this warlord named Toyotomi Hideyoshi was like, 'I'm gonna have the best castle in all of Japan!' and built it. But get this, it's been knocked down and rebuilt a bunch of times. Kinda like an Osaka lady goin', 'I ain't likin' this hairstyle!' and headin' back to the salon over and over, ya know? (haha).
-
 Inside the castle, there's a museum where you can learn all about the history and some wild tales about Hideyoshi. And the view from the top? Oh man, it's the bee's knees! You can see the whole city of Osaka.
-
 If you're in Osaka, you can't miss this castle, I'm tellin' ya! But heads up, there's a ton of stairs, so wear your comfy shoes!`, author: '@zuka20210101'
     },
     {
         type: `Heads`, prefecture: `Osaka`, key: `osaka-takoyaki`, language: `ja`, name: `たこやき`, description: `カリトロたこ焼き、大阪の魂を一口で！
-
 あんた、たこ焼きって知ってる？大阪のソウルフードやで！外はカリッとして中はトロッと、たこがゴロゴロ入ってるんや。一口食べたら、熱々で舌やけどすることもあるけど、それもまた醍醐味やねん（笑）。大阪の人は、たこ焼きを食べるとき、マヨネーズやソース、青のりやかつお節をたっぷりかけて、ビールと一緒に楽しむのが大好きやで。まるで大阪のおっちゃんがカラオケで熱唱するみたいに、情熱的にたこ焼きを愛してるんや！大阪に来たら、屋台や専門店で、このたこ焼きを食べずして帰るなんて、もったいないで！`, author: '@zuka20210101'
     }, {
         type: `Heads`, prefecture: `Osaka`, key: `osaka-takoyaki`, language: `en`, name: `Takoyaki`, description: `Crispy outside, gooey inside Takoyaki - A bite of Osaka's soul!
-
 Hey, ya ever tried takoyaki? It's Osaka's soul food, ya know! Crispy on the outside, gooey on the inside, with big chunks of octopus in there. Take a bite, and sometimes ya might burn your tongue 'cause it's so darn hot, but that's all part of the fun, right? (haha). Folks in Osaka, they love drownin' their takoyaki in mayo, sauce, seaweed flakes, and bonito flakes, and washin' it all down with a cold beer. It's like watchin' an Osaka uncle beltin' out a song at karaoke – that's how passionate we are 'bout our takoyaki! If you're in Osaka, skippin' out on tryin' takoyaki from a street stall or a specialty shop? That'd be a darn shame!`, author: '@zuka20210101'
     },
     {
         type: `Heads`, prefecture: `Osaka`, key: `osaka-tower`, language: `ja`, name: `通天閣`, description: `大阪のエッフェル塔、カラフルに街を照らす！
-
 あんた、通天閣って知ってる？新世界のシンボルやで！大阪のエッフェル塔みたいなもんやけど、こっちの方がもっとカラフルやねん（笑）。夜になるとイルミネーションでキラキラして、まるで大阪のおばちゃんがキラキラのアクセサリーつけて繁華街を歩いてるみたいやな。展望台からは大阪の街が一望できて、めっちゃ綺麗やで。そして、足元には「おかっぱ横丁」や「じゃんじゃん横丁」なんかの昔ながらの大阪の雰囲気を感じられる場所もあるねん。大阪に来たら、通天閣で大阪の風を感じてみてな！`, author: '@zuka20210101'
     }, {
         type: `Heads`, prefecture: `Osaka`, key: `osaka-tower`, language: `en`, name: `Osaka's symbol`, description: `Osaka's Eiffel Tower, lighting up the city in vibrant colors!
-
 Hey, ya ever heard of Tsutenkaku? It's the symbol of Shinsekai in Osaka! Kinda like Osaka's version of the Eiffel Tower, but ours is way more colorful, ya know? (haha). At night, it lights up all sparkly, kinda like an Osaka lady decked out in shiny jewelry struttin' downtown. From the observation deck, you get a killer view of the whole city, real pretty. And right below, there's places like 'Okappa Yokocho' and 'Janjan Yokocho' where you can feel that old-school Osaka vibe. If you're in Osaka, ya gotta feel the breeze at Tsutenkaku!`, author: '@zuka20210101'
     },
     {
@@ -1292,179 +1090,119 @@ Hyogo Prefecture, with its diversity and charm, truly feels like a beautiful min
     },
     {
         type: `Heads`, prefecture: `Hyogo`, key: `hyogo-arimaonsen`, language: `ja`, name: `有馬温泉`, description: `有馬温泉は兵庫県の隠れた宝石やけど、ここ、ちょっと特別やで。なんでかって？金泉と銀泉っていう、まるで宝物みたいな二つの源泉があるからや。
-
 金泉は、ちょっと赤茶けたお湯で、鉄分たっぷり。飲んだら…ううん、飲むんじゃないで！お風呂に入るんや！このお湯、筋肉痛や疲れには最高やで。まるで、自分の体が魔法のポーションに浸かってるみたい。
-
 銀泉は、透明で炭酸水素塩が豊富。肌がすべすべになるんや。このお湯に入ると、10歳は若返った気分になれるかもしれん（笑）。まるで、時の流れを逆行してるかのよう！
-
 近くには神戸があるから、都会の喧騒から逃げて、ちょっと時間を忘れたい時には最高やで。でも、気をつけて！あまりの気持ちよさに、帰りたくなくなるかもしれんで（笑）。
-
 せやから、兵庫に来たら、有馬温泉は外せへんで！体も心も、そして笑顔もゲットできること間違いなしや！`, author: '@zuka20210101'
     }, {
         type: `Heads`, prefecture: `Hyogo`, key: `hyogo-arimaonsen`, language: `en`, name: `Arima Onsen`, description: `Arima Onsen in Hyogo Prefecture is like a hidden gem, but there's something extra special about this place. Why, you ask? Because of its two treasure-like springs: Kinsen and Ginsen.
-
 Kinsen has a slightly reddish-brown tint and is rich in iron. If you think of drinking it... nope, don't even think about it! It's for bathing! This water is just the ticket for sore muscles and fatigue. It feels like you're soaking in a magical potion.
-
 Ginsen, on the other hand, is clear and loaded with bicarbonate. It makes your skin silky smooth. Dive in, and you might just feel a decade younger – no kidding! It's as if you're defying the sands of time.
-
 With Kobe nearby, it's the perfect escape from the hustle and bustle when you want to lose track of time. But be warned! The comfort might make you never want to leave (haha).
-
 So, if you're in Hyogo, you can't miss out on Arima Onsen! It's a sure bet for relaxation, rejuvenation, and a big smile!
 `, author: '@zuka20210101'
     },
     {
         type: `Heads`, prefecture: `Hyogo`, key: `hyogo-himejicastle`, language: `ja`, name: `姫路城`, description: `白鷺の美しゃん: 「白鷺城」って言うねんけど、まるで雪のような白さで、ほんまにきれいやぞ！
-
 歴史深いねん: 1346年からここにあって、ユネスコの世界遺産にも選ばれとる。播州の誇りやで！
-
 戦いはせんかった: ここは「不戦の城」って言われてる。戦争なんてせんかったから、ほんまに平和やぞ！
-
 映画の主役: この城、映画やドラマでよう見るやろ？ほんまにスターみたいやぞ！
-
 「だから、姫路城は播州の一番の名所！みんな、見に来いや！」`, author: '@zuka20210101'
     }, {
         type: `Heads`, prefecture: `Hyogo`, key: `hyogo-himejicastle`, language: `en`, name: `Himeji Castle`, description: `Beauty of the White Heron: They call it the 'White Heron Castle', and its snow-like whiteness is truly mesmerizing!
-
 Deep-rooted History: Established in 1346, it's even been designated as a UNESCO World Heritage site. It's the pride of Harima!
-
 A Castle that Never Saw Battle: This place is known as the 'Peaceful Castle'. It's never seen wars, truly a symbol of peace!
-
 A Movie Star: You've probably seen this castle in movies and dramas, right? It's like a superstar!
-
 'So, Himeji Castle is the top attraction of Harima! Everyone, come and see!'`, author: '@zuka20210101'
     },
     {
         type: `Heads`, prefecture: `Hyogo`, key: `hyogo-tajimaushi`, language: `ja`, name: `但馬牛`, description: `牛界のスーパーモデルやで！なんでかって？旨みたっぷりで、臭みなんて微塵もないからや。サシの融点が低いから、口の中でまるでアイスクリームのようにとろけるんや。
-
 赤身と脂のバランスは、まるでプロのジャグラーがボールを投げてるみたいに絶妙。筋肉はしなやかで、ちょうどいい量の脂肪をキープしてるんや。体型も小柄で、骨が細く、まるでアスリートのような締まった身体を持ってるから、筋繊維もばっちり。
-
 遺伝的にも、余分な脂肪はつきにくいんや。まるで、健康オタクがジムで鍛え上げた身体みたいや。そして、その柔らかさと食感は、まるで高級シルクのよう。
-
 でも、ここがポイントやで。但馬牛は、神戸牛や松阪牛などの高級牛のベースとしても使われてるんや。でもね、但馬牛の肉質等級は2等級以上、一方で神戸牛は4等級以上やで。つまり、但馬牛は、ちょっと地味だけど、しっかりとした実力派や！`, author: '@zuka20210101'
     }, {
         type: `Heads`, prefecture: `Hyogo`, key: `hyogo-tajimaushi`, language: `en`, name: `Tajima beef`, description: `It's like the supermodel of the bovine world, ya know? Why's that? Because it's bursting with flavor and doesn't have a hint of that typical meaty smell. The fat melts at such a low temperature, it's like having ice cream melt in your mouth.
-
 The balance between the lean meat and fat? It's as if a pro juggler's tossing balls – just perfect. The muscles are tender, holding just the right amount of fat. They're petite in stature, with slender bones, almost like they've got the toned body of an athlete, so the muscle fibers are on point.
-
 Genetically speaking, they don't easily put on extra fat. It's as if a health nut has been hitting the gym and sculpted their body. And the tenderness and texture? It's like the finest silk.
-
 But here's the kicker. Tajima cattle, which is what they're called, are also used as the base for high-end beef like Kobe and Matsusaka. But, Tajima beef has a meat quality grade of at least 2, while Kobe beef is 4 and above. So, while Tajima might seem a bit understated, they're solidly top-tier in performance!`, author: '@zuka20210101'
     },
     {
         type: `Heads`, prefecture: `Nara`, key: `head-29-nara`, language: `ja`, name: `奈良県`, description: `奈良県って、まるで日本の歴史のタイムカプセルやな！なんと、710年にはここが日本の中心、平城京として賑わってたんや。東京の先祖みたいなもんやけど、ちょっとレトロ感が強いかも（笑）。
-
 そして、奈良には「歴史のVIP」たちがずらり。春日大社や東大寺、薬師寺なんかの古い寺院や神社たちが、今も昔の栄光を保ってるんや。これらの場所は、まるでタイムスリップして古代に飛んだみたい。でも、タイムスリップよりもっとリアルで、入場料もタイムマシンより安いで（笑）。
-
 さらに、これらの歴史的な場所は、世界遺産にも認定されてるんや。世界中の人々も、奈良の歴史の魅力に夢中やで。
-
 でも、奈良の真の魅力は、ただの建物や歴史だけやない。ここに住む鹿たちや、地元の人々の暖かさ、そして、古代の空気を今でも感じられる街の雰囲気。これが、奈良の真の「世界遺産」やと思うんや。`, author: '@zuka20210101'
     }, {
         type: `Heads`, prefecture: `Nara`, key: `head-29-nara`, language: `en`, name: `Nara Prefecture`, description: `Nara Prefecture is like Japan's historical time capsule! Believe it or not, back in 710, this place was the bustling heart of Japan, known as Heijō-kyō. Think of it as Tokyo's great-granddaddy, but with a touch more vintage flair (wink).
-
 And in Nara, you've got the historical A-listers lined up. Age-old temples and shrines like Kasuga-taisha, Tōdai-ji, and Yakushi-ji are still basking in their ancient glory. Visiting these spots feels like you've time-traveled back to the olden days. But it's way more authentic than any time slip, and the admission fee? Way cheaper than a time machine, I promise (lol).
-
 What's more, these historical hotspots have been crowned as World Heritage Sites. People from all over the globe are head over heels for Nara's historical allure.
-
 But the real charm of Nara isn't just in its buildings or history. It's in the deer roaming around, the warmth of the locals, and the ancient vibes that the city still exudes. That, my friend, is what I'd call Nara's true 'World Heritage.'`, author: '@zuka20210101'
     },
     {
         type: `Heads`, prefecture: `Nara`, key: `nara-ashura`, language: `ja`, name: `阿修羅像`, description: `さあ、奈良の興福寺には、ちょっと変わったセレブが住んでるんやで！名前は「阿修羅像」。この名前、ちょっとカッコイイやろ？でも、その姿はもっとすごいんや。
-
 この阿修羅像、三面三目のユニークなルックスで、まるでファッションモデルのようにポーズをとってるんや。でも、彼の背後には深いストーリーがあるんや。仏教の世界観を背負って、戦いを好むけど、仏教の教えにも従ってるんや。
-
 さらに、この像、乾漆造りっていうスペシャルな技法で作られてて、まるでアートのマスターピースや。日本中で、この技術の完成度はトップクラスやで。
-
 そして、この阿修羅像、国宝やし、世界遺産にも選ばれてるんや。まるで、ハリウッドスターのように、赤いじゅうたんを歩いてるみたいや。
-
 でも、一番の魅力は、彼の顔や。怒りや悲しみ、安らぎ…全部が一つの顔に詰まってる。まるで、ドラマの主人公みたいや。
-
 だから、興福寺に行ったら、このスーパースター、阿修羅像に会わんと損やで！彼の美しさとストーリーを知れば、きっと心の中でスタンディングオベーションを送りたくなるやろう！`, author: '@zuka20210101'
     }, {
         type: `Heads`, prefecture: `Nara`, key: `nara-ashura`, language: `en`, name: `Asura statue`, description: `This Ashura, with its unique three-faced, three-eyed look, is striking a pose like it's on a fashion runway. But behind that look, there's a deep tale. Balancing the Buddhist worldview, it's said to love a good battle but still follows the teachings of Buddhism.
-
 And get this, the statue was crafted using this fancy technique called 'dry lacquer', making it a top-notch masterpiece in Japan.
-
 Plus, our Ashura here isn't just any statue. It's a National Treasure and even made its way to the World Heritage list. Kinda feels like it's strutting down the red carpet, doesn't it?
-
 But the real charm? That face. It's got anger, sadness, and tranquility all packed into one expression. It's like the lead in a gripping drama.
-
 So, if you're hitting up Kofuku-ji, you'd be missing out big time if you don't meet this superstar, the Ashura Statue. Once you get to know its beauty and backstory, you'll probably wanna give it a standing ovation, right in your heart!`, author: '@zuka20210101'
     },
     {
         type: `Heads`, prefecture: `Nara`, key: `nara-deer`, language: `ja`, name: `鹿`, description: `奈良公園に来たら、スターたちに会わんと損やで！誰かって？ハリウッドスターやなくて、奈良のスーパースター、鹿たちや！鹿たちは、昔からの地元セレブで、春日大社の神様のお使いさんやってん。
-
 でもね、ちょっとわがままなとこもあるんや。特に、お腹がすくとな。公園内で売ってる「鹿せんべい」を持ってると、まるでファンがアイドルに群がるように、あっという間にあなたの周りにファンクラブができあがるで！
-
 そして、彼らの特技は、お辞儀やで。せんべいを上手に使って、彼らにお辞儀をさせることもできるんや。まるで、奈良の鹿たちは、お辞儀のプロフェッショナルやな。
-
 でも、彼らとの交流は楽しいけど、ちょっとした注意も必要やで。特に、せんべいを持ってるときや、子鹿の近くにいるときは、ちょっとした鹿の気まぐれに気をつけてな！
-
 とにかく、奈良公園の鹿たちは、ちょっとしたセレブ気分を味わいたいなら、絶対に会ってみるべきやで！
 `, author: '@zuka20210101'
     }, {
         type: `Heads`, prefecture: `Nara`, key: `nara-deer`, language: `en`, name: `deer`, description: `If you come to Nara Park and don't meet the stars, you're missing out! Who am I talking about? Not Hollywood stars, but Nara's very own superstars: the deer! These deer have been local celebrities for ages, considered messengers of the gods of Kasuga Shrine.
-
 But, let me tell you, they can be a bit spoiled. Especially when they're hungry. If you have the 'deer crackers' sold in the park, it's like being a pop star surrounded by fans. They'll flock to you in no time!
-
 And their special talent? Bowing! With a cracker in hand, you can even get them to bow to you. It's as if the deer in Nara are professional greeters.
-
 But while interacting with them is fun, you've got to be careful. Especially when you have crackers or are near a fawn. You never know when they might get a bit mischievous!
-
 In any case, if you want to feel like a celebrity for a day, you absolutely must meet the deer of Nara Park!`, author: '@zuka20210101'
     },
     {
         type: `Heads`, prefecture: `Wakayama`, key: `head-30-wakayama`, language: `ja`, name: `和歌山県`, description: `冒険も癒しも、和歌山で一皿に！
-
 🏄‍♂️ **和歌山、アドベンチャーの王国！**
 - 海でサーフィン、山でトレジャーハント、川でワイルドラフティング！和歌山はアウトドアのテーマパークだ！
-
 🛁 **温泉天国、癒しの楽園！**
 - 白浜で海を見ながらの温泉デート、龍神で森の中の秘湯探し。和歌山は、自然の中で最高のリラックスタイムを提供！
-
 🍜 **グルメ探検隊、スタート！**
 - 和歌山ラーメンの醤油の香りに誘われ、次は柚子の香り漂うめはり寿司の宝探し！和歌山の食の宝箱を開けてみよう！
-
 ---
-
 和歌山県は、アクション映画のようなスリルと冒険、リラックスムービーのような癒し、そしてグルメ番組のような食の楽しさが詰まった、エンターテインメント満載の場所です！🌟🎥🍿`, author: '@zuka20210101'
     }, {
         type: `Heads`, prefecture: `Wakayama`, key: `head-30-wakayama`, language: `en`, name: `Wakayama Prefecture`, description: `Adventure and relaxation, all on one plate in Wakayama!
-
 🏄‍♂️ Wakayama, the Kingdom of Adventure!
-
 Surfing in the sea, treasure hunting in the mountains, and wild rafting in the rivers! Wakayama is an outdoor theme park!
 🛁 Hot Spring Heaven, a Sanctuary of Relaxation!
-
 Hot spring dates while gazing at the sea in Shirahama, and searching for hidden baths in the forests of Ryujin. Wakayama offers the ultimate relaxation amidst nature!
 🍜 Gourmet Expedition, Begin!
-
 Lured by the aroma of Wakayama ramen's soy sauce, and next, the fragrant scent of yuzu in mehari sushi! Let's open Wakayama's treasure chest of flavors!`, author: '@zuka20210101'
     },
     {
         type: `Heads`, prefecture: `Wakayama`, key: `wakayama-danjogarandaito`, language: `ja`, name: `壇上伽藍`, description: `19の諸堂が語る、石と木の物語。壇上伽藍で聞こえてきますか？
-
 高野山の心、壇上伽藍へようこそ！空海の夢が現実となった場所で、19の諸堂が曼荼羅の世界を織り成す。50メートルの根本大塔から、金堂、中門、四天王堂、護摩堂まで、一歩一歩が歴史の息吹を感じさせる。2004年の世界遺産登録も納得のスポット！アクセスも便利で、和歌山のこの聖地は待ってるで！ただ、真言宗の聖地だから、マナーを守って、心静かに参拝しよう。そして、歩きやすい靴で、早めの訪問がおすすめやで！`, author: '@zuka20210101'
     }, {
         type: `Heads`, prefecture: `Wakayama`, key: `wakayama-danjogarandaito`, language: `en`, name: `Danjogaran`, description: `The tale of stone and wood, told by 19 temples. Can you hear it at Danjo Garan?
-
 Welcome to the heart of Koyasan, Danjo Garan! A place where Kukai's dream becomes reality, and 19 temples weave the world of the mandala. From the 50-meter tall Konpon Daito to the Kondo, Chumon, Shitenno-do, and Goma-do, every step resonates with the breath of history. No wonder it was designated a World Heritage Site in 2004! Access is convenient, and this sacred site in Wakayama awaits you! But remember, it's a sacred site of the Shingon sect, so observe proper manners and visit with a serene heart. And, wear comfortable shoes and consider visiting early!`, author: '@zuka20210101'
     },
     {
         type: `Heads`, prefecture: `Wakayama`, key: `wakayama-nachifall`, language: `ja`, name: `那智の滝`, description: `10km先まで響くエコー、40階分の落下！那智の滝、和歌山の大迫力ライブ！
-
 那智の滝、和歌山のスーパースター！落差133mって、エレベーターで約40階分だよ！ビルの頂上から見下ろすような高さからの水の落下、想像しただけでドキドキ。その音、10km先まで届くって、ライブコンサート以上の迫力やん！しかも、ユネスコの世界遺産にも登録されてるし、那智の滝はまさに和歌山のトップアイドル。観光施設も充実してるから、ファンとしては「さまざまな角度からのツーショット、撮りたい！」ってなるよね。日本を代表するこの滝、一度はライブ観賞してみて！`, author: '@zuka20210101'
     }, {
         type: `Heads`, prefecture: `Wakayama`, key: `wakayama-nachifall`, language: `en`, name: `Nachi Waterfall`, description: `Echoes heard 10km away, a drop equivalent to 40 floors! Nachi Falls, Wakayama's powerful live performance!
-
 Nachi Falls, Wakayama's superstar! A drop of 133m is like descending about 40 floors in an elevator! Just imagining the water cascading from the height of a skyscraper's top gives you a thrill. And that sound, reaching up to 10km away, it's more intense than a live concert! Plus, it's registered as a UNESCO World Heritage site. Nachi Falls is truly Wakayama's top idol. With well-developed tourist facilities, as a fan, you'd think, 'I want to snap a pic from every angle!' Representing Japan, you've got to witness this waterfall live at least once!`, author: '@zuka20210101'
     },
     {
         type: `Heads`, prefecture: `Wakayama`, key: `wakayama-wakayamaramen`, language: `ja`, name: `和歌山ラーメン`, description: `和歌山ラーメン、2つの味の対決！でも、驚きの第一幕は早寿司でスタート！
-
 「和歌山ラーメン」、地元の人たちにとってはただの「中華そば」。でも、その名前の裏には、2つの大きな派閥が隠れてるんだよ！豚骨醤油ベースの井出商店と、醤油ベースの○京。どっちが好きかは、まさに和歌山の'永遠の問題'！でも、注文する前にちょっと驚き。テーブルには「早寿司」が！これ、ラーメンが来る前のお楽しみ。和歌山ラーメンの前菜としてはちょっと変わってるよね？和歌山ラーメン、ただのラーメンじゃない、和歌山のユニークな文化の一部！食べ比べて、その違いを楽しんでみて！`, author: '@zuka20210101'
     }, {
         type: `Heads`, prefecture: `Wakayama`, key: `wakayama-wakayamaramen`, language: `en`, name: `Wakayama ramen`, description: `Wakayama Ramen, a duel of two flavors! But the surprising opening act? It's Hayazushi!
-
 'Wakayama Ramen' is just 'Chuka Soba' for the locals. But behind that name, there are two major factions hiding! Ide Shouten with its pork bone soy sauce base, and Marukyo with its soy sauce base. Which one do you prefer? It's Wakayama's 'eternal debate'! But before you order, there's a little surprise on the table: 'Hayazushi'! It's a treat before the ramen arrives. A bit unusual for a ramen appetizer, right? Wakayama Ramen isn't just ramen; it's a part of Wakayama's unique culture! Try both and enjoy the differences!`, author: '@zuka20210101'
     },
     {
@@ -1497,7 +1235,6 @@ Since 1989, the prefecture has used the catchphrase 'sunny country, Okayama' in 
     { type: `Heads`, prefecture: `Okayama`, key: `okayama-denim02`, language: `ja`, name: `デニム2`, description: `⑤地域での完結と品質へのこだわり: 岡山デニムの製造に関するほとんどすべての工程が岡山地域内で完結できるという強みがあります。これにより、高品質で安定した製品づくりが可能になっています。生産者たちは、素材選びから製造工程まで、細部にわたって品質を追求しています。`, author: '@zuka20210101' }, { type: `Heads`, prefecture: `Okayama`, key: `okayama-denim02`, language: `en`, name: `denim`, description: `⑤Local Production and Commitment to Quality: A significant advantage of Okayama denim is that almost all stages of its production are completed within the Okayama region. This ensures the creation of high-quality, consistent products. Producers are meticulous, from material selection to the manufacturing process, ensuring the highest quality.`, author: '@zuka20210101' },
     { type: `Heads`, prefecture: `Okayama`, key: `okayama-denim03`, language: `ja`, name: `デニム3`, description: `⑥長い歴史と職人の技術: 岡山デニムの発展は、数百年の歴史の中での職人の技術の継承と創意工夫や努力の結果であり、その結果として現在の高い評価を得ています。`, author: '@zuka20210101' }, {
         type: `Heads`, prefecture: `Okayama`, key: `okayama-denim03`, language: `en`, name: `denim`, description: `⑥Long History and Craftsmanship: The evolution of Okayama denim is the result of centuries of craftsmanship, innovation, and dedication, leading to its current esteemed reputation.
-
 `, author: '@zuka20210101'
     },
     {
@@ -1512,7 +1249,6 @@ They are very obedient and miss their owners very much.
 Such loyal dogs are devoted to their beloved masters without asking for anything in return.
 Dogs are also gentle animals that understand people's feelings.
 Dogs do not forget those who have once taken a liking to them, and they can be said to be animals that can easily coexist with humans.
-
 `, author: 'hamachan'
     },
     { type: `Heads`, prefecture: `Okayama`, key: `okayama-horseshoe-crab`, language: `ja`, name: `カブトガニ`, description: `節足動物。ドーム状の体に剣のような尾を持つ。背面全体が広く背甲で覆われ、脚などの付属肢はすべてその下に隠れている。名前はこの背甲に由来する。甲殻類であるカニではない。`, author: 'hamachan' }, { type: `Heads`, prefecture: `Okayama`, key: `okayama-horseshoe-crab`, language: `en`, name: `horseshoe-crab`, description: `Arthropod. It has a dome-shaped body with a sword-like tail. Its entire back is covered by a broad dorsal carapace, under which all appendages, including the legs, are hidden. Its name is derived from this dorsal carapace. It is not a crustacean crab.`, author: 'hamachan' },
@@ -1722,11 +1458,9 @@ The majority of Kochi City, the prefectural capital, belonged to Tosa County in 
     { type: `Heads`, prefecture: `Saga`, key: `head-41-saga`, language: `ja`, name: `佐賀県`, description: `日本の九州地方に位置する県。県庁所在地は佐賀市。九州地方の中では最も面積、経済規模が小さい県であり、人口は隣接する福岡県の2割以下であり、福岡市の半分程度に過ぎない。お茶や唐津・伊万里・有田などの古くからの陶磁器の産地として有名。`, author: 'hamachan' }, { type: `Heads`, prefecture: `Saga`, key: `head-41-saga`, language: `en`, name: `Saga Prefecture`, description: `A prefecture located in the Kyushu region of Japan. The prefectural capital is Saga City. It is the smallest prefecture in Kyushu in terms of area and economic scale, with a population less than 20% of that of neighboring Fukuoka Prefecture and only half that of Fukuoka City. It is famous for its tea ceremony and its ancient ceramics such as Karatsu, Imari, and Arita.`, author: 'hamachan' },
     {
         type: `Heads`, prefecture: `Saga`, key: `saga-mudskipper-fiddlercrab`, language: `ja`, name: `ムツゴロウ・シオマネキ`, description: `ムツゴロウは、魚の一種。潮が引いた干潟の上で生活する魚として知られ、有明海・八代海を含む東アジアに分布する。有明海沿岸ではムツ、ホンムツなどと呼ばれる。
-
 シオマネキは、カニの総称。オスの片方の鋏脚（はさみ）が大きくなることで知られる分類群である。オスのダンス（ウェービング）は大きなはさみを体の前の方から上にあげて振り下ろし、この動きが、まるで満ち潮を招いているように見えたことから、シオマネキという名前がついた。`, author: 'hamachan'
     }, {
         type: `Heads`, prefecture: `Saga`, key: `saga-mudskipper-fiddlercrab`, language: `en`, name: `mudskipper・fiddler crab`, description: `The mussel is a type of fish. Known as a fish that lives on tidal flats, it is distributed in East Asia, including the Ariake Sea and the Yatsushiro Sea. In the Ariake Sea coast, it is called mutsus or honmutsu.
-
 Shionoki is the generic name for the crab. It is a taxon known for the enlargement of one of the male's scissor legs (scissors). The male's dance (webbing) consists of raising and lowering the large scissors from the front of the body, and this movement looks as if it is inviting the incoming tide, hence the name shiomaneki.`, author: 'hamachan'
     },
     {
