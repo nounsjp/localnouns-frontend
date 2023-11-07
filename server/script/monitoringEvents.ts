@@ -6,7 +6,7 @@ import {
 } from "@/utils/const";
 import { addresses } from "@/utils/addresses";
 import { ethers } from "ethers";
-import { writeTokenDataToFirestore, updatePriceOfTokenOnFirestore, updateTradeOfTokenOnFirestore } from "./token";
+import { writeTokenDataToFirestore, updatePriceOfTokenOnFirestore, updateTradeOfTokenOnFirestore } from "./tokenOnFirestore";
 import { TOKEN } from "@/firestore/const";
 
 const provider = getProvider(NETWORK, ALCHEMY_API_KEY);
@@ -39,10 +39,12 @@ tokenContract.on("Transfer", async (from, to, tokenId, event) => {
     const ethPrice = ethers.formatEther(salePrice);
     const isOnTrade = await tokenContract.trades(tokenId);
     const tradeToPrefecture = await tokenContract.getTradePrefectureFor(tokenId);
+    const prefectureId = await providerContract.tokenIdToPrefectureId(tokenId);
 
     const tokenInfo: TOKEN = {
       tokenId: tokenId,
       prefecture: prefecture,
+      prefectureId: prefectureId,
       head: head,
       accessory: accessory,
       holder: to.toLowerCase(), // firestoreでfilterするために小文字変換
