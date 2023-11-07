@@ -11,39 +11,40 @@ import Shop from "@/views/Shop.vue";
 import About from "@/views/About.vue";
 import { addresses } from "@/utils/addresses";
 
+const network = 'mumbai';
 const routeChildren: Array<RouteRecordRaw> = [
   {
     path: "",
     component: List,
     props: {
-      network: "mumbai",
-      tokenAddress: addresses.localNounsToken["mumbai"],
+      network: network,
+      tokenAddress: addresses.localNounsToken[network],
     },
   },
   {
     path: "mint",
     component: Mint,
     props: {
-      network: "mumbai",
-      tokenAddress: addresses.localNounsToken["mumbai"],
+      network: network,
+      tokenAddress: addresses.localNounsToken[network],
       assetProvider: "localProvider",
-      minterAddress: addresses.localNounsMinter["mumbai"],
+      minterAddress: addresses.localNounsMinter[network],
     },
   },
   {
     path: "list",
     component: List,
     props: {
-      network: "mumbai",
-      tokenAddress: addresses.localNounsToken["mumbai"],
+      network: network,
+      tokenAddress: addresses.localNounsToken[network],
     },
   },
   {
     path: "owner",
     component: Owner,
     props: {
-      network: "mumbai",
-      tokenAddress: addresses.localNounsToken["mumbai"],
+      network: network,
+      tokenAddress: addresses.localNounsToken[network],
       test: true,
     },
   },
