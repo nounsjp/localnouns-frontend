@@ -5,6 +5,7 @@
     :data="chartData"
     :options="chartOptions"
     :settings="chartSettings"
+    :events="chartEvents"
   />
 </template>
 <script lang="ts">
@@ -26,7 +27,7 @@ export default defineComponent({
     GChart,
   },
   setup(props) {
-    const chartData = ref([["Prefecture", "Nouns"]]);
+    const chartData = ref([["Prefecture", 0]]);
 
     // props.groupedByPrefectureが変更されたときに実行されるwatcher
     watch(
@@ -34,20 +35,19 @@ export default defineComponent({
       (newVal) => {
         chartData.value = [["Prefecture", "Nouns"]];
         Object.entries(newVal).forEach(([prefectureId, tokens]) => {
-          chartData.value.push([
-            prefectureList[Number(prefectureId)],
-            prefectureList[Number(prefectureId)] +
-              " : " +
-              String(tokens.length),
-          ]);
-          console.log("NounsPam chartData:", chartData);
+          if (prefectureId) {
+            chartData.value.push([
+              prefectureList[Number(prefectureId)],
+              tokens.length,
+            ]);
+          }
         });
       },
     );
 
     const chartOptions = {
-      width: 400,
-      height: 300,
+      width: 600,
+      height: 400,
       region: "JP",
       resolution: "provinces",
     };
@@ -57,10 +57,20 @@ export default defineComponent({
       mapsApiKey: GOOGLE_MAPS_API_KEY,
     };
 
+    const chartEvents = {
+      select: () => {
+        const selection = getSelection();
+        // Selectした結果を取得できず、、、一旦保留
+        // 参考: https://stackoverflow.com/questions/73537575/how-to-use-getselection-on-timeline-chart-of-vue-google-charts-in-composition
+        console.log("selection", selection);
+      },
+    };
+
     return {
       chartData,
       chartOptions,
       chartSettings,
+      chartEvents,
     };
   },
 });
