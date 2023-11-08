@@ -37,7 +37,7 @@ const routeChildren: Array<RouteRecordRaw> = [
     props: {
       network: network,
       tokenAddress: addresses.localNounsToken[network],
-      test: true,
+      // test: true,
     },
   },
   {
@@ -46,7 +46,7 @@ const routeChildren: Array<RouteRecordRaw> = [
     props: {
       network: network,
       tokenAddress: addresses.localNounsToken[network],
-      test: true,
+      // test: true,
     },
   },
   {
