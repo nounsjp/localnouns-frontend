@@ -1,4 +1,5 @@
 <template>
+  <!-- https://www.npmjs.com/package/vue-google-charts -->
   <GChart
     type="GeoChart"
     :data="chartData"
@@ -7,7 +8,7 @@
   />
 </template>
 <script lang="ts">
-import { defineComponent, PropType } from "vue";
+import { defineComponent, PropType, watch, ref } from "vue";
 import { GChart } from "vue-google-charts";
 import { prefectureList } from "@/i18n/prefectures";
 import { TOKEN } from "@/firestore/const";
@@ -25,20 +26,28 @@ export default defineComponent({
     GChart,
   },
   setup(props) {
-    const chartData = [["Prefecture", "Nouns"]];
+    const chartData = ref([["Prefecture", "Nouns"]]);
 
-    Object.entries(props.groupedByPrefecture).forEach(
-      ([prefectureId, tokens]) => {
-        chartData.push([
-          prefectureList[Number(prefectureId)],
-          prefectureList[Number(prefectureId)] + ":" + String(tokens.length),
-        ]);
+    // props.groupedByPrefectureが変更されたときに実行されるwatcher
+    watch(
+      () => props.groupedByPrefecture,
+      (newVal) => {
+        chartData.value = [["Prefecture", "Nouns"]];
+        Object.entries(newVal).forEach(([prefectureId, tokens]) => {
+          chartData.value.push([
+            prefectureList[Number(prefectureId)],
+            prefectureList[Number(prefectureId)] +
+              " : " +
+              String(tokens.length),
+          ]);
+          console.log("NounsPam chartData:", chartData);
+        });
       },
     );
 
     const chartOptions = {
-      width: 800,
-      height: 600,
+      width: 400,
+      height: 300,
       region: "JP",
       resolution: "provinces",
     };
