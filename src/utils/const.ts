@@ -106,7 +106,7 @@ export const getSvgHelper = (network: string, provider: ProviderOrSigner) => {
   return svgHelper;
 };
 
-const getTokenGate = (address: string, provider: ProviderOrSigner) => {
+export const getTokenGate = (address: string, provider: ProviderOrSigner) => {
   const tokenGate = new ethers.Contract(address, ITokenGate.wabi.abi, provider);
   return tokenGate;
 };
@@ -138,19 +138,15 @@ export const getTokenContract = (
 };
 
 // Token Contract functions
-const getBalanceFromTokenContract = async (
-  tokenContract: ethers.Contract,
+const getBalanceFromTokenGate = async (
+  tokenGate: ethers.Contract,
   account: string,
 ) => {
-  const [balance] = await tokenContract.balanceOf(account);
+  if (!account) {
+    return 0;
+  }
+  const balance = await tokenGate.balanceOf(account);
   return balance;
-};
-const getMintPriceForFromTokenContract = async (
-  tokenContract: ethers.Contract,
-  account: string,
-) => {
-  const [value] = await tokenContract.mintPriceFor(account);
-  return value;
 };
 const getTotalSupplyFromTokenContract = async (
   tokenContract: ethers.Contract,
@@ -281,34 +277,14 @@ export const useMintConditions = (
   };
 };
 
-export const useCheckTokenGate = (
-  tokenGateAddress: string,
-  tokenGated: boolean,
-  provider: Provider,
-  contractRO: ethers.Contract,
-) => {
-  const totalBalance = ref<number>(0);
+export const useCheckTokenGate = (tokenGate: ethers.Contract) => {
   const balanceOf = ref<number>(0);
-  const mintPrice = ref<bigint>(BigInt(0));
 
   const checkTokenGate = async (account: string) => {
-    console.log("### calling totalBalanceOf");
-    if (tokenGated) {
-      const tokenGate = getTokenGate(tokenGateAddress, provider);
-      const [result] = await tokenGate.balanceOf(account);
-      totalBalance.value = result.toNumber();
-    }
-    balanceOf.value = await getBalanceFromTokenContract(contractRO, account);
-    mintPrice.value = await getMintPriceForFromTokenContract(
-      contractRO,
-      account,
-    );
+    balanceOf.value = await getBalanceFromTokenGate(tokenGate, account);
   };
   return {
-    totalBalance,
     balanceOf,
-    mintPrice,
-
     checkTokenGate,
   };
 };

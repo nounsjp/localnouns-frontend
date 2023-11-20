@@ -29,6 +29,7 @@ const routeChildren: Array<RouteRecordRaw> = [
       tokenAddress: addresses.localNounsToken[network],
       assetProvider: "localProvider",
       minterAddress: addresses.localNounsMinter[network],
+      tokenGateAddress: addresses.tokenGate[network],
     },
   },
   {

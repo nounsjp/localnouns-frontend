@@ -38,14 +38,25 @@
     </div>
 
     <div class="mx-auto max-w-lg p-2 text-left mt-4 mb-4">
-      <span class="ml-24 font-londrina font-yusei">
+      <span class="font-londrina font-yusei">
         <span v-if="account">
-          <button
-            @click="mint"
-            class="inline-block rounded bg-green-600 px-6 py-2.5 leading-tight text-white text-3xl shadow-md transition duration-150 ease-in-out hover:bg-green-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg"
-          >
-            {{ $t("mint.mint") }}
-          </button>
+          <span v-if="balanceOf == 0 && salePhase == 1">
+            <!-- ALセールで特定NFTなし-->
+            <span
+              class="inline-block rounded bg-gray-600 px-6 py-2.5 leading-tight text-white text-xl shadow-md transition duration-150 ease-in-out hover:bg-gray-700 hover:shadow-lg focus:bg-gray-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-800 active:shadow-lg"
+              disabled
+            >
+              {{ $t("mint.notHasSpecificNFT") }}
+            </span>
+          </span>
+          <span v-else>
+            <button
+              @click="mint"
+              class="inline-block rounded bg-green-600 px-6 py-2.5 leading-tight text-white text-3xl shadow-md transition duration-150 ease-in-out hover:bg-green-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg"
+            >
+              {{ $t("mint.mint") }}
+            </button>
+          </span>
         </span>
         <span v-else>
           <span
@@ -88,6 +99,8 @@ import {
   useFetchTokens,
   useMintConditions,
   getLocalNounsMinterContract,
+  getTokenGate,
+  useCheckTokenGate,
 } from "@/utils/const";
 import { ChainIdMap } from "@/utils/MetaMask";
 import { weiToEther } from "@/utils/utils";
@@ -109,10 +122,10 @@ export default defineComponent({
     //   type: Boolean,
     //   required: true,
     // },
-    // tokenGateAddress: {
-    //   type: String,
-    //   required: true,
-    // },
+    tokenGateAddress: {
+      type: String,
+      required: true,
+    },
     // restricted: {
     //   type: String,
     // },
@@ -150,6 +163,8 @@ export default defineComponent({
       props.minterAddress,
       provider,
     );
+    // TokenGate
+    const tokenGateContract = getTokenGate(props.tokenGateAddress, provider);
 
     const { fetchTokens, totalSupply, tokens } = useFetchTokens(
       props.network,
@@ -195,7 +210,12 @@ export default defineComponent({
       return mintPrice.value * Number(selectedNumOfMint.value);
     });
 
-    const account = computed(() => store.state.account);
+    const { balanceOf, checkTokenGate } = useCheckTokenGate(tokenGateContract);
+
+    const account = computed(() => {
+        checkTokenGate(store.state.account);
+      return store.state.account;
+    });
 
     const mint = async () => {
       const chainId = ChainIdMap[props.network];
@@ -229,6 +249,7 @@ export default defineComponent({
       mintPrice,
       totalSupply,
       mintLimit,
+      balanceOf,
       tokens,
       total,
       selectedNumOfMint,

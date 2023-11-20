@@ -28,6 +28,7 @@ const lang = {
     mint: "Mint",
     price: "Price",
     connectWallet: "Connect Wallet from above right button.",
+    notHasSpecificNFT: "This address does not have the NFT for AL Sale",
     recentlyMinted: "Recently minted LocalNouns.⌐◨-◨",
   },
   list: {
