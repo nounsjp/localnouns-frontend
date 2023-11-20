@@ -29,6 +29,7 @@ const lang = {
     price: "Price",
     connectWallet: "Connect Wallet from above right button.",
     notHasSpecificNFT: "This address does not have the NFT for AL Sale",
+    overMintLimit: "The maximum number of mints has been reached",
     recentlyMinted: "Recently minted LocalNouns.⌐◨-◨",
   },
   list: {

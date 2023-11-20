@@ -50,12 +50,23 @@
             </span>
           </span>
           <span v-else>
-            <button
-              @click="mint"
-              class="inline-block rounded bg-green-600 px-6 py-2.5 leading-tight text-white text-3xl shadow-md transition duration-150 ease-in-out hover:bg-green-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg"
-            >
-              {{ $t("mint.mint") }}
-            </button>
+            <span v-if="mintLimit <= totalSupply">
+              <!-- 最大ミント数オーバー-->
+              <span
+                class="inline-block rounded bg-gray-600 px-6 py-2.5 leading-tight text-white text-xl shadow-md transition duration-150 ease-in-out hover:bg-gray-700 hover:shadow-lg focus:bg-gray-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-800 active:shadow-lg"
+                disabled
+              >
+                {{ $t("mint.overMintLimit") }}
+              </span>
+            </span>
+            <span v-else>
+              <button
+                @click="mint"
+                class="inline-block rounded bg-green-600 px-6 py-2.5 leading-tight text-white text-3xl shadow-md transition duration-150 ease-in-out hover:bg-green-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg"
+              >
+                {{ $t("mint.mint") }}
+              </button>
+            </span>
           </span>
         </span>
         <span v-else>
@@ -73,7 +84,7 @@
     <hr />
     <div class="mx-auto max-w-lg p-2 text-center">
       <p class="mb-2 font-londrina font-yusei text-3xl">
-        {{ `${totalSupply - 1}` }} / {{ `${mintLimit}` }} minted
+        {{ `${totalSupply}` }} / {{ `${mintLimit}` }} minted
       </p>
     </div>
 
@@ -213,7 +224,7 @@ export default defineComponent({
     const { balanceOf, checkTokenGate } = useCheckTokenGate(tokenGateContract);
 
     const account = computed(() => {
-        checkTokenGate(store.state.account);
+      checkTokenGate(store.state.account);
       return store.state.account;
     });
 

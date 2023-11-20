@@ -29,6 +29,7 @@ const lang = {
     price: "価格",
     connectWallet: "先にウォレット接続してください",
     notHasSpecificNFT: "このアドレスはAL対象のNFTを保持していません",
+    overMintLimit: "最大ミント数に達しました",
     recentlyMinted: "産まれたてのLocalNounsたちです.⌐◨-◨",
   },
   list: {
