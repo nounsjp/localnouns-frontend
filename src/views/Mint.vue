@@ -7,20 +7,21 @@
   </div>
 
   <div class="mx-auto max-w-lg p-2 text-left">
-    <Prefectures class="mt-4" v-model="selectedPrefecture" />
+    <Prefectures v-model="selectedPrefecture" />
   </div>
   <div class="mx-auto max-w-lg p-2 text-left">
-    <NumOfMint class="mt-4" limit="20" v-model="selectedNumOfMint" />
+    <NumOfMint limit="10" v-model="selectedNumOfMint" />
   </div>
 
-  <div class="mx-auto max-w-lg p-2 text-left">
-    <span class="ml-16 font-londrina font-yusei text-2xl">
+
+  <div class="mx-auto max-w-lg p-2 text-left mt-4 mb-4">
+    <span class="font-londrina font-yusei text-3xl whitespace-nowrap">
       {{ $t("mint.total") }}: {{ total }} ETH (+ gas fee)
-    </span>
+      </span>
   </div>
 
-  <div class="mx-auto max-w-lg p-2 text-center">
-    <span class="ml-16 font-londrina font-yusei">
+  <div class="mx-auto max-w-lg p-2 text-left mt-4 mb-4">
+    <span class="ml-24 font-londrina font-yusei">
       <span v-if="account">
         <button
           @click="mint"
@@ -28,16 +29,14 @@
         >
           {{ $t("mint.mint") }}
         </button>
-        {{ account }}
       </span>
       <span v-else>
-        <button
-          class="inline-block rounded bg-gray-600 px-6 py-2.5 leading-tight text-white text-3xl shadow-md transition duration-150 ease-in-out hover:bg-gray-700 hover:shadow-lg focus:bg-gray-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-800 active:shadow-lg"
+        <span
+          class="inline-block rounded bg-gray-600 px-6 py-2.5 leading-tight text-white text-xl shadow-md transition duration-150 ease-in-out hover:bg-gray-700 hover:shadow-lg focus:bg-gray-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-800 active:shadow-lg"
           disabled
         >
           {{ $t("mint.connectWallet") }}
-        </button>
-        {{ account }}
+        </span>
       </span>
     </span>
   </div>
@@ -153,7 +152,7 @@ export default defineComponent({
     });
 
     const selectedPrefecture = ref(0);
-    const selectedNumOfMint = ref(20);
+    const selectedNumOfMint = ref(10);
     const total = computed(() => {
       if (selectedPrefecture.value == 0) {
         return Number(selectedNumOfMint.value) * 0.01;

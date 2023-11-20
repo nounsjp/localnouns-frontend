@@ -21,11 +21,11 @@ const lang = {
     form: "提出フォーム",
   },
   mint: {
-    publicSale: "パブリックセール中",
-    alSale: "ALセール中",
+    publicSale: "パブリックセール中 : どなたでもミントできます",
+    alSale: "ALセール中 : 特定のNFTを保有している方のみミントできます",
     total: "合計",
     mint: "ミント",
-    connectWallet: "右上の「接続」ボタンからウォレット接続してください",
+    connectWallet: "先にウォレット接続してください",
     recentlyMinted: "産まれたてのLocalNounsたちです.⌐◨-◨",
   },
   list: {

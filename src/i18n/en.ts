@@ -21,8 +21,8 @@ const lang = {
     form: "Submission Form",
   },
   mint: {
-    publicSale: "Now On Public Sale",
-    alSale: "Now On AL Sale",
+    publicSale: "Now On Sale For Public",
+    alSale: "Now On Sale For Specific NFT Holders",
     total: "Total",
     mint: "Mint",
     connectWallet: "Connect Wallet from above right button.",
