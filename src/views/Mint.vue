@@ -1,12 +1,12 @@
 <template>
   <div class="mx-auto max-w-lg p-2 text-left">
-    <p v-if="salePhase==0" class="mb-2 font-londrina font-yusei text-xl">
+    <p v-if="salePhase == 0" class="mb-2 font-londrina font-yusei text-xl">
       {{ $t("mint.saleLock") }}
     </p>
-    <p v-if="salePhase==1" class="mb-2 font-londrina font-yusei text-xl">
+    <p v-if="salePhase == 1" class="mb-2 font-londrina font-yusei text-xl">
       {{ $t("mint.alSale") }}
     </p>
-    <p v-if="salePhase==2" class="mb-2 font-londrina font-yusei text-xl">
+    <p v-if="salePhase == 2" class="mb-2 font-londrina font-yusei text-xl">
       {{ $t("mint.publicSale") }}
     </p>
     <div class="mb-8 space-y-2 font-pt-root font-medium"></div>
