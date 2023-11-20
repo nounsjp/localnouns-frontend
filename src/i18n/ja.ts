@@ -21,8 +21,9 @@ const lang = {
     form: "提出フォーム",
   },
   mint: {
+    saleLock: "ただいまミントセールは実施しておりません",
     publicSale: "パブリックセール中 : どなたでもミントできます",
-    alSale: "ALセール中 : 特定のNFTを保有している方のみミントできます",
+    alSale: "ALセール中 : 特定NFTを保有している方のみミントできます",
     total: "合計",
     mint: "ミント",
     price: "価格",

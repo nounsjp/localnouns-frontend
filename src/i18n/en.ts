@@ -21,6 +21,7 @@ const lang = {
     form: "Submission Form",
   },
   mint: {
+    saleLock: "Mint Sale is not available",
     publicSale: "Now On Sale For Public",
     alSale: "Now On Sale For Specific NFT Holders",
     total: "Total",

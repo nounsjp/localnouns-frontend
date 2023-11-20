@@ -1,71 +1,79 @@
 <template>
   <div class="mx-auto max-w-lg p-2 text-left">
-    <p class="mb-2 font-londrina font-yusei text-xl">
+    <p v-if="salePhase==0" class="mb-2 font-londrina font-yusei text-xl">
+      {{ $t("mint.saleLock") }}
+    </p>
+    <p v-if="salePhase==1" class="mb-2 font-londrina font-yusei text-xl">
+      {{ $t("mint.alSale") }}
+    </p>
+    <p v-if="salePhase==2" class="mb-2 font-londrina font-yusei text-xl">
       {{ $t("mint.publicSale") }}
     </p>
     <div class="mb-8 space-y-2 font-pt-root font-medium"></div>
   </div>
 
-  <div class="mx-auto max-w-lg p-2 text-left">
-    <Prefectures v-model="selectedPrefecture" />
-  </div>
+  <div v-if="salePhase != 0">
+    <div class="mx-auto max-w-lg p-2 text-left">
+      <Prefectures v-model="selectedPrefecture" />
+    </div>
 
-  <div class="mx-auto max-w-lg p-2 text-left">
-    <div
-      class="grid w-auto grid-cols-1 place-content-center items-center gap-2"
-    >
-      <span class="font-londrina font-yusei text-xl whitespace-nowrap">
-        {{ $t("mint.price") }}: {{ mintPrice }} ETH
+    <div class="mx-auto max-w-lg p-2 text-left">
+      <div
+        class="grid w-auto grid-cols-1 place-content-center items-center gap-2"
+      >
+        <span class="font-londrina font-yusei text-xl whitespace-nowrap">
+          {{ $t("mint.price") }}: {{ mintPrice }} ETH
+        </span>
+      </div>
+    </div>
+
+    <div class="mx-auto max-w-lg p-2 text-left">
+      <NumOfMint limit="10" v-model="selectedNumOfMint" />
+    </div>
+
+    <div class="mx-auto max-w-lg p-2 text-left mt-4 mb-4">
+      <span class="font-londrina font-yusei text-3xl whitespace-nowrap">
+        {{ $t("mint.total") }}: {{ total }} ETH (+ gas fee)
       </span>
     </div>
-  </div>
 
-  <div class="mx-auto max-w-lg p-2 text-left">
-    <NumOfMint limit="10" v-model="selectedNumOfMint" />
-  </div>
-
-  <div class="mx-auto max-w-lg p-2 text-left mt-4 mb-4">
-    <span class="font-londrina font-yusei text-3xl whitespace-nowrap">
-      {{ $t("mint.total") }}: {{ total }} ETH (+ gas fee)
-    </span>
-  </div>
-
-  <div class="mx-auto max-w-lg p-2 text-left mt-4 mb-4">
-    <span class="ml-24 font-londrina font-yusei">
-      <span v-if="account">
-        <button
-          @click="mint"
-          class="inline-block rounded bg-green-600 px-6 py-2.5 leading-tight text-white text-3xl shadow-md transition duration-150 ease-in-out hover:bg-green-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg"
-        >
-          {{ $t("mint.mint") }}
-        </button>
-      </span>
-      <span v-else>
-        <span
-          class="inline-block rounded bg-gray-600 px-6 py-2.5 leading-tight text-white text-xl shadow-md transition duration-150 ease-in-out hover:bg-gray-700 hover:shadow-lg focus:bg-gray-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-800 active:shadow-lg"
-          disabled
-        >
-          {{ $t("mint.connectWallet") }}
+    <div class="mx-auto max-w-lg p-2 text-left mt-4 mb-4">
+      <span class="ml-24 font-londrina font-yusei">
+        <span v-if="account">
+          <button
+            @click="mint"
+            class="inline-block rounded bg-green-600 px-6 py-2.5 leading-tight text-white text-3xl shadow-md transition duration-150 ease-in-out hover:bg-green-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg"
+          >
+            {{ $t("mint.mint") }}
+          </button>
+        </span>
+        <span v-else>
+          <span
+            class="inline-block rounded bg-gray-600 px-6 py-2.5 leading-tight text-white text-xl shadow-md transition duration-150 ease-in-out hover:bg-gray-700 hover:shadow-lg focus:bg-gray-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-800 active:shadow-lg"
+            disabled
+          >
+            {{ $t("mint.connectWallet") }}
+          </span>
         </span>
       </span>
-    </span>
-  </div>
+    </div>
 
-  <div class="mb-8 space-y-2 font-pt-root font-medium"></div>
-  <hr />
-  <div class="mx-auto max-w-lg p-2 text-center">
-    <p class="mb-2 font-londrina font-yusei text-3xl">
-      {{ `${totalSupply - 1}` }} / {{ `${mintLimit}` }} minted
-    </p>
-  </div>
+    <div class="mb-8 space-y-2 font-pt-root font-medium"></div>
+    <hr />
+    <div class="mx-auto max-w-lg p-2 text-center">
+      <p class="mb-2 font-londrina font-yusei text-3xl">
+        {{ `${totalSupply - 1}` }} / {{ `${mintLimit}` }} minted
+      </p>
+    </div>
 
-  <div v-if="tokens.length > 0" class="mt-4">
-    <p class="mb-2 font-londrina font-yusei text-s">
-      {{ $t("mint.recentlyMinted") }}
-    </p>
-    <span v-for="token in tokens" :key="token.tokenId">
-      <img :src="token.image" class="mr-1 mb-1 inline-block w-32" />
-    </span>
+    <div v-if="tokens.length > 0" class="mt-4">
+      <p class="mb-2 font-londrina font-yusei text-s">
+        {{ $t("mint.recentlyMinted") }}
+      </p>
+      <span v-for="token in tokens" :key="token.tokenId">
+        <img :src="token.image" class="mr-1 mb-1 inline-block w-32" />
+      </span>
+    </div>
   </div>
 </template>
 
