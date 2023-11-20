@@ -165,6 +165,30 @@ const getMintLimitFromTokenContract = async (
   const limit = await tokenContract.mintLimit();
   return Number(limit);
 };
+
+const getMintMaxFromMinterContract = async (
+  minterContract: ethers.Contract,
+) => {
+  const limit = await minterContract.mintMax();
+  return Number(limit);
+};
+const getPhaseFromMinterContract = async (minterContract: ethers.Contract) => {
+  const phase = await minterContract.phase();
+  return Number(phase);
+};
+const getMintPriceForSpecifiedFromMinterContract = async (
+  minterContract: ethers.Contract,
+) => {
+  const price = await minterContract.mintPriceForSpecified();
+  return BigInt(price);
+};
+const getMintPriceForNotSpecifiedFromMinterContract = async (
+  minterContract: ethers.Contract,
+) => {
+  const price = await minterContract.mintPriceForNotSpecified();
+  return BigInt(price);
+};
+
 const getDebugTokenURI = async (
   tokenContract: ethers.Contract,
   tokenId: number,
@@ -221,6 +245,39 @@ export const useFetchTokens = (
     tokens,
 
     fetchTokens,
+  };
+};
+
+export const useMintConditions = (
+  network: string,
+  contractRO: ethers.Contract,
+) => {
+  const salePhase = ref<number>(0);
+  const mintLimit = ref<number>(0);
+  const mintPriceForSpecified = ref<bigint>(BigInt(0));
+  const mintPriceForNotSpecified = ref<bigint>(BigInt(0));
+
+  const mintConditions = async () => {
+    salePhase.value = await getPhaseFromMinterContract(contractRO);
+    mintLimit.value = await getMintMaxFromMinterContract(contractRO);
+    mintPriceForSpecified.value =
+      await getMintPriceForSpecifiedFromMinterContract(contractRO);
+    mintPriceForNotSpecified.value =
+      await getMintPriceForNotSpecifiedFromMinterContract(contractRO);
+
+    console.log("salePhase/mintLimit", salePhase.value, mintLimit.value);
+    console.log(
+      "mintPrice",
+      mintPriceForSpecified.value,
+      mintPriceForNotSpecified.value,
+    );
+  };
+  return {
+    salePhase,
+    mintLimit,
+    mintPriceForSpecified,
+    mintPriceForNotSpecified,
+    mintConditions,
   };
 };
 

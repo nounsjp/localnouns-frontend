@@ -25,6 +25,7 @@ const lang = {
     alSale: "ALセール中 : 特定のNFTを保有している方のみミントできます",
     total: "合計",
     mint: "ミント",
+    price: "価格",
     connectWallet: "先にウォレット接続してください",
     recentlyMinted: "産まれたてのLocalNounsたちです.⌐◨-◨",
   },

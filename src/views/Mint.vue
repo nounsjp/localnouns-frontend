@@ -9,6 +9,17 @@
   <div class="mx-auto max-w-lg p-2 text-left">
     <Prefectures v-model="selectedPrefecture" />
   </div>
+
+  <div class="mx-auto max-w-lg p-2 text-left">
+    <div
+      class="grid w-auto grid-cols-1 place-content-center items-center gap-2"
+    >
+      <span class="font-londrina font-yusei text-xl whitespace-nowrap">
+        {{ $t("mint.price") }}: {{ mintPrice }} ETH
+      </span>
+    </div>
+  </div>
+
   <div class="mx-auto max-w-lg p-2 text-left">
     <NumOfMint limit="10" v-model="selectedNumOfMint" />
   </div>
@@ -67,9 +78,11 @@ import {
   getProvider,
   getTokenContract,
   useFetchTokens,
+  useMintConditions,
   getLocalNounsMinterContract,
 } from "@/utils/const";
 import { ChainIdMap } from "@/utils/MetaMask";
+import { weiToEther } from "@/utils/utils";
 import { ALCHEMY_API_KEY } from "@/config/project";
 import Prefectures from "@/components/Prefectures.vue";
 import NumOfMint from "@/components/NumOfMint.vue";
@@ -124,17 +137,28 @@ export default defineComponent({
 
     // RO means read only.
     const contractRO = getTokenContract(props.tokenAddress, provider);
+    // Minter
+    const minterContract = getLocalNounsMinterContract(
+      props.minterAddress,
+      provider,
+    );
 
-    const { fetchTokens, totalSupply, nextImage, tokens, mintLimit } =
-      useFetchTokens(props.network, props.assetProvider, provider, contractRO);
-    console.log(
-      "totalSupply, nextImage, tokens, mintLimit =",
-      totalSupply.value,
-      nextImage.value,
-      tokens.value.length,
-      mintLimit.value,
+    const { fetchTokens, totalSupply, tokens } = useFetchTokens(
+      props.network,
+      props.assetProvider,
+      provider,
+      contractRO,
     );
     fetchTokens();
+
+    const {
+      salePhase,
+      mintLimit,
+      mintPriceForSpecified,
+      mintPriceForNotSpecified,
+      mintConditions,
+    } = useMintConditions(props.network, minterContract);
+    mintConditions();
 
     provider.once("block", () => {
       contractRO.on(
@@ -150,12 +174,17 @@ export default defineComponent({
 
     const selectedPrefecture = ref(0);
     const selectedNumOfMint = ref(10);
-    const total = computed(() => {
+
+    const mintPrice = computed(() => {
       if (selectedPrefecture.value == 0) {
-        return Number(selectedNumOfMint.value) * 0.01;
+        return weiToEther(mintPriceForNotSpecified.value);
       } else {
-        return Number(selectedNumOfMint.value) * 0.03;
+        return weiToEther(mintPriceForSpecified.value);
       }
+    });
+
+    const total = computed(() => {
+      return mintPrice.value * Number(selectedNumOfMint.value);
     });
 
     const account = computed(() => store.state.account);
@@ -188,6 +217,8 @@ export default defineComponent({
 
     return {
       lang,
+      salePhase,
+      mintPrice,
       totalSupply,
       mintLimit,
       tokens,

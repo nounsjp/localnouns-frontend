@@ -25,6 +25,7 @@ const lang = {
     alSale: "Now On Sale For Specific NFT Holders",
     total: "Total",
     mint: "Mint",
+    price: "Price",
     connectWallet: "Connect Wallet from above right button.",
     recentlyMinted: "Recently minted LocalNouns.⌐◨-◨",
   },
