@@ -5,8 +5,8 @@ const lang = {
   nav: {
     top: "トップ",
     mint: "ミント",
-    list: "リスト",
-    owner: "オーナー",
+    list: "一覧",
+    owner: "マイページ",
     p2pSale: "P2Pセール",
     p2pTrade: "P2Pトレード",
     goods: "グッズ",

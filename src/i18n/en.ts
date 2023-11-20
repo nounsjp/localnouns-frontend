@@ -6,7 +6,7 @@ const lang = {
     top: "Top",
     mint: "Mint",
     list: "List",
-    owner: "Owner",
+    owner: "MyPage",
     p2pSale: "P2PSale",
     p2pTrade: "P2PTrade",
     goods: "Goods",
