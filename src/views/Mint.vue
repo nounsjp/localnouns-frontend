@@ -13,11 +13,10 @@
     <NumOfMint limit="10" v-model="selectedNumOfMint" />
   </div>
 
-
   <div class="mx-auto max-w-lg p-2 text-left mt-4 mb-4">
     <span class="font-londrina font-yusei text-3xl whitespace-nowrap">
       {{ $t("mint.total") }}: {{ total }} ETH (+ gas fee)
-      </span>
+    </span>
   </div>
 
   <div class="mx-auto max-w-lg p-2 text-left mt-4 mb-4">
@@ -54,9 +53,7 @@
       {{ $t("mint.recentlyMinted") }}
     </p>
     <span v-for="token in tokens" :key="token.tokenId">
-      <a :href="`${OpenSeaPath}/${token.tokenId}`" target="_blank">
-        <img :src="token.image" class="mr-1 mb-1 inline-block w-32" />
-      </a>
+      <img :src="token.image" class="mr-1 mb-1 inline-block w-32" />
     </span>
   </div>
 </template>
@@ -169,10 +166,6 @@ export default defineComponent({
 
       const contract = getLocalNounsMinterContract(props.minterAddress, signer);
 
-      console.log("contract.runner", contract.runner);
-
-      console.log("contract:", contract);
-      console.log("*** minting", total.value);
       isMinting.value = true;
 
       try {
@@ -184,7 +177,6 @@ export default defineComponent({
           txParams,
         );
         const result = await tx.wait();
-        console.log("mint:tx");
         console.log("mint:gasUsed", result.gasUsed.toNumber());
 
         // await checkTokenGate(account.value);
