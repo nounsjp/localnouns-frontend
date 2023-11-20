@@ -31,6 +31,7 @@ const lang = {
     notHasSpecificNFT: "This address does not have the NFT for AL Sale",
     overMintLimit: "The maximum number of mints has been reached",
     recentlyMinted: "Recently minted LocalNouns.⌐◨-◨",
+    finishMint: "Mint Finished!!",
   },
   list: {
     description: "You can parchace Local Nouns here.",

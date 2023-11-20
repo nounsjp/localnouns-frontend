@@ -31,6 +31,7 @@ const lang = {
     notHasSpecificNFT: "このアドレスはAL対象のNFTを保持していません",
     overMintLimit: "最大ミント数に達しました",
     recentlyMinted: "産まれたてのLocalNounsたちです.⌐◨-◨",
+    finishMint: "ミント完了!!",
   },
   list: {
     description: "ここではご当地Nounsを購入することができます",

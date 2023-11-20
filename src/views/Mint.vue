@@ -60,7 +60,22 @@
               </span>
             </span>
             <span v-else>
+              <!-- ミント中 -->
               <button
+                type="button"
+                v-if="isMinting"
+                class="inline-block rounded px-6 py-2.5 leading-tight text-gray-600 shadow-md"
+                disabled
+              >
+                <img
+                  class="absolute h-3 w-8 animate-spin"
+                  src="@/assets/red160px.png"
+                />
+                <span class="ml-10">{{ $t("message.processing") }}</span>
+              </button>
+              <!-- ミントボタン -->
+              <button
+                v-else
                 @click="mint"
                 class="inline-block rounded bg-green-600 px-6 py-2.5 leading-tight text-white text-3xl shadow-md transition duration-150 ease-in-out hover:bg-green-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg"
               >
@@ -79,6 +94,14 @@
         </span>
       </span>
     </div>
+
+    <!-- ミント終了時のダイアログ -->
+    <InformationDialog
+      :isOpen="displayInformationDialog"
+      :message="informationMessage"
+      toOwnerPage="true"
+      @close="closeModal(true)"
+    />
 
     <div class="mb-8 space-y-2 font-pt-root font-medium"></div>
     <hr />
@@ -118,6 +141,7 @@ import { weiToEther } from "@/utils/utils";
 import { ALCHEMY_API_KEY } from "@/config/project";
 import Prefectures from "@/components/Prefectures.vue";
 import NumOfMint from "@/components/NumOfMint.vue";
+import InformationDialog from "@/components/InformationDialog.vue";
 
 export default defineComponent({
   props: {
@@ -155,12 +179,16 @@ export default defineComponent({
   components: {
     Prefectures,
     NumOfMint,
+    InformationDialog,
   },
   setup(props, context) {
     const store = useStore();
     const i18n = useI18n();
 
     const isMinting = ref(false);
+    const displayInformationDialog = ref(false);
+    const informationMessage = ref("");
+
     const lang = computed(() => {
       return i18n.locale.value;
     });
@@ -245,13 +273,21 @@ export default defineComponent({
           txParams,
         );
         const result = await tx.wait();
-        console.log("mint:gasUsed", result.gasUsed.toNumber());
+        informationMessage.value = "mint.finishMint";
+        displayInformationDialog.value = true;
+        console.log("mint:gasUsed", result.gasUsed);
 
         // await checkTokenGate(account.value);
       } catch (e) {
         console.error(e);
       }
       isMinting.value = false;
+    };
+
+    const closeModal = () => {
+      console.log("closeModal-reload");
+      isMinting.value = false;
+      displayInformationDialog.value = false;
     };
 
     return {
@@ -266,6 +302,9 @@ export default defineComponent({
       selectedNumOfMint,
       selectedPrefecture,
       isMinting,
+      informationMessage,
+      displayInformationDialog,
+      closeModal,
       account,
       mint,
     };
