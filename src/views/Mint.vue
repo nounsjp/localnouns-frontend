@@ -81,6 +81,9 @@
               >
                 {{ $t("mint.mint") }}
               </button>
+              <a v-if="hashLink && isMinting" :href="hashLink" target="_blank">
+                etherscan
+              </a>
             </span>
           </span>
         </span>
@@ -244,25 +247,31 @@ export default defineComponent({
     } = useMintConditions(props.network, minterContract);
     mintConditions();
 
+    let isFetching = false;
     provider.once("block", () => {
       contractRO.on(contractRO.filters.Transfer(), async (event) => {
+        console.log("*** event.Transfer calling fetchTokens");
+        // Proxy(Result)から値を取得
+        const from = event.args[0];
+        const to = event.args[1];
+        const tokenId = event.args[2]?.toString();
+        // ダイアログ表示中でなく、ミント先が自分の場合はダイアログを表示
+        if (
+          !displayInformationDialog.value &&
+          from == "0x0000000000000000000000000000000000000000" &&
+          to.toLowerCase() == account.value.toLowerCase()
+        ) {
+          isMinting.value = false;
+          displayInformationDialog.value = true;
+          mintedTokenId.value = Number(tokenId);
+        }
         try {
           // 短時間に呼び出し過ぎるとエラーになる
-          console.log("*** event.Transfer calling fetchTokens");
-          // Proxy(Result)から値を取得
-          const from = event.args[0];
-          const to = event.args[1];
-          const tokenId = event.args[2]?.toString();
-          // ダイアログ表示中でなく、ミント先が自分の場合はダイアログを表示
-          if (
-            !displayInformationDialog.value &&
-            from == "0x0000000000000000000000000000000000000000" &&
-            to.toLowerCase() == account.value.toLowerCase()
-          ) {
-            displayInformationDialog.value = true;
-            mintedTokenId.value = Number(tokenId);
+          if (!isFetching) {
+            isFetching = true;
+            await fetchTokens();
+            isFetching = false;
           }
-          fetchTokens();
         } catch (e) {
           if (e instanceof Error) {
             console.error("event.Transfer:", e.message);
@@ -312,16 +321,14 @@ export default defineComponent({
           selectedNumOfMint.value,
           txParams,
         );
-        console.log("hash:", tx.hash);
-        const result = await tx.wait();
+
         const { EtherscanBase } = getAddresses(
           props.network,
           props.minterAddress,
         );
         hashLink.value = EtherscanBase + tx.hash;
-        console.log("props.network", props.network);
-        console.log("EtherscanBase", EtherscanBase);
-        console.log("hashLink.value", hashLink.value);
+
+        const result = await tx.wait();
 
         // displayInformationDialog.value = true;
         console.log("mint:gasUsed", result.gasUsed);
@@ -341,9 +348,10 @@ export default defineComponent({
         );
         if (errorDescription.value.indexOf("user rejected action") < 0) {
           displayErrorDialog.value = true;
+        }else{
+          isMinting.value = false;
         }
       }
-      isMinting.value = false;
     };
 
     const closeModal = () => {
@@ -351,6 +359,7 @@ export default defineComponent({
       isMinting.value = false;
       displayInformationDialog.value = false;
       displayErrorDialog.value = false;
+      hashLink.value = "";
     };
 
     return {
