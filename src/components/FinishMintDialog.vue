@@ -18,6 +18,7 @@
       >
         and more...
       </span>
+      <a v-if="hashLink" :href="hashLink" target="_blank"> etherscan </a>
       <span class="absolute top-2 right-4 cursor-pointer">
         <button
           @click="closeModal"
@@ -49,6 +50,10 @@ export default {
     mintedNumber: {
       type: Number,
       required: true,
+    },
+    hashLink: {
+      type: String,
+      required: false,
     },
   },
   setup(props, context) {

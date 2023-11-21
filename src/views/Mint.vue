@@ -100,6 +100,7 @@
       :isOpen="displayInformationDialog"
       :mintedTokenId="mintedTokenId"
       :mintedNumber="selectedNumOfMint"
+      :hashLink="hashLink"
       @close="closeModal(true)"
     />
 
@@ -150,6 +151,7 @@ import {
   getLocalNounsMinterContract,
   getTokenGate,
   useCheckTokenGate,
+  getAddresses,
 } from "@/utils/const";
 import { ChainIdMap } from "@/utils/MetaMask";
 import { weiToEther } from "@/utils/utils";
@@ -207,6 +209,7 @@ export default defineComponent({
     const mintedTokenId = ref(99999);
     const displayErrorDialog = ref(false);
     const errorDescription = ref("");
+    const hashLink = ref("");
 
     const lang = computed(() => {
       return i18n.locale.value;
@@ -243,22 +246,22 @@ export default defineComponent({
 
     provider.once("block", () => {
       contractRO.on(contractRO.filters.Transfer(), async (event) => {
-        console.log("*** event.Transfer calling fetchTokens");
-        // Proxy(Result)から値を取得
-        const from = event.args[0];
-        const to = event.args[1];
-        const tokenId = event.args[2]?.toString();
-        // ダイアログ表示中でなく、ミント先が自分の場合はダイアログを表示
-        if (
-          !displayInformationDialog.value &&
-          from == "0x0000000000000000000000000000000000000000" &&
-          to.toLowerCase() == account.value.toLowerCase()
-        ) {
-          displayInformationDialog.value = true;
-          mintedTokenId.value = Number(tokenId);
-        }
         try {
           // 短時間に呼び出し過ぎるとエラーになる
+          console.log("*** event.Transfer calling fetchTokens");
+          // Proxy(Result)から値を取得
+          const from = event.args[0];
+          const to = event.args[1];
+          const tokenId = event.args[2]?.toString();
+          // ダイアログ表示中でなく、ミント先が自分の場合はダイアログを表示
+          if (
+            !displayInformationDialog.value &&
+            from == "0x0000000000000000000000000000000000000000" &&
+            to.toLowerCase() == account.value.toLowerCase()
+          ) {
+            displayInformationDialog.value = true;
+            mintedTokenId.value = Number(tokenId);
+          }
           fetchTokens();
         } catch (e) {
           if (e instanceof Error) {
@@ -309,7 +312,16 @@ export default defineComponent({
           selectedNumOfMint.value,
           txParams,
         );
+        console.log("hash:", tx.hash);
         const result = await tx.wait();
+        const { EtherscanBase } = getAddresses(
+          props.network,
+          props.minterAddress,
+        );
+        hashLink.value = EtherscanBase + tx.hash;
+        console.log("props.network", props.network);
+        console.log("EtherscanBase", EtherscanBase);
+        console.log("hashLink.value", hashLink.value);
 
         // displayInformationDialog.value = true;
         console.log("mint:gasUsed", result.gasUsed);
@@ -355,6 +367,7 @@ export default defineComponent({
       isMinting,
       displayInformationDialog,
       mintedTokenId,
+      hashLink,
       displayErrorDialog,
       errorDescription,
       closeModal,
