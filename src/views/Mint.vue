@@ -50,7 +50,7 @@
             </span>
           </span>
           <span v-else>
-            <span v-if="mintLimit <= totalSupply">
+            <span v-if="mintLimit < totalSupply + selectedNumOfMint">
               <!-- 最大ミント数オーバー-->
               <span
                 class="inline-block rounded bg-gray-600 px-6 py-2.5 leading-tight text-white text-xl shadow-md transition duration-150 ease-in-out hover:bg-gray-700 hover:shadow-lg focus:bg-gray-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-800 active:shadow-lg"
@@ -103,6 +103,13 @@
       @close="closeModal(true)"
     />
 
+    <!-- エラー時のダイアログ -->
+    <ErrorDialog
+      :isOpen="displayErrorDialog"
+      :description="errorDescription"
+      @close="closeModal(true)"
+    />
+
     <div class="mb-8 space-y-2 font-pt-root font-medium"></div>
     <hr />
     <div class="mx-auto max-w-lg p-2 text-center">
@@ -150,6 +157,7 @@ import { ALCHEMY_API_KEY } from "@/config/project";
 import Prefectures from "@/components/Prefectures.vue";
 import NumOfMint from "@/components/NumOfMint.vue";
 import FinishMintDialog from "@/components/FinishMintDialog.vue";
+import ErrorDialog from "@/components/ErrorDialog.vue";
 
 export default defineComponent({
   props: {
@@ -188,6 +196,7 @@ export default defineComponent({
     Prefectures,
     NumOfMint,
     FinishMintDialog,
+    ErrorDialog,
   },
   setup(props, context) {
     const store = useStore();
@@ -196,6 +205,8 @@ export default defineComponent({
     const isMinting = ref(false);
     const displayInformationDialog = ref(false);
     const mintedTokenId = ref(99999);
+    const displayErrorDialog = ref(false);
+    const errorDescription = ref("");
 
     const lang = computed(() => {
       return i18n.locale.value;
@@ -237,19 +248,17 @@ export default defineComponent({
         const from = event.args[0];
         const to = event.args[1];
         const tokenId = event.args[2]?.toString();
-        console.log("Transfer from=", from);
-        console.log("Transfer to=", to);
-        console.log("account=", account.value);
-        console.log("Transfer tokenId=", tokenId);
         // ダイアログ表示中でなく、ミント先が自分の場合はダイアログを表示
         if (
           !displayInformationDialog.value &&
+          from == "0x0000000000000000000000000000000000000000" &&
           to.toLowerCase() == account.value.toLowerCase()
         ) {
           displayInformationDialog.value = true;
           mintedTokenId.value = Number(tokenId);
         }
         try {
+          // 短時間に呼び出し過ぎるとエラーになる
           fetchTokens();
         } catch (e) {
           if (e instanceof Error) {
@@ -307,10 +316,19 @@ export default defineComponent({
 
         // await checkTokenGate(account.value);
       } catch (e) {
+        console.error("mintSelectedPrefecture:", e);
         if (e instanceof Error) {
-          console.error("mintSelectedPrefecture:", e.message);
+          errorDescription.value = "mintSelectedPrefecture:" + e.message;
         } else {
-          console.error("mintSelectedPrefecture:", e);
+          errorDescription.value = "mintSelectedPrefecture:" + String(e);
+        }
+        const indexComma = errorDescription.value.indexOf("(");
+        errorDescription.value = errorDescription.value.substring(
+          0,
+          indexComma,
+        );
+        if (errorDescription.value.indexOf("user rejected action") < 0) {
+          displayErrorDialog.value = true;
         }
       }
       isMinting.value = false;
@@ -320,6 +338,7 @@ export default defineComponent({
       console.log("closeModal-reload");
       isMinting.value = false;
       displayInformationDialog.value = false;
+      displayErrorDialog.value = false;
     };
 
     return {
@@ -336,6 +355,8 @@ export default defineComponent({
       isMinting,
       displayInformationDialog,
       mintedTokenId,
+      displayErrorDialog,
+      errorDescription,
       closeModal,
       account,
       mint,

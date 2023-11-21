@@ -35,6 +35,9 @@ const lang = {
   finishMintDialog: {
     message: "ミント完了!!",
   },
+  errorDialog: {
+    message: "エラーが発生しました。しばらく経ってからやり直してください",
+  },
   list: {
     description: "ここではご当地Nounsを購入することができます",
     purchace: "購入",

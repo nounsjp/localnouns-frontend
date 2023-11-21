@@ -36,6 +36,9 @@ const lang = {
   finishMintDialog: {
     message: "Mint Finished!!",
   },
+  errorDialog: {
+    message: "Error has occurred. Please wait a moment and try again.",
+  },
   list: {
     description: "You can parchace Local Nouns here.",
     purchace: "Buy",
