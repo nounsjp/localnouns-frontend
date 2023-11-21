@@ -96,10 +96,10 @@
     </div>
 
     <!-- ミント終了時のダイアログ -->
-    <InformationDialog
+    <FinishMintDialog
       :isOpen="displayInformationDialog"
-      :message="informationMessage"
-      toOwnerPage="true"
+      :mintedTokenId="mintedTokenId"
+      :mintedNumber="selectedNumOfMint"
       @close="closeModal(true)"
     />
 
@@ -111,12 +111,20 @@
       </p>
     </div>
 
-    <div v-if="tokens.length > 0" class="mt-4">
-      <p class="mb-2 font-londrina font-yusei text-s">
-        {{ $t("mint.recentlyMinted") }}
-      </p>
+    <p class="mb-2 font-londrina font-yusei">
+      {{ $t("mint.recentlyMinted") }}
+    </p>
+    <div
+      v-if="tokens.length > 0"
+      class="grid w-screen grid-cols-2 place-content-center items-center gap-2 sm:grid-cols-4 mt-4"
+    >
       <span v-for="token in tokens" :key="token.tokenId">
-        <img :src="token.image" class="mr-1 mb-1 inline-block w-32" />
+        <div>
+          <img :src="token.image" class="mr-1 mb-1 inline-block w-32" />
+          <p class="mb-2 font-londrina font-yusei text-s">
+            #{{ token.tokenId }}
+          </p>
+        </div>
       </span>
     </div>
   </div>
@@ -141,7 +149,7 @@ import { weiToEther } from "@/utils/utils";
 import { ALCHEMY_API_KEY } from "@/config/project";
 import Prefectures from "@/components/Prefectures.vue";
 import NumOfMint from "@/components/NumOfMint.vue";
-import InformationDialog from "@/components/InformationDialog.vue";
+import FinishMintDialog from "@/components/FinishMintDialog.vue";
 
 export default defineComponent({
   props: {
@@ -179,7 +187,7 @@ export default defineComponent({
   components: {
     Prefectures,
     NumOfMint,
-    InformationDialog,
+    FinishMintDialog,
   },
   setup(props, context) {
     const store = useStore();
@@ -187,7 +195,7 @@ export default defineComponent({
 
     const isMinting = ref(false);
     const displayInformationDialog = ref(false);
-    const informationMessage = ref("");
+    const mintedTokenId = ref(99999);
 
     const lang = computed(() => {
       return i18n.locale.value;
@@ -223,15 +231,35 @@ export default defineComponent({
     mintConditions();
 
     provider.once("block", () => {
-      contractRO.on(
-        contractRO.filters.Transfer(),
-        async (from, to, tokenId) => {
-          console.log("*** event.Transfer calling fetchTokens");
-          console.log("from, to, tokenId=", from, to, tokenId);
+      contractRO.on(contractRO.filters.Transfer(), async (event) => {
+        console.log("*** event.Transfer calling fetchTokens");
+        // Proxy(Result)から値を取得
+        const from = event.args[0];
+        const to = event.args[1];
+        const tokenId = event.args[2]?.toString();
+        console.log("Transfer from=", from);
+        console.log("Transfer to=", to);
+        console.log("account=", account.value);
+        console.log("Transfer tokenId=", tokenId);
+        // ダイアログ表示中でなく、ミント先が自分の場合はダイアログを表示
+        if (
+          !displayInformationDialog.value &&
+          to.toLowerCase() == account.value.toLowerCase()
+        ) {
+          displayInformationDialog.value = true;
+          mintedTokenId.value = Number(tokenId);
+        }
+        try {
           fetchTokens();
-          context.emit("minted");
-        },
-      );
+        } catch (e) {
+          if (e instanceof Error) {
+            console.error("event.Transfer:", e.message);
+          } else {
+            console.error("event.Transfer:", e);
+          }
+        }
+        context.emit("minted");
+      });
     });
 
     const selectedPrefecture = ref(0);
@@ -273,13 +301,17 @@ export default defineComponent({
           txParams,
         );
         const result = await tx.wait();
-        informationMessage.value = "mint.finishMint";
-        displayInformationDialog.value = true;
+
+        // displayInformationDialog.value = true;
         console.log("mint:gasUsed", result.gasUsed);
 
         // await checkTokenGate(account.value);
       } catch (e) {
-        console.error(e);
+        if (e instanceof Error) {
+          console.error("mintSelectedPrefecture:", e.message);
+        } else {
+          console.error("mintSelectedPrefecture:", e);
+        }
       }
       isMinting.value = false;
     };
@@ -302,8 +334,8 @@ export default defineComponent({
       selectedNumOfMint,
       selectedPrefecture,
       isMinting,
-      informationMessage,
       displayInformationDialog,
+      mintedTokenId,
       closeModal,
       account,
       mint,

@@ -11,19 +11,11 @@
       </p>
       <span class="absolute top-4 right-4 cursor-pointer">
         <button
-          v-if="!toOwnerPage"
           @click="closeModal"
           class="mt-4 inline-block rounded bg-green-500 px-6 py-2.5 leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-green-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg"
         >
           {{ $t("tokenManagement.close") }}
         </button>
-
-        <router-link
-          v-if="toOwnerPage"
-          :to="localizedUrl('/owner')"
-          class="mt-4 inline-block rounded bg-green-500 px-6 py-2.5 leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-green-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg"
-          >{{ $t("nav.owner") }}</router-link
-        >
       </span>
     </div>
   </div>

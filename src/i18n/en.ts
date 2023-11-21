@@ -33,6 +33,9 @@ const lang = {
     recentlyMinted: "Recently minted LocalNouns.⌐◨-◨",
     finishMint: "Mint Finished!!",
   },
+  finishMintDialog: {
+    message: "Mint Finished!!",
+  },
   list: {
     description: "You can parchace Local Nouns here.",
     purchace: "Buy",
