@@ -348,7 +348,7 @@ export default defineComponent({
         );
         if (errorDescription.value.indexOf("user rejected action") < 0) {
           displayErrorDialog.value = true;
-        }else{
+        } else {
           isMinting.value = false;
         }
       }
