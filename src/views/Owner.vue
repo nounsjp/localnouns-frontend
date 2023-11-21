@@ -161,7 +161,12 @@ export default defineComponent({
 
     // トークンを都道府県IDでグループ化するcomputedプロパティ
     const groupedByPrefecture = computed(() => {
-      const groups = tokens.value.reduce((acc: any, token) => {
+      // 最初にtokensをtokenIdでソート
+      const sortedTokens = [...tokens.value].sort((a, b) => {
+        return Number(a.tokenId) - Number(b.tokenId);
+      });
+
+      const groups = sortedTokens.reduce((acc: any, token) => {
         // prefectureIdをキーとする
         const key = token.prefectureId;
         if (!acc[key]) {
