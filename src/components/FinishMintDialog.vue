@@ -10,7 +10,7 @@
         {{ $t("finishMintDialog.message") }}
       </p>
       <span class="mb-2 font-londrina font-yusei text-3xl">
-        Local Nouns #{{ mintedTokenId }}
+        #{{ mintedTokenId }}
       </span>
       <span
         v-if="mintedNumber > 1"
