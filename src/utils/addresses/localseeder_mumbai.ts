@@ -1,4 +1,3 @@
 export const addresses = {
-  // localseeder: "0x85672cdc630Cc81da5e0f03b9DC15D99728c67f0",
-  localseeder: "0x4b7FDbDf90fb2a70fAf6b71Da23F2cF3C332a654",
-};
+  localseeder:"0x87b2218f73316b49c70dCDF150C65940a86e2e20",
+}
