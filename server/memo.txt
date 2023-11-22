@@ -1,0 +1,8 @@
+Google Cound Compute Engineで実行するまで
+
+see: https://datasciencecampus.github.io/creating-a-gcp-vm-and-run-cron/
+(dockerはインストールしていない)
+
+Step 6から13を実施
+
+Step13 repo: git@github.com:nounsjp/localnouns-frontend.git

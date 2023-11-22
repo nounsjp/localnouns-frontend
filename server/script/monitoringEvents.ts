@@ -1,3 +1,6 @@
+/*
+  npx ts-node -r tsconfig-paths/register server/script/monitoringEvents.ts
+*/
 import { ALCHEMY_API_KEY, NETWORK } from "@/config/project";
 import {
   getProvider,
