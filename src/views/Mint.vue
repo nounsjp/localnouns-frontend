@@ -1,18 +1,25 @@
 <template>
   <div class="mx-auto max-w-lg p-2 text-left">
-    <p v-if="salePhase == 0" class="mb-2 font-londrina font-yusei text-xl">
-      {{ $t("mint.saleLock") }}
-    </p>
-    <p v-if="salePhase == 1" class="mb-2 font-londrina font-yusei text-xl">
-      {{ $t("mint.alSale") }}
-    </p>
-    <p v-if="salePhase == 2" class="mb-2 font-londrina font-yusei text-xl">
-      {{ $t("mint.publicSale") }}
-    </p>
+    <div v-if="!account">
+      <p class="mb-2 font-londrina font-yusei text-xl">
+        {{ $t("mint.connectWallet") }}
+      </p>
+    </div>
+    <div v-else>
+      <p v-if="salePhase == 0" class="mb-2 font-londrina font-yusei text-xl">
+        {{ $t("mint.saleLock") }}
+      </p>
+      <p v-if="salePhase == 1" class="mb-2 font-londrina font-yusei text-xl">
+        {{ $t("mint.alSale") }}
+      </p>
+      <p v-if="salePhase == 2" class="mb-2 font-londrina font-yusei text-xl">
+        {{ $t("mint.publicSale") }}
+      </p>
+    </div>
     <div class="mb-8 space-y-2 font-pt-root font-medium"></div>
   </div>
 
-  <div v-if="salePhase != 0">
+  <div v-if="salePhase != 0 && account">
     <div class="mx-auto max-w-lg p-2 text-left">
       <Prefectures v-model="selectedPrefecture" />
     </div>
@@ -39,60 +46,50 @@
 
     <div class="mx-auto max-w-lg p-2 text-left mt-4 mb-4">
       <span class="font-londrina font-yusei">
-        <span v-if="account">
-          <span v-if="balanceOf == 0 && salePhase == 1">
-            <!-- ALセールで特定NFTなし-->
-            <span
-              class="inline-block rounded bg-gray-600 px-6 py-2.5 leading-tight text-white text-xl shadow-md transition duration-150 ease-in-out hover:bg-gray-700 hover:shadow-lg focus:bg-gray-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-800 active:shadow-lg"
-              disabled
-            >
-              {{ $t("mint.notHasSpecificNFT") }}
-            </span>
-          </span>
-          <span v-else>
-            <span v-if="mintLimit < totalSupply + selectedNumOfMint">
-              <!-- 最大ミント数オーバー-->
-              <span
-                class="inline-block rounded bg-gray-600 px-6 py-2.5 leading-tight text-white text-xl shadow-md transition duration-150 ease-in-out hover:bg-gray-700 hover:shadow-lg focus:bg-gray-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-800 active:shadow-lg"
-                disabled
-              >
-                {{ $t("mint.overMintLimit") }}
-              </span>
-            </span>
-            <span v-else>
-              <!-- ミント中 -->
-              <button
-                type="button"
-                v-if="isMinting"
-                class="inline-block rounded px-6 py-2.5 leading-tight text-gray-600 shadow-md"
-                disabled
-              >
-                <img
-                  class="absolute h-3 w-8 animate-spin"
-                  src="@/assets/red160px.png"
-                />
-                <span class="ml-10">{{ $t("message.processing") }}</span>
-              </button>
-              <!-- ミントボタン -->
-              <button
-                v-else
-                @click="mint"
-                class="inline-block rounded bg-green-600 px-6 py-2.5 leading-tight text-white text-3xl shadow-md transition duration-150 ease-in-out hover:bg-green-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg"
-              >
-                {{ $t("mint.mint") }}
-              </button>
-              <a v-if="hashLink && isMinting" :href="hashLink" target="_blank">
-                etherscan
-              </a>
-            </span>
-          </span>
-        </span>
-        <span v-else>
+        <span v-if="balanceOf == 0 && salePhase == 1">
+          <!-- ALセールで特定NFTなし-->
           <span
             class="inline-block rounded bg-gray-600 px-6 py-2.5 leading-tight text-white text-xl shadow-md transition duration-150 ease-in-out hover:bg-gray-700 hover:shadow-lg focus:bg-gray-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-800 active:shadow-lg"
             disabled
           >
-            {{ $t("mint.connectWallet") }}
+            {{ $t("mint.notHasSpecificNFT") }}
+          </span>
+        </span>
+        <span v-else>
+          <span v-if="mintLimit < totalSupply + selectedNumOfMint">
+            <!-- 最大ミント数オーバー-->
+            <span
+              class="inline-block rounded bg-gray-600 px-6 py-2.5 leading-tight text-white text-xl shadow-md transition duration-150 ease-in-out hover:bg-gray-700 hover:shadow-lg focus:bg-gray-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-800 active:shadow-lg"
+              disabled
+            >
+              {{ $t("mint.overMintLimit") }}
+            </span>
+          </span>
+          <span v-else>
+            <!-- ミント中 -->
+            <button
+              type="button"
+              v-if="isMinting"
+              class="inline-block rounded px-6 py-2.5 leading-tight text-gray-600 shadow-md"
+              disabled
+            >
+              <img
+                class="absolute h-3 w-8 animate-spin"
+                src="@/assets/red160px.png"
+              />
+              <span class="ml-10">{{ $t("message.processing") }}</span>
+            </button>
+            <!-- ミントボタン -->
+            <button
+              v-else
+              @click="mint"
+              class="inline-block rounded bg-green-600 px-6 py-2.5 leading-tight text-white text-3xl shadow-md transition duration-150 ease-in-out hover:bg-green-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg"
+            >
+              {{ $t("mint.mint") }}
+            </button>
+            <a v-if="hashLink && isMinting" :href="hashLink" target="_blank">
+              etherscan
+            </a>
           </span>
         </span>
       </span>
@@ -147,7 +144,6 @@ import { useStore } from "vuex";
 import { useI18n } from "vue-i18n";
 import { ethers } from "ethers";
 import {
-  getProvider,
   getTokenContract,
   useFetchTokens,
   useMintConditions,
@@ -158,7 +154,6 @@ import {
 } from "@/utils/const";
 import { ChainIdMap } from "@/utils/MetaMask";
 import { weiToEther } from "@/utils/utils";
-import { ALCHEMY_API_KEY } from "@/config/project";
 import Prefectures from "@/components/Prefectures.vue";
 import NumOfMint from "@/components/NumOfMint.vue";
 import FinishMintDialog from "@/components/FinishMintDialog.vue";
@@ -218,7 +213,7 @@ export default defineComponent({
       return i18n.locale.value;
     });
 
-    const provider = getProvider(props.network, ALCHEMY_API_KEY);
+    const provider = new ethers.BrowserProvider(store.state.ethereum);
 
     // RO means read only.
     const contractRO = getTokenContract(props.tokenAddress, provider);

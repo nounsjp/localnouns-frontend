@@ -12,7 +12,8 @@ interface Token {
 type Provider =
   | ethers.JsonRpcProvider
   | ethers.AlchemyProvider
-  | ethers.InfuraProvider;
+  | ethers.InfuraProvider
+  | ethers.BrowserProvider;
 type ProviderOrSigner = ethers.Provider | ethers.Signer | undefined;
 
 export const getAddresses = (network: string, contentAddress: string) => {
@@ -281,7 +282,16 @@ export const useCheckTokenGate = (tokenGate: ethers.Contract) => {
   const balanceOf = ref<number>(0);
 
   const checkTokenGate = async (account: string) => {
-    balanceOf.value = await getBalanceFromTokenGate(tokenGate, account);
+    if (account) {
+      // tokenGateに存在しないアドレスが登録されている場合はExceptionになる(テスト用)
+      try {
+        balanceOf.value = await getBalanceFromTokenGate(tokenGate, account);
+      } catch (e) {
+        balanceOf.value = 0;
+      }
+    } else {
+      balanceOf.value = 0;
+    }
   };
   return {
     balanceOf,
