@@ -123,7 +123,7 @@
   {{ `${totalSupply}` }} / {{ `${mintLimit}` }} minted
   <button
     @click="reload"
-    class="inline-flex justify-center items-center rounded px-2 py-2 ml-2 w-8 h-8 leading-tight duration-150 active:bg-green-800 active:shadow-lg border border-gray-300"
+              class="inline-flex justify-center items-center rounded px-2 py-2 ml-2 w-8 h-8 leading-tight shadow-md transition duration-150 ease-in-out hover:shadow-lg hover:bg-gray-300 focus:shadow-lg focus:outline-none focus:ring-0 focus:bg-gray-300 active:shadow-lg active:bg-gray-300 border border-gray-300"
   >
     <img class="w-8 h-7" src="@/assets/reload.png" />
   </button>
