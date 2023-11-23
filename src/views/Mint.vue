@@ -87,7 +87,12 @@
             >
               {{ $t("mint.mint") }}
             </button>
-            <a v-if="hashLink && isMinting" :href="hashLink" target="_blank">
+            <a
+              v-if="hashLink && isMinting"
+              :href="hashLink"
+              target="_blank"
+              class="ml-10"
+            >
               etherscan
             </a>
           </span>
@@ -114,9 +119,15 @@
     <div class="mb-8 space-y-2 font-pt-root font-medium"></div>
     <hr />
     <div class="mx-auto max-w-lg p-2 text-center">
-      <p class="mb-2 font-londrina font-yusei text-3xl">
-        {{ `${totalSupply}` }} / {{ `${mintLimit}` }} minted
-      </p>
+<p class="mb-2 font-londrina font-yusei text-3xl flex items-center">
+  {{ `${totalSupply}` }} / {{ `${mintLimit}` }} minted
+  <button
+    @click="reload"
+    class="inline-flex justify-center items-center rounded px-2 py-2 ml-2 w-8 h-8 leading-tight duration-150 active:bg-green-800 active:shadow-lg border border-gray-300"
+  >
+    <img class="w-8 h-7" src="@/assets/reload.png" />
+  </button>
+</p>
     </div>
 
     <p class="mb-2 font-londrina font-yusei">
@@ -243,9 +254,9 @@ export default defineComponent({
 
     mintConditions();
 
-    setInterval(() => {
-      fetchTokens();
-    }, 30000); // 30秒ごとに実行
+    // setInterval(() => {
+    //   fetchTokens();
+    // }, 30000); // 30秒ごとに実行
 
     const selectedPrefecture = ref(0);
     const selectedNumOfMint = ref(10);
@@ -268,6 +279,10 @@ export default defineComponent({
       checkTokenGate(store.state.account);
       return store.state.account;
     });
+
+    const reload = async () => {
+        await fetchTokens();
+    }
 
     const mint = async () => {
       const chainId = ChainIdMap[props.network];
@@ -351,6 +366,7 @@ export default defineComponent({
       closeModal,
       account,
       mint,
+      reload,
     };
   },
 });
