@@ -198,7 +198,7 @@ export default defineComponent({
     FinishMintDialog,
     ErrorDialog,
   },
-  setup(props, context) {
+  setup(props) {
     const store = useStore();
     const i18n = useI18n();
 
@@ -240,43 +240,12 @@ export default defineComponent({
       mintPriceForNotSpecified,
       mintConditions,
     } = useMintConditions(props.network, minterContract);
+
     mintConditions();
 
-    let isFetching = false;
-    provider.once("block", () => {
-      contractRO.on(contractRO.filters.Transfer(), async (event) => {
-        console.log("*** event.Transfer calling fetchTokens");
-        // Proxy(Result)から値を取得
-        const from = event.args[0];
-        const to = event.args[1];
-        const tokenId = event.args[2]?.toString();
-        // ダイアログ表示中でなく、ミント先が自分の場合はダイアログを表示
-        if (
-          !displayInformationDialog.value &&
-          from == "0x0000000000000000000000000000000000000000" &&
-          to.toLowerCase() == account.value.toLowerCase()
-        ) {
-          isMinting.value = false;
-          displayInformationDialog.value = true;
-          mintedTokenId.value = Number(tokenId);
-        }
-        try {
-          // 短時間に呼び出し過ぎるとエラーになる
-          if (!isFetching) {
-            isFetching = true;
-            await fetchTokens();
-            isFetching = false;
-          }
-        } catch (e) {
-          if (e instanceof Error) {
-            console.error("event.Transfer:", e.message);
-          } else {
-            console.error("event.Transfer:", e);
-          }
-        }
-        context.emit("minted");
-      });
-    });
+    setInterval(() => {
+      fetchTokens();
+    }, 30000); // 30秒ごとに実行
 
     const selectedPrefecture = ref(0);
     const selectedNumOfMint = ref(10);
@@ -327,6 +296,11 @@ export default defineComponent({
 
         // displayInformationDialog.value = true;
         console.log("mint:gasUsed", result.gasUsed);
+
+        isMinting.value = false;
+        displayInformationDialog.value = true;
+
+        await fetchTokens();
 
         // await checkTokenGate(account.value);
       } catch (e) {
