@@ -1,6 +1,9 @@
 <template>
   <div class="mx-auto max-w-lg text-left">
-    <p class="font-londrina font-yusei text-xl">
+    <p v-if="!account" class="font-londrina font-yusei text-xl">
+      {{ $t("mint.connectWallet") }}
+    </p>
+    <p v-else class="font-londrina font-yusei text-xl">
       {{ $t("owner.description") }}
     </p>
   </div>
