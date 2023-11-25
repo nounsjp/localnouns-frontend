@@ -6,10 +6,10 @@
     <div
       class="relative p-6 bg-white w-3/4 flex flex-col items-center justify-center"
     >
-      <p class="mb-2 font-londrina font-yusei text-2xl">
+      <p class="mt-10 mb-2 font-londrina font-yusei text-2xl">
         {{ $t("finishMintDialog.message") }}
       </p>
-      <span class="mb-2 font-londrina font-yusei text-3xl">
+      <!-- <span class="mb-2 font-londrina font-yusei text-3xl">
         #{{ mintedTokenId }}
       </span>
       <span
@@ -17,7 +17,7 @@
         class="mb-2 font-londrina font-yusei text-xl"
       >
         and more...
-      </span>
+      </span> -->
       <a v-if="hashLink" :href="hashLink" target="_blank"> etherscan </a>
       <span class="absolute top-2 right-4 cursor-pointer">
         <button
