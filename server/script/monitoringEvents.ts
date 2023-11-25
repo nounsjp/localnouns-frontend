@@ -8,9 +8,10 @@ import {
 } from "@/utils/const";
 import { addresses } from "@/utils/addresses";
 import { ethers } from "ethers";
-import { writeTokenDataToFirestore, updatePriceOfTokenOnFirestore, updateTradeOfTokenOnFirestore } from "./tokenOnFirestore";
-import { getTokenInfo } from "./tokenOnContract";
+import { writeTokenDataToFirestore, updateHolderOfTokenOnFirestore, updatePriceOfTokenOnFirestore, updateTradeOfTokenOnFirestore } from "./tokenOnFirestore";
+import { getTokenInfoAtMint } from "./tokenOnContract";
 import { TOKEN } from "@/firestore/const";
+import { EventQueue } from "@/utils/EventQueue";
 
 const provider = getProvider(NETWORK, ALCHEMY_API_KEY);
 const tokenContract = getLocalNounsTokenContract(
@@ -18,20 +19,29 @@ const tokenContract = getLocalNounsTokenContract(
   provider,
 );
 
+const eventQueue = new EventQueue();
 // Transferイベントの監視
 tokenContract.on("Transfer", async (from, to, tokenId, event) => {
-  try {
+  // 同時実行スレッドの数を制限するためキューイングして実行する
+  eventQueue.add({ from, to, tokenId, event }, async (event) => {
+    try {
+      if (from == "0x0000000000000000000000000000000000000000") {
+        // mint時のTransfer
+        const tokenInfo: TOKEN = await getTokenInfoAtMint(tokenId);
+        tokenInfo.holder = from.toLowerCase();
+        // firestoreに書き込み
+        await writeTokenDataToFirestore(tokenInfo);
+        console.log(`Write finish, mint: ${tokenId}`);
 
-    // token情報を取得ß
-    const tokenInfo: TOKEN = await getTokenInfo(tokenId);
+      } else {
+        // P2PSale, P2PTradeの成立
+      }
 
-    // firestoreに書き込み
-    await writeTokenDataToFirestore(tokenInfo);
+    } catch (error) {
+      console.error("Error:", tokenId);
+    }
+  });
 
-    console.log(`Write finish, TokenID: ${tokenId}`);
-  } catch (error) {
-    console.error("Error:", error);
-  }
 });
 
 // SetPriceイベントの監視
