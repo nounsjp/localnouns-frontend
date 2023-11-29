@@ -11,6 +11,10 @@ const lang = {
     p2pTrade: "P2Pトレード",
     goods: "グッズ",
     about: "紹介",
+    terms: "利用規約",
+    tokushoho: "特定商取引法に基づく表記",
+    explanation: "重要事項説明資料",
+    privacy: "プライバシーポリシー",
   },
   menu: {
     connect: "接続",

@@ -11,6 +11,10 @@ const lang = {
     p2pTrade: "P2PTrade",
     goods: "Goods",
     about: "About",
+    terms: "Terms",
+    tokushoho: "Tokushoho",
+    explanation: "Explanation",
+    privacy: "Privacy Policy",
   },
   menu: {
     connect: "Connect",

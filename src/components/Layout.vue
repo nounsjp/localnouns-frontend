@@ -33,6 +33,33 @@
       <Connect />
     </div>
     <router-view />
+
+    <div id="nav" class="mt-200">
+      <hr class="border-t border-gray-600 my-4 w-full" />
+      <router-link
+        :to="localizedUrl('/explanation')"
+        class="font-londrina font-yusei"
+        >{{ $t("nav.explanation") }}</router-link
+      >
+      |
+      <router-link
+        :to="localizedUrl('/terms')"
+        class="font-londrina font-yusei"
+        >{{ $t("nav.terms") }}</router-link
+      >
+      |
+      <router-link
+        :to="localizedUrl('/tokushoho')"
+        class="font-londrina font-yusei"
+        >{{ $t("nav.tokushoho") }}</router-link
+      >
+      |
+      <router-link
+        :to="localizedUrl('/privacy')"
+        class="font-londrina font-yusei"
+        >{{ $t("nav.privacy") }}</router-link
+      >
+    </div>
   </div>
 </template>
 
