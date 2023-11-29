@@ -44,7 +44,47 @@
       </span>
     </div>
 
-    <div class="mx-auto max-w-lg p-2 text-left mt-4 mb-4">
+    <div class="mx-auto max-w-lg p-2 text-left mt-4">
+      <input type="checkbox" value="0" v-model="checkExplanation" />
+      <router-link
+        :to="localizedUrl('/explanation')"
+        target="_blank"
+        class="font-londrina font-yusei text-xl ml-1"
+        >{{ $t("mint.explanation") }}</router-link
+      >
+    </div>
+
+    <div class="mx-auto max-w-lg p-2 text-left">
+      <input type="checkbox" value="0" v-model="checkTerms" />
+      <router-link
+        :to="localizedUrl('/terms')"
+        target="_blank"
+        class="font-londrina font-yusei text-xl ml-1"
+        >{{ $t("mint.terms") }}</router-link
+      >
+    </div>
+
+    <div class="mx-auto max-w-lg p-2 text-left">
+      <input type="checkbox" value="0" v-model="checkTokushoho" />
+      <router-link
+        :to="localizedUrl('/tokushoho')"
+        target="_blank"
+        class="font-londrina font-yusei text-xl ml-1"
+        >{{ $t("mint.tokushoho") }}</router-link
+      >
+    </div>
+
+    <div class="mx-auto max-w-lg p-2 text-left">
+      <input type="checkbox" value="0" v-model="checkPrivacy" />
+      <router-link
+        :to="localizedUrl('/privacy')"
+        target="_blank"
+        class="font-londrina font-yusei text-xl ml-1"
+        >{{ $t("mint.privacy") }}</router-link
+      >
+    </div>
+
+    <div class="mx-auto max-w-lg p-2 text-left mt-1 mb-4">
       <span class="font-londrina font-yusei">
         <span v-if="balanceOf == 0 && salePhase == 1">
           <!-- ALセールで特定NFTなし-->
@@ -67,26 +107,42 @@
           </span>
           <span v-else>
             <!-- ミント中 -->
-            <button
-              type="button"
-              v-if="isMinting"
-              class="inline-block rounded px-6 py-2.5 leading-tight text-gray-600 shadow-md"
-              disabled
-            >
-              <img
-                class="absolute h-3 w-8 animate-spin"
-                src="@/assets/red160px.png"
-              />
-              <span class="ml-10">{{ $t("message.processing") }}</span>
-            </button>
-            <!-- ミントボタン -->
-            <button
-              v-else
-              @click="mint"
-              class="inline-block rounded bg-green-600 px-6 py-2.5 leading-tight text-white text-3xl shadow-md transition duration-150 ease-in-out hover:bg-green-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg"
-            >
-              {{ $t("mint.mint") }}
-            </button>
+            <span v-if="isMinting">
+              <button
+                type="button"
+                class="inline-block rounded px-6 py-2.5 leading-tight text-gray-600 shadow-md"
+                disabled
+              >
+                <img
+                  class="absolute h-3 w-8 animate-spin"
+                  src="@/assets/red160px.png"
+                />
+                <span class="ml-10">{{ $t("message.processing") }}</span>
+              </button>
+            </span>
+            <span v-else>
+              <!-- ミントボタン -->
+              <button
+                v-if="
+                  checkExplanation &&
+                  checkTerms &&
+                  checkTokushoho &&
+                  checkPrivacy
+                "
+                @click="mint"
+                class="inline-block rounded bg-green-600 px-6 py-2.5 leading-tight text-white text-3xl shadow-md transition duration-150 ease-in-out hover:bg-green-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg"
+              >
+                {{ $t("mint.mint") }}
+              </button>
+              <!-- 各種条件チェック前 -->
+              <button
+                v-else
+                disabled
+                class="inline-block rounded bg-gray-600 px-6 py-2.5 leading-tight text-white text-3xl shadow-md transition duration-150 ease-in-out hover:bg-gray-700 hover:shadow-lg focus:bg-gray-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-800 active:shadow-lg"
+              >
+                {{ $t("mint.mint") }}
+              </button>
+            </span>
             <a
               v-if="hashLink && isMinting"
               :href="hashLink"
@@ -219,6 +275,10 @@ export default defineComponent({
     const displayErrorDialog = ref(false);
     const errorDescription = ref("");
     const hashLink = ref("");
+    const checkExplanation = ref(false);
+    const checkTerms = ref(false);
+    const checkTokushoho = ref(false);
+    const checkPrivacy = ref(false);
 
     const lang = computed(() => {
       return i18n.locale.value;
@@ -367,6 +427,10 @@ export default defineComponent({
       account,
       mint,
       reload,
+      checkExplanation,
+      checkTerms,
+      checkTokushoho,
+      checkPrivacy,
     };
   },
 });

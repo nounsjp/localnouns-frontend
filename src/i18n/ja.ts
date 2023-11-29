@@ -35,6 +35,10 @@ const lang = {
     notHasSpecificNFT: "このアドレスはAL対象のNFTを保持していません",
     overMintLimit: "最大ミント数に達しました",
     recentlyMinted: "産まれたてのLocalNounsたちです.⌐◨-◨",
+    terms: "「利用規約」に同意する",
+    tokushoho: "「特定商取引法に基づく表記」に同意する",
+    explanation: "「重要事項説明資料」に同意する",
+    privacy: "「プライバシーポリシー」に同意する",
   },
   finishMintDialog: {
     message: "ミント完了!!",

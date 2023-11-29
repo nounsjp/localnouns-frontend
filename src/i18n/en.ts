@@ -36,6 +36,10 @@ const lang = {
     overMintLimit: "The maximum number of mints has been reached",
     recentlyMinted: "Recently minted LocalNouns.⌐◨-◨",
     finishMint: "Mint Finished!!",
+    terms: "Agree to the `Terms`",
+    tokushoho: "Agree to the `Tokushoho`",
+    explanation: "Agree to the `Explanation`",
+    privacy: "Agree to the `Privacy Policy`",
   },
   finishMintDialog: {
     message: "Mint Finished!!",
