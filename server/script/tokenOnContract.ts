@@ -1,5 +1,5 @@
 import { ethers } from "ethers";
-import { ALCHEMY_API_KEY, NETWORK,WALLET_PRIVATE_KEY_PATH } from "@/config/project";
+import { ALCHEMY_API_KEY, NETWORK } from "@/config/project";
 import {
   getProvider,
   getLocalNounsTokenContract,
