@@ -28,16 +28,18 @@ tokenContract.on("Transfer", async (from, to, tokenId, event) => {
       if (from == "0x0000000000000000000000000000000000000000") {
         // mint時のTransfer
         const tokenInfo: TOKEN = await getTokenInfoAtMint(tokenId);
-        tokenInfo.holder = from.toLowerCase();
+        tokenInfo.holder = to.toLowerCase();
         // firestoreに書き込み
         await writeTokenDataToFirestore(tokenInfo);
         console.log(`Write finish, mint: ${tokenId}`);
-
       } else {
         // P2PSale, P2PTradeの成立
+        await updateHolderOfTokenOnFirestore(tokenId, to.toLowerCase());
+        console.log(`Write finish, holder: ${tokenId}, ${to}`);
       }
 
     } catch (error) {
+      console.log("Transfer error:", new Date().toISOString());
       console.error("Error:", tokenId);
     }
   });
@@ -53,6 +55,7 @@ tokenContract.on("SetPrice", async (tokenId, price, event) => {
 
     console.log(`SetPrice, TokenID: ${tokenId}/${ethPrice}`);
   } catch (error) {
+    console.log("SetPrice error:", new Date().toISOString());
     console.error("Error:", error);
   }
 });
@@ -66,6 +69,7 @@ tokenContract.on("PutTradePrefecture", async (tokenId, prefectures, tradeAddress
 
     console.log(`PutTradePrefecture, TokenID: ${tokenId}/${prefectures}`);
   } catch (error) {
+    console.log("PutTradePrefecture error:", new Date().toISOString());
     console.error("Error:", error);
   }
 });
@@ -78,6 +82,9 @@ tokenContract.on("CancelTradePrefecture", async (tokenId, event) => {
 
     console.log(`CancelTradePrefecture, TokenID: ${tokenId}`);
   } catch (error) {
+    console.log("CancelTradePrefecture error:", new Date().toISOString());
     console.error("Error:", error);
   }
 });
+
+console.log("monitoringEvents start:", new Date().toISOString());
