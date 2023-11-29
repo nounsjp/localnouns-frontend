@@ -85,7 +85,7 @@
   <!-- For Token View -->
   <div v-if="size == 'L'">
     <p class="mb-2 font-londrina font-yusei text-xl">
-      {{ $t("tokenDetail.owner") }} : {{ token.holder }} 
+      {{ $t("tokenDetail.owner") }} : {{ token.holder }}
     </p>
   </div>
 </template>

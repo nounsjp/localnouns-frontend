@@ -119,15 +119,15 @@
     <div class="mb-8 space-y-2 font-pt-root font-medium"></div>
     <hr />
     <div class="mx-auto max-w-lg p-2 text-center">
-<p class="mb-2 font-londrina font-yusei text-3xl flex items-center">
-  {{ `${totalSupply}` }} / {{ `${mintLimit}` }} minted
-  <button
-    @click="reload"
-              class="inline-flex justify-center items-center rounded px-2 py-2 ml-2 w-8 h-8 leading-tight shadow-md transition duration-150 ease-in-out hover:shadow-lg hover:bg-gray-300 focus:shadow-lg focus:outline-none focus:ring-0 focus:bg-gray-300 active:shadow-lg active:bg-gray-300 border border-gray-300"
-  >
-    <img class="w-8 h-7" src="@/assets/reload.png" />
-  </button>
-</p>
+      <p class="mb-2 font-londrina font-yusei text-3xl flex items-center">
+        {{ `${totalSupply}` }} / {{ `${mintLimit}` }} minted
+        <button
+          @click="reload"
+          class="inline-flex justify-center items-center rounded px-2 py-2 ml-2 w-8 h-8 leading-tight shadow-md transition duration-150 ease-in-out hover:shadow-lg hover:bg-gray-300 focus:shadow-lg focus:outline-none focus:ring-0 focus:bg-gray-300 active:shadow-lg active:bg-gray-300 border border-gray-300"
+        >
+          <img class="w-8 h-7" src="@/assets/reload.png" />
+        </button>
+      </p>
     </div>
 
     <p class="mb-2 font-londrina font-yusei">
@@ -281,8 +281,8 @@ export default defineComponent({
     });
 
     const reload = async () => {
-        await fetchTokens();
-    }
+      await fetchTokens();
+    };
 
     const mint = async () => {
       const chainId = ChainIdMap[props.network];
