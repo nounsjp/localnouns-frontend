@@ -62,6 +62,9 @@ const lang = {
   numOfMint: {
     numOfMint: "ミント数",
   },
+  tokenDetail: {
+    owner: "所有者",
+  },
   tokenManagement: {
     sale: "販売設定",
     saleDescription:

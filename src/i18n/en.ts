@@ -63,6 +63,9 @@ const lang = {
   numOfMint: {
     numOfMint: "Quantity",
   },
+  tokenDetail: {
+    owner: "Owner",
+  },
   tokenManagement: {
     sale: "Sales condition",
     saleDescription:
