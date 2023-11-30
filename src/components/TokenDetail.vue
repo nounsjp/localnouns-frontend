@@ -1,31 +1,30 @@
 <template>
   <!-- For Token View -->
-  <div v-if="size == 'L'">
-    <div class="flex flex-col justify-center items-center">
-      <div>
-        <svg v-html="token.svg" style="width: 320px; height: 320px"></svg>
-      </div>
-      <div class="mb-2 font-yusei text-3xl">
-        #{{ token.tokenId }}, {{ $t("prefecture." + token.prefecture) }}
-      </div>
-      <div class="mb-2 font-londrina font-yusei text-2xl relative z-10">
-        {{ token.head }}
-      </div>
-      <div class="mb-2 font-londrina font-yusei relative z-10 text-left">
-        {{ token.headDescription }}
-      </div>
-      <div class="mb-2 font-londrina font-yusei text-2xl relative z-10">
-        {{ token.accessory }}
-      </div>
-      <div class="mb-2 font-londrina font-yusei relative z-10 text-left">
-        {{ token.accessoryDescription }}
-      </div>
+  <div v-if="size == 'L'" class="flex flex-col justify-center items-center">
+    <div>
+      <svg v-html="token.svg" style="width: 320px; height: 320px" mx-4></svg>
+    </div>
+    <div class="mb-2 font-yusei text-3xl">
+      #{{ token.tokenId }}, {{ $t("prefecture." + token.prefecture) }}
+    </div>
+    <div class="mb-2 font-londrina font-yusei text-2xl relative mx-4">
+      {{ token.head }}
+    </div>
+    <div class="mb-2 font-londrina font-yusei relative text-left mx-4">
+      {{ token.headDescription }}
+    </div>
+    <div class="mb-2 font-londrina font-yusei text-2xl relative mx-4">
+      {{ token.accessory }}
+    </div>
+    <div class="mb-2 font-londrina font-yusei relative text-left mx-4">
+      {{ token.accessoryDescription }}
     </div>
   </div>
+
   <!-- For List thumbnail -->
-  <div v-if="size == 'S'">
-    <div class="flex flex-col justify-center items-center">
-      <svg v-html="token.svg" style="width: 80%; height: auto"></svg>
+  <div v-if="size == 'S'" class="flex flex-col justify-center items-center">
+    <div>
+      <svg v-html="token.svg" style="width: 100%; height: auto"></svg>
     </div>
 
     <div class="mb-2 font-londrina font-yusei text-xl">

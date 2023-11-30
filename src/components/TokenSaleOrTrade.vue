@@ -4,28 +4,31 @@
     class="fixed inset-0 z-50 overflow-y bg-gray-500 bg-opacity-75 flex justify-center items-center"
   >
     <div
-      class="relative p-6 bg-white w-3/4 h-4/5 overflow-y-auto flex flex-col justify-between items-center"
+      class="relative p-6 bg-white w-5/6 h-4/5 overflow-y-auto flex flex-col justify-between items-center"
     >
-      <span class="absolute top-4 right-4 cursor-pointer">
+      <!-- <span class="absolute top-4 right-4 cursor-pointer">
         <button
           @click="closeModal(false)"
           class="mt-4 inline-block rounded bg-green-500 px-6 py-2.5 leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-green-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg"
         >
           {{ $t("tokenManagement.close") }}
         </button>
-      </span>
+      </span> -->
 
       <TokenDetail :token="token" size="L" />
-      <hr class="border-t border-gray-600 my-4 w-full" />
 
-      <p class="mb-2 font-londrina font-yusei text-3xl">
-        {{ $t("TokenSaleOrTrade.sale") }}
-      </p>
-      <p class="mb-2 font-londrina font-yusei text-l">
-        {{ $t("TokenSaleOrTrade.saleDescription") }}
-      </p>
+      <div
+        v-if="token.salePrice > 0 && account"
+        class="mt-4 flex flex-col items-center"
+      >
+        <hr class="border-t border-gray-600 my-4 w-full" />
+        <p class="mb-2 font-londrina font-yusei text-3xl">
+          {{ $t("TokenSaleOrTrade.sale") }}
+        </p>
+        <p class="mb-2 font-londrina font-yusei text-l">
+          {{ $t("TokenSaleOrTrade.saleDescription") }}
+        </p>
 
-      <div class="mt-4 flex flex-col items-center">
         <InformationDialog
           :isOpen="displayInformationDialog"
           :message="informationMessage"
@@ -64,15 +67,15 @@
         </button>
       </div>
 
-      <hr class="border-t border-gray-600 my-4 w-full" />
+      <div v-if="token.isOnTrade && account">
+        <hr class="border-t border-gray-600 my-4 w-full" />
 
-      <p class="mb-2 font-londrina font-yusei text-3xl">
-        {{ $t("TokenSaleOrTrade.trade") }}
-      </p>
-      <p class="mb-2 font-londrina font-yusei text-l">
-        {{ $t("TokenSaleOrTrade.tradeDescription") }}
-      </p>
-      <div>
+        <p class="mb-2 font-londrina font-yusei text-3xl">
+          {{ $t("TokenSaleOrTrade.trade") }}
+        </p>
+        <p class="mb-2 font-londrina font-yusei text-l">
+          {{ $t("TokenSaleOrTrade.tradeDescription") }}
+        </p>
         <div class="flex justify-center w-full mt-4">
           <div class="flex flex-wrap">
             <div>{{ $t("TokenSaleOrTrade.tradeForPrefecture") }} :</div>
@@ -88,7 +91,6 @@
           </div>
         </div>
         <MyNounsRadioButton
-          v-if="token.isOnTrade && account"
           :myTokens="myTokens"
           :tradeForPrefectures="tradeForPrefectures"
           @updateValues="handleUpdateMyTokens"
