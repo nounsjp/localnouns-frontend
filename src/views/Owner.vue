@@ -118,6 +118,9 @@ export default defineComponent({
         if (accessoryName) {
           token.accessory = accessoryName.name;
           token.accessoryDescription = accessoryName.description;
+          if(accessoryName.author){
+            token.accessoryDescription += ' (' + accessoryName.author + ')';
+          }
         }
 
         const headName = getPartsNameAndDescription(
@@ -128,6 +131,9 @@ export default defineComponent({
         if (headName) {
           token.head = headName.name;
           token.headDescription = headName.description;
+          if(headName.author){
+            token.headDescription += ' (' + headName.author + ')';
+          }
         }
       }
     };
