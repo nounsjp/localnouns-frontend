@@ -84,11 +84,19 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/:lang(ja|en)",
     component: Layout,
+    props: {
+      network: network,
+      tokenAddress: addresses.localNounsToken[network],
+    },
     children: routeChildren,
   },
   {
     path: "",
     component: Layout,
+    props: {
+      network: network,
+      tokenAddress: addresses.localNounsToken[network],
+    },
     children: routeChildren,
   },
   {

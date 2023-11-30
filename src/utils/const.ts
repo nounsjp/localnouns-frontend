@@ -19,13 +19,13 @@ type ProviderOrSigner = ethers.Provider | ethers.Signer | undefined;
 export const getAddresses = (network: string, contentAddress: string) => {
   const EtherscanBase = (() => {
     if (network == "rinkeby") {
-      return "https://rinkeby.etherscan.io/tx/";
+      return "https://rinkeby.etherscan.io";
     } else if (network == "goerli") {
-      return "https://goerli.etherscan.io/tx/";
+      return "https://goerli.etherscan.io";
     } else if (network == "mumbai") {
-      return "https://mumbai.polygonscan.com/tx/";
+      return "https://mumbai.polygonscan.com";
     }
-    return "https://etherscan.io/tx/";
+    return "https://etherscan.io";
   })();
   const OpenSeaBase = (() => {
     if (network == "rinkeby") {
@@ -37,7 +37,7 @@ export const getAddresses = (network: string, contentAddress: string) => {
     }
     return "https://opensea.io/assets/ethereum";
   })();
-  const EtherscanToken = `${EtherscanBase}/${contentAddress}`;
+  const EtherscanToken = `${EtherscanBase}/address/${contentAddress}`;
   const OpenSeaPath = `${OpenSeaBase}/${contentAddress}`;
 
   return {
