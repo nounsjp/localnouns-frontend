@@ -61,15 +61,19 @@
       >
     </div>
     <div id="nav">
-      <a 
-        :href="OpenSeaPath" target="_blank"
+      <a
+        :href="OpenSeaPath"
+        target="_blank"
         class="font-londrina font-yusei text-sm"
-        >Opensea</a>
+        >Opensea</a
+      >
       |
-      <a 
-        :href="EtherscanToken" target="_blank"
+      <a
+        :href="EtherscanToken"
+        target="_blank"
         class="font-londrina font-yusei text-sm"
-        >Etherscan</a>
+        >Etherscan</a
+      >
     </div>
   </div>
 </template>
@@ -85,7 +89,7 @@ import { useI18nParam } from "@/i18n/utils";
 
 import Languages from "@/components/Languages.vue";
 import Connect from "@/components/Connect.vue";
-import {getAddresses} from "@/utils/const";
+import { getAddresses } from "@/utils/const";
 
 interface UserData {
   user: User | null;
@@ -124,7 +128,10 @@ export default defineComponent({
       });
     });
 
-    const {OpenSeaPath, EtherscanToken} = getAddresses(props.network, props.tokenAddress);
+    const { OpenSeaPath, EtherscanToken } = getAddresses(
+      props.network,
+      props.tokenAddress,
+    );
 
     return {
       user,

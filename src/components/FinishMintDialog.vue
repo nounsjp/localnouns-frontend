@@ -12,7 +12,7 @@
       <p class="mt-10 mb-2 font-londrina font-yusei text-xl">
         {{ $t("finishMintDialog.message2") }}
       </p>
-      
+
       <a v-if="hashLink" :href="hashLink" target="_blank"> etherscan </a>
       <span class="absolute top-2 right-4 cursor-pointer">
         <button
