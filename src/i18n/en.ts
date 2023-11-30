@@ -43,6 +43,7 @@ const lang = {
   },
   finishMintDialog: {
     message: "Mint Finished!!",
+    message2: "It may take some time for the NFT to appear on this site",
   },
   errorDialog: {
     message: "Error has occurred. Please wait a moment and try again.",

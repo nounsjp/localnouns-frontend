@@ -42,6 +42,7 @@ const lang = {
   },
   finishMintDialog: {
     message: "ミント完了!!",
+    message2: "本サイトの反映には時間がかかる場合がございます",
   },
   errorDialog: {
     message: "エラーが発生しました。しばらく経ってからやり直してください",
