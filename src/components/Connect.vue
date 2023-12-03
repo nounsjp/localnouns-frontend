@@ -61,7 +61,7 @@
           {{ $t("menu.nometamask") }}
         </button>
         <div>
-        {{ $t("menu.useMetamask") }}
+          {{ $t("menu.useMetamask") }}
         </div>
       </span>
     </span>
