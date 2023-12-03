@@ -102,7 +102,6 @@
       >
         <button
           class="inline-block rounded bg-green-500 w-20 px-1 py-2.5 leading-tight text-white shadow-md transition duration-150 my-2"
-          disabled
         >
           {{ $t("list.manage") }}
         </button>

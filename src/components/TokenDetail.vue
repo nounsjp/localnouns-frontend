@@ -1,45 +1,45 @@
 <template>
-  <!-- For Token View -->
-  <div v-if="size == 'L'" class="flex flex-col justify-center items-center">
-    <div>
-      <svg v-html="token.svg" style="width: 320px; height: 320px" mx-4></svg>
-    </div>
-    <div class="mb-2 font-yusei text-3xl">
-      #{{ token.tokenId }}, {{ $t("prefecture." + token.prefecture) }}
-    </div>
-    <div class="mb-2 font-londrina font-yusei text-2xl relative mx-4">
-      {{ token.head }}
-    </div>
-    <div class="mb-2 font-londrina font-yusei relative text-left mx-4">
-      {{ token.headDescription }}
-    </div>
-    <div class="mb-2 font-londrina font-yusei text-2xl relative mx-4">
-      {{ token.accessory }}
-    </div>
-    <div class="mb-2 font-londrina font-yusei relative text-left mx-4">
-      {{ token.accessoryDescription }}
-    </div>
-  </div>
-
-  <!-- For List thumbnail -->
-  <div v-if="size == 'S'" class="flex flex-col justify-center items-center">
-    <div>
-      <svg v-html="token.svg" style="width: 100%; height: auto"></svg>
-    </div>
-
-    <div class="mb-2 font-londrina font-yusei text-xl">
-      #{{ token.tokenId }}, {{ $t("prefecture." + token.prefecture) }}
-    </div>
-    <div class="mb-2 font-londrina font-yusei">
-      {{ token.head }}
-    </div>
-    <div class="mb-2 font-londrina font-yusei">
-      {{ token.accessory }}
-    </div>
-  </div>
-
-  <!-- Common View -->
   <div>
+    <!-- For Token View -->
+    <div v-if="size == 'L'" class="flex flex-col justify-center items-center">
+      <div>
+        <svg v-html="token.svg" style="width: 320px; height: 320px" mx-4></svg>
+      </div>
+      <div class="mb-2 font-yusei text-3xl">
+        #{{ token.tokenId }}, {{ $t("prefecture." + token.prefecture) }}
+      </div>
+      <div class="mb-2 font-londrina font-yusei text-2xl relative mx-4">
+        {{ token.head }}
+      </div>
+      <div class="mb-2 font-londrina font-yusei relative text-left mx-4">
+        {{ token.headDescription }}
+      </div>
+      <div class="mb-2 font-londrina font-yusei text-2xl relative mx-4">
+        {{ token.accessory }}
+      </div>
+      <div class="mb-2 font-londrina font-yusei relative text-left mx-4">
+        {{ token.accessoryDescription }}
+      </div>
+    </div>
+
+    <!-- For List thumbnail -->
+    <div v-if="size == 'S'" class="flex flex-col justify-center items-center">
+      <div>
+        <svg v-html="token.svg" style="width: 100%; height: auto"></svg>
+      </div>
+
+      <div class="mb-2 font-londrina font-yusei text-xl">
+        #{{ token.tokenId }}, {{ $t("prefecture." + token.prefecture) }}
+      </div>
+      <div class="mb-2 font-londrina font-yusei">
+        {{ token.head }}
+      </div>
+      <div class="mb-2 font-londrina font-yusei">
+        {{ token.accessory }}
+      </div>
+    </div>
+
+    <!-- Common View -->
     <div
       class="flex justify-center gap-2 w-full font-londrina font-yusei text-xl"
     >
@@ -47,14 +47,12 @@
         <button
           v-if="token.salePrice > 0"
           class="inline-block rounded bg-red-500 w-20 px-1 py-2.5 leading-tight text-white shadow-md transition duration-150 mx-1 my-2"
-          disabled
         >
           {{ $t("list.onSale") }}
         </button>
         <button
           v-else
           class="inline-block rounded bg-gray-500 w-20 px-1 py-2.5 leading-tight text-white shadow-md transition duration-150 mx-1 my-2"
-          disabled
         >
           {{ $t("list.onSale") }}
         </button>
@@ -63,14 +61,12 @@
         <button
           v-if="token.isOnTrade"
           class="inline-block rounded bg-blue-500 w-20 px-1 py-2.5 leading-tight text-white shadow-md transition duration-150 mx-1 my-2"
-          disabled
         >
           {{ $t("list.onTrade") }}
         </button>
         <button
           v-else
           class="inline-block rounded bg-gray-500 w-20 px-1 py-2.5 leading-tight text-white shadow-md transition duration-150 mx-1 my-2"
-          disabled
         >
           {{ $t("list.onTrade") }}
         </button>
