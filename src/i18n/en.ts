@@ -21,6 +21,7 @@ const lang = {
     connected: "Sign In",
     signedIn: "Sign Out",
     nometamask: "No Metamask",
+    useMetamask: "If you are on a mobile phone, please access it through the MetaMask app browser",
     switch: "Switch",
     form: "Submission Form",
   },

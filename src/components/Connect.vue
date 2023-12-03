@@ -60,6 +60,9 @@
         >
           {{ $t("menu.nometamask") }}
         </button>
+        <div>
+        {{ $t("menu.useMetamask") }}
+        </div>
       </span>
     </span>
   </span>

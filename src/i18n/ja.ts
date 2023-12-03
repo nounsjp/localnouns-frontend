@@ -21,6 +21,7 @@ const lang = {
     connected: "サインイン",
     signedIn: "サインアウト",
     nometamask: "メタマスク不在",
+    useMetamask: "スマホの場合はメタマスクアプリのブラウザからアクセスしてください",
     switch: "切り替える",
     form: "提出フォーム",
   },
