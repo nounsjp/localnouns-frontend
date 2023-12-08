@@ -15,7 +15,12 @@
         </button>
       </span> -->
 
-      <TokenDetail :token="token" size="L" />
+      <TokenDetail
+        :token="token"
+        :tokenAddress="tokenAddress"
+        :network="network"
+        size="L"
+      />
 
       <div
         v-if="token.salePrice > 0 && account"
@@ -175,6 +180,10 @@ export default {
     myTokens: {
       type: Array,
       required: true,
+    },
+    tokenAddress: {
+      type: String,
+      required: false,
     },
   },
   setup(props, context) {

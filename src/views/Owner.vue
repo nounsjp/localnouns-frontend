@@ -37,6 +37,7 @@
       <TokenManagement
         v-if="selectedToken"
         :network="network"
+        :tokenAddress="tokenAddress"
         :isOpen="isManagementModalOpen"
         :token="selectedToken"
         @close="closeTokenModal"

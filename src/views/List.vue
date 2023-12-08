@@ -111,6 +111,7 @@
     <TokenManagement
       v-if="selectedToken"
       :network="network"
+      :tokenAddress="tokenAddress"
       :isOpen="isManagementModalOpen"
       :token="selectedToken"
       @close="closeTokenModal"
@@ -119,6 +120,7 @@
     <TokenSaleOrTrade
       v-if="selectedToken"
       :network="network"
+      :tokenAddress="tokenAddress"
       :isOpen="isSaleOrTradeModalOpen"
       :token="selectedToken"
       :myTokens="myTokens"

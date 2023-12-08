@@ -79,15 +79,23 @@
 
   <!-- For Token View -->
   <div v-if="size == 'L'">
-    <p class="mb-2 font-londrina font-yusei text-xl">
+    <p class="mb-2 font-londrina font-yusei">
       {{ $t("tokenDetail.owner") }} : {{ token.holder }}
     </p>
+    <a
+      v-if="OpenSeaPath"
+      :href="OpenSeaPath"
+      target="_blank"
+      class="font-londrina font-yusei text-sm"
+      >Opensea</a
+    >
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 import { TOKEN } from "@/firestore/const";
+import { getAddresses } from "@/utils/const";
 
 export default defineComponent({
   props: {
@@ -99,8 +107,31 @@ export default defineComponent({
       type: String,
       required: false,
     },
+    network: {
+      type: String,
+      required: false,
+    },
+    tokenAddress: {
+      type: String,
+      required: false,
+    },
   },
   name: "TokenDetail",
-  setup() {},
+  setup(props) {
+    let OpenSeaPath = "";
+    const strNetwork: string = props.network ? props.network : "";
+    const strTokenAddress: string = props.tokenAddress
+      ? props.tokenAddress
+      : "";
+    if (strNetwork && strTokenAddress) {
+      const { OpenSeaBase } = getAddresses(strNetwork, strTokenAddress);
+      OpenSeaPath =
+        OpenSeaBase + "/" + props.tokenAddress + "/" + props.token.tokenId;
+    }
+
+    return {
+      OpenSeaPath,
+    };
+  },
 });
 </script>

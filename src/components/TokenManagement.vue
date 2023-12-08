@@ -15,7 +15,12 @@
         </button>
       </span>
 
-      <TokenDetail :token="token" size="L" />
+      <TokenDetail
+        :token="token"
+        :tokenAddress="tokenAddress"
+        :network="network"
+        size="L"
+      />
       <hr class="border-t border-gray-600 my-4 w-full" />
 
       <p class="mb-2 font-londrina font-yusei text-3xl">
@@ -182,6 +187,10 @@ export default {
     token: {
       type: Object,
       required: true,
+    },
+    tokenAddress: {
+      type: String,
+      required: false,
     },
   },
   setup(props, context) {
