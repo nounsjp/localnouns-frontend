@@ -71,14 +71,13 @@
     <!-- ソート順 -->
     <span class="ml-2 font-londrina font-yusei text-xl">
       <label class="flex items-center">
-      <ListSortOrder
-        class="mx-2 my-1"
-        v-model="selectedSortOrder"
-        @change="filterTokenByCriteria"
-      />
+        <ListSortOrder
+          class="mx-2 my-1"
+          v-model="selectedSortOrder"
+          @change="filterTokenByCriteria"
+        />
       </label>
     </span>
-
   </div>
   <div
     class="grid w-screen grid-cols-2 place-content-center items-center gap-2 sm:grid-cols-5"
