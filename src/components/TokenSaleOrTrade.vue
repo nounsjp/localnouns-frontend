@@ -34,11 +34,6 @@
           {{ $t("TokenSaleOrTrade.saleDescription") }}
         </p>
 
-        <InformationDialog
-          :isOpen="displayInformationDialog"
-          :message="informationMessage"
-          @close="closeModal(true)"
-        />
         <div v-if="!isSaleBusy">
           <div class="flex justify-center gap-2 w-full">
             <button
@@ -134,6 +129,19 @@
         </button>
       </div>
 
+      <InformationDialog
+        :isOpen="displayInformationDialog"
+        :message="informationMessage"
+        @close="closeModal(true)"
+      />
+
+      <!-- エラー時のダイアログ -->
+      <ErrorDialog
+        :isOpen="displayErrorDialog"
+        :description="errorDescription"
+        @close="closeModal(true)"
+      />
+
       <hr class="border-t border-gray-600 my-4 w-full" />
       <button
         @click="closeModal(false)"
@@ -154,6 +162,7 @@ import { getLocalNounsTokenContract } from "@/utils/const";
 import { ChainIdMap } from "@/utils/MetaMask";
 import TokenDetail from "@/components/TokenDetail.vue";
 import InformationDialog from "@/components/InformationDialog.vue";
+import ErrorDialog from "@/components/ErrorDialog.vue";
 import MyNounsRadioButton from "@/components/MyNounsRadioButton.vue";
 import { prefectureList } from "@/i18n/prefectures";
 import { addresses } from "@/utils/addresses";
@@ -162,6 +171,7 @@ export default {
   components: {
     TokenDetail,
     InformationDialog,
+    ErrorDialog,
     MyNounsRadioButton,
   },
   props: {
@@ -200,6 +210,8 @@ export default {
     const isTradeBusy = ref(false);
     const displayInformationDialog = ref(false);
     const informationMessage = ref("");
+    const displayErrorDialog = ref(false);
+    const errorDescription = ref("");
 
     const buyNoun = async () => {
       const contract = await getContract(props.network);
@@ -219,8 +231,28 @@ export default {
         informationMessage.value = "TokenSaleOrTrade.finishBuyNoun";
         displayInformationDialog.value = true;
       } catch (e) {
-        isSaleBusy.value = false;
         console.error(e);
+
+        if (e instanceof Error) {
+          errorDescription.value = "buyNoun:" + e.message;
+        } else {
+          errorDescription.value = "buyNoun:" + String(e);
+        }
+        const indexComma = errorDescription.value.indexOf("(");
+        errorDescription.value = errorDescription.value.substring(
+          0,
+          indexComma,
+        );
+        if (errorDescription.value.indexOf("user rejected action") < 0) {
+          displayErrorDialog.value = true;
+        } else {
+          isSaleBusy.value = false;
+        }
+        console.log(
+          "displayErrorDialog.value",
+          displayErrorDialog.value,
+          errorDescription.value,
+        );
       }
     };
 
@@ -244,8 +276,27 @@ export default {
         informationMessage.value = "TokenSaleOrTrade.finishTradeNoun";
         displayInformationDialog.value = true;
       } catch (e) {
-        isTradeBusy.value = false;
         console.error(e);
+        if (e instanceof Error) {
+          errorDescription.value = "tradeNoun:" + e.message;
+        } else {
+          errorDescription.value = "tradeNoun:" + String(e);
+        }
+        const indexComma = errorDescription.value.indexOf("(");
+        errorDescription.value = errorDescription.value.substring(
+          0,
+          indexComma,
+        );
+        if (errorDescription.value.indexOf("user rejected action") < 0) {
+          displayErrorDialog.value = true;
+        } else {
+          isTradeBusy.value = false;
+        }
+        console.log(
+          "displayErrorDialog.value",
+          displayErrorDialog.value,
+          errorDescription.value,
+        );
       }
     };
 
@@ -264,6 +315,7 @@ export default {
       isSaleBusy.value = false;
       isTradeBusy.value = false;
       displayInformationDialog.value = false;
+      displayErrorDialog.value = false;
       context.emit("close", reload);
     };
 
@@ -287,6 +339,8 @@ export default {
       isTradeBusy,
       displayInformationDialog,
       informationMessage,
+      displayErrorDialog,
+      errorDescription,
       buyNoun,
       tradeNoun,
     };
