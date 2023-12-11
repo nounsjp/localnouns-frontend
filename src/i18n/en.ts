@@ -111,6 +111,7 @@ const lang = {
     finishBuyNoun: "Successfully purchased Noun!",
     selectNounForTrade: "Select a noun for trade",
     finishTradeNoun: "Successfully traded Noun!",
+    notHasTradableNouns: "Not have any Nouns available for exchange.",
   },
   validator: {
     validNumber: "Enter a number greater than 0",
