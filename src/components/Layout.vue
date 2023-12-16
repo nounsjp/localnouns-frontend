@@ -32,7 +32,7 @@
       <Languages class="mt-4" />
       <Connect :network="network" />
     </div>
-    <div v-if="networkChainId == chainId">
+    <div v-if="networkChainId == chainId || !chainId">
       <router-view />
     </div>
     <div v-else class="font-londrina font-yusei text-xl">
