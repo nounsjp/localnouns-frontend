@@ -49,6 +49,7 @@ const lang = {
   },
   errorDialog: {
     message: "Error has occurred. Please wait a moment and try again.",
+    message2: "If you see“missing revert data”, your ETH balance may be insufficient.",
   },
   list: {
     description: "You can parchace Local Nouns here.",

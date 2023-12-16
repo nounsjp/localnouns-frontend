@@ -48,6 +48,7 @@ const lang = {
   },
   errorDialog: {
     message: "エラーが発生しました。しばらく経ってからやり直してください",
+    message2: "“missing revert data”が表示される場合、ETH残高が不足している可能性があります",
   },
   list: {
     description: "ここではご当地Nounsを購入することができます",
