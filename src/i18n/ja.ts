@@ -25,6 +25,7 @@ const lang = {
       "スマホの場合はメタマスクアプリのブラウザからアクセスしてください",
     switch: "切り替える",
     form: "提出フォーム",
+    switchNetwork: "ウォレットの接続先ネットワークを変更してください",
   },
   mint: {
     saleLock: "ただいまミントセールは実施しておりません",
@@ -48,7 +49,8 @@ const lang = {
   },
   errorDialog: {
     message: "エラーが発生しました。しばらく経ってからやり直してください",
-    message2: "“missing revert data”が表示される場合、ETH残高が不足している可能性があります",
+    message2:
+      "“missing revert data”が表示される場合、ETH残高が不足している可能性があります",
   },
   list: {
     description: "ここではご当地Nounsを購入することができます",
