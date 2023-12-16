@@ -33,7 +33,7 @@
       <Connect :network="network" />
     </div>
     <div v-if="networkChainId == chainId">
-    <router-view />
+      <router-view />
     </div>
     <div v-else class="font-londrina font-yusei text-xl">
       {{ $t("menu.switchNetwork") }}
