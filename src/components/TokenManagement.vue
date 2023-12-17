@@ -4,7 +4,7 @@
     class="fixed inset-0 z-50 overflow-y bg-gray-500 bg-opacity-75 flex justify-center items-center"
   >
     <div
-      class="relative p-6 bg-white w-5/6 h-4/5 overflow-y-auto flex flex-col justify-between items-center"
+      class="relative p-6 bg-white w-5/6 h-4/5 overflow-y-auto flex flex-col justify-between items-center font-londrina font-yusei"
     >
       <span class="absolute top-4 right-4 cursor-pointer">
         <button
@@ -23,15 +23,15 @@
       />
       <hr class="border-t border-gray-600 my-4 w-full" />
 
-      <p class="mb-2 font-londrina font-yusei text-3xl">
+      <p class="mb-2 text-3xl">
         {{ $t("tokenManagement.sale") }}
       </p>
-      <p class="mb-2 font-londrina font-yusei text-l">
+      <p class="mb-2 text-l">
         {{ $t("tokenManagement.saleDescription") }}
       </p>
 
       <div class="mt-4 flex flex-col items-center">
-        <label for="salePrice" class="mb-2 font-londrina font-yusei text-l">
+        <label for="salePrice" class="mb-2 text-l">
           {{ $t("tokenManagement.setSalePrice") }}
         </label>
         <!-- 完了時のダイアログ -->
