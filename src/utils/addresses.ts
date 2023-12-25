@@ -1,5 +1,3 @@
-import { addresses as localSeeder_mumbai } from "@/utils/addresses/localseeder_mumbai";
-import { addresses as localSeeder_localhost } from "@/utils/addresses/localseeder_localhost";
 import { addresses as localNounsDescriptor_mumbai } from "@/utils/addresses/localNounsDescriptor_mumbai";
 import { addresses as localNounsDescriptor_localhost } from "@/utils/addresses/localNounsDescriptor_localhost";
 import { addresses as localProvider_mumbai } from "@/utils/addresses/localNounsProvider_mumbai";
@@ -13,6 +11,8 @@ import { addresses as svgHelper_mainnet } from "@/utils/addresses/svgHelper_main
 import { addresses as tokenGate_mainnet } from "@/utils/addresses/tokenGate_mainnet";
 import { addresses as tokenGate_mumbai } from "@/utils/addresses/tokenGate_mumbai";
 import { addresses as tokenGate_localhost } from "@/utils/addresses/tokenGate_localhost";
+import { addresses as nnsens_mainnet } from "@/utils/addresses/nnsens_mainnet";
+import { addresses as nnsens_mumbai } from "@/utils/addresses/nnsens_mumbai";
 
 export interface Addresses {
   [key: string]: { [key: string]: string };
@@ -22,10 +22,6 @@ export interface WhiteList {
 }
 
 export const addresses: Addresses = {
-  localSeeder: {
-    mumbai: localSeeder_mumbai.localseeder,
-    localhost: localSeeder_localhost.localseeder,
-  },
   localNounsDescriptor: {
     mumbai: localNounsDescriptor_mumbai.localNounsDescriptor,
     localhost: localNounsDescriptor_localhost.localNounsDescriptor,
@@ -49,7 +45,11 @@ export const addresses: Addresses = {
   },
   tokenGate: {
     mumbai: tokenGate_mumbai.tokenGate,
-    localhost: tokenGate_mainnet.tokenGate, // deployed
-    mainnet: tokenGate_localhost.tokenGate,
+    localhost: tokenGate_localhost.tokenGate, // deployed
+    mainnet: tokenGate_mainnet.tokenGate,
+  },
+  nnsens: {
+    mumbai: nnsens_mumbai.nnsens,
+    mainnet: nnsens_mainnet.nnsens,
   },
 };
