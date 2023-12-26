@@ -1,9 +1,13 @@
+import { addresses as localNounsDescriptor_mainnet } from "@/utils/addresses/localNounsDescriptor_mainnet";
 import { addresses as localNounsDescriptor_mumbai } from "@/utils/addresses/localNounsDescriptor_mumbai";
 import { addresses as localNounsDescriptor_localhost } from "@/utils/addresses/localNounsDescriptor_localhost";
+import { addresses as localProvider_mainnet } from "@/utils/addresses/localNounsProvider_mainnet";
 import { addresses as localProvider_mumbai } from "@/utils/addresses/localNounsProvider_mumbai";
 import { addresses as localProvider_localhost } from "@/utils/addresses/localNounsProvider_localhost";
+import { addresses as localNounsToken_mainnet } from "@/utils/addresses/localNounsToken_mainnet";
 import { addresses as localNounsToken_mumbai } from "@/utils/addresses/localNounsToken_mumbai";
 import { addresses as localNounsToken_localhost } from "@/utils/addresses/localNounsToken_localhost";
+import { addresses as localNounsMinter_mainnet } from "@/utils/addresses/localNounsMinter_mainnet";
 import { addresses as localNounsMinter_mumbai } from "@/utils/addresses/localNounsMinter_mumbai";
 import { addresses as localNounsMinter_localhost } from "@/utils/addresses/localNounsMinter_localhost";
 import { addresses as svgHelper_mumbai } from "@/utils/addresses/svgHelper_mumbai";
@@ -23,18 +27,22 @@ export interface WhiteList {
 
 export const addresses: Addresses = {
   localNounsDescriptor: {
+    mainnet: localNounsDescriptor_mainnet.localNounsDescriptor,
     mumbai: localNounsDescriptor_mumbai.localNounsDescriptor,
     localhost: localNounsDescriptor_localhost.localNounsDescriptor,
   },
   localProvider: {
+    mainnet: localProvider_mainnet.localNounsProvider,
     mumbai: localProvider_mumbai.localNounsProvider,
     localhost: localProvider_localhost.localNounsProvider,
   },
   localNounsToken: {
+    mainnet: localNounsToken_mainnet.localNounsToken,
     mumbai: localNounsToken_mumbai.localNounsToken,
     localhost: localNounsToken_localhost.localNounsToken,
   },
   localNounsMinter: {
+    mainnet: localNounsMinter_mainnet.localNounsMinter,
     mumbai: localNounsMinter_mumbai.localNounsMinter,
     localhost: localNounsMinter_localhost.localNounsMinter,
   },
