@@ -12,19 +12,20 @@ interface Token {
 type Provider =
   | ethers.JsonRpcProvider
   | ethers.AlchemyProvider
-  | ethers.InfuraProvider;
+  | ethers.InfuraProvider
+  | ethers.BrowserProvider;
 type ProviderOrSigner = ethers.Provider | ethers.Signer | undefined;
 
 export const getAddresses = (network: string, contentAddress: string) => {
   const EtherscanBase = (() => {
     if (network == "rinkeby") {
-      return "https://rinkeby.etherscan.io/address";
+      return "https://rinkeby.etherscan.io";
     } else if (network == "goerli") {
-      return "https://goerli.etherscan.io/address";
+      return "https://goerli.etherscan.io";
     } else if (network == "mumbai") {
-      return "https://mumbai.polygonscan.com/address";
+      return "https://mumbai.polygonscan.com";
     }
-    return "https://etherscan.io/address";
+    return "https://etherscan.io";
   })();
   const OpenSeaBase = (() => {
     if (network == "rinkeby") {
@@ -36,7 +37,7 @@ export const getAddresses = (network: string, contentAddress: string) => {
     }
     return "https://opensea.io/assets/ethereum";
   })();
-  const EtherscanToken = `${EtherscanBase}/${contentAddress}`;
+  const EtherscanToken = `${EtherscanBase}/address/${contentAddress}`;
   const OpenSeaPath = `${OpenSeaBase}/${contentAddress}`;
 
   return {
@@ -95,6 +96,9 @@ const ProviderLocalNounsProvider = {
 const IAssetProvider = {
   wabi: require("@/abis/IAssetProvider.json"), // wrapped abi
 };
+const ProviderNNSENSReverseResolver = {
+  wabi: require("@/abis/NNSENSReverseResolver.json"), // wrapped abi
+};
 
 export const getSvgHelper = (network: string, provider: ProviderOrSigner) => {
   const svgHelperAddress = addresses["svgHelper"][network];
@@ -106,7 +110,7 @@ export const getSvgHelper = (network: string, provider: ProviderOrSigner) => {
   return svgHelper;
 };
 
-const getTokenGate = (address: string, provider: ProviderOrSigner) => {
+export const getTokenGate = (address: string, provider: ProviderOrSigner) => {
   const tokenGate = new ethers.Contract(address, ITokenGate.wabi.abi, provider);
   return tokenGate;
 };
@@ -138,19 +142,15 @@ export const getTokenContract = (
 };
 
 // Token Contract functions
-const getBalanceFromTokenContract = async (
-  tokenContract: ethers.Contract,
+const getBalanceFromTokenGate = async (
+  tokenGate: ethers.Contract,
   account: string,
 ) => {
-  const [balance] = await tokenContract.balanceOf(account);
+  if (!account) {
+    return 0;
+  }
+  const balance = await tokenGate.balanceOf(account);
   return balance;
-};
-const getMintPriceForFromTokenContract = async (
-  tokenContract: ethers.Contract,
-  account: string,
-) => {
-  const [value] = await tokenContract.mintPriceFor(account);
-  return value;
 };
 const getTotalSupplyFromTokenContract = async (
   tokenContract: ethers.Contract,
@@ -165,6 +165,30 @@ const getMintLimitFromTokenContract = async (
   const limit = await tokenContract.mintLimit();
   return Number(limit);
 };
+
+const getMintMaxFromMinterContract = async (
+  minterContract: ethers.Contract,
+) => {
+  const limit = await minterContract.mintMax();
+  return Number(limit);
+};
+const getPhaseFromMinterContract = async (minterContract: ethers.Contract) => {
+  const phase = await minterContract.phase();
+  return Number(phase);
+};
+const getMintPriceForSpecifiedFromMinterContract = async (
+  minterContract: ethers.Contract,
+) => {
+  const price = await minterContract.mintPriceForSpecified();
+  return BigInt(price);
+};
+const getMintPriceForNotSpecifiedFromMinterContract = async (
+  minterContract: ethers.Contract,
+) => {
+  const price = await minterContract.mintPriceForNotSpecified();
+  return BigInt(price);
+};
+
 const getDebugTokenURI = async (
   tokenContract: ethers.Contract,
   tokenId: number,
@@ -185,33 +209,37 @@ export const useFetchTokens = (
   const tokens = ref<Token[]>([]);
 
   const fetchTokens = async () => {
-    const svgHelper = getSvgHelper(network, provider);
-    totalSupply.value = await getTotalSupplyFromTokenContract(contractRO);
-    mintLimit.value = await getMintLimitFromTokenContract(contractRO);
+    try {
+      const svgHelper = getSvgHelper(network, provider);
+      totalSupply.value = await getTotalSupplyFromTokenContract(contractRO);
+      mintLimit.value = await getMintLimitFromTokenContract(contractRO);
 
-    const providerAddress = addresses[assetProvider || "dotNouns"][network];
+      const providerAddress = addresses[assetProvider || "dotNouns"][network];
 
-    console.log("totalSupply/mintLimit", totalSupply.value, mintLimit.value);
-    if (totalSupply.value < mintLimit.value) {
-      const [svgPart, tag, gas] = await svgHelper.generateSVGPart(
-        providerAddress,
-        totalSupply.value,
-      );
-      console.log("gas:", gas);
-      nextImage.value = svgImageFromSvgPart(svgPart, tag, "");
-    } else {
-      nextImage.value = null;
-    }
-    tokens.value = [];
-    for (
-      let tokenId = Math.max(0, totalSupply.value - 4);
-      tokenId < totalSupply.value;
-      tokenId++
-    ) {
-      const { tokenURI, gas } = await getDebugTokenURI(contractRO, tokenId);
-      console.log("gas", tokenId, gas);
-      const { json } = decodeTokenData(tokenURI);
-      tokens.value.push({ tokenId, image: json.image });
+      console.log("totalSupply/mintLimit", totalSupply.value, mintLimit.value);
+      if (totalSupply.value < mintLimit.value) {
+        const [svgPart, tag, gas] = await svgHelper.generateSVGPart(
+          providerAddress,
+          totalSupply.value,
+        );
+        console.log("gas:", gas);
+        nextImage.value = svgImageFromSvgPart(svgPart, tag, "");
+      } else {
+        nextImage.value = null;
+      }
+      tokens.value = [];
+      for (
+        let tokenId = Math.max(0, totalSupply.value - 4);
+        tokenId < totalSupply.value;
+        tokenId++
+      ) {
+        const { tokenURI, gas } = await getDebugTokenURI(contractRO, tokenId);
+        console.log("gas", tokenId, gas);
+        const { json } = decodeTokenData(tokenURI);
+        tokens.value.push({ tokenId, image: json.image });
+      }
+    } catch (e) {
+      console.error("fetchTokens", e);
     }
   };
   return {
@@ -224,34 +252,60 @@ export const useFetchTokens = (
   };
 };
 
-export const useCheckTokenGate = (
-  tokenGateAddress: string,
-  tokenGated: boolean,
-  provider: Provider,
+export const useMintConditions = (
+  network: string,
   contractRO: ethers.Contract,
 ) => {
-  const totalBalance = ref<number>(0);
-  const balanceOf = ref<number>(0);
-  const mintPrice = ref<bigint>(BigInt(0));
+  const salePhase = ref<number>(-1);
+  const mintLimit = ref<number>(0);
+  const mintPriceForSpecified = ref<bigint>(BigInt(0));
+  const mintPriceForNotSpecified = ref<bigint>(BigInt(0));
 
-  const checkTokenGate = async (account: string) => {
-    console.log("### calling totalBalanceOf");
-    if (tokenGated) {
-      const tokenGate = getTokenGate(tokenGateAddress, provider);
-      const [result] = await tokenGate.balanceOf(account);
-      totalBalance.value = result.toNumber();
+  const mintConditions = async () => {
+    try {
+      salePhase.value = await getPhaseFromMinterContract(contractRO);
+      mintLimit.value = await getMintMaxFromMinterContract(contractRO);
+      mintPriceForSpecified.value =
+        await getMintPriceForSpecifiedFromMinterContract(contractRO);
+      mintPriceForNotSpecified.value =
+        await getMintPriceForNotSpecifiedFromMinterContract(contractRO);
+
+      console.log("salePhase/mintLimit", salePhase.value, mintLimit.value);
+      console.log(
+        "mintPrice",
+        mintPriceForSpecified.value,
+        mintPriceForNotSpecified.value,
+      );
+    } catch (e) {
+      console.error("mintConditions", e);
     }
-    balanceOf.value = await getBalanceFromTokenContract(contractRO, account);
-    mintPrice.value = await getMintPriceForFromTokenContract(
-      contractRO,
-      account,
-    );
   };
   return {
-    totalBalance,
-    balanceOf,
-    mintPrice,
+    salePhase,
+    mintLimit,
+    mintPriceForSpecified,
+    mintPriceForNotSpecified,
+    mintConditions,
+  };
+};
 
+export const useCheckTokenGate = (tokenGate: ethers.Contract) => {
+  const balanceOf = ref<number>(0);
+
+  const checkTokenGate = async (account: string) => {
+    if (account) {
+      // tokenGateに存在しないアドレスが登録されている場合はExceptionになる(テスト用)
+      try {
+        balanceOf.value = await getBalanceFromTokenGate(tokenGate, account);
+      } catch (e) {
+        balanceOf.value = 0;
+      }
+    } else {
+      balanceOf.value = 0;
+    }
+  };
+  return {
+    balanceOf,
     checkTokenGate,
   };
 };
@@ -319,4 +373,27 @@ export const getLocalNounsProviderContract = (
     provider,
   );
   return tokenContract;
+};
+
+export const getNNSENSReverseResolverContract = (
+  provider: ProviderOrSigner,
+): ethers.Contract => {
+  const tokenContract = new ethers.Contract(
+    addresses.nnsens.mainnet,
+    ProviderNNSENSReverseResolver.wabi.abi,
+    provider,
+  );
+  return tokenContract;
+};
+
+export const resolveNNSorENS = async (
+  resolver: ethers.Contract,
+  address: string,
+) => {
+  try {
+    const name = await resolver.resolve(address);
+    return name ? name : address.substring(0, 6) + "...";
+  } catch (e) {
+    console.error("resolveNNSorENS", e);
+  }
 };

@@ -6,27 +6,52 @@ const lang = {
     top: "Top",
     mint: "Mint",
     list: "List",
-    owner: "Owner",
+    owner: "MyPage",
     p2pSale: "P2PSale",
     p2pTrade: "P2PTrade",
     goods: "Goods",
     about: "About",
+    terms: "Terms",
+    tokushoho: "Tokushoho",
+    explanation: "Explanation",
+    privacy: "Privacy Policy",
   },
   menu: {
     connect: "Connect",
     connected: "Sign In",
     signedIn: "Sign Out",
     nometamask: "No Metamask",
+    useMetamask:
+      "If you are on a mobile phone, please access it through the MetaMask app browser",
     switch: "Switch",
     form: "Submission Form",
+    switchNetwork: "Change the network to which the wallet is connected",
   },
   mint: {
-    publicSale: "Now On Public Sale",
-    alSale: "Now On AL Sale",
+    saleLock: "Mint Sale is not available",
+    publicSale: "Now On Sale For Public",
+    alSale: "Now On Sale For Specific NFT Holders",
     total: "Total",
     mint: "Mint",
+    price: "Price",
     connectWallet: "Connect Wallet from above right button.",
+    notHasSpecificNFT: "This address does not have the NFT for AL Sale",
+    overMintLimit: "The maximum number of mints has been reached",
     recentlyMinted: "Recently minted LocalNouns.⌐◨-◨",
+    finishMint: "Mint Finished!!",
+    terms: "Agree to the `Terms`",
+    tokushoho: "Agree to the `Tokushoho`",
+    explanation: "Agree to the `Explanation`",
+    privacy: "Agree to the `Privacy Policy`",
+  },
+  finishMintDialog: {
+    message: "Mint Finished!!",
+    message2: "It may take some time for the NFT to appear on this site",
+  },
+  errorDialog: {
+    message: "Error has occurred. Please wait a moment and try again.",
+    message2:
+      "If you see“missing revert data”, your ETH balance may be insufficient.",
   },
   list: {
     description: "You can parchace Local Nouns here.",
@@ -51,6 +76,9 @@ const lang = {
   },
   numOfMint: {
     numOfMint: "Quantity",
+  },
+  tokenDetail: {
+    owner: "Owner",
   },
   tokenManagement: {
     sale: "Sales condition",
@@ -86,6 +114,7 @@ const lang = {
     finishBuyNoun: "Successfully purchased Noun!",
     selectNounForTrade: "Select a noun for trade",
     finishTradeNoun: "Successfully traded Noun!",
+    notHasTradableNouns: "Not have any Nouns available for exchange.",
   },
   validator: {
     validNumber: "Enter a number greater than 0",

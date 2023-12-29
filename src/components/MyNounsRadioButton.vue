@@ -32,6 +32,9 @@
         </div>
       </label>
     </div>
+    <div v-if="!hasTradableNouns">
+      {{ $t("TokenSaleOrTrade.notHasTradableNouns") }}
+    </div>
   </span>
 </template>
 
@@ -52,25 +55,35 @@ export default defineComponent({
   },
   setup(props, context) {
     const selectedValue = ref("");
+    const hasTradableNouns = ref(false);
     if (props.tradeForPrefectures[0] == "NotSpecified") {
       props.myTokens.forEach((token) => {
         token.canTrade = true;
+        hasTradableNouns.value = true;
       });
     } else {
       props.myTokens.forEach((token) => {
         token.canTrade = props.tradeForPrefectures.includes(token.prefecture);
+        if (token.canTrade) {
+          hasTradableNouns.value = true;
+        }
       });
     }
 
-    const updateValue = (element: HTMLInputElement, tokenId: string) => {
-      if (element.checked) {
+    const updateValue = (
+      event: { target: HTMLSelectElement },
+      tokenId: string,
+    ) => {
+      if (event.target.value) {
         selectedValue.value = tokenId;
+        console.log("MyNounsRadioButton:updateValue", tokenId);
         context.emit("updateValues", selectedValue.value);
       }
     };
     return {
       selectedValue,
       updateValue,
+      hasTradableNouns,
     };
   },
 });
