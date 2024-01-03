@@ -14,7 +14,7 @@
       class="px-2 py-1 flex flex-col items-left justify-center"
     >
       <hr class="border-t border-gray-600 my-4 w-full" />
-      <div class="flex items-center mx-10">
+      <div class="flex flex-wrap items-center mx-10">
         <span class="mb-2 font-londrina font-yusei text-3xl text-left mx-10">
           {{ $t("prefecture." + tokenGroup[0].prefecture) }}
         </span>
