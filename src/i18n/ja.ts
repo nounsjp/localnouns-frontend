@@ -59,6 +59,7 @@ const lang = {
     onTrade: "交換可",
     onSale: "販売中",
     manage: "所有",
+    goToAllnouns: "全てのご当地Nounsを見る",
   },
   owner: {
     description: "あなたの所有するご当地Nounsです",
@@ -116,6 +117,11 @@ const lang = {
   },
   validator: {
     validNumber: "0より大きい数値を入力してください",
+  },
+  allNouns: {
+    description: "これまでにミントされた全てのご当地Nounsです",
+    created: "作成",
+    toList: "一覧へ戻る",
   },
   commingSoon: {
     commingSoon: "近日公開",

@@ -60,6 +60,7 @@ const lang = {
     onTrade: "onTrade",
     onSale: "onSale",
     manage: "Owner",
+    goToAllnouns: "Go to All Nouns",
   },
   owner: {
     description: "These are your local Nouns that you own.",
@@ -118,6 +119,11 @@ const lang = {
   },
   validator: {
     validNumber: "Enter a number greater than 0",
+  },
+  allNouns: {
+    description: "These are local Nouns minted so far.",
+    created: "created",
+    toList: "go to List",
   },
   commingSoon: {
     commingSoon: "Comming Soon",
