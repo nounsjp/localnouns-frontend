@@ -20,11 +20,7 @@ import { NETWORK } from "@/config/project";
 const routeChildren: Array<RouteRecordRaw> = [
   {
     path: "",
-    component: List,
-    props: {
-      network: NETWORK,
-      tokenAddress: addresses.localNounsToken[NETWORK],
-    },
+    redirect: "mint",
   },
   {
     path: "mint",
