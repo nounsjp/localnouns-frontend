@@ -19,7 +19,9 @@
     >
       <hr class="border-t border-gray-600 my-4 w-full" />
       <p class="mb-2 font-londrina font-yusei text-3xl text-left mx-10">
-        {{ $t("prefecture." + tokenGroup[0].prefecture) }}({{tokenGroup.length}})
+        {{ $t("prefecture." + tokenGroup[0].prefecture) }}({{
+          tokenGroup.length
+        }})
       </p>
       <div
         class="grid w-screen grid-cols-2 place-content-center items-center gap-2 sm:grid-cols-5"

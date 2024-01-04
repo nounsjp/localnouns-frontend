@@ -20,7 +20,9 @@
       <hr class="border-t border-gray-600 my-4 w-full" />
       <div class="flex flex-wrap items-center mx-10">
         <span class="mb-2 font-londrina font-yusei text-3xl text-left mx-10">
-          {{ $t("prefecture." + tokenGroup[0].prefecture) }}({{tokenGroup.length}})
+          {{ $t("prefecture." + tokenGroup[0].prefecture) }}({{
+            tokenGroup.length
+          }})
         </span>
         <router-link
           :to="localizedUrl('/list/' + tokenGroup[0].prefectureId)"
