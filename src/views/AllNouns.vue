@@ -8,6 +8,7 @@
     </p>
   </div>
   <div class="px-5 py-1 flex flex-col items-center justify-center mx-5">
+    <NounsMap :groupedByPrefecture="groupedByPrefecture" />
     <div
       v-for="tokenGroup in groupedByPrefecture"
       :key="tokenGroup.key"
@@ -46,6 +47,7 @@
 import { defineComponent, computed, ref, watch } from "vue";
 import { useI18n } from "vue-i18n";
 import TokenDetail from "@/components/TokenDetail.vue";
+import NounsMap from "@/components/NounsMap.vue";
 import { TOKEN } from "@/firestore/const";
 import { createdTime, tokenInfo_ja, tokenInfo_en } from "@/utils/allNouns";
 
@@ -53,6 +55,7 @@ export default defineComponent({
   name: "AllNouns",
   components: {
     TokenDetail,
+    NounsMap,
   },
   async setup() {
     const i18n = useI18n();
