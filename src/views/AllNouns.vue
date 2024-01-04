@@ -9,6 +9,9 @@
   </div>
   <div class="px-5 py-1 flex flex-col items-center justify-center mx-5">
     <NounsMap :groupedByPrefecture="groupedByPrefecture" />
+    <p class="mb-2 font-londrina font-yusei text-2xl text-center">
+      {{ $t("allNouns.total") }} : {{ tokens.length }} Nouns
+    </p>
     <div
       v-for="tokenGroup in groupedByPrefecture"
       :key="tokenGroup.key"
@@ -17,7 +20,7 @@
       <hr class="border-t border-gray-600 my-4 w-full" />
       <div class="flex flex-wrap items-center mx-10">
         <span class="mb-2 font-londrina font-yusei text-3xl text-left mx-10">
-          {{ $t("prefecture." + tokenGroup[0].prefecture) }}
+          {{ $t("prefecture." + tokenGroup[0].prefecture) }}({{tokenGroup.length}})
         </span>
         <router-link
           :to="localizedUrl('/list/' + tokenGroup[0].prefectureId)"
@@ -113,6 +116,7 @@ export default defineComponent({
     return {
       lang,
       groupedByPrefecture,
+      tokens,
       getTokenList,
       displayTime,
     };

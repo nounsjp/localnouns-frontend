@@ -64,6 +64,7 @@ const lang = {
   },
   owner: {
     description: "These are your local Nouns that you own.",
+    total: "Total",
   },
   prefectures: {
     prefectures: "Prefecture",
@@ -123,6 +124,7 @@ const lang = {
   allNouns: {
     description: "These are local Nouns minted so far.",
     created: "created",
+    total: "Total",
     toList: "go to List",
   },
   commingSoon: {

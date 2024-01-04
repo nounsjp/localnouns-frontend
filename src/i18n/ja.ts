@@ -63,6 +63,7 @@ const lang = {
   },
   owner: {
     description: "あなたの所有するご当地Nounsです",
+    total: "合計",
   },
   prefectures: {
     prefectures: "都道府県",
@@ -121,6 +122,7 @@ const lang = {
   allNouns: {
     description: "これまでにミントされた全てのご当地Nounsです",
     created: "作成",
+    total: "合計",
     toList: "一覧へ戻る",
   },
   commingSoon: {
