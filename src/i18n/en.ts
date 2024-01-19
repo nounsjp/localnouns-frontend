@@ -5,7 +5,7 @@ const lang = {
   nav: {
     top: "Top",
     mint: "Mint",
-    list: "List",
+    list: "Market",
     owner: "MyPage",
     p2pSale: "P2PSale",
     p2pTrade: "P2PTrade",
@@ -44,7 +44,6 @@ const lang = {
     tokushoho: "Agree to the `Tokushoho`",
     explanation: "Agree to the `Explanation`",
     privacy: "Agree to the `Privacy Policy`",
-    cantSelectPrefectures: "Can't select prefectures",
   },
   finishMintDialog: {
     message: "Mint Finished!!",

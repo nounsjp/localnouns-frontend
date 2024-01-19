@@ -5,7 +5,7 @@ const lang = {
   nav: {
     top: "トップ",
     mint: "ミント",
-    list: "一覧",
+    list: "マーケット",
     owner: "マイページ",
     p2pSale: "P2Pセール",
     p2pTrade: "P2Pトレード",
@@ -43,7 +43,6 @@ const lang = {
     tokushoho: "「特定商取引法に基づく表記」に同意する",
     explanation: "「重要事項説明資料」に同意する",
     privacy: "「プライバシーポリシー」に同意する",
-    cantSelectPrefectures: "都道府県は指定できません",
   },
   finishMintDialog: {
     message: "ミント完了!!",
