@@ -25,7 +25,7 @@
         >{{ $t("nav.owner") }}</router-link
       >
       <Languages class="mt-4" />
-      <Connect :network="network" />
+      <Connect v-if="displayWallet" :network="network" />
     </div>
     <div v-else class="flex justify-end">
       <Languages class="mt-4 mb-2 mr-4" />
@@ -141,7 +141,6 @@ export default defineComponent({
     useI18nParam();
 
     const displayMenu = computed(() => {
-      console.log("route.path", route.path);
       if (
         route.path != "/" &&
         route.path != "/ja" &&
@@ -152,6 +151,19 @@ export default defineComponent({
         return true;
       } else {
         return false;
+      }
+    });
+
+    const displayWallet = computed(() => {
+      if (
+        route.path.includes("/terms") ||
+        route.path.includes("/tokushoho") ||
+        route.path.includes("/privacy") ||
+        route.path.includes("/about")
+      ) {
+        return false;
+      } else {
+        return true;
       }
     });
 
@@ -184,6 +196,7 @@ export default defineComponent({
       TWITTER_URL,
       DISCORD_URL,
       displayMenu,
+      displayWallet,
     };
   },
 });
