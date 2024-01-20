@@ -103,9 +103,7 @@
         <p class="mt-2 text-xl">
           縁遠いご当地のNounsが出たら、それは別の誰かの当たり!
         </p>
-        <p class="mt-2 text-2xl">
-          さぁ、交換しよう!!
-        </p>
+        <p class="mt-2 text-2xl">さぁ、交換しよう!!</p>
         <p class="mt-2 mb-2 text-xl underline">
           <router-link :to="localizedUrl('/about')"> >>> more...</router-link>
         </p>
