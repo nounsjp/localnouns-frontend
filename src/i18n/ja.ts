@@ -65,6 +65,7 @@ const lang = {
   owner: {
     description: "あなたの所有するご当地Nounsです",
     total: "合計",
+    prefectures: "都道府県",
   },
   prefectures: {
     prefectures: "都道府県",

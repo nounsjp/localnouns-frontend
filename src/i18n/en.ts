@@ -66,6 +66,7 @@ const lang = {
   owner: {
     description: "These are your local Nouns that you own.",
     total: "Total",
+    prefectures: "prefecture(s)",
   },
   prefectures: {
     prefectures: "Prefecture",
