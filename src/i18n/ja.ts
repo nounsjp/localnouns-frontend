@@ -61,6 +61,7 @@ const lang = {
     onSale: "販売中",
     manage: "所有",
     goToAllnouns: "全てのご当地Nounsを見る",
+    connectWallet: "先にウォレット接続してください",
   },
   owner: {
     description: "あなたの所有するご当地Nounsです",

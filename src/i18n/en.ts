@@ -62,6 +62,7 @@ const lang = {
     onSale: "onSale",
     manage: "Owner",
     goToAllnouns: "Go to All Nouns",
+    connectWallet: "Connect Wallet from above right button.",
   },
   owner: {
     description: "These are your local Nouns that you own.",

@@ -33,6 +33,13 @@
   </div>
 
   <div
+    v-if="!account && filterType == 'myNouns'"
+    class="mb-2 font-londrina font-yusei text-2xl text-center"
+  >
+    {{ $t("list.connectWallet") }}
+  </div>
+
+  <div
     v-if="filterType != 'prefecture'"
     class="px-5 py-1 flex flex-col items-center justify-center mx-5"
   >
@@ -44,7 +51,6 @@
       {{ $t("owner.prefectures") }}
     </p>
   </div>
-
   <div
     v-for="tokenGroup in groupedByPrefecture"
     :key="tokenGroup.key"
