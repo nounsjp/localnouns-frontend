@@ -84,48 +84,74 @@
       </label>
     </span>
   </div>
+
   <div
-    class="grid w-screen grid-cols-2 place-content-center items-center gap-2 sm:grid-cols-5"
+    v-if="filterType != 'prefecture'"
+    class="px-5 py-1 flex flex-col items-center justify-center mx-5"
   >
+    <NounsMap :groupedByPrefecture="groupedByPrefecture" />
+    <p class="mb-2 font-londrina font-yusei text-2xl text-center">
+      {{ $t("owner.total") }} : {{ tokensForDisplay.length }} Noun(s) /
+      {{ Object.keys(groupedByPrefecture).length }}
+      {{ $t("owner.prefectures") }}
+    </p>
+  </div>
+
+  <div
+    v-for="tokenGroup in groupedByPrefecture"
+    :key="tokenGroup.key"
+    class="px-2 py-1 flex flex-col items-left justify-center"
+  >
+    <hr class="border-t border-gray-600 my-4 w-full" />
+    <p class="mb-2 font-londrina font-yusei text-3xl text-left mx-10">
+      {{ $t("prefecture." + tokenGroup[0].prefecture) }}({{
+        tokenGroup.length
+      }})
+    </p>
+
     <div
-      v-for="token in tokensForDisplay"
-      :key="token.key"
-      class="px-2 py-6 flex flex-col items-center justify-center"
+      class="grid w-screen grid-cols-2 place-content-center items-center gap-2 sm:grid-cols-5"
     >
-      <div @click="showTokenModal(token)" class="items-center justify-center">
-        <TokenDetail :token="token" size="S" />
+      <div
+        v-for="token in tokenGroup"
+        :key="token.key"
+        class="px-2 py-6 flex flex-col items-center justify-center"
+      >
+        <div @click="showTokenModal(token)" class="items-center justify-center">
+          <TokenDetail :token="token" size="S" />
+        </div>
+
+        <span
+          v-if="token.holder.toLowerCase() == account"
+          class="ml-2 font-londrina font-yusei text-xl"
+        >
+          <button
+            class="inline-block rounded bg-green-500 w-20 px-1 py-2.5 leading-tight text-white shadow-md transition duration-150 my-2"
+          >
+            {{ $t("list.manage") }}
+          </button>
+        </span>
       </div>
 
-      <span
-        v-if="token.holder.toLowerCase() == account"
-        class="ml-2 font-londrina font-yusei text-xl"
-      >
-        <button
-          class="inline-block rounded bg-green-500 w-20 px-1 py-2.5 leading-tight text-white shadow-md transition duration-150 my-2"
-        >
-          {{ $t("list.manage") }}
-        </button>
-      </span>
+      <TokenManagement
+        v-if="selectedToken"
+        :network="network"
+        :tokenAddress="tokenAddress"
+        :isOpen="isManagementModalOpen"
+        :token="selectedToken"
+        @close="closeTokenModal"
+      />
+
+      <TokenSaleOrTrade
+        v-if="selectedToken"
+        :network="network"
+        :tokenAddress="tokenAddress"
+        :isOpen="isSaleOrTradeModalOpen"
+        :token="selectedToken"
+        :myTokens="myTokens"
+        @close="closeTokenModal"
+      />
     </div>
-
-    <TokenManagement
-      v-if="selectedToken"
-      :network="network"
-      :tokenAddress="tokenAddress"
-      :isOpen="isManagementModalOpen"
-      :token="selectedToken"
-      @close="closeTokenModal"
-    />
-
-    <TokenSaleOrTrade
-      v-if="selectedToken"
-      :network="network"
-      :tokenAddress="tokenAddress"
-      :isOpen="isSaleOrTradeModalOpen"
-      :token="selectedToken"
-      :myTokens="myTokens"
-      @close="closeTokenModal"
-    />
   </div>
 </template>
 
@@ -141,6 +167,7 @@ import ListSortOrder from "@/components/ListSortOrder.vue";
 import TokenDetail from "@/components/TokenDetail.vue";
 import TokenManagement from "@/components/TokenManagement.vue";
 import TokenSaleOrTrade from "@/components/TokenSaleOrTrade.vue";
+import NounsMap from "@/components/NounsMap.vue";
 import { prefectureList } from "@/i18n/prefectures";
 import { TOKEN } from "@/firestore/const";
 import { getPartsNameAndDescription } from "@/utils/partsDataUtil";
@@ -168,6 +195,7 @@ export default defineComponent({
     TokenDetail,
     TokenManagement,
     TokenSaleOrTrade,
+    NounsMap,
   },
   async setup(props) {
     const store = useStore();
@@ -332,6 +360,27 @@ export default defineComponent({
     };
     getTokenList();
 
+    // トークンを都道府県IDでグループ化するcomputedプロパティ
+    const groupedByPrefecture = computed(() => {
+      // 最初にtokensをtokenIdでソート
+      const sortedTokens = [...tokensForDisplay.value].sort((a, b) => {
+        return Number(a.tokenId) - Number(b.tokenId);
+      });
+
+      const groups = sortedTokens.reduce((acc: any, token) => {
+        // prefectureIdをキーとする
+        const key = token.prefectureId;
+        if (!acc[key]) {
+          // キーが存在しなければ、新しい配列を作成
+          acc[key] = [];
+        }
+        // トークンをキーに対応する配列に追加
+        acc[key].push(token);
+        return acc;
+      }, {}); // 初期値は空のオブジェクト
+      return groups;
+    });
+
     const selectedToken = ref<TOKEN | null>(null);
 
     // 保有していたら管理用モーダル、そうでない場合はP2P用
@@ -366,6 +415,7 @@ export default defineComponent({
       isManagementModalOpen,
       isSaleOrTradeModalOpen,
       getTokenList,
+      groupedByPrefecture,
       showTokenModal,
       closeTokenModal,
       selectedToken,
