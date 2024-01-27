@@ -77,6 +77,14 @@ const lang = {
     older: "古い順",
     newer: "新しい順",
   },
+  listFilterType: {
+    filterType: "検索条件",
+    prefecture: "都道府県",
+    onSale: "販売中",
+    onTrade: "交換可",
+    myNouns: "私の保有分",
+    admins: "運営保有分",
+  },
   numOfMint: {
     numOfMint: "ミント数",
   },

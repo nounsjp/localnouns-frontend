@@ -78,6 +78,14 @@ const lang = {
     older: "Older",
     newer: "Newer",
   },
+  listFilterType: {
+    filterType: "Criteria",
+    prefecture: "Prefecutre",
+    onSale: "On Sale",
+    onTrade: "On Trade",
+    myNouns: "My Nouns",
+    admins: "Admin's Nouns",
+  },
   numOfMint: {
     numOfMint: "Quantity",
   },

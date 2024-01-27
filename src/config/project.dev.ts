@@ -24,3 +24,5 @@ export const MINT_NOT_SPECIFIED_BY_CC_URL =
 // "https://paypiement.xyz/projects/71b06bdc-7536-4bee-be4d-066176b93b06"; // 本番
 export const TWITTER_URL = "https://twitter.com/LocalNouns_jp";
 export const DISCORD_URL = "https://discord.gg/CMNkP3QGbW";
+export const ADMINISTRATORS_ADDRESS =
+  "0xA0B9D89F6d17658EAA71fC0b916fCCB248340382"; // 運営アドレス
