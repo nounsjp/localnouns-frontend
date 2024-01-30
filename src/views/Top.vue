@@ -1,6 +1,6 @@
 <template>
   <div class="mx-auto p-2 mb-200 text-center font-londrina font-yusei">
-    <img src="/banner.jpeg" class="mb-8 mt-8 w-full md:w-4/5 mx-auto" />
+    <img src="/banner_t4.gif" class="mb-8 mt-8 w-full md:w-4/5 mx-auto" />
     <div v-if="lang === 'en'">
       <div class="text-3xl">
         <p>Someone else's miss</p>
