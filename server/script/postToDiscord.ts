@@ -23,7 +23,7 @@ export async function postForMint(bot: DiscordBot, channelId: string, tokenId: s
 ${LOCALNOUNS_URL}/list/${token.prefectureId}
 `;
     console.log(message);
-    bot.sendMessage(channelId, message, path)
+    bot.sendMessage(channelId, message, [path])
         .then(() => console.log('postForMint sent!'))
         .catch(console.error);
 } 
@@ -46,7 +46,7 @@ export async function postForPutSale(bot: DiscordBot, channelId: string, tokenId
 ${LOCALNOUNS_URL}/list/${token.prefectureId}
 `;
     console.log(message);
-    bot.sendMessage(channelId, message, path)
+    bot.sendMessage(channelId, message, [path])
         .then(() => console.log('postForPutSale sent!'))
         .catch(console.error);
 } 
@@ -72,7 +72,7 @@ export async function postForPutTrade(bot: DiscordBot, channelId: string, tokenI
 ${LOCALNOUNS_URL}/list/${token.prefectureId}
 `;
     console.log(message);
-    bot.sendMessage(channelId, message, path)
+    bot.sendMessage(channelId, message, [path])
         .then(() => console.log('postForPutTrade sent!'))
         .catch(console.error);
 } 
