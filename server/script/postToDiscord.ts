@@ -20,7 +20,6 @@ export async function postForMint(bot: DiscordBot, channelId: string, tokenId: s
 ## Local Nouns #${tokenId} ${prefectureName}
 ヘッド    : ${headName}
 アクセサリ: ${accessoryName}
-${LOCALNOUNS_URL}/list/${token.prefectureId}
 `;
     console.log(message);
     bot.sendMessage(channelId, message, [path])
