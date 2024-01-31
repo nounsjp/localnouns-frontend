@@ -24,3 +24,20 @@ export interface PARTS {
   author?: string;
   createdDate?: Date;
 }
+export enum ACTION {
+  MINT = "MINT",
+  PURCHASE = "PURCHASE",
+  TRADE = "TRADE",
+}
+export interface HISTORY {
+  hash: string;
+  blocknumber: number;
+  action: ACTION;
+  tokenId: string;
+  token?: TOKEN;
+  from: string;
+  to: string;
+  fromName: string;
+  toName: string;
+  timestamp?: Date | undefined;
+}
