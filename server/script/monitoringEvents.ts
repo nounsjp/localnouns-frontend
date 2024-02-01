@@ -12,6 +12,7 @@ import { addresses } from "@/utils/addresses";
 import { ethers } from "ethers";
 import { writeTokenDataToFirestore, updateHolderOfTokenOnFirestore, updatePriceOfTokenOnFirestore, updateTradeOfTokenOnFirestore } from "./tokenOnFirestore";
 import { writeHistoryToFirestore } from "./historyOnFirestore";
+import { incrementHolderToFirestore } from "./holderOnFirestore";
 import { getTokenInfoAtMint } from "./tokenOnContract";
 import { TOKEN, HISTORY, ACTION } from "@/firestore/const";
 import { EventQueue } from "@/utils/eventQueue";
@@ -32,12 +33,16 @@ bot.login()
   .then(() => console.log('Discord Bot Logged in!'))
   .catch(console.error);
 
-const eventQueue = new EventQueue(3);
+const eventQueue = new EventQueue(1); // firestoreのholderをシリアルに書き込むために多重度は1とする
 // Transferイベントの監視
 tokenContract.on("Transfer", async (from, to, tokenId, event: any) => {
   // 同時実行スレッドの数を制限するためキューイングして実行する
   eventQueue.add({ from, to, tokenId, event }, async (event) => {
     try {
+
+      const fromName = await resolveNNSorENS(resolverContract, from);
+      const toName = await resolveNNSorENS(resolverContract, to);
+
       if (from == "0x0000000000000000000000000000000000000000") {
         // mint時のTransfer
         const tokenInfo: TOKEN = await getTokenInfoAtMint(tokenId);
@@ -58,12 +63,13 @@ tokenContract.on("Transfer", async (from, to, tokenId, event: any) => {
           tokenId: tokenId,
           from: from,
           to: to,
-          fromName: await resolveNNSorENS(resolverContract, from),
-          toName: await resolveNNSorENS(resolverContract, to),
+          fromName: fromName,
+          toName: toName,
           timestamp: timestamp ? new Date(timestamp * 1000) : new Date(0)
         };
-        await writeHistoryToFirestore(history);
 
+        await writeHistoryToFirestore(history);
+        await incrementHolderToFirestore(to, toName, 1);
 
         // discordへポスト
         await postForMint(bot, DISCORD_ANNOUNCE_CHANNEL_ID, tokenId);
@@ -72,6 +78,8 @@ tokenContract.on("Transfer", async (from, to, tokenId, event: any) => {
       } else {
         // P2PSale, P2PTradeの成立
         await updateHolderOfTokenOnFirestore(tokenId, to.toLowerCase());
+        await incrementHolderToFirestore(to, toName, 1);
+        await incrementHolderToFirestore(from, fromName, -1);
         console.log(`Write finish, holder: ${tokenId}, ${to}`);
       }
 

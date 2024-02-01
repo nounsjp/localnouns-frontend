@@ -41,3 +41,9 @@ export interface HISTORY {
   toName: string;
   timestamp?: Date | undefined;
 }
+export interface HOLDER {
+  address: string;
+  addressName: string;
+  numOfHold: number;
+  timestamp?: Date | undefined;
+}
