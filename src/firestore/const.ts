@@ -1,3 +1,5 @@
+import { Timestamp } from 'firebase/firestore';
+
 export interface TOKEN {
   tokenId: string;
   prefecture: string;
@@ -39,11 +41,23 @@ export interface HISTORY {
   to: string;
   fromName: string;
   toName: string;
-  timestamp?: Date | undefined;
+  timestamp?:Timestamp;
 }
 export interface HOLDER {
   address: string;
   addressName: string;
   numOfHold: number;
   timestamp?: Date | undefined;
+  tokens?: TOKEN[];
+}
+export enum COUNTER_TYPE {
+  DAILY = "DAILY",
+  MONTHLY = "MONTHLY",
+}
+export interface COUNTER {
+  counterType: COUNTER_TYPE;
+  key: string;
+  numOfMint?: number;
+  numOfSale?: number;
+  numOfTrade?: number;
 }
