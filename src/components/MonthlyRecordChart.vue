@@ -23,7 +23,7 @@ import { GChart } from "vue-google-charts";
 import { COUNTER, COUNTER_TYPE } from "@/firestore/const";
 import { getDocs, collection, query, orderBy, where } from "firebase/firestore";
 import { db } from "@/utils/firebase";
-import { monthAdd,dateToYYYYMMM } from "@/utils/utils";
+import { monthAdd, dateToYYYYMMM } from "@/utils/utils";
 
 export default defineComponent({
   props: {
@@ -44,12 +44,11 @@ export default defineComponent({
     const collectionPath = `/${props.network}/${props.tokenAddress}`;
 
     const counters = ref<COUNTER[]>([]);
-      // サービス開始日
-      const dayStart = new Date(2023,12,1);
+    // サービス開始日
+    const dayStart = new Date(2023, 12, 1);
     const getCounter = async () => {
       // コレクションへの参照を取得
       const counterCollectionRef = collection(db, collectionPath + "/counter");
-
 
       const counterQuery = query(
         counterCollectionRef,
@@ -81,25 +80,23 @@ export default defineComponent({
     const chartData = ref([["Month", 0, 0, 0]]);
     chartData.value = [["Month", "Mint", "P2PSale", "P2PTrade"]];
 
-    let xMonth:Date = dayStart;
+    let xMonth: Date = dayStart;
     const today = new Date();
-    let i=0;
-    while (xMonth.getTime() <= today.getTime() ) {
+    let i = 0;
+    while (xMonth.getTime() <= today.getTime()) {
       xMonth = monthAdd(dayStart, i);
       const x = dateToYYYYMMM(xMonth);
-      const counter = counters.value.find(counter => counter.key === x);
-      
-      if(counter){
-      chartData.value.push([
-        x,
-        counter.numOfMint,
-        counter.numOfSale,
-        counter.numOfTrade,
-      ]);
-      }else{
-      chartData.value.push([
-        x,0,0,0
-      ]);
+      const counter = counters.value.find((counter) => counter.key === x);
+
+      if (counter) {
+        chartData.value.push([
+          x,
+          counter.numOfMint,
+          counter.numOfSale,
+          counter.numOfTrade,
+        ]);
+      } else {
+        chartData.value.push([x, 0, 0, 0]);
       }
 
       i++;

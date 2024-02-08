@@ -18,7 +18,7 @@ export const dateAdd = (date: Date, days: number) => {
   return new Date(date.getFullYear(), date.getMonth(), date.getDate() + days);
 };
 export const monthAdd = (date: Date, months: number) => {
-  return new Date(date.getFullYear(), date.getMonth() + months , date.getDate());
+  return new Date(date.getFullYear(), date.getMonth() + months, date.getDate());
 };
 export const dateToYYYYMMMDD = (date: Date) => {
   // 結果をYYYY-MM-DD形式で表示
