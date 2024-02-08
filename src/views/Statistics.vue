@@ -6,7 +6,9 @@
       </p>
     </div>
 
-    <RecordChart :network="network" :tokenAddress="tokenAddress" />
+    <DailyRecordChart :network="network" :tokenAddress="tokenAddress" />
+
+    <MonthlyRecordChart :network="network" :tokenAddress="tokenAddress" />
 
     <OwnerRanking :network="network" :tokenAddress="tokenAddress" />
   </div>
@@ -15,7 +17,8 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import OwnerRanking from "@/components/OwnerRanking.vue";
-import RecordChart from "@/components/RecordChart.vue";
+import DailyRecordChart from "@/components/DailyRecordChart.vue";
+import MonthlyRecordChart from "@/components/MonthlyRecordChart.vue";
 
 export default defineComponent({
   props: {
@@ -31,7 +34,8 @@ export default defineComponent({
   name: "Statistics",
   components: {
     OwnerRanking,
-    RecordChart,
+    DailyRecordChart,
+    MonthlyRecordChart,
   },
   async setup() {},
 });

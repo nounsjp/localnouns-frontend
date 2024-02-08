@@ -66,7 +66,7 @@ const lang = {
   },
   statistics: {
     description: "ご当地Nouns 統計情報",
-    owners: "オーナー(top100)",
+    owners: "オーナー(top20)",
     last30days: "取引実績(直近30日)",
     fromStart: "取引実績(開始〜)",
   },

@@ -1,5 +1,3 @@
-import { Timestamp } from 'firebase/firestore';
-
 export interface TOKEN {
   tokenId: string;
   prefecture: string;
@@ -41,7 +39,7 @@ export interface HISTORY {
   to: string;
   fromName: string;
   toName: string;
-  timestamp?:Timestamp;
+  timestamp?: Date | undefined;
 }
 export interface HOLDER {
   address: string;
@@ -57,7 +55,7 @@ export enum COUNTER_TYPE {
 export interface COUNTER {
   counterType: COUNTER_TYPE;
   key: string;
-  numOfMint?: number;
-  numOfSale?: number;
-  numOfTrade?: number;
+  numOfMint: number;
+  numOfSale: number;
+  numOfTrade: number;
 }

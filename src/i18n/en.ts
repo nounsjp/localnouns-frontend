@@ -67,9 +67,9 @@ const lang = {
   },
   statistics: {
     description: "Local Nouns Statistics",
-    owners: "Owners(top100)",
+    owners: "Owners(top20)",
     last30days: "last 30 days records",
-    fromStart: "records from start",
+    fromStart: "Since start",
   },
   owner: {
     description: "These are your local Nouns that you own.",

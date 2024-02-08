@@ -87,7 +87,7 @@ export default defineComponent({
       const holderQuery = query(
         holdersCollectionRef,
         orderBy("numOfHold", "desc"), // numOfHoldで降順にソート
-        limit(100), // 最初の100件を取得
+        limit(20), // 最初の20件を取得
       );
       try {
         const results = await getDocs(holderQuery);
